@@ -11,6 +11,8 @@
 	"appid": "wxe59009a99d2c00a0",
 	"projectname": "onepiece-wiki",
 	"libVersion": "2.2.5",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

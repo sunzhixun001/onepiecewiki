@@ -1,36 +1,44 @@
 {
-    "cloud": true,
-    "pages": [
+	"cloud": true,
+	"pages": [
+		"pages/user/user",
 		"pages/timeLine/timeLine",
-        "pages/index/index",
-        "pages/userConsole/userConsole",
-        "pages/storageConsole/storageConsole",
-        "pages/databaseGuide/databaseGuide",
-        "pages/addFunction/addFunction",
-        "pages/deployFunctions/deployFunctions",
-        "pages/chooseLib/chooseLib"
-    ],
-    "window": {
-        "backgroundColor": "#F6F6F6",
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#F6F6F6",
-        "navigationBarTitleText": "one piece wiki",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "list": [
-            {
-                "pagePath": "pages/timeLine/timeLine",
-                "text": "时间线"
-            },
-            {
-                "pagePath": "pages/index/index",
-                "text": "人物"
-            },
-            {
-                "pagePath": "pages/index/index",
-                "text": "事件"
-            }
-        ]
-    }
+		"pages/index/index",
+		"pages/userConsole/userConsole",
+		"pages/storageConsole/storageConsole",
+		"pages/databaseGuide/databaseGuide",
+		"pages/addFunction/addFunction",
+		"pages/deployFunctions/deployFunctions",
+		"pages/chooseLib/chooseLib",
+		"admin/biological/biological"
+		
+	],
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#F6F6F6",
+		"navigationBarTitleText": "one piece wiki",
+		"navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/timeLine/timeLine",
+				"text": "时间线"
+			},
+			{
+				"pagePath": "pages/index/index",
+				"text": "人物"
+			},
+			{
+				"pagePath": "pages/index/index",
+				"text": "事件"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我"
+			}
+		]
+	},
+	"sitemapLocation": "sitemap.json"
 }

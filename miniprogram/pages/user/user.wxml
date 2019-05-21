@@ -1,0 +1,7 @@
+<view>
+	<view>
+		<navigator url="/admin/biological/biological" open-type="navigate">
+			<text>人物管理</text>
+		</navigator>
+	</view>
+</view>
