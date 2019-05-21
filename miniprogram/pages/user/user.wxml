@@ -1,6 +1,6 @@
 <view>
 	<view>
-		<navigator url="/admin/biological/biological" open-type="navigate">
+		<navigator url="/admin/characters/list/list" open-type="navigate">
 			<text>人物管理</text>
 		</navigator>
 	</view>

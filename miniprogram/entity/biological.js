@@ -1,6 +1,6 @@
 // 生物
-export default class biological {
-	constructor() {
-		this.name = '';
+export default class Biological {
+  constructor(name) {
+    this.name = name;
 	}
 }
