@@ -12,3 +12,15 @@ export const getList = ({ success}) => {
 
 		});
 }
+// 新增一个事件
+export const create = ({ event, success}) => {
+  collection.add({
+    data: event
+  })
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}

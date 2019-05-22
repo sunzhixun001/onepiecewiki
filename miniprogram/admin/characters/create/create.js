@@ -68,7 +68,7 @@ Page({
   bindNameInput(e) {
     this.setData({
       name: e.detail.value
-    })
+    });
   },
   onSureClick(e) {
     let bi = new Biological(this.data.name);

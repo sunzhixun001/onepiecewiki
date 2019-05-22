@@ -1,6 +1,7 @@
 import { getDatabase } from './common';
 
 const collection = getDatabase().collection('biologicals');
+// 新增一个人物
 export const create = ({ biological, success}) => {
   collection.add({
     data: biological
@@ -10,7 +11,7 @@ export const create = ({ biological, success}) => {
   })
   .catch(err => {
     console.error(err);
-  })
+  });
 }
 // 获取全部人物
 export const getList = ({success}) => {

@@ -1,0 +1,16 @@
+<view>
+	<view class='body'>
+		<view class='item'>
+			<input bindinput="bindTitleInput" placeholder="标题"></input>
+		</view>
+    <view class='item'>
+			<input bindinput="bindAgeInput" placeholder="年份"></input>
+		</view>
+    <view class='item'>
+			<input bindinput="bindShowAgeInput" placeholder="显示年份"></input>
+		</view>
+	</view>
+	<view class='footer'>
+		<button bindtap="onSureClick" >确定</button>
+	</view>
+</view>

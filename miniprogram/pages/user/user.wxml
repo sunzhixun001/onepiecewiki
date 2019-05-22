@@ -1,7 +1,10 @@
 <view>
-	<view>
+	<view class='body'>
 		<navigator url="/admin/characters/list/list" open-type="navigate">
 			<text>人物管理</text>
+		</navigator>
+    <navigator url="/admin/events/list/list" open-type="navigate">
+			<text>事件管理</text>
 		</navigator>
 	</view>
 </view>
