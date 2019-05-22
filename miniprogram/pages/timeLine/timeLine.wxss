@@ -1,1 +1,79 @@
-/* miniprogram/pages/timeLine/timeLine.wxss */
+page{
+	height: 100%;
+	background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/overview_bg.png?sign=247abecaeaf53a1519519f42d36cb1fb&t=1558505959);
+	background-size: cover;
+	background-position: center;
+}
+.container{
+	height: 100%;
+}
+.timeline-container{
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+.timeline-container:before{
+	content: '';
+	display: block;
+	position: absolute;
+	left: 76rpx;
+	border-left: 8rpx solid #D9312B;
+	height: 100%;
+}
+.time-item{
+	display: flex;
+	z-index: 100;
+	position: relative;
+}
+/* left */
+.left{
+	width: 160rpx;
+	display: flex;
+	align-content: center;
+	justify-content: center;
+}
+/* right */
+.right{
+	/* padding-left: 40rpx; */
+	padding-top: 10rpx;
+	flex: 1;
+}
+.right .head{
+	display: flex;
+	padding: 20rpx;
+	background-color: #D9312B;
+	color: #FFF;
+	align-items: center;
+	position: relative;
+	margin-right: 40rpx;
+}
+.head .triangle{
+	border-style: solid;
+	border-width: 10rpx;
+	border-color: transparent #D9312B transparent transparent;
+	position: absolute;
+	left: -20rpx;
+}
+.age{
+	font-size: 24rpx;
+	width: 60rpx;
+	height: 60rpx;
+	border-radius: 40rpx;
+	color: #FFF;
+	background-color:#D9312B; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: solid #FFF 10rpx;
+	margin-top: 10rpx;
+}
+.body{
+	margin-right: 40rpx;
+}
+.photo{
+	height: 180rpx;
+	overflow: hidden;
+}
+.photo image{
+	width: 100%;
+}

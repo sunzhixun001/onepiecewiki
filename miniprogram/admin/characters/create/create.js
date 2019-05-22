@@ -72,6 +72,16 @@ Page({
   },
   onSureClick(e) {
     let bi = new Biological(this.data.name);
-    create({ biological: bi });
+		create({ biological: bi, success: res => {
+			// errMsg:"collection.add:ok"
+			// _id:"57896b495ce4c1a803352b52014c5f39"
+			const { _id, errMsg} = res;
+			if (errMsg === "collection.add:ok" && _id){
+				wx.showToast({
+					title: '添加成功'
+				});
+				this.setData({ name:''});
+			}
+		}});
   }
 })

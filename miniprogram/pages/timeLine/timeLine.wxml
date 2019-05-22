@@ -1,2 +1,20 @@
-<!--miniprogram/pages/timeLine/timeLine.wxml-->
-<text>miniprogram/pages/timeLine/timeLine.wxml</text>
+<view class='container'>
+	<view class='timeline-container'>
+		<view class='time-item' wx:for="{{events}}" wx:key="_id">
+			<view class='left'>
+				<view class='age'><text>{{item.age}}</text></view>
+			</view>
+			<view class='right'>
+				<view class='head'>
+					<view class='title'>{{item.title}}</view>
+					<view class='triangle'></view>
+				</view>
+				<view class='body'>
+					<view class='photo'>
+						<image src='{{item.photo}}' mode="widthFix"></image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

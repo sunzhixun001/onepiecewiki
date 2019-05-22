@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    characters: []
+		characters: [],
+		windowWidth: 0,
+		avatarWidth: 0
   },
 
   /**
@@ -13,6 +15,7 @@ Page({
    */
   onLoad: function (options) {
     this.getCharacters();
+		this.getSystemInfo();
   },
 
   /**
@@ -71,5 +74,16 @@ Page({
         });
       }
     });
-  }
+  },
+	getSystemInfo() {
+		wx.getSystemInfo({
+			success: res => {
+				console.log(res);
+				const { windowWidth} = res;
+				this.setData({
+					avatarWidth: windowWidth / 4
+				});
+			}
+		})
+	}
 })

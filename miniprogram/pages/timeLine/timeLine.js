@@ -1,11 +1,11 @@
-// miniprogram/pages/timeLine/timeLine.js
+import { getList} from '../../database/events';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+		events: []
   },
 
   /**
@@ -19,7 +19,12 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+		this.getEventsList();
+		wx.getSystemInfo({
+			success(res) {
+				console.log(res);
+			}
+		});
   },
 
   /**
@@ -62,5 +67,13 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+	getEventsList() {
+		getList({success: res => {
+			this.setData({
+				events: res.data
+			});
+			console.log(res);
+		}});
+	}
 })

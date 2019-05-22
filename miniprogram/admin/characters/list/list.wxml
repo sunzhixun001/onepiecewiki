@@ -1,13 +1,17 @@
 <view>
-  <view>
-    <navigator url="/admin/characters/create/create" open-type="navigate">
+	<view>
+		<view class='characters'>
+			<view class='item' wx:for="{{characters}}" wx:key="_id">
+				<view class="avatar">
+					<image src="{{item.avator}}" style='width:{{avatarWidth}}px;height:{{avatarWidth}}px'></image>
+				</view>
+				<view class='name'><text>{{item.name}}</text></view>
+			</view>
+		</view>
+	</view>
+	<view class='footer'>
+		<navigator url="/admin/characters/create/create" open-type="navigate">
 			<text>新建</text>
 		</navigator>
-  </view>
-  <view class='characters'>
-    <view class='item' wx:for="{{characters}}" wx:key="_id">
-      <view class="avatar"><image src="{{item.avator}}"></image></view>
-      <view><text>{{item.name}}</text></view>
-    </view>
-  </view>
+	</view>
 </view>

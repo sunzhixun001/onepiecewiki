@@ -1,8 +1,10 @@
 {
   "cloud": true,
   "pages": [
+		"pages/timeLine/timeLine",
+		"admin/characters/list/list",
+		"admin/characters/create/create",
     "pages/user/user",
-    "pages/timeLine/timeLine",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -11,15 +13,13 @@
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
     "admin/biological/biological",
-    "pages/characters/characters",
-    "admin/characters/list/list",
-    "admin/characters/create/create"
+    "pages/characters/characters"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "one piece wiki",
+    "navigationBarTitleText": "海贼王大百科",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
