@@ -1,48 +1,51 @@
 {
-  "cloud": true,
-  "pages": [
-    "pages/timeLine/timeLine",
-    "admin/events/create/create",
-    "admin/events/list/list",
-    "pages/user/user",
-    "admin/characters/list/list",
-    "admin/characters/create/create",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "admin/biological/biological",
-    "pages/characters/characters"
-  ],
-  "window": {
-    "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "海贼王大百科",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/timeLine/timeLine",
-        "text": "时间线"
-      },
-      {
-        "pagePath": "pages/characters/characters",
-        "text": "人物"
-      },
-      {
-        "pagePath": "pages/index/index",
-        "text": "事件"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "我"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json"
+	"cloud": true,
+	"pages": [
+		"pages/user/user",
+		"admin/characters/list/list",
+		"pages/timeLine/timeLine",
+		"admin/events/create/create",
+		"admin/events/list/list",
+		"admin/characters/create/create",
+		"pages/index/index",
+		"pages/userConsole/userConsole",
+		"pages/storageConsole/storageConsole",
+		"pages/databaseGuide/databaseGuide",
+		"pages/addFunction/addFunction",
+		"pages/deployFunctions/deployFunctions",
+		"pages/chooseLib/chooseLib",
+		"admin/biological/biological",
+		"pages/characters/characters",
+		"admin/characters/edit/edit",
+		"admin/priateRegiments/list/list",
+		"admin/priateRegiments/create/create"
+	],
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#F6F6F6",
+		"navigationBarTitleText": "海贼王大百科",
+		"navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+		"list": [
+			{
+				"pagePath": "pages/timeLine/timeLine",
+				"text": "时间线"
+			},
+			{
+				"pagePath": "pages/characters/characters",
+				"text": "人物"
+			},
+			{
+				"pagePath": "pages/index/index",
+				"text": "事件"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"text": "我"
+			}
+		]
+	},
+	"sitemapLocation": "sitemap.json"
 }

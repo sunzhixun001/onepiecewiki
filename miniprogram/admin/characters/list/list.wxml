@@ -1,7 +1,7 @@
 <view>
 	<view>
 		<view class='characters'>
-			<view class='item' wx:for="{{characters}}" wx:key="_id">
+			<view class='item' wx:for="{{characters}}" wx:key="_id" bindtap='onItemClick' data-id='{{item._id}}'>
 				<view class="avatar">
 					<image src="{{item.avator}}" style='width:{{avatarWidth}}px;height:{{avatarWidth}}px'></image>
 				</view>

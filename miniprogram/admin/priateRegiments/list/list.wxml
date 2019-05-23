@@ -1,0 +1,14 @@
+<view class='container'>
+  <view class='body'>
+    <view>
+      <view class='item' wx:for="{{priateRegiments}}" wx:key="_id">
+        <navigator>
+          <text>{{item.name}}</text>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class='footer'>
+    <button bindtap='onAddClick'>新增</button>
+  </view>
+</view>

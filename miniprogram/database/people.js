@@ -23,3 +23,21 @@ export const getList = ({success}) => {
 
   });
 }
+// 使用ID获取一个人物
+export const get = ({id, success}) => {
+	collection.where({
+		_id: id
+	}).get()
+		.then(res => {
+			success && success(res);
+		})
+		.catch()
+}
+// 修改一个人
+export const update = ({ id, data, success}) => {
+	collection.doc(id).update({
+		data
+	})
+		.then(res => { success && success(res)})
+		.catch(console.error);
+}

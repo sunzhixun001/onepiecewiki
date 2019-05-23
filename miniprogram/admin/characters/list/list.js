@@ -66,6 +66,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+	onItemClick(e) {
+		const { id } = e.currentTarget.dataset;
+		wx.navigateTo({
+			url: `../edit/edit?id=${id}`,
+		})
+	},
   getCharacters() {
     getList({
       success: ({data}) => {

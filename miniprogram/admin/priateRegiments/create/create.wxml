@@ -1,0 +1,10 @@
+<view>
+	<view class='body'>
+		<view class='item'>
+			<input bindinput="bindNameInput" placeholder="名称"></input>
+		</view>
+	</view>
+	<view class='footer'>
+		<button bindtap="onSureClick" >确定</button>
+	</view>
+</view>
