@@ -1,8 +1,9 @@
 {
 	"cloud": true,
 	"pages": [
+    "pages/characters/characters",
+    "admin/characters/list/list",
 		"pages/user/user",
-		"admin/characters/list/list",
 		"pages/timeLine/timeLine",
 		"admin/events/create/create",
 		"admin/events/list/list",
@@ -15,7 +16,6 @@
 		"pages/deployFunctions/deployFunctions",
 		"pages/chooseLib/chooseLib",
 		"admin/biological/biological",
-		"pages/characters/characters",
 		"admin/characters/edit/edit",
 		"admin/priateRegiments/list/list",
 		"admin/priateRegiments/create/create"
@@ -28,14 +28,18 @@
 		"navigationBarTextStyle": "black"
 	},
 	"tabBar": {
+    "selectedColor": "#D9312B",
 		"list": [
 			{
 				"pagePath": "pages/timeLine/timeLine",
-				"text": "时间线"
+				"text": "时间线",
+        "iconPath": "images/timeline.png"
 			},
 			{
 				"pagePath": "pages/characters/characters",
-				"text": "人物"
+				"text": "人物",
+        "iconPath": "images/character.png",
+        "selectedIconPath":"images/character.png"
 			},
 			{
 				"pagePath": "pages/index/index",

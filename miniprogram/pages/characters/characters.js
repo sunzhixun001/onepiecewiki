@@ -1,18 +1,18 @@
-// miniprogram/pages/characters/characters.js
+import { getList} from '../../database/people';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    characters: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getCharactersList();
   },
 
   /**
@@ -62,5 +62,26 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getCharactersList: function() {
+    const convertBounty = number => {
+      const billion = parseInt(number / 100000000);
+      let tenthousand = 0;
+      const remainder = number % 100000000;
+      if (remainder > 0){
+        tenthousand = remainder / 10000;
+      }
+      return `${billion > 0 ? billion + '亿' : ''}${tenthousand > 0 ? tenthousand + '万':''}贝利`;
+    };
+    getList({success: res => {
+      this.setData({ 
+        characters: res.data.map(c => {
+          return Object.assign({}, c, {
+            bounty: c.priate && c.priate.reward && convertBounty(c.priate.reward) || ''
+          });
+        })
+      });
+    }});
+  },
+  
 })

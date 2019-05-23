@@ -7,7 +7,7 @@
 			<input bindinput="bindNameInput" placeholder="姓名" value='{{name}}' />
 		</view>
 		<view class='item'>
-			<input bindinput="events.bindFullNameInput" placeholder="全名" value='{{fullname}}' />
+			<input bindinput="bindFullNameInput" placeholder="全名" value='{{fullname}}' />
 		</view>
 		<view class='item'>
 			<radio-group class="radio-group" bindchange="roleChange">

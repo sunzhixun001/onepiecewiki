@@ -1,2 +1,21 @@
-<!--miniprogram/pages/characters/characters.wxml-->
-<text>miniprogram/pages/characters/characters.wxml</text>
+<view class='container'>
+  <view class='listPage'>
+    <view class='cw'>
+      <view class='listArea'>
+        <view class='itemList'>
+          <view class='item' wx:for="{{characters}}" wx:key="_id">
+            <navigator>
+              <view class='detailBox'>
+                <view class='charaName'>{{item.fullname}}</view>
+                <view class='subComment'>{{item.bounty}}</view>
+              </view>
+              <view class='thumb'>
+                <image src='{{item.avator}}' />
+              </view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
