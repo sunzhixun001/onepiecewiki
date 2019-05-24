@@ -8,7 +8,8 @@ Page({
   data: {
     title: '',
     age: 0,
-    showAge: ''
+    showAge: '',
+		photo: ''
   },
 
   /**
@@ -81,12 +82,18 @@ Page({
       showAge: e.detail.value
     });
   },
+	bindPhotoInput: function(e){
+		this.setData({
+			photo: e.detail.value
+		});
+	},
   onSureClick(e) {
     let event = new Event({
       title:this.data.title,
       age: this.data.age,
-      showAge: this.data.showAge
-      });
+      showAge: this.data.showAge,
+			photo: this.data.photo
+    });
     create({ event, success: res => {
       // errMsg: "collection.add:ok"
       // _id: "57896b495ce562b6039aeaee3da53b51"

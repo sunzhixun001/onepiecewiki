@@ -9,6 +9,9 @@
     <view class='item'>
 			<input bindinput="bindShowAgeInput" placeholder="显示年份"></input>
 		</view>
+		<view class='item'>
+			<input bindinput="bindPhotoInput" placeholder="图片"></input>
+		</view>
 	</view>
 	<view class='footer'>
 		<button bindtap="onSureClick" >确定</button>
