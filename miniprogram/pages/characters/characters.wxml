@@ -3,14 +3,14 @@
 		<view class='bgGray borderBottom tabListArea'>
 			<view class='swiper-container headerTabList'>
 				<view class='swiper-wrapper'>
-					<view class='swiper-slide item on'>
-						<text>草帽团</text>
-					</view>
-					<view class='swiper-slide item'>
-						<text>悬赏金</text>
-					</view>
-					<view class='swiper-slide item'>
-						<text>恶魔果实</text>
+					<view 
+            class="swiper-slide item {{item.index === tabIndex ? 'on':''}}" 
+            wx:for="{{tabs}}" 
+            wx:key="index"
+            data-index="{{item.index}}"
+            bindtap="bindTabChange"
+          >
+            <text>{{item.name}}</text>
 					</view>
 				</view>
 			</view>
@@ -22,10 +22,11 @@
             <navigator>
               <view class='detailBox'>
                 <view class='charaName'>{{item.fullname}}</view>
-                <view class='subComment'>{{item.bounty}}</view>
+                <view class='subComment' wx:if="{{tabIndex === 0 || tabIndex === 1}}">{{item.bounty}}</view>
+                <view class='subComment' wx:if="{{tabIndex === 2}}">{{devilfruitTypes[item.devilfruitType] + '  ' +item.devilfruitName}}</view>
               </view>
               <view class='thumb'>
-                <image src='{{item.avator}}' />
+                <image src='{{item.avator}}' binderror="bindAvatoError" lazy-load="{{true}}"/>
               </view>
             </navigator>
           </view>

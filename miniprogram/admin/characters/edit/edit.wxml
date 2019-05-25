@@ -28,6 +28,17 @@
 		<view class='item' wx:if="{{role === 1}}">
 			<input bindinput="bindBountyInput" placeholder="悬赏金" value='{{bounty}}' />
 		</view>
+    <view class='item'>
+			<radio-group class="radio-group" bindchange="devilfruitTypesChange">
+				<label class="radio" wx:for="{{devilfruitTypes}}" wx:key="type">
+					<radio value="{{item.type}}" checked='{{devilfruitType === item.type}}'/>
+					<text>{{item.name}}</text>
+				</label>
+			</radio-group> 
+		</view>
+    <view class='item' wx:if="{{devilfruitType !== 0}}">
+			<input bindinput="bindDevilfruitNameInput" placeholder="恶魔果实名字" value='{{devilfruitName}}' />
+		</view>
 	</view>
 	<view class='footer'>
 		<button bindtap="onSureClick" >保存</button>

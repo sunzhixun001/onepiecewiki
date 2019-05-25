@@ -15,10 +15,12 @@ Page({
     fullname: '',
     bounty: 0,
     role: 0,
+    level: 0,
     priateRegimentIndex: 0,
     priateRegimentName: '',
     priateRegiments: [],
-    roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }]
+    roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
+    levels: ['元帅', '大将', '中将']
   },
 
 	/**
@@ -91,6 +93,9 @@ Page({
   },
   bindBountyInput: function (e) {
     this.setData({ bounty: parseInt(e.detail.value) });
+  },
+  bindLevelInput: function(e) {
+    this.setData({ level: e.detail.value});
   },
   roleChange: function (e) {
     this.setData({ role: parseInt(e.detail.value) });

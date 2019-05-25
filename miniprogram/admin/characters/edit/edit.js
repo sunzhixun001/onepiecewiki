@@ -17,8 +17,11 @@ Page({
 		role: 0,
 		priateRegimentIndex: 0,
 		priateRegimentName: '',
+    devilfruitType: 0,
+    devilfruitName: '',
 		priateRegiments: [],
-		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }]
+		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }],
+    devilfruitTypes: [{ type: 0, name: '无' }, { type: 1, name: '超人系' }, { type: 2, name: '动物系' }, { type: 3, name: '自然系' }]
 	},
 
 	/**
@@ -92,6 +95,13 @@ Page({
 	roleChange: function(e) {
 		this.setData({ role: parseInt(e.detail.value)});
 	},
+  devilfruitTypesChange: function(e) {
+    const value = parseInt(e.detail.value);
+    this.setData({ devilfruitType: value });
+    if (value === 0){
+      this.setData({ devilfruitName: '' });
+    }
+  },
 	getCharacter: function({id}){
 		get({id, success: res => {
 			if(res.data.length > 0){
@@ -102,7 +112,9 @@ Page({
           fullname, 
           role, 
           bounty, 
-          priateRegimentName
+          priateRegimentName,
+          devilfruitType,
+          devilfruitName
         } = res.data[0];
 				this.setData({ 
 					avator, 
@@ -110,6 +122,8 @@ Page({
 					fullname, 
           bounty: bounty || 0,
 					priateRegimentName:  priateRegimentName || '无',
+          devilfruitType: devilfruitType || 0,
+          devilfruitName: devilfruitName || '',
 					id: _id, role: role || 0
 				});
 			}
@@ -122,6 +136,11 @@ Page({
 			priateRegimentName: this.data.priateRegiments[index].name
 		});
 	},
+  bindDevilfruitNameInput: function(e){
+    this.setData({
+      devilfruitName: e.detail.value
+    });
+  },
 	getPriateRegiments: function() {
 		getPriateRegimentsList({success: res => {
 			this.setData({ priateRegiments: res.data});
@@ -134,7 +153,9 @@ Page({
       avator: this.data.avator,
       role: this.data.role,
       bounty: this.data.bounty,
-      priateRegimentName: this.data.priateRegimentName
+      priateRegimentName: this.data.priateRegimentName,
+      devilfruitType: this.data.devilfruitType,
+      devilfruitName: this.data.devilfruitName
     };
     const factory = new CharacterFactory({ type: this.data.role });
     const biological = factory.create({ data });
