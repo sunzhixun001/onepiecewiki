@@ -34,10 +34,21 @@ export const get = ({id, success}) => {
 		.catch()
 }
 // 修改一个人
-export const update = ({ id, data, success}) => {
-	collection.doc(id).update({
-		data
-	})
+export const update = ({ id, biological, success}) => {
+	collection.doc(id)
+    .update({data:biological})
 		.then(res => { success && success(res)})
 		.catch(console.error);
+}
+// 获取某一海贼团的全部人物
+export const getListInPriateReg = ({ priateRegimentName, success}) => {
+  collection
+    .where({ priateRegimentName})
+    .get()
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+
+    });
 }

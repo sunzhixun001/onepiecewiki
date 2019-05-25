@@ -1,4 +1,4 @@
-import { getList} from '../../database/people';
+import { getList, getListInPriateReg} from '../../database/people';
 Page({
 
   /**
@@ -47,7 +47,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getCharactersList();
   },
 
   /**
@@ -73,14 +73,16 @@ Page({
       }
       return `${billion > 0 ? billion + '亿' : ''}${tenthousand > 0 ? tenthousand + '万':''}贝利`;
     };
-    getList({success: res => {
+    getListInPriateReg({
+      priateRegimentName: '草帽海贼团', success: res => {
       this.setData({ 
         characters: res.data.map(c => {
           return Object.assign({}, c, {
-            bounty: c.priate && c.priate.reward && convertBounty(c.priate.reward) || ''
+            bounty: c.bounty && convertBounty(c.bounty) || ''
           });
         })
       });
+      wx.stopPullDownRefresh();
     }});
   },
   

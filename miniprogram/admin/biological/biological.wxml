@@ -1,7 +1,0 @@
-<view>
-	<view>
-		<text>{{name}}</text>
-		<input bindinput="bindNameInput" placeholder="姓名"></input>
-		<button bindtap="onSureClick" >确定</button>
-	</view>
-</view>

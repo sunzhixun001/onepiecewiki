@@ -1,7 +1,7 @@
 import { get} from '../../../database/people';
 import { getList as getPriateRegimentsList } from '../../../database/priateRegiments';
 import { update } from '../../../database/people';
-
+import { CharacterFactory } from '../../../entity/factory';
 
 Page({
 
@@ -13,7 +13,7 @@ Page({
 		avator: '', 
 		name: '',
 		fullname: '',
-		reward: 0,
+    bounty: 0,
 		role: 0,
 		priateRegimentIndex: 0,
 		priateRegimentName: '',
@@ -77,14 +77,17 @@ Page({
 	onShareAppMessage: function () {
 
 	},
+  bindAvatorInput: function(e) {
+    this.setData({ avator: e.detail.value });
+  },
 	bindFullNameInput: function (e) {
 		this.setData({ fullname: e.detail.value });
 	},
 	bindNameInput: function (e) {
 		this.setData({ name: e.detail.value });
 	},
-	bindRewardInput: function(e) {
-		this.setData({ reward: parseInt(e.detail.value) });
+	bindBountyInput: function(e) {
+    this.setData({ bounty: parseInt(e.detail.value) });
 	},
 	roleChange: function(e) {
 		this.setData({ role: parseInt(e.detail.value)});
@@ -92,13 +95,21 @@ Page({
 	getCharacter: function({id}){
 		get({id, success: res => {
 			if(res.data.length > 0){
-				const { avator, name, _id, fullname, role, reward, priate} = res.data[0];
+        const { 
+          avator, 
+          name, 
+          _id, 
+          fullname, 
+          role, 
+          bounty, 
+          priateRegimentName
+        } = res.data[0];
 				this.setData({ 
 					avator, 
 					name, 
 					fullname, 
-					reward: priate && priate.reward || 0,
-					priateRegimentName: priate && priate.priateRegimentName || '无',
+          bounty: bounty || 0,
+					priateRegimentName:  priateRegimentName || '无',
 					id: _id, role: role || 0
 				});
 			}
@@ -117,22 +128,19 @@ Page({
 		}});
 	},
 	onSureClick: function() {
-		let data = {
-			name: this.data.name,
-			fullname: this.data.fullname,
-			role: this.data.role
-		};
-		if (this.data.role === 1){
-			data.priate = {
-				reward : this.data.reward,
-				priateRegimentName: this.data.priateRegimentName
-			};
-		}else{
-			data.priate = null;
-		}
+    let data = {
+      name: this.data.name,
+      fullname: this.data.fullname,
+      avator: this.data.avator,
+      role: this.data.role,
+      bounty: this.data.bounty,
+      priateRegimentName: this.data.priateRegimentName
+    };
+    const factory = new CharacterFactory({ type: this.data.role });
+    const biological = factory.create({ data });
 		update({
 			id: this.data.id,
-			data,
+      biological,
 			success: res => {
 				// errMsg:"document.update:ok"
 				// stats:{update:0}

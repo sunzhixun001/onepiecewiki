@@ -1,8 +1,9 @@
 // 生物
 export default class Biological {
-  constructor(name) {
+  constructor({ name, avator, role, fullname}) {
     this.name = name;
-		this.avator = '';
-		this.role = 1;
+    this.avator = avator;
+    this.role = role;
+    this.fullname = fullname;
 	}
 }

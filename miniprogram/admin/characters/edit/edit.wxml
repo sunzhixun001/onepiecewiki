@@ -3,6 +3,9 @@
 		<view class='item'>
 			<view class='avator'><image src='{{avator}}' mode='widthFix' /></view>
 		</view>
+    <view class='item'>
+			<input bindinput="bindAvatorInput" placeholder="头像" value='{{avator}}' />
+		</view>
 		<view class='item'>
 			<input bindinput="bindNameInput" placeholder="姓名" value='{{name}}' />
 		</view>
@@ -23,7 +26,7 @@
 			</picker>
 		</view>
 		<view class='item' wx:if="{{role === 1}}">
-			<input bindinput="bindRewardInput" placeholder="悬赏金" value='{{reward}}' />
+			<input bindinput="bindBountyInput" placeholder="悬赏金" value='{{bounty}}' />
 		</view>
 	</view>
 	<view class='footer'>

@@ -1,8 +1,32 @@
 <view>
 	<view class='body'>
+    <view class='item'>
+			<input bindinput="bindAvatorInput" placeholder="头像"></input>
+		</view>
 		<view class='item'>
 			<input bindinput="bindNameInput" placeholder="姓名"></input>
 		</view>
+    <view class='item'>
+			<input bindinput="bindFullNameInput" placeholder="全名" value='{{fullname}}' />
+		</view>
+		<view class='item'>
+			<radio-group class="radio-group" bindchange="roleChange">
+				<label class="radio" wx:for="{{roles}}" wx:key="type">
+					<radio value="{{item.type}}" checked='{{role === item.type}}'/>
+					<text>{{item.name}}</text>
+				</label>
+			</radio-group> 
+		</view>
+		<view class='item' wx:if="{{role === 1}}">
+			<picker bindchange="bindPriateRegimentsChange" range="{{priateRegiments}}" range-key='name'>
+				<view class="picker"><text>{{priateRegimentName}}</text></view>
+			</picker>
+		</view>
+		<view class='item' wx:if="{{role === 1}}">
+			<input bindinput="bindBountyInput" placeholder="悬赏金"/>
+		</view>
+    <form>
+    </form>
 	</view>
 	<view class='footer'>
 		<button bindtap="onSureClick" >确定</button>

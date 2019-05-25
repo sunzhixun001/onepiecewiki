@@ -7,7 +7,7 @@
 			</view>
 			<view class='right'>
 				<view class='head'>
-					<view class='showage'>{{item.showAge}}</view>
+					<view class='showage'>{{item.showAge}} years ago</view>
 					<!-- <view class='triangle'></view> -->
 				</view>
 				<view class='body'>

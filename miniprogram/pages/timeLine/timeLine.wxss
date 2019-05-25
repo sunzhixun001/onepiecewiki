@@ -53,6 +53,9 @@ page{
 	flex: 1;
 	background-color: #FFF;
 	padding: 20rpx 20rpx 20rpx 20rpx;
+  margin-right: 20rpx;
+  opacity: 0.8;
+  box-shadow: 2rpx 2rpx 12rpx #000;
 }
 .showage{
 	border-bottom: 2px solid #DDE1E6;
@@ -64,11 +67,10 @@ page{
 }
 .right .head{
 	display: flex;
-	padding: 20rpx 20rpx 20rpx 0;
+	padding: 0 0 20rpx 0;
 	align-items: center;
 	position: relative;
-	margin-right: 40rpx;
-	
+	/* margin-right: 40rpx; */
 }
 .head .triangle{
 	border-style: solid;
@@ -91,12 +93,12 @@ page{
 	margin-top: 10rpx;
 }
 .body{
-	margin-right: 40rpx;
+	/* margin-right: 40rpx; */
 }
 .photo{
-	height: 140rpx;
 	overflow: hidden;
 	margin-top: 32rpx;
+  display: flex;
 }
 .photo image{
 	width: 100%;
