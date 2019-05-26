@@ -26,7 +26,20 @@
 			<input bindinput="bindBountyInput" placeholder="悬赏金"/>
 		</view>
     <view class='item' wx:if="{{role === 2}}">
-			<input bindinput="bindLevelInput" placeholder="级别"/>
+			<picker bindchange="bindLevelChange" range="{{levels}}">
+				<view class="picker"><text>{{levelName}}</text></view>
+			</picker>
+		</view>
+    <view class='item'>
+			<radio-group class="radio-group" bindchange="devilfruitTypesChange">
+				<label class="radio" wx:for="{{devilfruitTypes}}" wx:key="index">
+					<radio value="{{item}}" checked='{{devilfruitType === item}}'/>
+					<text>{{item}}</text>
+				</label>
+			</radio-group> 
+		</view>
+    <view class='item' wx:if="{{devilfruitType !== '无'}}">
+			<input bindinput="bindDevilfruitNameInput" placeholder="恶魔果实名字" value='{{devilfruitName}}' />
 		</view>
 	</view>
 	<view class='footer'>

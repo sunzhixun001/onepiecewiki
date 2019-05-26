@@ -1,0 +1,37 @@
+<view class="container">
+  <view class='detail'>
+    <view class='article'>
+      <view class='cw'>
+        <view class='wrap'>
+          <view class='mainArea'>
+            <view class='content'>
+              <view class='contDetail'>
+                <view class='contImg'>
+                  <image src='{{img}}' style='width:100%;' mode='widthFix'/>
+                </view>
+                <view class='charaTxtBox underline'>
+                  <view class='charaNameBox'>
+                    <view class='charaNameArea'>
+                      <view class='t h1 large'>{{fullname}}</view>
+                      <view class='t middle'>{{priateRegimentName}}</view>
+                    </view>
+                  </view>
+                </view>
+                <view class='charaOverview'>
+                  <view class='ul'>
+                    <view class='li'>
+                      <view class='dl'>
+                        <view class='dt'>悬赏金</view>
+                        <view class='dd'>{{bounty}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

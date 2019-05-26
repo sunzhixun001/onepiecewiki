@@ -19,11 +19,11 @@
       <view class='listArea'>
         <view class='itemList'>
           <view class='item' wx:for="{{characters}}" wx:key="_id">
-            <navigator>
+            <navigator url='../characterDetail/characterDetail?id={{item._id}}'>
               <view class='detailBox'>
                 <view class='charaName'>{{item.fullname}}</view>
                 <view class='subComment' wx:if="{{tabIndex === 0 || tabIndex === 1}}">{{item.bounty}}</view>
-                <view class='subComment' wx:if="{{tabIndex === 2}}">{{devilfruitTypes[item.devilfruitType] + '  ' +item.devilfruitName}}</view>
+                <view class='subComment' wx:if="{{tabIndex === 2}}">{{item.devilfruitType + '  ' +item.devilfruitName}}</view>
               </view>
               <view class='thumb'>
                 <image src='{{item.avator}}' binderror="bindAvatoError" lazy-load="{{true}}"/>

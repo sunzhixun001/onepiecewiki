@@ -11,17 +11,20 @@ Page({
 	data: {
 		id: '',
 		avator: '', 
+    img: '',
 		name: '',
 		fullname: '',
     bounty: 0,
 		role: 0,
 		priateRegimentIndex: 0,
 		priateRegimentName: '',
-    devilfruitType: 0,
+    devilfruitType: '无',
     devilfruitName: '',
+    levelName: '无',
 		priateRegiments: [],
 		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }],
-    devilfruitTypes: [{ type: 0, name: '无' }, { type: 1, name: '超人系' }, { type: 2, name: '动物系' }, { type: 3, name: '自然系' }]
+    devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
+    levels: ['元帅', '大将', '中将']
 	},
 
 	/**
@@ -83,6 +86,9 @@ Page({
   bindAvatorInput: function(e) {
     this.setData({ avator: e.detail.value });
   },
+  bindImgInput: function(e) {
+    this.setData({ img: e.detail.value});
+  },
 	bindFullNameInput: function (e) {
 		this.setData({ fullname: e.detail.value });
 	},
@@ -96,9 +102,9 @@ Page({
 		this.setData({ role: parseInt(e.detail.value)});
 	},
   devilfruitTypesChange: function(e) {
-    const value = parseInt(e.detail.value);
+    const value = e.detail.value;
     this.setData({ devilfruitType: value });
-    if (value === 0){
+    if (value === '无'){
       this.setData({ devilfruitName: '' });
     }
   },
@@ -107,6 +113,7 @@ Page({
 			if(res.data.length > 0){
         const { 
           avator, 
+          img,
           name, 
           _id, 
           fullname, 
@@ -114,17 +121,20 @@ Page({
           bounty, 
           priateRegimentName,
           devilfruitType,
-          devilfruitName
+          devilfruitName,
+          levelName
         } = res.data[0];
 				this.setData({ 
 					avator, 
+          img,
 					name, 
 					fullname, 
           bounty: bounty || 0,
 					priateRegimentName:  priateRegimentName || '无',
-          devilfruitType: devilfruitType || 0,
+          devilfruitType: devilfruitType || '无',
           devilfruitName: devilfruitName || '',
-					id: _id, role: role || 0
+					id: _id, role: role || 0,
+          levelName: levelName || '无'
 				});
 			}
 		}})
@@ -141,6 +151,12 @@ Page({
       devilfruitName: e.detail.value
     });
   },
+  bindLevelChange: function (e) {
+    const index = parseInt(e.detail.value);
+    this.setData({
+      levelName: this.data.levels[index]
+    });
+  },
 	getPriateRegiments: function() {
 		getPriateRegimentsList({success: res => {
 			this.setData({ priateRegiments: res.data});
@@ -151,11 +167,13 @@ Page({
       name: this.data.name,
       fullname: this.data.fullname,
       avator: this.data.avator,
+      img: this.data.img,
       role: this.data.role,
       bounty: this.data.bounty,
       priateRegimentName: this.data.priateRegimentName,
       devilfruitType: this.data.devilfruitType,
-      devilfruitName: this.data.devilfruitName
+      devilfruitName: this.data.devilfruitName,
+      levelName: this.data.levelName
     };
     const factory = new CharacterFactory({ type: this.data.role });
     const biological = factory.create({ data });

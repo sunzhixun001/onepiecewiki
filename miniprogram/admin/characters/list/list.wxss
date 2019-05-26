@@ -2,6 +2,7 @@
   display: flex;
 	flex-wrap: wrap;
 	padding-top: 20rpx;
+  margin-bottom: 100rpx;
 }
 .characters .item{
   width: calc(100%/3);

@@ -1,60 +1,61 @@
 {
-	"cloud": true,
-	"pages": [
+  "cloud": true,
+  "pages": [
     "pages/timeLine/timeLine",
     "admin/characters/create/create",
-		"pages/characters/characters",
-		"admin/characters/list/list",
-		"pages/user/user",
-		"admin/events/create/create",
-		"admin/events/list/list",
-		"pages/index/index",
-		"pages/userConsole/userConsole",
-		"pages/storageConsole/storageConsole",
-		"pages/databaseGuide/databaseGuide",
-		"pages/addFunction/addFunction",
-		"pages/deployFunctions/deployFunctions",
-		"pages/chooseLib/chooseLib",
-		"admin/characters/edit/edit",
-		"admin/priateRegiments/list/list",
-		"admin/priateRegiments/create/create",
-		"pages/story/story"
-	],
-	"window": {
-		"backgroundColor": "#F6F6F6",
-		"backgroundTextStyle": "light",
-		"navigationBarBackgroundColor": "#D9312B",
-		"navigationBarTitleText": "海贼王大百科",
-		"navigationBarTextStyle": "white"
-	},
-	"tabBar": {
-		"selectedColor": "#D9312B",
-		"list": [
-			{
-				"pagePath": "pages/timeLine/timeLine",
-				"text": "时间线",
-				"iconPath": "images/timeline.png",
-				"selectedIconPath": "images/timeline.png"
-			},
-			{
-				"pagePath": "pages/characters/characters",
-				"text": "人物",
-				"iconPath": "images/character.png",
-				"selectedIconPath": "images/character.png"
-			},
-			{
-				"pagePath": "pages/story/story",
-				"text": "篇章",
-				"iconPath": "images/event.png",
-				"selectedIconPath": "images/event.png"
-			},
-			{
-				"pagePath": "pages/user/user",
-				"text": "我",
-				"iconPath": "images/nav_about.png",
-				"selectedIconPath": "images/nav_about.png"
-			}
-		]
-	},
-	"sitemapLocation": "sitemap.json"
+    "pages/characters/characters",
+    "admin/characters/list/list",
+    "pages/user/user",
+    "admin/events/create/create",
+    "admin/events/list/list",
+    "pages/index/index",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "admin/characters/edit/edit",
+    "admin/priateRegiments/list/list",
+    "admin/priateRegiments/create/create",
+    "pages/story/story",
+    "pages/characterDetail/characterDetail"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#D9312B",
+    "navigationBarTitleText": "海贼王大百科",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#D9312B",
+    "list": [
+      {
+        "pagePath": "pages/timeLine/timeLine",
+        "text": "时间线",
+        "iconPath": "images/timeline.png",
+        "selectedIconPath": "images/timeline.png"
+      },
+      {
+        "pagePath": "pages/characters/characters",
+        "text": "人物",
+        "iconPath": "images/character.png",
+        "selectedIconPath": "images/character.png"
+      },
+      {
+        "pagePath": "pages/story/story",
+        "text": "篇章",
+        "iconPath": "images/event.png",
+        "selectedIconPath": "images/event.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我",
+        "iconPath": "images/nav_about.png",
+        "selectedIconPath": "images/nav_about.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

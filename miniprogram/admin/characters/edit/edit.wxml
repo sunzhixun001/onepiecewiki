@@ -6,6 +6,9 @@
     <view class='item'>
 			<input bindinput="bindAvatorInput" placeholder="头像" value='{{avator}}' />
 		</view>
+    <view class='item'>
+			<input bindinput="bindImgInput" placeholder="大图" value='{{img}}' />
+		</view>
 		<view class='item'>
 			<input bindinput="bindNameInput" placeholder="姓名" value='{{name}}' />
 		</view>
@@ -28,11 +31,16 @@
 		<view class='item' wx:if="{{role === 1}}">
 			<input bindinput="bindBountyInput" placeholder="悬赏金" value='{{bounty}}' />
 		</view>
+    <view class='item' wx:if="{{role === 2}}">
+			<picker bindchange="bindLevelChange" range="{{levels}}">
+				<view class="picker"><text>{{levelName}}</text></view>
+			</picker>
+		</view>
     <view class='item'>
 			<radio-group class="radio-group" bindchange="devilfruitTypesChange">
-				<label class="radio" wx:for="{{devilfruitTypes}}" wx:key="type">
-					<radio value="{{item.type}}" checked='{{devilfruitType === item.type}}'/>
-					<text>{{item.name}}</text>
+				<label class="radio" wx:for="{{devilfruitTypes}}" wx:key="index">
+					<radio value="{{item}}" checked='{{devilfruitType === item}}'/>
+					<text>{{item}}</text>
 				</label>
 			</radio-group> 
 		</view>

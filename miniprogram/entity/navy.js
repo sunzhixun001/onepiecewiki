@@ -2,9 +2,9 @@
 import Biological from './biological';
 
 export default class Navy extends Biological {
-  constructor({ name, avator, role, fullname, level, devilfruitType, devilfruitName }) {
-    super({ name, avator, role, fullname, devilfruitType, devilfruitName });
+  constructor({ name, avator, img, role, fullname, levelName, devilfruitType, devilfruitName }) {
+    super({ name, avator, img, role, fullname, devilfruitType, devilfruitName, levelName});
     // 级别
-    this.level = level;
+    this.levelName = levelName;
   }
 }

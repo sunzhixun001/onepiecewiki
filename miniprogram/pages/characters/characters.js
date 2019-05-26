@@ -7,10 +7,10 @@ Page({
   data: {
     characters: [],
     tabs: [
-      { index: 0, name: '草帽团', event: '' }, 
+      { index: 0, name: '草帽团'}, 
       { index: 1, name: '悬赏金' }, 
       { index: 2, name: '能力者' },
-      { index: 2, name: '政府' }
+      { index: 3, name: '政府' }
     ],
     tabIndex: 0,
     devilfruitTypes: ['','超人系','动物系','自然系']
@@ -90,16 +90,28 @@ Page({
     },
     function() {
       this.getDevilfruitCharactersList();
+    },
+    function() {
+      
     }
   ],
   convertBounty: function (bounty) {
-    const billion = parseInt(bounty / 100000000);
-    let tenthousand = 0;
-    const remainder = bounty % 100000000;
-    if (remainder > 0) {
-      tenthousand = remainder / 10000;
+    let result = "";
+    
+    if (bounty < 10000){
+      result = `${bounty}贝利`;
+    } else if (10000 <= bounty && bounty < 100000000 ){
+      result = `${bounty / 10000}万贝利`;
+    }else {
+      const billion = parseInt(bounty / 100000000);
+      let tenthousand = 0;
+      const remainder = bounty % 100000000;
+      if (remainder > 0) {
+        tenthousand = remainder / 10000;
+      }
+      result = `${billion > 0 ? billion + '亿' : ''}${tenthousand > 0 ? tenthousand + '万' : ''}贝利`;
     }
-    return `${billion > 0 ? billion + '亿' : ''}${tenthousand > 0 ? tenthousand + '万' : ''}贝利`;
+    return result;
   },
   // 获取草帽团成员 
   getSwrawCharactersList: function() {

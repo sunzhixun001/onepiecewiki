@@ -15,11 +15,14 @@ Page({
     fullname: '',
     bounty: 0,
     role: 0,
-    level: 0,
+    levelName: '无',
     priateRegimentIndex: 0,
     priateRegimentName: '',
     priateRegiments: [],
+    devilfruitType: '无',
+    devilfruitName: '',
     roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
+    devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
     levels: ['元帅', '大将', '中将']
   },
 
@@ -114,15 +117,33 @@ Page({
       }
     });
   },
+  bindLevelChange: function(e) {
+    const index = parseInt(e.detail.value);
+    this.setData({
+      levelName: this.data.levels[index]
+    });
+  },
+  devilfruitTypesChange: function (e) {
+    const value = e.detail.value;
+    this.setData({ devilfruitType: value });
+    if (value === '无') {
+      this.setData({ devilfruitName: '' });
+    }
+  },
+  bindDevilfruitNameInput: function(e){
+    this.setData({ devilfruitName: e.detail.value });
+  },
   onSureClick(e) {
-    
     let data = {
       name: this.data.name,
       fullname: this.data.fullname,
       avator: this.data.avator,
       role: this.data.role,
       bounty: this.data.bounty,
-      priateRegimentName: this.data.priateRegimentName
+      priateRegimentName: this.data.priateRegimentName,
+      levelName: this.data.levelName,
+      devilfruitType: this.data.devilfruitType,
+      devilfruitName: this.data.devilfruitName
     };
     const factory = new CharacterFactory({ type: this.data.role});
     const biological = factory.create({data});
