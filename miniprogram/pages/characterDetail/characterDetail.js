@@ -1,4 +1,4 @@
-import { get, getListInPriateReg } from '../../database/people';
+import { get, getListInPriateReg, getListInGroup } from '../../database/people';
 import { convertBounty} from '../../common/implement';
 
 Page({
@@ -15,7 +15,8 @@ Page({
     birthday: '',
     height: 0,
     partners: [],
-    relationships: []
+    relationships: [],
+    group: []
   },
 
   /**
@@ -92,8 +93,10 @@ Page({
             levelName,
             birthday,
             height,
-            relationships
+            relationships,
+            group
           } = res.data[0];
+          // 人物关系
           const _set = new Set();
           if (relationships){
             relationships.forEach(x => _set.add(x.type));
@@ -105,6 +108,26 @@ Page({
               items: relationships.filter(r => r.type === item)
             });
           }
+          // 团体
+          const self = this;
+          if (group && group.length > 0){
+            for(let g of group.values()){
+              let value = [];
+              getListInGroup({
+                groupName: g, success: res => {
+                  let _group = self.data.group;
+                  _group.push({
+                    key: g,
+                    value: res.data
+                  });
+                  self.setData({
+                    group: _group
+                  });
+                }
+              });
+            }
+          }
+          // 赋值
           this.setData({
             avator,
             img: img || '',
@@ -121,6 +144,8 @@ Page({
             height: height || 0,
             birthday: birthday?`${birthday.split('-')[0]}月${birthday.split('-')[1]}日`:'',
             relationships: newRelationships
+          }, () => {
+
           });
           if(priateRegimentName){
             this.getPriateRegMembers({ priateRegimentName });

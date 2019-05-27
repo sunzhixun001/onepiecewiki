@@ -90,3 +90,16 @@ export const getListOrderByBountyDesc = ({ success}) => {
 
     });
 }
+// 获取某一团体下的所有成员
+export const getListInGroup = ({ groupName, success}) => {
+  collection
+    .where({ group: groupName })
+    .field({avator: true, _id: true})
+    .get()
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+
+    });
+}

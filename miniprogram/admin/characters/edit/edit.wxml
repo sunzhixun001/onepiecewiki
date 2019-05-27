@@ -57,33 +57,40 @@
 			<input bindinput="bindAgeInput" placeholder="年龄" value='{{age}}' />
 		</view>
     <view class='item relationships'>
-      <view><button class='add-relationship' bindtap='bindAddRelationship'>+</button> </view>
-      <view class='ul'></view>
-      <view wx:for="{{relationships}}" wx:key="index" class='li'>
-        <view class='dt'>
-          <picker range="{{relationTypes}}" bindchange="bindRelationTypesChange" data-id='{{item._id}}'>
-            <view>{{item.type || '请选择'}}</view>
-          </picker>
+      <view class='button-area'>
+        <button class='add-relationship' bindtap='bindAddRelationship'>+</button> 
+      </view>
+      <view class='ul'>
+        <view wx:for="{{relationships}}" wx:key="index" class='li'>
+          <view class='dl'>
+            <view class='dt'>
+              <picker range="{{relationTypes}}" bindchange="bindRelationTypesChange" data-id='{{item._id}}'>
+                <view>{{item.type || '请选择'}}</view>
+              </picker>
+            </view>
+            <view class='dd'>
+              <picker 
+                range="{{relationCharacters}}" 
+                bindchange="bindRelationCharactersChange" 
+                range-key='name' 
+                data-id='{{item._id}}'
+              >
+                <view>{{item.name || '请选择'}}</view>
+              </picker>
+            </view>
+          </view>
+          <view><button class='remove'>-</button></view>
         </view>
-        <view class='dl'>
-          <picker 
-            range="{{relationCharacters}}" 
-            bindchange="bindRelationCharactersChange" 
-            range-key='name' 
-            data-id='{{item._id}}'
-          >
-            <view>{{item.name || '请选择'}}</view>
-          </picker>
-        </view>
-        <view><button class='remove'>-</button></view>
       </view>
     </view>
     <view class='item groups'>
-      <view><button class='add-group' bindtap='bindAddGroup'>+</button> </view>
-      <view>
-        <view wx:for="{{group}}" wx:key="index">
-          <picker range="{{groups}}" bindchange="bindGroupsChange">
-            <view>{{item.type || '请选择'}}</view>
+      <view class='button-area'>
+        <button class='add-group' bindtap='bindAddGroup'>+</button> 
+      </view>
+      <view class='ul'>
+        <view wx:for="{{group}}" wx:key="index" class='li'>
+          <picker range="{{groups}}" bindchange="bindGroupsChange" data-index='{{index}}'>
+            <view>{{item || '无'}}</view>
           </picker>
         </view>
       </view>

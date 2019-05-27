@@ -1,6 +1,6 @@
 // 生物
 export default class Biological {
-  constructor({ name, avator, img, role, fullname, devilfruitType, devilfruitName, height, birthday, age, relationships}) {
+  constructor({ name, avator, img, role, fullname, devilfruitType, devilfruitName, height, birthday, age, relationships, group}) {
     this.name = name;
     this.avator = avator;
     this.img = img;
@@ -12,5 +12,6 @@ export default class Biological {
     this.birthday = birthday;
     this.age = age;
     this.relationships = relationships;
+    this.group = group;
 	}
 }

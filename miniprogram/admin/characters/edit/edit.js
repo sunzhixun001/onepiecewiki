@@ -136,11 +136,12 @@ Page({
           age,
           height,
           birthday,
-          relationships
+          relationships,
+          group
         } = res.data[0];
 				this.setData({ 
 					avator, 
-          img,
+          img: img || '',
 					name, 
 					fullname, 
           bounty: bounty || 0,
@@ -149,10 +150,11 @@ Page({
           devilfruitName: devilfruitName || '',
 					id: _id, role: role || 0,
           levelName: levelName || '无',
-          age,
-          height,
-          birthday,
-          relationships: relationships || []
+          age: age || 0,
+          height: height || 0,
+          birthday: birthday || '',
+          relationships: relationships || [],
+          group: group || []
 				});
 			}
 		}})
@@ -245,6 +247,15 @@ Page({
       })
     });
   },
+  bindGroupsChange: function(e) {
+    const _group = this.data.groups[parseInt(e.detail.value)];
+    const _index = e.currentTarget.dataset.index;
+    let _tempGroup = this.data.group;
+    _tempGroup[_index] = _group;
+    this.setData({
+      group: _tempGroup
+    });
+  },
 	onSureClick: function() {
     let data = {
       name: this.data.name,
@@ -264,7 +275,8 @@ Page({
         let _r = r;
         delete _r._id;
         return r;
-      })
+      }),
+      group: this.data.group
     };
     const factory = new CharacterFactory({ type: this.data.role });
     const biological = factory.create({ data });
