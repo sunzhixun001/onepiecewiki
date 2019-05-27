@@ -24,6 +24,18 @@ export const getList = ({success}) => {
 
   });
 }
+// 获取全部人物需要的字段
+export const getListField = ({ fields, success }) => {
+  collection
+    .field(fields)
+    .get()
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+
+    });
+}
 // 使用ID获取一个人物
 export const get = ({id, success}) => {
 	collection.where({

@@ -30,6 +30,11 @@
 				<view class="picker"><text>{{levelName}}</text></view>
 			</picker>
 		</view>
+    <view class='item' wx:if="{{role === 3}}">
+			<picker bindchange="bindPositionsChange" range="{{positions}}">
+				<view class="picker"><text>{{position}}</text></view>
+			</picker>
+		</view>
     <view class='item'>
 			<radio-group class="radio-group" bindchange="devilfruitTypesChange">
 				<label class="radio" wx:for="{{devilfruitTypes}}" wx:key="index">

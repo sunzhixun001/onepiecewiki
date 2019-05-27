@@ -21,9 +21,11 @@ Page({
     priateRegiments: [],
     devilfruitType: '无',
     devilfruitName: '',
+    position: '无',
     roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
-    levels: ['元帅', '大将', '中将']
+    levels: ['元帅', '大将', '中将'],
+    positions: ['总司令官','参谋总长']
   },
 
 	/**
@@ -121,6 +123,12 @@ Page({
     const index = parseInt(e.detail.value);
     this.setData({
       levelName: this.data.levels[index]
+    });
+  },
+  bindPositionsChange: function(e) {
+    const index = parseInt(e.detail.value);
+    this.setData({
+      position: this.data.positions[index]
     });
   },
   devilfruitTypesChange: function (e) {

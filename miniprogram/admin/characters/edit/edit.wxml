@@ -47,6 +47,47 @@
     <view class='item' wx:if="{{devilfruitType !== 0}}">
 			<input bindinput="bindDevilfruitNameInput" placeholder="恶魔果实名字" value='{{devilfruitName}}' />
 		</view>
+    <view class='item'>
+			<input bindinput="bindHeightInput" placeholder="身高" value='{{height}}' />
+		</view>
+    <view class='item'>
+			<input bindinput="bindBirthdayInput" placeholder="生日" value='{{birthday}}' />
+		</view>
+    <view class='item'>
+			<input bindinput="bindAgeInput" placeholder="年龄" value='{{age}}' />
+		</view>
+    <view class='item relationships'>
+      <view><button class='add-relationship' bindtap='bindAddRelationship'>+</button> </view>
+      <view class='ul'></view>
+      <view wx:for="{{relationships}}" wx:key="index" class='li'>
+        <view class='dt'>
+          <picker range="{{relationTypes}}" bindchange="bindRelationTypesChange" data-id='{{item._id}}'>
+            <view>{{item.type || '请选择'}}</view>
+          </picker>
+        </view>
+        <view class='dl'>
+          <picker 
+            range="{{relationCharacters}}" 
+            bindchange="bindRelationCharactersChange" 
+            range-key='name' 
+            data-id='{{item._id}}'
+          >
+            <view>{{item.name || '请选择'}}</view>
+          </picker>
+        </view>
+        <view><button class='remove'>-</button></view>
+      </view>
+    </view>
+    <view class='item groups'>
+      <view><button class='add-group' bindtap='bindAddGroup'>+</button> </view>
+      <view>
+        <view wx:for="{{group}}" wx:key="index">
+          <picker range="{{groups}}" bindchange="bindGroupsChange">
+            <view>{{item.type || '请选择'}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
 	</view>
 	<view class='footer'>
 		<button bindtap="onSureClick" >保存</button>
