@@ -15,19 +15,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getEventsList({ limit: this.data.pageSize, pageIndex: this.data.pageIndex });
+    wx.getSystemInfo({
+      success(res) {
+        console.log(res);
+      }
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getEventsList({ limit: 20, skip: 20});
-		wx.getSystemInfo({
-			success(res) {
-				console.log(res);
-			}
-		});
+    
   },
 
   /**
@@ -62,7 +62,12 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log("onReachBottom");
+    if (!this.data.allData){
+      console.log("onReachBottom");
+      const _pageIndex = this.data.pageIndex + 1;
+      this.getEventsList({ limit: this.data.pageSize, pageIndex: _pageIndex});
+    }
+    
   },
 
   /**
@@ -71,13 +76,18 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getEventsList({ limit, skip}) {
+  getEventsList({ limit, pageIndex}) {
+    const skip = limit * pageIndex;
     getList({
       limit, skip, success: res => {
-			this.setData({
-				events: res.data
-			});
-			console.log(res);
+        this.setData({
+          events: this.data.events.concat(res.data),
+          pageIndex
+        });
+        if (res.data.length < limit){
+          this.setData({ allData: true});
+        }
+			  // console.log(res);
 		}});
 	}
 })

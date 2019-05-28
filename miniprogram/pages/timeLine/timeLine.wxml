@@ -1,10 +1,9 @@
 <view class='container'>
 	<view class='timeline-container'>
 		<view class='time-item' wx:for="{{events}}" wx:key="_id">
-			<view class='left'>
-				<!-- <view class='age'><text>{{item.showAge}}</text></view> -->
+			<!-- <view class='left'>
 				<view class='indicate' />
-			</view>
+			</view> -->
 			<view class='right'>
 				<view class='head'>
 					<view class='showage'>{{item.showAge}}</view>
@@ -19,5 +18,5 @@
 			</view>
 		</view>
 	</view>
-  <view class='timeline-underlay'></view>
+  <!-- <view class='timeline-underlay'></view> -->
 </view>

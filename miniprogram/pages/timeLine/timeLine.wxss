@@ -24,9 +24,9 @@ page{
 	height: 100%;
 }
 .timeline-container{
-	/* height: 100%; */
-	width: 100%;
-	margin-bottom: 100rpx;
+	padding-bottom: 100rpx;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
 }
 .time-item{
 	display: flex;
@@ -53,7 +53,6 @@ page{
 	flex: 1;
 	background-color: #FFF;
 	padding: 20rpx 20rpx 20rpx 20rpx;
-  margin-right: 20rpx;
   opacity: 0.8;
   box-shadow: 2rpx 2rpx 12rpx #000;
 }
