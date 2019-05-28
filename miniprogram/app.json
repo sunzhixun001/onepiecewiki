@@ -51,7 +51,7 @@
       },
       {
         "pagePath": "pages/user/user",
-        "text": "我",
+        "text": "百科",
         "iconPath": "images/nav_about.png",
         "selectedIconPath": "images/nav_about.png"
       }

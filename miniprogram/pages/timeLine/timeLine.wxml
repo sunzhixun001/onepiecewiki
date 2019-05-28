@@ -7,13 +7,13 @@
 			</view>
 			<view class='right'>
 				<view class='head'>
-					<view class='showage'>{{item.showAge}} years</view>
+					<view class='showage'>{{item.showAge}}</view>
 					<!-- <view class='triangle'></view> -->
 				</view>
 				<view class='body'>
 					<view class='title'>{{item.title}}</view>
 					<view class='photo' wx:if="{{item.photo}}">
-						<image src='{{item.photo}}' mode="widthFix"></image>
+						<image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
 					</view>
 				</view>
 			</view>

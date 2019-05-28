@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-		events: []
+		events: [],
+    pageIndex: 0,
+    pageSize: 20,
+    allData: false
   },
 
   /**
@@ -19,7 +22,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-		this.getEventsList();
+    this.getEventsList({ limit: 20, skip: 20});
 		wx.getSystemInfo({
 			success(res) {
 				console.log(res);
@@ -59,7 +62,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log("onReachBottom");
   },
 
   /**
@@ -68,8 +71,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-	getEventsList() {
-		getList({success: res => {
+  getEventsList({ limit, skip}) {
+    getList({
+      limit, skip, success: res => {
 			this.setData({
 				events: res.data
 			});

@@ -99,6 +99,7 @@ page{
 	overflow: hidden;
 	margin-top: 32rpx;
   display: flex;
+  height: 158rpx;
 }
 .photo image{
 	width: 100%;
