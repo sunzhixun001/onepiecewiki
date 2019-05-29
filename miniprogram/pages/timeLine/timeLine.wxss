@@ -103,3 +103,11 @@ page{
 .photo image{
 	width: 100%;
 }
+/* control */
+.control{
+  position: fixed;
+  right: 20rpx;
+  bottom: 40rpx;
+  z-index: 150;
+  background-color: #FFF;
+}

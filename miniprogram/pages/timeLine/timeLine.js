@@ -76,6 +76,11 @@ Page({
   onShareAppMessage: function () {
 
   },
+  bindAdmin: function() {
+    wx.navigateTo({
+      url: '/admin/events/list/list'
+    })
+  },
   getEventsList({ limit, pageIndex}) {
     const skip = limit * pageIndex;
     getList({

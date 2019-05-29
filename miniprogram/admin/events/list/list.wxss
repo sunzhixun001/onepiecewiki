@@ -9,6 +9,12 @@
 .item navigator{
   padding-left: 20rpx;
 }
+.item .li{
+  display: flex;
+}
+.item .li .dt{
+  width: 100rpx;
+}
 /* footer */
 .footer{
   position: fixed;

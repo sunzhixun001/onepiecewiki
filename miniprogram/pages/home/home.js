@@ -1,18 +1,18 @@
-import { getList } from '../../../database/events';
+// miniprogram/pages/home/home.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    events: []
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getEvents();
+
   },
 
   /**
@@ -47,7 +47,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getEvents();
+
   },
 
   /**
@@ -62,22 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  getEvents() {
-    getList({
-      field: {title: true, age: true},
-      success: res => {
-        console.log(res);
-        this.setData({events: res.data});
-      }
-    });
-  },
-  onAddClick() {
-    wx.navigateTo({
-      url: '/admin/events/create/create',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
   }
 })

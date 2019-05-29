@@ -18,5 +18,9 @@
 			</view>
 		</view>
 	</view>
-  <!-- <view class='timeline-underlay'></view> -->
+  <view class='control'>
+    <view class='control-inner'>
+      <view bindtap='bindAdmin'>管理</view>
+    </view>
+  </view>
 </view>

@@ -1,0 +1,6 @@
+<view>
+  <view>{{age}}</view>
+  <view>{{photo}}</view>
+  <view>{{showAge}}</view>
+  <view>{{title}}</view>
+</view>

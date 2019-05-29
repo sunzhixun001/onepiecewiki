@@ -1,0 +1,36 @@
+.main{
+  width: 100%;
+}
+.bigInfoArea{
+  padding: 64rpx 0 48rpx;
+  text-align: center; 
+}
+.cw{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+video{
+  width: 100%;
+  height: 380rpx;
+}
+
+.mainVisual{
+  background: #D9312B;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.mainVisual image{
+  width: 94%;
+  margin: auto;
+}
+.mainVisual swiper{
+  height: 396rpx;
+}
+.mainVisual swiper-item{
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}

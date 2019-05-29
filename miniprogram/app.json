@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "pages/home/home",
     "pages/timeLine/timeLine",
     "admin/characters/create/create",
     "pages/characters/characters",
@@ -19,7 +20,8 @@
     "admin/priateRegiments/list/list",
     "admin/priateRegiments/create/create",
     "pages/story/story",
-    "pages/characterDetail/characterDetail"
+    "pages/characterDetail/characterDetail",
+    "admin/events/edit/edit"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -32,28 +34,28 @@
     "selectedColor": "#D9312B",
     "list": [
       {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_selected.png"
+      },
+      {
         "pagePath": "pages/timeLine/timeLine",
         "text": "时间线",
         "iconPath": "images/timeline.png",
-        "selectedIconPath": "images/timeline.png"
+        "selectedIconPath": "images/timeline_selected.png"
       },
       {
         "pagePath": "pages/characters/characters",
         "text": "人物",
         "iconPath": "images/character.png",
-        "selectedIconPath": "images/character.png"
-      },
-      {
-        "pagePath": "pages/story/story",
-        "text": "篇章",
-        "iconPath": "images/event.png",
-        "selectedIconPath": "images/event.png"
+        "selectedIconPath": "images/character_selected.png"
       },
       {
         "pagePath": "pages/user/user",
         "text": "百科",
-        "iconPath": "images/nav_about.png",
-        "selectedIconPath": "images/nav_about.png"
+        "iconPath": "images/wiki.png",
+        "selectedIconPath": "images/wiki_selected.png"
       }
     ]
   },

@@ -1,18 +1,22 @@
-import { getList } from '../../../database/events';
+import { get } from '../../../database/events';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    events: []
+    id: '',
+    age: 0,
+    photo: '',
+    showAge: '',
+    title: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getEvents();
+    this.getEvent({id: options.id});
   },
 
   /**
@@ -47,7 +51,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getEvents();
+
   },
 
   /**
@@ -63,21 +67,17 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getEvents() {
-    getList({
-      field: {title: true, age: true},
-      success: res => {
+  getEvent: function ({ id}) {
+    get({
+      id, success: res => {
+        if (res.data && res.data.length > 0){
+          const { age, photo, showAge, title, _id} = res.data[0];
+          this.setData({
+            age, photo, showAge, title, id: _id
+          });
+        }
         console.log(res);
-        this.setData({events: res.data});
       }
-    });
-  },
-  onAddClick() {
-    wx.navigateTo({
-      url: '/admin/events/create/create',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
     })
   }
 })

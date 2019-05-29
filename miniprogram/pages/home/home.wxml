@@ -1,0 +1,49 @@
+<view class="container">
+  <view class='main'>
+    <view class='bigInfoArea'>
+      <view class='cw'>
+        <view class='info'>
+          <view>
+            <video 
+              src='cloud://develop-6e54e7.6465-develop-6e54e7/video/アニメ「ONE PIECE」20周年スタートPV～1999-2019～.mp4'
+              poster='https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/sddefault.jpg?sign=ee878c06875c1224445488da8dfa5d5d&t=1559099895'
+              controls
+              
+            >
+            </video>
+          </view>
+          <view class='textArea'>
+            <view class='h2'>《ONE PIECE》20周年纪念PV发布！</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='mainVisual'>
+      <swiper
+        previous-margin="60rpx"
+        next-margin="60rpx"
+        circular
+        indicator-dots
+      >
+        <swiper-item>
+          <image 
+            src='cloud://develop-6e54e7.6465-develop-6e54e7/pagetop/07b5d32c66fdf936b8015be63ee32eb7.jpg'
+            mode='widthFix'
+          /> 
+        </swiper-item>
+        <swiper-item>
+          <image 
+            src='cloud://develop-6e54e7.6465-develop-6e54e7/pagetop/cbbfe66fe03afc92a7315fd2725cf6a4.jpg'
+            mode='widthFix'
+          /> 
+        </swiper-item>
+        <swiper-item>
+          <image 
+            src='cloud://develop-6e54e7.6465-develop-6e54e7/pagetop/eb83fb82d76a89e051043b156763c864.jpg'
+            mode='widthFix'
+          /> 
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>
