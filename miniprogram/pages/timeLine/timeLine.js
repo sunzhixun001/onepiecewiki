@@ -8,7 +8,8 @@ Page({
 		events: [],
     pageIndex: 0,
     pageSize: 20,
-    allData: false
+    allData: false,
+    searchActive: true
   },
 
   /**

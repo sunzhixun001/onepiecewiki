@@ -8,6 +8,38 @@
   padding-top: 10rpx;
 	padding-left: 40rpx;
 }
+.ul{
+  padding-right: 20rpx;
+}
+.ul input{
+  padding: 14rpx 0;
+}
+.li{
+  display: flex;
+  height: 80rpx;
+  border-bottom: solid 1px #DDD;
+}
+.li .dl{
+  flex: 1;
+}
+.li .dd{
+  width: 140rpx;
+}
+.add button{
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.del{
+  background-color: red;
+  color: #FFF;
+  height: 100%;
+  width: 140rpx;
+  padding: 0;
+  border-radius: 0;
+  font-size: 28rpx;
+  line-height: 80rpx;
+}
 /* foot */
 .footer{
 	position: fixed;
@@ -19,4 +51,7 @@
 	background-color: #D9312B;
 	color: #FFF;
 	border-radius: 0;
+  font-size: 28rpx;
+  height: 100rpx;
+  line-height: 100rpx;
 }

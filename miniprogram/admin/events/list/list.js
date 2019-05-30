@@ -5,7 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    events: []
+    events: [],
+    pageIndex: 0,
+    pageSize: 20,
+    end: false
   },
 
   /**
@@ -47,14 +50,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getEvents();
+    // this.getEvents();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(!this.data.end){
+      this.getEvents();
+    }
   },
 
   /**
@@ -65,19 +70,23 @@ Page({
   },
   getEvents() {
     getList({
+      limit: this.data.pageSize,
+      skip: this.data.pageSize * this.data.pageIndex,
       field: {title: true, age: true},
       success: res => {
         console.log(res);
-        this.setData({events: res.data});
+        let _data = {
+          events: this.data.events.concat(res.data),
+          pageIndex: this.data.pageIndex + 1
+        };
+        if (res.data.length < this.data.pageSize){
+          _data.end = true;
+        }
+        this.setData(_data);
       }
     });
   },
   onAddClick() {
-    wx.navigateTo({
-      url: '/admin/events/create/create',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
+    wx.navigateTo({url: '/admin/events/create/create'});
   }
 })

@@ -1,6 +1,7 @@
 .body{
   flex: 1;
   width: 100%;
+  padding-bottom: 100rpx;
 }
 .item{
   padding: 20rpx 0 20rpx 0;
@@ -13,7 +14,11 @@
   display: flex;
 }
 .item .li .dt{
-  width: 100rpx;
+  width: 150rpx;
+}
+.item .li .dd{
+  flex: 1;
+  padding-right: 20rpx;
 }
 /* footer */
 .footer{

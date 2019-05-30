@@ -1,26 +1,41 @@
 <view class='container'>
-	<view class='timeline-container'>
-		<view class='time-item' wx:for="{{events}}" wx:key="_id">
-			<!-- <view class='left'>
-				<view class='indicate' />
-			</view> -->
-			<view class='right'>
-				<view class='head'>
-					<view class='showage'>{{item.showAge}}</view>
-					<!-- <view class='triangle'></view> -->
-				</view>
-				<view class='body'>
-					<view class='title'>{{item.title}}</view>
-					<view class='photo' wx:if="{{item.photo}}">
-						<image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
-					</view>
-				</view>
-			</view>
-		</view>
-	</view>
-  <view class='control'>
-    <view class='control-inner'>
-      <view bindtap='bindAdmin'>管理</view>
+  <view class='main timeline listPage'>
+    <view class='mainTitleArea'>
+      <view class='searchDetailArea' wx:if="{{searchActive}}">
+        <view class='inner'>
+          <input placeholder='请输入搜索的关键词'></input>
+        </view>
+      </view>
+      <view class='h1 t middle' wx:else>海贼王时间线</view>
+      <view class='searchIcon'>
+        <icon type="search" size="16" color='{{searchActive?"#B91B15":"#FFFFFF"}}'/>
+      </view>
+    </view>
+    <view class='cw'>
+      <view class='timeline-container'>
+        <view class='time-item' wx:for="{{events}}" wx:key="_id">
+          <!-- <view class='left'>
+            <view class='indicate' />
+          </view> -->
+          <view class='right'>
+            <view class='head'>
+              <view class='showage'>{{item.showAge}}</view>
+              <!-- <view class='triangle'></view> -->
+            </view>
+            <view class='body'>
+              <view class='title'>{{item.title}}</view>
+              <view class='photo' wx:if="{{item.photo}}">
+                <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='control'>
+        <view class='control-inner'>
+          <view bindtap='bindAdmin'>管理</view>
+        </view>
+      </view>
     </view>
   </view>
 </view>

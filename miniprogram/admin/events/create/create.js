@@ -9,7 +9,8 @@ Page({
     title: '',
     age: 0,
     showAge: '',
-		photo: ''
+		photo: '',
+    tags: []
   },
 
   /**
@@ -74,7 +75,7 @@ Page({
   },
   bindAgeInput(e) {
     this.setData({
-      age: parseInt(e.detail.value)
+      age: parseFloat(e.detail.value)
     });
   },
   bindShowAgeInput(e) {
@@ -92,7 +93,8 @@ Page({
       title:this.data.title,
       age: this.data.age,
       showAge: this.data.showAge,
-			photo: this.data.photo
+			photo: this.data.photo,
+      tags: this.data.tags
     });
     create({ event, success: res => {
       // errMsg: "collection.add:ok"
@@ -109,5 +111,31 @@ Page({
         });
       }
     }})
+  },
+  bindAddTag: function(e){
+    const _tags = this.data.tags;
+    _tags.push({});
+    this.setData({ tags: _tags});
+  },
+  tagTouchStart: function(e){
+    console.log('start: ',e);
+  },
+  tagTouchMove: function(e) {
+    // console.log(e);
+  },
+  tagTouchEnd: function(e) {
+    console.log('end: ',e);
+  },
+  bindTagInput: function(e) {
+    const _index = e.currentTarget.dataset.index;
+    const value = e.detail.value;
+    this.setData({
+      tags: this.data.tags.map((t, i) => {
+        if(i === _index) {
+          t = value;
+        }
+        return t;
+      })
+    });
   }
 })
