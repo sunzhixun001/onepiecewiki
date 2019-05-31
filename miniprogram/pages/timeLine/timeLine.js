@@ -1,4 +1,4 @@
-import { getList} from '../../database/events';
+import { getList, getRegexp} from '../../database/events';
 Page({
 
   /**
@@ -8,7 +8,8 @@ Page({
 		events: [],
     pageIndex: 0,
     pageSize: 20,
-    allData: false
+    allData: false,
+    searchActive: false
   },
 
   /**
@@ -94,5 +95,25 @@ Page({
         }
 			  // console.log(res);
 		}});
-	}
+	},
+  bindSearch: function(e) {
+    const _keyword = e.detail.value;
+    this.getRegexpList({ keyword: _keyword});
+  },
+  bindOpenSearch: function(e) {
+    this.setData({ searchActive: true});
+  },
+  getRegexpList: function ({ keyword}) {
+    getRegexp({ 
+      keyword, 
+      success: res => {
+        console.log(res);
+      }
+    })
+  },
+  bindSearch: function(e) {
+    wx.navigateTo({
+      url: '../timeLineSearch/timeLineSearch',
+    })
+  }
 })

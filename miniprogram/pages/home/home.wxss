@@ -5,6 +5,11 @@
   padding: 64rpx 0 48rpx;
   text-align: center; 
 }
+.bigInfoArea .h2{
+  margin-top: 26rpx;
+  padding: 0 10%;
+  font-size: 30rpx;
+}
 .cw{
   padding-left: 5%;
   padding-right: 5%;

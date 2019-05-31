@@ -1,6 +1,42 @@
-<view>
-  <view>{{age}}</view>
-  <view>{{photo}}</view>
-  <view>{{showAge}}</view>
-  <view>{{title}}</view>
+<view class='container'>
+  <view class='main detail'>
+    <view class='cw'>
+      <view class='wrap'>
+        <view class='mainArea'>
+          <view class='content'>
+            <view class='contentDetail'>
+              <view class='item'><image src='{{photo}}' mode='widthFix'/></view>
+              <view class='item'><input bindinput="bindPhotoInput" placeholder="图片" value='{{photo}}' /></view>
+              <view class='item'><input bindinput="bindTitleInput" placeholder="标题" value='{{title}}' /></view>
+              <view class='item'><input bindinput="bindAgeInput" placeholder="年份" value='{{age}}' /></view>
+              <view class='item'><input bindinput="bindShowAgeInput" placeholder="显示年份" value='{{showAge}}' /></view>
+              <view class='item tags'>
+                <view class='add'>
+                  <button bindtap='bindAddTag'>+</button>
+                </view>
+                <view class='ul'>
+                  <view class='li' wx:for="{{tags}}" wx:key="index">
+                    <view class='dt'>
+                      <input 
+                        value='{{item}}' 
+                        placeholder='标签名称'
+                        bindinput='bindTagInput' 
+                        data-index="{{index}}"
+                      />
+                    </view>
+                    <view class='dd'>
+                      <button bindtap='bindDelTap' data-index="{{index}}">删除</button>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='footer'>
+    <button bindtap="onSureClick" >保存</button>
+  </view>
 </view>

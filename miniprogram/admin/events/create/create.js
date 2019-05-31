@@ -114,7 +114,7 @@ Page({
   },
   bindAddTag: function(e){
     const _tags = this.data.tags;
-    _tags.push({});
+    _tags.push('');
     this.setData({ tags: _tags});
   },
   tagTouchStart: function(e){

@@ -1,9 +1,13 @@
+@import "../../style/commos.wxss";
 page{
 	height: 100%;
 	background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071);
 	/* background-size: cover; */
 	/* background-position: center; */
 	color: #3D3D3D;
+}
+.main{
+  width: 100%;
 }
 .container{
 	height: 100%;
@@ -91,12 +95,12 @@ page{
 	border: solid #FFF 10rpx;
 	margin-top: 10rpx;
 }
-.body{
-	/* margin-right: 40rpx; */
+.right .body .title{
+  font-size: 28rpx;
 }
 .photo{
 	overflow: hidden;
-	margin-top: 32rpx;
+	margin-top: 20rpx;
   display: flex;
   height: 158rpx;
 }

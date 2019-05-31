@@ -1,4 +1,5 @@
-import { get } from '../../../database/events';
+import { get, update } from '../../../database/events';
+import Event from '../../../entity/events';
 Page({
 
   /**
@@ -9,7 +10,8 @@ Page({
     age: 0,
     photo: '',
     showAge: '',
-    title: ''
+    title: '',
+    tags: []
   },
 
   /**
@@ -67,16 +69,82 @@ Page({
   onShareAppMessage: function () {
 
   },
+  bindTitleInput(e) {
+    this.setData({
+      title: e.detail.value
+    });
+  },
+  bindAgeInput(e) {
+    this.setData({
+      age: e.detail.value
+    });
+  },
+  bindShowAgeInput(e) {
+    this.setData({
+      showAge: e.detail.value
+    });
+  },
+  bindPhotoInput: function (e) {
+    this.setData({
+      photo: e.detail.value
+    });
+  },
+  bindAddTag: function(e) {
+    const _tags = this.data.tags;
+    _tags.push('');
+    this.setData({ tags: _tags });
+  },
+  bindTagInput: function(e) {
+    const _index = e.currentTarget.dataset.index;
+    const value = e.detail.value;
+    this.setData({
+      tags: this.data.tags.map((t, i) => {
+        if (i === _index) {
+          t = value;
+        }
+        return t;
+      })
+    });
+  },
+  bindDelTap: function(e) {
+    const _index = e.currentTarget.dataset.index;
+    this.setData({
+      tags: this.data.tags.filter((t, i) => {
+        return i !== _index;
+      })
+    });
+  },
   getEvent: function ({ id}) {
     get({
       id, success: res => {
         if (res.data && res.data.length > 0){
-          const { age, photo, showAge, title, _id} = res.data[0];
+          const { age, photo, showAge, title, _id, tags} = res.data[0];
           this.setData({
-            age, photo, showAge, title, id: _id
+            age, photo, showAge, title, id: _id, tags: tags || []
           });
         }
         console.log(res);
+      }
+    })
+  },
+  onSureClick(e) {
+    let event = new Event({
+      title: this.data.title,
+      age: parseFloat(this.data.age),
+      showAge: this.data.showAge,
+      photo: this.data.photo,
+      tags: this.data.tags
+    });
+    update({
+      id: this.data.id,
+      event, 
+      success: res => {
+        const { errMsg, _id } = res;
+        if (errMsg === 'document.update:ok' && _id) {
+          wx.showToast({
+            title: '保存成功'
+          });
+        }
       }
     })
   }

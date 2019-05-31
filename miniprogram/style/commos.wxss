@@ -1,15 +1,79 @@
+.main{
+  width: 100%;
+  padding-bottom: 128rpx;
+}
 .bgGray{
-	background-color: #F7F7F7;
+  background: #F7F7F7;
 }
-.borderBottom{
-	border-bottom: 1px solid rgba(0,0,0,0.08);
+.container .mainTitleArea{
+  height: 88rpx;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-.listPage .tabListArea {
-	height: 128rpx;
-	position: relative;
+.container .mainTitleArea .h1{
+  font-size: 32rpx;
+  color: #FFF;
 }
-.listPage .tabListArea .headerTabList .swiper-wrapper{
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.t{
+  font-weight: 700;
+}
+.container .mainTitleArea .searchIcon{
+  position: absolute;
+  top: 28rpx;
+  right: 40rpx;
+  z-index: 100;
+}
+.searchDetailArea{
+  padding: 28rpx 0;
+  height: 32rpx;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  box-shadow: 0 10rpx 20rpx 0 rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+}
+.searchDetailArea .inner{
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+.searchDetailArea .inner text{
+  color: #3D3D3D;
+  font-size: 28rpx;
+  text-align: start;
+  padding-left: 32rpx;
+}
+.searchDetailArea .inner .input{
+  flex: 1;
+}
+.searchDetailArea .inner .button{
+  width: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.searchDetailArea .inner .button text{
+  padding-left: 0;
+}
+.cw{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.footer button{
+	background-color: #D9312B;
+	color: #FFF;
+	border-radius: 0;
+  font-size: 28rpx;
+  height: 100rpx;
+  line-height: 100rpx;
 }

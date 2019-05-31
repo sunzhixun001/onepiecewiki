@@ -1,14 +1,15 @@
 {
   "cloud": true,
   "pages": [
+    "pages/timeLineSearch/timeLineSearch",
+    "pages/timeLine/timeLine",
+    "admin/events/list/list",
     "pages/home/home",
     "admin/events/create/create",
-    "pages/timeLine/timeLine",
     "admin/characters/create/create",
     "pages/characters/characters",
     "admin/characters/list/list",
     "pages/user/user",
-    "admin/events/list/list",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",

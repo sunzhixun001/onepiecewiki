@@ -1,7 +1,8 @@
 // 事件
 import { getDatabase } from './common';
 
-const collection = getDatabase().collection('events');
+const db = getDatabase()
+const collection = db.collection('events');
 // 获取一个事件
 export const get = ({ id, success}) => {
   collection
@@ -24,7 +25,8 @@ export const getList = ({ limit = 20, skip = 0, field, success}) => {
   if (field){
     _collection = _collection.field(field)
   } 
-  _collection.get()
+  _collection
+    .get()
 		.then(res => {
 			success && success(res);
 		})
@@ -43,4 +45,29 @@ export const create = ({ event, success}) => {
     .catch(err => {
       console.error(err);
     });
+};
+// 修改一个事件
+export const update = ({ id, event, success }) => {
+  collection
+    .doc(id)
+    .update({ data: event })
+    .then(res => { success && success(res) })
+    .catch(console.error);
+}
+// 模糊查询事件
+export const getRegexp = ({ keyword, success}) => {
+  collection
+    .where({
+      title: db.RegExp({
+        regexp: `.*${keyword}.*`,
+        options: 'i'
+      })
+    })
+    .get()
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+
+    });;
 };
