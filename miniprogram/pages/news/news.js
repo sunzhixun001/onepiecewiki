@@ -1,22 +1,18 @@
-import { getRegexp } from '../../database/events';
+import { get as getDetail } from '../../database/banners';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    events: [],
-    pageIndex: 0,
-    pageSize: 20,
-    allData: false,
-    keyWord: ''
+    content: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getNews({ id: options.id});
   },
 
   /**
@@ -67,27 +63,10 @@ Page({
   onShareAppMessage: function () {
 
   },
-  bindSearch: function(e) {
-    this.getEventsList();
-  },
-  bindKeyWord: function(e) {
-    this.setData({ keyWord: e.detail.value});
-  },
-  getEventsList() {
-    getRegexp({
-      keyword: this.data.keyWord,
-      limit: this.data.pageSize, 
-      skip: this.data.pageSize * this.data.pageIndex, 
-      success: res => {
-        this.setData({
-          events: this.data.events.concat(res.data),
-          pageIndex: this.data.pageIndex + 1
-        });
-        if (res.data.length < this.data.pageSize) {
-          this.setData({ allData: true });
-        }
-        console.log(res);
-      }
-    });
+  getNews: function ({ id}) {
+    getDetail({ id, success: res => {
+      const { content } = res.data;
+      this.setData({ content});
+    }})
   }
 })

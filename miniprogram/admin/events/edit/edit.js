@@ -139,8 +139,8 @@ Page({
       id: this.data.id,
       event, 
       success: res => {
-        const { errMsg, _id } = res;
-        if (errMsg === 'document.update:ok' && _id) {
+        const { errMsg, stats } = res;
+        if (errMsg === 'document.update:ok' && stats.updated) {
           wx.showToast({
             title: '保存成功'
           });

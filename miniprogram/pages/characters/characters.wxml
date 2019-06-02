@@ -1,10 +1,20 @@
 <view class='container'>
-  <view class='listPage'>
+  <view class='main listPage'>
+    <view class='mainTitleArea bgGray'>
+      <view class='searchDetailArea' bindtap='bindSearch'>
+        <view class='inner'>
+          <text>请输入搜索的关键词</text> 
+        </view>
+      </view>
+      <view class='searchIcon'>
+        <icon bindtap='bindOpenSearch' type="search" size="16" color='#3D3D3D'/>
+      </view>
+    </view>
 		<view class='bgGray borderBottom tabListArea'>
 			<view class='swiper-container headerTabList'>
 				<view class='swiper-wrapper'>
 					<view 
-            class="swiper-slide item {{item.index === tabIndex ? 'on':''}}" 
+            class="swiper-slide item {{item.index === currentIndex ? 'on':''}}" 
             wx:for="{{tabs}}" 
             wx:key="index"
             data-index="{{item.index}}"
@@ -17,21 +27,54 @@
 		</view>
     <view class='cw'>
       <view class='listArea'>
-        <view class='itemList'>
-          <view class='item' wx:for="{{characters}}" wx:key="_id">
-            <navigator url='../characterDetail/characterDetail?id={{item._id}}'>
-              <view class='detailBox'>
-                <view class='charaName'>{{item.fullname}}</view>
-                <view class='subComment' wx:if="{{tabIndex === 0 || tabIndex === 1}}">{{item.bounty}}</view>
-                <view class='subComment' wx:if="{{tabIndex === 2}}">{{item.devilfruitType + '  ' +item.devilfruitName}}</view>
+          <swiper 
+            style='height:{{swiperHeight}}rpx' 
+            bindchange='bindSwiperChange'
+            current="{{currentIndex}}"
+          >
+            <swiper-item>
+              <view class='itemList'>
+                <character-component 
+                  wx:for="{{strawHatCharacters}}" 
+                  wx:key="_id"
+                  characterid="{{item._id}}"
+                  fullname="{{item.fullname}}"
+                  comment="{{item.job}}"
+                  avator="{{item.avator}}"
+                />
               </view>
-              <view class='thumb'>
-                <image src='{{item.avator}}' binderror="bindAvatoError" lazy-load="{{true}}"/>
+            </swiper-item>
+            <swiper-item>
+              <view class='itemList'>
+                <character-component 
+                  wx:for="{{bountyCharacters}}" 
+                  wx:key="_id"
+                  characterid="{{item._id}}"
+                  fullname="{{item.fullname}}"
+                  comment="{{item.bounty}}"
+                  avator="{{item.avator}}"
+                />
               </view>
-            </navigator>
-          </view>
-        </view>
+            </swiper-item>
+            <swiper-item>
+              <view class='itemList'>
+                <character-component 
+                  wx:for="{{devilfruitCharacters}}" 
+                  wx:key="_id"
+                  characterid="{{item._id}}"
+                  fullname="{{item.fullname}}"
+                  comment="{{item.devilfruitType + ' / ' + item.devilfruitName}}"
+                  avator="{{item.avator}}"
+                />
+              </view>
+            </swiper-item>
+          </swiper>
       </view>
+    </view>
+  </view>
+  <view class='control'>
+    <view class='control-inner'>
+      <view bindtap='bindAdmin'>管理</view>
     </view>
   </view>
 </view>

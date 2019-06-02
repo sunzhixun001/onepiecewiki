@@ -1,0 +1,13 @@
+<character-component>
+  <view class='item'>
+    <navigator url='/pages/characterDetail/characterDetail?id={{characterid}}'>
+      <view class='detailBox'>
+        <view class='charaName'>{{fullname}}</view>
+        <view class='subComment'>{{comment}}</view>
+      </view>
+      <view class='thumb'>
+        <image src='{{avator}}' lazy-load="{{true}}"/>
+      </view>
+    </navigator>
+  </view>
+</character-component>

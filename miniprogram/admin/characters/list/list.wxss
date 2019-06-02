@@ -5,7 +5,7 @@
   margin-bottom: 100rpx;
 }
 .characters .item{
-  width: calc(100%/3);
+  width: calc(100%/4);
 	display: flex;
 	align-items: center;
 	flex-direction: column;

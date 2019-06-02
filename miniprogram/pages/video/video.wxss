@@ -1,0 +1,9 @@
+@import "../../style/commos.wxss";
+video{
+  width: 100%;
+}
+.title{
+  padding: 20rpx;
+  font-weight: 700;
+  font-size: 30rpx;
+}

@@ -11,30 +11,29 @@
       </view>
     </view>
     <view class='cw'>
-      <view class='timeline-container'>
-        <view class='time-item' wx:for="{{events}}" wx:key="_id">
-          <!-- <view class='left'>
-            <view class='indicate' />
-          </view> -->
-          <view class='right'>
-            <view class='head'>
-              <view class='showage'>{{item.showAge}}</view>
-              <!-- <view class='triangle'></view> -->
-            </view>
-            <view class='body'>
-              <view class='title'>{{item.title}}</view>
-              <view class='photo' wx:if="{{item.photo}}">
-                <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+      <view class='listArea'>
+        <view class='ul itemList'>
+          <view class='li' wx:for="{{events}}" wx:key="_id">
+            <view class='boxRadius'>
+              <view class='head'>
+                <view class='showage'>{{item.showAge}}</view>
+                <!-- <view class='triangle'></view> -->
+              </view>
+              <view class='body'>
+                <view class='title'>{{item.title}}</view>
+                <view class='photo' wx:if="{{item.photo}}">
+                  <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+                </view>
               </view>
             </view>
           </view>
         </view>
       </view>
-      <view class='control'>
-        <view class='control-inner'>
-          <view bindtap='bindAdmin'>管理</view>
-        </view>
-      </view>
+    </view>
+  </view>
+  <view class='control'>
+    <view class='control-inner'>
+      <view bindtap='bindAdmin'>管理</view>
     </view>
   </view>
 </view>

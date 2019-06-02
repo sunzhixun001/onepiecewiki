@@ -16,6 +16,7 @@ picker .picker{
 .avator image{
 	width: 300rpx;
 }
+@import "../../../style/commos.wxss";
 .radio-group{
 	display: flex;
 }
@@ -24,6 +25,39 @@ picker .picker{
 	display: flex;
 	align-items: center;
 	margin-right: 20rpx;
+}
+.add-relationship, .add-group{
+  width: 100rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin: 0;
+}
+.relationships .ul{
+  padding-right: 40rpx;
+}
+.relationships .li{
+  display: flex;
+  margin-bottom: 20rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+.relationships .dl{
+  display: flex;
+  align-items: center;
+}
+.relationships .dd{
+  margin-left: 100rpx;
+}
+.relationships .remove{
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-left: 100rpx;
+}
+.groups .li{
+  margin-bottom: 20rpx;
+}
+.button-area{
+  padding: 20rpx 0;
 }
 /* foot */
 .footer{

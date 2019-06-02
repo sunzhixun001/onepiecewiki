@@ -15,22 +15,20 @@
     </view>
     <view class='cw'>
       <view class='listArea'>
-        <view class='ul itemList'>
-          <view class='li' wx:for="{{events}}" wx:key="_id">
-            <view class='boxRadius'>
-              <view class='head'>
-                <view class='showage'>{{item.showAge}}</view>
+        <view class='itemList'>
+          <view class='item' wx:for="{{characters}}" wx:key="_id">
+            <navigator url='../characterDetail/characterDetail?id={{item._id}}'>
+              <view class='detailBox'>
+                <view class='charaName'>{{item.fullname}}</view>
+                <view class='subComment'>{{item.priateRegimentName}}</view>
               </view>
-              <view class='body'>
-                <view class='title'>{{item.title}}</view>
-                <view class='photo' wx:if="{{item.photo}}">
-                  <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+              <view class='thumb'>
+                  <image src='{{item.avator}}' binderror="bindAvatoError" lazy-load="{{true}}"/>
                 </view>
-              </view>
-            </view>
+            </navigator>
           </view>
         </view>
       </view>
     </view>
   </view>
-</view>
+</view> 

@@ -1,13 +1,15 @@
 {
   "cloud": true,
   "pages": [
-    "pages/timeLineSearch/timeLineSearch",
-    "pages/timeLine/timeLine",
-    "admin/events/list/list",
     "pages/home/home",
+    "pages/test/test",
+    "pages/characters/characters",
+    "pages/characterSearch/characterSearch",
+    "pages/timeLine/timeLine",
+    "pages/timeLineSearch/timeLineSearch",
+    "admin/events/list/list",
     "admin/events/create/create",
     "admin/characters/create/create",
-    "pages/characters/characters",
     "admin/characters/list/list",
     "pages/user/user",
     "pages/index/index",
@@ -22,7 +24,9 @@
     "admin/priateRegiments/create/create",
     "pages/story/story",
     "pages/characterDetail/characterDetail",
-    "admin/events/edit/edit"
+    "admin/events/edit/edit",
+    "pages/news/news",
+    "pages/video/video"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -51,12 +55,6 @@
         "text": "人物",
         "iconPath": "images/character.png",
         "selectedIconPath": "images/character_selected.png"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "百科",
-        "iconPath": "images/wiki.png",
-        "selectedIconPath": "images/wiki_selected.png"
       }
     ]
   },

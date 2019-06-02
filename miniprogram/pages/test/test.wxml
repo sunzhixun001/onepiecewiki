@@ -1,0 +1,7 @@
+<view style='width:100%;'>
+  <image 
+    src='https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/kv_pc.jpg?sign=0d3eee4dc9f0aebb190b337716687710&t=1559384080' 
+    mode='widthFix'
+    style='width:100%;'
+  />
+</view>

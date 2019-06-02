@@ -7,7 +7,10 @@ Page({
   data: {
 		characters: [],
 		windowWidth: 0,
-		avatarWidth: 0
+		avatarWidth: 0,
+    pageIndex: 0,
+    pageSize: 20,
+    all: false
   },
 
   /**
@@ -57,7 +60,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(!this.data.all) {
+      this.getCharacters();
+    }
   },
 
   /**
@@ -74,10 +79,16 @@ Page({
 	},
   getCharacters() {
     getList({
+      limit: this.data.pageSize,
+      skip: this.data.pageSize * this.data.pageIndex,
       success: ({data}) => {
         this.setData({
-          characters: data
+          pageIndex: this.data.pageIndex + 1,
+          characters: this.data.characters.concat(data)
         });
+        if (data.length < this.data.pageSize){
+          this.setData({all: true});
+        }
       }
     });
   },

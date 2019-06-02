@@ -15,14 +15,18 @@ export const create = ({ biological, success}) => {
   });
 }
 // 获取全部人物
-export const getList = ({success}) => {
-  collection.get()
-  .then(res => {
-    success && success(res);
-  })
-  .catch(err => {
+export const getList = ({ limit = 20, skip = 0, success}) => {
+  collection
+    .limit(limit)
+    .skip(skip)
+    .field({name: true, avator: true})
+    .get()
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
 
-  });
+    });
 }
 // 获取全部人物需要的字段
 export const getListField = ({ fields, success }) => {
@@ -57,6 +61,7 @@ export const update = ({ id, biological, success}) => {
 export const getListInPriateReg = ({ priateRegimentName, success}) => {
   collection
     .where({ priateRegimentName})
+    .field({ fullname: true, avator: true, job: true })
     .get()
     .then(res => {
       success && success(res);
@@ -66,9 +71,17 @@ export const getListInPriateReg = ({ priateRegimentName, success}) => {
     });
 }
 // 获取有恶魔果实的人物
-export const getListHasDevilfruit = ({ success}) => {
+export const getListHasDevilfruit = ({ limit = 20, skip = 0, success}) => {
   collection
     .where({ devilfruitName: db.command.neq("").and(db.command.neq(null)) })
+    .limit(limit)
+    .skip(skip)
+    .field({
+      avator: true,
+      fullname: true,
+      devilfruitName: true,
+      devilfruitType: true
+    })
     .get()
     .then(res => {
       success && success(res);
@@ -78,10 +91,17 @@ export const getListHasDevilfruit = ({ success}) => {
     });
 }
 // 按悬赏金降序排列索取所有人物 
-export const getListOrderByBountyDesc = ({ success}) => {
+export const getListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => {
   collection
     .where({ bounty: db.command.neq(null).and(db.command.gt(0)) })
     .orderBy('bounty', 'desc')
+    .limit(limit)
+    .skip(skip)
+    .field({
+      avator: true,
+      fullname: true,
+      bounty: true
+    })
     .get()
     .then(res => {
       success && success(res);
@@ -94,7 +114,29 @@ export const getListOrderByBountyDesc = ({ success}) => {
 export const getListInGroup = ({ groupName, success}) => {
   collection
     .where({ group: groupName })
-    .field({avator: true, _id: true})
+    .field({avator: true})
+    .get()
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+
+    });
+}
+// 模糊搜索角色
+export const getRegexp = ({ keyword, success}) => {
+  collection
+    .where({
+      fullname: db.RegExp({
+        regexp: `.*${keyword}.*`,
+        options: 'i'
+      })
+    })
+    .field({
+      avator: true,
+      fullname: true,
+      priateRegimentName: true
+    })
     .get()
     .then(res => {
       success && success(res);

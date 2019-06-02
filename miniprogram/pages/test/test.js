@@ -1,15 +1,11 @@
-import { getRegexp } from '../../database/events';
+// miniprogram/pages/test/test.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    events: [],
-    pageIndex: 0,
-    pageSize: 20,
-    allData: false,
-    keyWord: ''
+
   },
 
   /**
@@ -66,28 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  bindSearch: function(e) {
-    this.getEventsList();
-  },
-  bindKeyWord: function(e) {
-    this.setData({ keyWord: e.detail.value});
-  },
-  getEventsList() {
-    getRegexp({
-      keyword: this.data.keyWord,
-      limit: this.data.pageSize, 
-      skip: this.data.pageSize * this.data.pageIndex, 
-      success: res => {
-        this.setData({
-          events: this.data.events.concat(res.data),
-          pageIndex: this.data.pageIndex + 1
-        });
-        if (res.data.length < this.data.pageSize) {
-          this.setData({ allData: true });
-        }
-        console.log(res);
-      }
-    });
   }
 })

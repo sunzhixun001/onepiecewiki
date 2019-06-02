@@ -39,3 +39,13 @@ video{
   display: flex;
   justify-content: center;
 }
+.mainVisual swiper-item navigator{
+  width: 100%;
+  position: relative;
+}
+.mainVisual swiper-item navigator .title{
+  position: absolute;
+  color: #FFFFFF;
+  bottom: 40rpx;
+  left: 40rpx;
+}

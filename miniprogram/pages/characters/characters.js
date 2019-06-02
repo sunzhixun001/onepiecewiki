@@ -1,26 +1,36 @@
-import { getList, getListInPriateReg, getListHasDevilfruit, getListOrderByBountyDesc} from '../../database/people';
+import { 
+  getList, 
+  getListInPriateReg, 
+  getListHasDevilfruit, 
+  getListOrderByBountyDesc
+} from '../../database/people';
+import { convertBounty} from '../../common/implement';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    characters: [],
+    strawHatCharacters: [],
+    bountyCharacters: [],
+    devilfruitCharacters: [],
+    currentIndex: 0,
     tabs: [
       { index: 0, name: '草帽团'}, 
       { index: 1, name: '悬赏金' }, 
-      { index: 2, name: '能力者' },
-      { index: 3, name: '政府' }
+      { index: 2, name: '能力者' }
     ],
-    tabIndex: 0,
-    devilfruitTypes: ['','超人系','动物系','自然系']
+    devilfruitTypes: ['','超人系','动物系','自然系'],
+    swiperHeight: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCharactersList[this.data.tabIndex].call(this);
+    this.getCharactersList[0].call(this);
+    this.getCharactersList[1].call(this);
+    this.getCharactersList[2].call(this);
   },
 
   /**
@@ -55,7 +65,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getSwrawCharactersList();
+    // this.getStrawCharactersList();
   },
 
   /**
@@ -73,55 +83,36 @@ Page({
   },
   bindTabChange: function(e) {
     const _index = e.currentTarget.dataset.index;
-    if(_index !== this.data.tabIndex){
-      this.setData({ tabIndex: _index});
-      this.getCharactersList[_index].call(this);
-    }
+    this.setData({ currentIndex: _index});
   },
   bindAvatoError: function(e){
     console.log(e);
+  }, 
+  bindSearch: function(e) {
+    wx.navigateTo({
+      url: '../characterSearch/characterSearch',
+    })
   },
   getCharactersList: [
     function(){
-      this.getSwrawCharactersList();
+      this.getStrawCharactersList();
     },
     function() {
       this.getBountyListDesc();
     },
     function() {
       this.getDevilfruitCharactersList();
-    },
-    function() {
-      
     }
   ],
-  convertBounty: function (bounty) {
-    let result = "";
-    
-    if (bounty < 10000){
-      result = `${bounty}贝利`;
-    } else if (10000 <= bounty && bounty < 100000000 ){
-      result = `${bounty / 10000}万贝利`;
-    }else {
-      const billion = parseInt(bounty / 100000000);
-      let tenthousand = 0;
-      const remainder = bounty % 100000000;
-      if (remainder > 0) {
-        tenthousand = remainder / 10000;
-      }
-      result = `${billion > 0 ? billion + '亿' : ''}${tenthousand > 0 ? tenthousand + '万' : ''}贝利`;
-    }
-    return result;
-  },
   // 获取草帽团成员 
-  getSwrawCharactersList: function() {
-    const _convertBounty = this.convertBounty;
+  getStrawCharactersList: function() {
     getListInPriateReg({
       priateRegimentName: '草帽海贼团', success: res => {
       this.setData({ 
-        characters: res.data.map(c => {
+        swiperHeight: res.data.length * 240,
+        strawHatCharacters: res.data.map(c => {
           return Object.assign({}, c, {
-            bounty: c.bounty && _convertBounty(c.bounty) || ''
+            bounty: c.bounty && convertBounty({bounty: c.bounty}) || ''
           });
         })
       });
@@ -130,21 +121,41 @@ Page({
   },
   // 获取有恶魔果实的角色
   getDevilfruitCharactersList: function() {
-    getListHasDevilfruit({success: res => {
-      this.setData({ characters: res.data});
-    }});
+    getListHasDevilfruit({
+      success: res => {
+        this.setData({ devilfruitCharacters: res.data});
+      }});
   },
+  // 获取有赏金的人物, 按金额降序排列
   getBountyListDesc: function() {
-    const _convertBounty = this.convertBounty;
-    getListOrderByBountyDesc({ success: res => {
-      this.setData({ 
-        characters: res.data.map(c => {
-          return Object.assign({}, c, {
-            bounty: c.bounty && _convertBounty(c.bounty) || ''
-          });
-        })
-      });
-      wx.stopPullDownRefresh();
-    }});
+    getListOrderByBountyDesc({ 
+      success: res => {
+        this.setData({ 
+          swiperHeight: (this.data.bountyCharacters.length + res.data.length) * 240,
+          bountyCharacters: this.data.bountyCharacters.concat(res.data.map(c => {
+            return Object.assign({}, c, {
+              bounty: c.bounty && convertBounty({bounty: c.bounty}) || ''
+            });
+          }))
+        });
+        wx.stopPullDownRefresh();
+      }});
+  },
+  bindAdmin: function() {
+    wx.navigateTo({
+      url: '/admin/characters/list/list',
+    })
+  },
+  characters: [
+    function() { return this.data.strawHatCharacters},
+    function () { return this.data.bountyCharacters},
+    function () { return this.data.devilfruitCharacters }
+  ],
+  bindSwiperChange: function(e) {
+    const { current} = e.detail;
+    this.setData({
+      currentIndex: current,
+      swiperHeight: this.characters[current].call(this).length * 240
+    });
   }
 })

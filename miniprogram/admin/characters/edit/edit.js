@@ -1,4 +1,3 @@
-import { getList as getPriateRegimentsList } from '../../../database/priateRegiments';
 import { get, update, getListField } from '../../../database/people';
 import { CharacterFactory } from '../../../entity/factory';
 import { getList as getGroupsList } from '../../../database/groups';
@@ -25,14 +24,14 @@ Page({
     devilfruitName: '',
     levelName: '无',
     group: [],
-		priateRegiments: [],
     relationships: [],
 		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
     levels: ['元帅', '大将', '中将'],
     relationTypes: ['爷爷','父亲', '义兄'],
     relationCharacters: [],
-    groups: []
+    groups: [],
+    job: ''
 	},
 
 	/**
@@ -40,7 +39,6 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.getCharacter({id: options.id});
-		this.getPriateRegiments();
     this.getCharacterListField();
     this.getGroups();
 	},
@@ -137,7 +135,8 @@ Page({
           height,
           birthday,
           relationships,
-          group
+          group,
+          job
         } = res.data[0];
 				this.setData({ 
 					avator, 
@@ -154,7 +153,8 @@ Page({
           height: height || 0,
           birthday: birthday || '',
           relationships: relationships || [],
-          group: group || []
+          group: group || [],
+          job: job || ''
 				});
 			}
 		}})
@@ -165,6 +165,7 @@ Page({
       avator: true,
       name: true
     }, success: res => {
+      console.log(res);
       this.setData({ relationCharacters: res.data});
     }});
   },
@@ -173,13 +174,14 @@ Page({
       this.setData({ groups: res.data.map(g => g.name)});
     }});
   },
-	bindPriateRegimentsChange: function(e){
-		const index = parseInt(e.detail.value);
-		this.setData({ 
-			priateRegimentIndex: index,
-			priateRegimentName: this.data.priateRegiments[index].name
-		});
+	bindPriateRegiments: function(e){
+		const value = e.detail.value;
+		this.setData({ priateRegimentName: value});
 	},
+  bindJob: function(e) {
+    const value = e.detail.value;
+    this.setData({ job: value });
+  },
   bindHeightInput: function(e) {
     this.setData({ height: parseInt(e.detail.value)});
   },
@@ -194,11 +196,6 @@ Page({
       levelName: this.data.levels[index]
     });
   },
-	getPriateRegiments: function() {
-		getPriateRegimentsList({success: res => {
-			this.setData({ priateRegiments: res.data});
-		}});
-	},
   bindBirthdayInput: function(e) {
     this.setData({ birthday: e.detail.value});
   },
@@ -276,7 +273,8 @@ Page({
         delete _r._id;
         return r;
       }),
-      group: this.data.group
+      group: this.data.group,
+      job: this.data.job
     };
     const factory = new CharacterFactory({ type: this.data.role });
     const biological = factory.create({ data });

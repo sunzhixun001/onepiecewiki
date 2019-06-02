@@ -55,7 +55,7 @@ export const update = ({ id, event, success }) => {
     .catch(console.error);
 }
 // 模糊查询事件
-export const getRegexp = ({ keyword, success}) => {
+export const getRegexp = ({ keyword, limit = 20, skip = 0, success}) => {
   collection
     .where({
       title: db.RegExp({
@@ -63,11 +63,14 @@ export const getRegexp = ({ keyword, success}) => {
         options: 'i'
       })
     })
+    .orderBy('age', 'asc')
+    .limit(limit)
+    .skip(skip)
     .get()
     .then(res => {
       success && success(res);
     })
     .catch(err => {
 
-    });;
+    });
 };

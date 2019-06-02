@@ -1,18 +1,23 @@
-// miniprogram/pages/home/home.js
+import { getNewest} from '../../database/vides';
+import { getList } from '../../database/banners';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    videoSrc: '',
+    videoText: '',
+    videoPoster: '',
+    banners: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getVideos();
+    this.getBanners();
   },
 
   /**
@@ -62,5 +67,29 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getVideos: function() {
+    getNewest({
+      success: res => {
+        const { errMsg, data} = res;
+        if (errMsg === 'collection.get:ok' && data.length){
+          const { src, text, poster} = data[0];
+          this.setData({
+            videoSrc: src,
+            videoText: text,
+            videoPoster: poster
+          });
+        }
+      }
+    });
+  },
+  getBanners: function() {
+    getList({
+      success: res => {
+        this.setData({
+          banners: res.data
+        });
+      }
+    });
   }
 })

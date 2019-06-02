@@ -1,8 +1,8 @@
 import Biological from '../../../entity/biological';
 import Pirate from '../../../entity/pirate';
 import { CharacterFactory} from '../../../entity/factory';
-import { create } from '../../../database/people';
-import { getList as getPriateRegimentsList } from '../../../database/priateRegiments';
+import { create, getListField } from '../../../database/people';
+import { getList as getGroupsList } from '../../../database/groups';
 
 Page({
 
@@ -11,28 +11,38 @@ Page({
 	 */
   data: {
     avator: '',
+    img: '',
     name: '',
     fullname: '',
     bounty: 0,
     role: 0,
     levelName: '无',
-    priateRegimentIndex: 0,
     priateRegimentName: '',
     priateRegiments: [],
     devilfruitType: '无',
     devilfruitName: '',
     position: '无',
+    height: 0,
+    age: 0,
+    birthday: '',
     roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
     levels: ['元帅', '大将', '中将'],
-    positions: ['总司令官','参谋总长']
+    positions: ['总司令官','参谋总长'],
+    relationTypes: ['爷爷', '父亲', '义兄'],
+    relationCharacters: [],
+    relationships: [],
+    group: [],
+    groups: [],
+    job: ''
   },
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
   onLoad: function (options) {
-    this.getPriateRegiments();
+    this.getCharacterListField();
+    this.getGroups();
   },
 
 	/**
@@ -83,6 +93,92 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getCharacterListField: function () {
+    getListField({
+      fields: {
+        _id: true,
+        avator: true,
+        name: true
+      }, success: res => {
+        console.log(res);
+        this.setData({ relationCharacters: res.data });
+      }
+    });
+  },
+  bindAddRelationship: function (e) {
+    let _relationships = this.data.relationships;
+    _relationships.push({
+      _id: new Date().getTime(),
+      type: '',
+      charaId: '',
+      avator: '',
+      name: ''
+    });
+    this.setData({ relationships: _relationships });
+  },
+  bindRelationTypesChange: function (e) {
+    const { id } = e.currentTarget.dataset;
+    const value = this.data.relationTypes[parseInt(e.detail.value)];
+    this.setData({
+      relationships: this.data.relationships.map(r => {
+        if (r._id === id) {
+          r.type = value;
+        }
+        return r;
+      })
+    });
+  },
+  bindImgInput: function (e) {
+    this.setData({ img: e.detail.value });
+  },
+  bindRelationCharactersChange: function (e) {
+    const { id } = e.currentTarget.dataset;
+    const _chara = this.data.relationCharacters[parseInt(e.detail.value)];
+    this.setData({
+      relationships: this.data.relationships.map(r => {
+        if (r._id === id) {
+          r.name = _chara.name;
+          r.avator = _chara.avator;
+          r.charaId = _chara._id;
+        }
+        return r;
+      })
+    });
+  },
+  bindAddGroup: function (e) {
+    let _group = this.data.group;
+    _group.push("");
+    this.setData({ group: _group });
+  },
+  bindJob: function (e) {
+    const value = e.detail.value;
+    this.setData({ job: value });
+  },
+  bindGroupsChange: function (e) {
+    const _group = this.data.groups[parseInt(e.detail.value)];
+    const _index = e.currentTarget.dataset.index;
+    let _tempGroup = this.data.group;
+    _tempGroup[_index] = _group;
+    this.setData({
+      group: _tempGroup
+    });
+  },
+  getGroups: function () {
+    getGroupsList({
+      success: res => {
+        this.setData({ groups: res.data.map(g => g.name) });
+      }
+    });
+  },
+  bindHeightInput: function (e) {
+    this.setData({ height: parseInt(e.detail.value) });
+  },
+  bindAgeInput: function (e) {
+    this.setData({ age: parseInt(e.detail.value) });
+  },
+  bindBirthdayInput: function (e) {
+    this.setData({ birthday: e.detail.value });
+  },
   bindAvatorInput: function(e){
     this.setData({
       avator: e.detail.value
@@ -106,17 +202,8 @@ Page({
     this.setData({ role: parseInt(e.detail.value) });
   },
   bindPriateRegimentsChange: function (e) {
-    const index = parseInt(e.detail.value);
     this.setData({
-      priateRegimentIndex: index,
-      priateRegimentName: this.data.priateRegiments[index].name
-    });
-  },
-  getPriateRegiments: function () {
-    getPriateRegimentsList({
-      success: res => {
-        this.setData({ priateRegiments: res.data });
-      }
+      priateRegimentName: e.detail.value
     });
   },
   bindLevelChange: function(e) {
@@ -146,12 +233,22 @@ Page({
       name: this.data.name,
       fullname: this.data.fullname,
       avator: this.data.avator,
+      img: this.data.img,
       role: this.data.role,
       bounty: this.data.bounty,
       priateRegimentName: this.data.priateRegimentName,
       levelName: this.data.levelName,
       devilfruitType: this.data.devilfruitType,
-      devilfruitName: this.data.devilfruitName
+      devilfruitName: this.data.devilfruitName,
+      age: this.data.age,
+      height: this.data.height,
+      birthday: this.data.birthday,
+      relationships: this.data.relationships.map(r => {
+        let _r = r;
+        delete _r._id;
+        return r;
+      }),
+      group: this.data.group
     };
     const factory = new CharacterFactory({ type: this.data.role});
     const biological = factory.create({data});

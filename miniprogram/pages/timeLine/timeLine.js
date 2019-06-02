@@ -1,4 +1,4 @@
-import { getList, getRegexp} from '../../database/events';
+import { getList} from '../../database/events';
 Page({
 
   /**
@@ -8,8 +8,7 @@ Page({
 		events: [],
     pageIndex: 0,
     pageSize: 20,
-    allData: false,
-    searchActive: false
+    allData: false
   },
 
   /**

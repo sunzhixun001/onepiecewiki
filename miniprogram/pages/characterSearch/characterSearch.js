@@ -1,14 +1,11 @@
-import { getRegexp } from '../../database/events';
+import { getRegexp } from '../../database/people';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    events: [],
-    pageIndex: 0,
-    pageSize: 20,
-    allData: false,
+    characters: [],
     keyWord: ''
   },
 
@@ -67,26 +64,17 @@ Page({
   onShareAppMessage: function () {
 
   },
-  bindSearch: function(e) {
-    this.getEventsList();
-  },
   bindKeyWord: function(e) {
-    this.setData({ keyWord: e.detail.value});
+    this.setData({keyWord: e.detail.value});
   },
-  getEventsList() {
+  bindSearch: function(e) {
+    this.getCharacters();
+  },
+  getCharacters: function() {
     getRegexp({
-      keyword: this.data.keyWord,
-      limit: this.data.pageSize, 
-      skip: this.data.pageSize * this.data.pageIndex, 
+      keyword: this.data.keyWord, 
       success: res => {
-        this.setData({
-          events: this.data.events.concat(res.data),
-          pageIndex: this.data.pageIndex + 1
-        });
-        if (res.data.length < this.data.pageSize) {
-          this.setData({ allData: true });
-        }
-        console.log(res);
+        this.setData({ characters: res.data});
       }
     });
   }

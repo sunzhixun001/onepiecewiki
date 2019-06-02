@@ -1,3 +1,6 @@
+.container{
+	height: 100%;
+}
 .main{
   width: 100%;
   padding-bottom: 128rpx;
@@ -12,6 +15,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  background: #FFFFFF;
 }
 .container .mainTitleArea .h1{
   font-size: 32rpx;
@@ -35,6 +39,7 @@
   box-shadow: 0 10rpx 20rpx 0 rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
+  z-index: 100;
 }
 .searchDetailArea .inner{
   position: relative;
@@ -42,13 +47,17 @@
   width: 100%;
 }
 .searchDetailArea .inner text{
-  color: #3D3D3D;
+  color: #9DA0A3;
   font-size: 28rpx;
   text-align: start;
   padding-left: 32rpx;
 }
 .searchDetailArea .inner .input{
   flex: 1;
+}
+.searchDetailArea .inner .input input{
+  text-align: start;
+  padding-left: 68rpx;
 }
 .searchDetailArea .inner .button{
   width: 100rpx;
@@ -58,6 +67,11 @@
 }
 .searchDetailArea .inner .button text{
   padding-left: 0;
+}
+.searchDetailArea .inner icon{
+  position: absolute;
+  left: 20rpx;
+  top: 6rpx;
 }
 .cw{
   padding-left: 5%;
