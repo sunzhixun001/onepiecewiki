@@ -7,10 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
+    role: '',
     fullname: '',
     img: '',
     bounty: '无',
     priateRegimentName: '',
+    job: '',
     age: 0,
     birthday: '',
     height: 0,
@@ -87,6 +89,7 @@ Page({
             role,
             bounty,
             priateRegimentName,
+            job,
             devilfruitType,
             devilfruitName,
             age,
@@ -135,6 +138,7 @@ Page({
             fullname,
             bounty: bounty ? convertBounty({bounty}) : '无',
             priateRegimentName: priateRegimentName || '无',
+            job: job || '',
             devilfruitType: devilfruitType || '无',
             devilfruitName: devilfruitName || '',
             id: _id, 

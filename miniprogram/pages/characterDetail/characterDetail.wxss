@@ -1,4 +1,4 @@
-/* common */
+@import "../../style/commos.wxss";
 page{
   font-size: 28rpx;
   color: rgb(61, 61, 61);
