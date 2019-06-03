@@ -30,7 +30,7 @@ Page({
     levels: ['元帅', '大将', '中将'],
     relationTypes: ['爷爷','父亲', '义兄'],
     relationCharacters: [],
-    groups: [],
+    groups: ['极恶的世代', '王下七武海', '四皇'],
     job: ''
 	},
 
@@ -40,7 +40,6 @@ Page({
 	onLoad: function (options) {
 		this.getCharacter({id: options.id});
     this.getCharacterListField();
-    this.getGroups();
 	},
 
 	/**
@@ -167,11 +166,6 @@ Page({
     }, success: res => {
       console.log(res);
       this.setData({ relationCharacters: res.data});
-    }});
-  },
-  getGroups: function() {
-    getGroupsList({ success: res => {
-      this.setData({ groups: res.data.map(g => g.name)});
     }});
   },
 	bindPriateRegiments: function(e){

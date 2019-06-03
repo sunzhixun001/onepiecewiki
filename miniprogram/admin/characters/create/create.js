@@ -2,7 +2,6 @@ import Biological from '../../../entity/biological';
 import Pirate from '../../../entity/pirate';
 import { CharacterFactory} from '../../../entity/factory';
 import { create, getListField } from '../../../database/people';
-import { getList as getGroupsList } from '../../../database/groups';
 
 Page({
 
@@ -33,7 +32,7 @@ Page({
     relationCharacters: [],
     relationships: [],
     group: [],
-    groups: [],
+    groups: ['极恶的世代', '王下七武海','四皇'],
     job: ''
   },
 
@@ -42,7 +41,6 @@ Page({
 	 */
   onLoad: function (options) {
     this.getCharacterListField();
-    this.getGroups();
   },
 
 	/**
@@ -161,13 +159,6 @@ Page({
     _tempGroup[_index] = _group;
     this.setData({
       group: _tempGroup
-    });
-  },
-  getGroups: function () {
-    getGroupsList({
-      success: res => {
-        this.setData({ groups: res.data.map(g => g.name) });
-      }
     });
   },
   bindHeightInput: function (e) {
