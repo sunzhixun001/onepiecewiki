@@ -13,7 +13,7 @@
                   <view class='charaNameBox'>
                     <view class='charaNameArea'>
                       <view class='t h1 large'>{{fullname}}</view>
-                      <view class='t middle'>{{priateRegimentName}}</view>
+                      <view class='t middle'>{{priateRegimentName}} /</view>
                     </view>
                   </view>
                 </view>
