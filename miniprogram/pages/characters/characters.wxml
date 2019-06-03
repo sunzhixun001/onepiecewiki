@@ -36,8 +36,8 @@
               <view class='itemList'>
                 <character-component 
                   wx:for="{{strawHatCharacters}}" 
-                  wx:key="_id"
-                  characterid="{{item._id}}"
+                  wx:key="id"
+                  characterid="{{item.id}}"
                   fullname="{{item.fullname}}"
                   comment="{{item.job}}"
                   avator="{{item.avator}}"
@@ -48,8 +48,8 @@
               <view class='itemList'>
                 <character-component 
                   wx:for="{{bountyCharacters}}" 
-                  wx:key="_id"
-                  characterid="{{item._id}}"
+                  wx:key="id"
+                  characterid="{{item.id}}"
                   fullname="{{item.fullname}}"
                   comment="{{item.bounty}}"
                   avator="{{item.avator}}"
@@ -60,10 +60,10 @@
               <view class='itemList'>
                 <character-component 
                   wx:for="{{devilfruitCharacters}}" 
-                  wx:key="_id"
-                  characterid="{{item._id}}"
+                  wx:key="id"
+                  characterid="{{item.id}}"
                   fullname="{{item.fullname}}"
-                  comment="{{item.devilfruitType + ' / ' + item.devilfruitName}}"
+                  comment="{{item.devilfruit}}"
                   avator="{{item.avator}}"
                 />
               </view>

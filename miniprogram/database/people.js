@@ -58,20 +58,17 @@ export const update = ({ id, biological, success}) => {
 		.catch(console.error);
 }
 // 获取某一海贼团的全部人物
-export const getListInPriateReg = ({ priateRegimentName, success}) => {
+export const getListInPriateReg = ({ priateRegimentName}) => {
+  const promise =  
   collection
     .where({ priateRegimentName})
     .field({ fullname: true, avator: true, job: true })
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {
-
-    });
+    .get();
+  return promise;
 }
 // 获取有恶魔果实的人物
-export const getListHasDevilfruit = ({ limit = 20, skip = 0, success}) => {
+export const getListHasDevilfruit = ({ limit = 20, skip = 0}) => {
+  const promise =  
   collection
     .where({ devilfruitName: db.command.neq("").and(db.command.neq(null)) })
     .limit(limit)
@@ -82,16 +79,12 @@ export const getListHasDevilfruit = ({ limit = 20, skip = 0, success}) => {
       devilfruitName: true,
       devilfruitType: true
     })
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {
-
-    });
+    .get();
+  return promise;
 }
 // 按悬赏金降序排列索取所有人物 
-export const getListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => {
+export const getListOrderByBountyDesc = ({ limit = 20, skip = 0}) => {
+  const promise = 
   collection
     .where({ bounty: db.command.neq(null).and(db.command.gt(0)) })
     .orderBy('bounty', 'desc')
@@ -102,13 +95,8 @@ export const getListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => {
       fullname: true,
       bounty: true
     })
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {
-
-    });
+    .get();
+  return promise;
 }
 // 获取某一团体下的所有成员
 export const getListInGroup = ({ groupName, success}) => {
