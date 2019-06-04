@@ -2,6 +2,7 @@ import Biological from '../../../entity/biological';
 import Pirate from '../../../entity/pirate';
 import { CharacterFactory} from '../../../entity/factory';
 import { create, getListField } from '../../../database/characterRepository';
+import { fetchRegexp } from '../../../domain/characterDomain';
 
 Page({
 
@@ -34,9 +35,13 @@ Page({
     relationTypes: ['爷爷', '父亲', '义兄'],
     relationCharacters: [],
     relationships: [],
+    relationshipId: '',
     group: [],
     groups: ['极恶的世代', '王下七武海','四皇'],
-    job: ''
+    job: '',
+    characters: [],
+    searchModalActivate: false
+    
   },
 
 	/**
@@ -117,9 +122,9 @@ Page({
     });
     this.setData({ relationships: _relationships });
   },
-  bindRelationTypesChange: function (e) {
+  bindRelationTypesInput: function (e) {
     const { id } = e.currentTarget.dataset;
-    const value = this.data.relationTypes[parseInt(e.detail.value)];
+    const value = e.detail.value;
     this.setData({
       relationships: this.data.relationships.map(r => {
         if (r._id === id) {
@@ -132,18 +137,11 @@ Page({
   bindImgInput: function (e) {
     this.setData({ img: e.detail.value });
   },
-  bindRelationCharactersChange: function (e) {
-    const { id } = e.currentTarget.dataset;
-    const _chara = this.data.relationCharacters[parseInt(e.detail.value)];
+  bindRelationCharactersTap: function(e){
+    const {id} = e.currentTarget.dataset;
     this.setData({
-      relationships: this.data.relationships.map(r => {
-        if (r._id === id) {
-          r.name = _chara.name;
-          r.avator = _chara.avator;
-          r.charaId = _chara._id;
-        }
-        return r;
-      })
+      searchModalActivate: true,
+      relationshipId: id
     });
   },
   bindAddGroup: function (e) {
@@ -274,5 +272,38 @@ Page({
   },
   getBiological: () => {
     
+  },
+  bindSearchTap: function(e) {
+    const { keyword} = e.detail;
+    if (keyword) {
+      this.searchCharacters({ keyword});
+    }
+  },
+  searchCharacters: function({keyword}) {
+    fetchRegexp({
+      keyword, 
+      success: res => {
+        this.setData({ characters: res});
+      }
+    })
+  },
+  bindCharacterTap: function(e) {
+    const { avator, id, name} = e.detail;
+    const { relationshipId} = this.data;
+    this.setData({
+      searchModalActivate: false,
+      relationships: this.data.relationships.map(r => {
+        if (r._id === relationshipId) {
+          r.name = name;
+          r.avator = avator;
+          r.name = name;
+          r.charaId = id;
+        }
+        return r;
+      })
+    });
+  },
+  closeModal: function() {
+    this.setData({searchModalActivate: false});
   }
 })

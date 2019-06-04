@@ -53,6 +53,10 @@ picker .picker{
   line-height: 50rpx;
   margin-left: 100rpx;
 }
+.relationships .li .thumb image{
+  width: 50rpx;
+  height: 50rpx;
+}
 .groups .li{
   margin-bottom: 20rpx;
 }

@@ -110,6 +110,7 @@ export const getListInGroup = ({ groupName, success}) => {
 }
 // 模糊搜索角色
 export const getRegexp = ({ keyword, success}) => {
+  const promise =  
   collection
     .where({
       fullname: db.RegExp({
@@ -122,11 +123,6 @@ export const getRegexp = ({ keyword, success}) => {
       fullname: true,
       priateRegimentName: true
     })
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {
-
-    });
+    .get();
+  return promise;
 }

@@ -28,12 +28,15 @@ Page({
     levelName: '无',
     group: [],
     relationships: [],
+    relationshipId: '',
 		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
     levels: ['元帅', '大将', '中将'],
     relationTypes: ['爷爷','父亲', '义兄', '母亲'],
     groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星'],
-    job: ''
+    job: '',
+    characters: [],
+    searchModalActivate: false
 	},
 
 	/**
@@ -286,5 +289,45 @@ Page({
 				}
 			}
 		});
-	}
+	},
+  bindSearchTap: function (e) {
+    const { keyword } = e.detail;
+    if (keyword) {
+      this.searchCharacters({ keyword });
+    }
+  },
+  searchCharacters: function ({ keyword }) {
+    fetchRegexp({
+      keyword,
+      success: res => {
+        this.setData({ characters: res });
+      }
+    })
+  },
+  bindCharacterTap: function (e) {
+    const { avator, id, name } = e.detail;
+    const { relationshipId } = this.data;
+    this.setData({
+      searchModalActivate: false,
+      relationships: this.data.relationships.map(r => {
+        if (r._id === relationshipId) {
+          r.name = name;
+          r.avator = avator;
+          r.name = name;
+          r.charaId = id;
+        }
+        return r;
+      })
+    });
+  },
+  closeModal: function () {
+    this.setData({ searchModalActivate: false });
+  },
+  bindRelationCharactersTap: function (e) {
+    const { id } = e.currentTarget.dataset;
+    this.setData({
+      searchModalActivate: true,
+      relationshipId: id
+    });
+  }
 })

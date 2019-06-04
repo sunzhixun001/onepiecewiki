@@ -41,6 +41,10 @@ picker .picker{
   align-items: center;
   justify-content: space-between;
 }
+.relationships .li .thumb image{
+  width: 50rpx;
+  height: 50rpx;
+}
 .relationships .dl{
   display: flex;
   align-items: center;

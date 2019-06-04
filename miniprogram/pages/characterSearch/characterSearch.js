@@ -1,4 +1,4 @@
-import { getRegexp } from '../../database/characterRepository';
+import { fetchRegexp } from '../../domain/characterDomain';
 Page({
 
   /**
@@ -71,10 +71,10 @@ Page({
     this.getCharacters();
   },
   getCharacters: function() {
-    getRegexp({
+    fetchRegexp({
       keyword: this.data.keyWord, 
       success: res => {
-        this.setData({ characters: res.data});
+        this.setData({ characters: res});
       }
     });
   }

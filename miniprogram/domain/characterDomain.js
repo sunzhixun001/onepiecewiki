@@ -2,7 +2,8 @@ import {
   getList,
   getListInPriateReg,
   getListHasDevilfruit,
-  getListOrderByBountyDesc
+  getListOrderByBountyDesc,
+  getRegexp
 } from '../database/characterRepository';
 const convertBounty = ({ bounty }) => {
   let result = "";
@@ -84,10 +85,20 @@ const fetchListInPriateReg = ({ priateRegimentName, success}) => {
     })
     .catch();
 };
+// 模糊搜索角色
+const fetchRegexp = ({ keyword, success}) => {
+  const promise = getRegexp({ keyword});
+  promise
+    .then(res => {
+      success && success(res.data);
+    })
+    .catch()
+};
 export {
   fetchList,
   fetchStrawCharactersList,
   fetchListInPriateReg,
   fetchListHasDevilfruit,
   fetchListOrderByBountyDesc,
+  fetchRegexp
 };

@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "pages/home/home",
+    "admin/characters/create/create",
     "pages/test/test",
     "pages/characters/characters",
     "pages/characterSearch/characterSearch",
@@ -9,7 +10,6 @@
     "pages/timeLineSearch/timeLineSearch",
     "admin/events/list/list",
     "admin/events/create/create",
-    "admin/characters/create/create",
     "admin/characters/list/list",
     "pages/user/user",
     "pages/index/index",
