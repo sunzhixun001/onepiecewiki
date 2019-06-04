@@ -36,6 +36,7 @@ Page({
     relationCharacters: [],
     relationships: [],
     relationshipId: '',
+    relationshipIndex: 0,
     group: [],
     groups: ['极恶的世代', '王下七武海','四皇'],
     job: '',
@@ -123,11 +124,11 @@ Page({
     this.setData({ relationships: _relationships });
   },
   bindRelationTypesInput: function (e) {
-    const { id } = e.currentTarget.dataset;
+    const { index } = e.currentTarget.dataset;
     const value = e.detail.value;
     this.setData({
-      relationships: this.data.relationships.map(r => {
-        if (r._id === id) {
+      relationships: this.data.relationships.map((r, i) => {
+        if (i === index) {
           r.type = value;
         }
         return r;
