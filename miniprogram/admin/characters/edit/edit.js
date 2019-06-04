@@ -1,6 +1,7 @@
 import { get, update, getListField } from '../../../database/characterRepository';
 import { CharacterFactory } from '../../../entity/factory';
 import { getList as getGroupsList } from '../../../database/groups';
+import { fetchRegexp } from '../../../domain/characterDomain';
 
 Page({
 
@@ -28,8 +29,8 @@ Page({
     levelName: '无',
     group: [],
     relationships: [],
-    relationshipId: '',
-		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }],
+    relationshipIndex: 0,
+    roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
     levels: ['元帅', '大将', '中将'],
     relationTypes: ['爷爷','父亲', '义兄', '母亲'],
@@ -247,6 +248,15 @@ Page({
       group: _tempGroup
     });
   },
+  bindPinyinNameInput: function (e) {
+    this.setData({ pinyinName: e.detail.value });
+  },
+  bindEnglishNameInput: function (e) {
+    this.setData({ englishName: e.detail.value });
+  },
+  bindJapaneseNameInput: function (e) {
+    this.setData({ japaneseName: e.detail.value });
+  },
 	onSureClick: function() {
     let data = {
       name: this.data.name,
@@ -324,10 +334,10 @@ Page({
     this.setData({ searchModalActivate: false });
   },
   bindRelationCharactersTap: function (e) {
-    const { id } = e.currentTarget.dataset;
+    const { index } = e.currentTarget.dataset;
     this.setData({
       searchModalActivate: true,
-      relationshipId: id
+      relationshipIndex: index
     });
   }
 })

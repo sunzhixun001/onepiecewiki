@@ -35,10 +35,9 @@ Page({
     relationTypes: ['爷爷', '父亲', '义兄'],
     relationCharacters: [],
     relationships: [],
-    relationshipId: '',
     relationshipIndex: 0,
     group: [],
-    groups: ['极恶的世代', '王下七武海','四皇'],
+    groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星'],
     job: '',
     characters: [],
     searchModalActivate: false
@@ -139,10 +138,10 @@ Page({
     this.setData({ img: e.detail.value });
   },
   bindRelationCharactersTap: function(e){
-    const {id} = e.currentTarget.dataset;
+    const { index} = e.currentTarget.dataset;
     this.setData({
       searchModalActivate: true,
-      relationshipId: id
+      relationshipIndex: index
     });
   },
   bindAddGroup: function (e) {
@@ -290,12 +289,11 @@ Page({
   },
   bindCharacterTap: function(e) {
     const { avator, id, name} = e.detail;
-    const { relationshipId} = this.data;
+    const { relationshipIndex} = this.data;
     this.setData({
       searchModalActivate: false,
-      relationships: this.data.relationships.map(r => {
-        if (r._id === relationshipId) {
-          r.name = name;
+      relationships: this.data.relationships.map((r, i) => {
+        if (i === relationshipIndex) {
           r.avator = avator;
           r.name = name;
           r.charaId = id;

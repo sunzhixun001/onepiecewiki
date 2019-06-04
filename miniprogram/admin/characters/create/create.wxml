@@ -87,7 +87,7 @@
                 <view class='dt'>
                   <input placeholder='关系' value='{{item.type}}' bindinput='bindRelationTypesInput' data-index='{{index}}'/>
                 </view>
-                <view class='dd' bindtap='bindRelationCharactersTap' data-id='{{item._id}}' data-index='{{index}}'>
+                <view class='dd' bindtap='bindRelationCharactersTap' data-index='{{index}}'>
                   <view class='thumb' wx:if="{{item.avator}}"><image src="{{item.avator}}" /></view>
                   <input wx:else placeholder='人物' value='{{item.name}}' disabled />
                 </view>

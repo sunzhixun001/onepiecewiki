@@ -15,7 +15,7 @@ export const create = ({ biological, success}) => {
   });
 }
 // 获取全部人物
-export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'desc']}) => {
+export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'asc']}) => {
   let promise = 
   collection
     .orderBy(...orderby)

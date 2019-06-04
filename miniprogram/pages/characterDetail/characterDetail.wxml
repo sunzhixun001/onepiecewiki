@@ -78,7 +78,7 @@
                 <view class='t middle underline'>{{priateRegimentName}}</view>
                 <view class='ul relatedCharas'>
                   <view class='li' wx:for="{{partners}}" wx:key="_id">
-                    <view bindtap='bindPartnersClick' data-id='{{item._id}}'><image src="{{item.avator}}" /></view>
+                    <view bindtap='bindPartnersClick' data-id='{{item.id}}'><image src="{{item.avator}}" /></view>
                   </view>
                 </view>
               </view>
