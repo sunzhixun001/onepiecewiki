@@ -1,7 +1,7 @@
 import Biological from '../../../entity/biological';
 import Pirate from '../../../entity/pirate';
 import { CharacterFactory} from '../../../entity/factory';
-import { create, getListField } from '../../../database/people';
+import { create, getListField } from '../../../database/characterRepository';
 
 Page({
 
@@ -13,6 +13,9 @@ Page({
     img: '',
     name: '',
     fullname: '',
+    pinyinName: '',
+    englishName: '',
+    japaneseName: '',
     bounty: 0,
     role: 0,
     levelName: '无',
@@ -219,10 +222,22 @@ Page({
   bindDevilfruitNameInput: function(e){
     this.setData({ devilfruitName: e.detail.value });
   },
+  bindPinyinNameInput: function(e) {
+    this.setData({ pinyinName: e.detail.value });
+  },
+  bindEnglishNameInput: function (e) {
+    this.setData({ englishName: e.detail.value });
+  },
+  bindJapaneseNameInput: function (e) {
+    this.setData({ japaneseName: e.detail.value });
+  },
   onSureClick(e) {
     let data = {
       name: this.data.name,
       fullname: this.data.fullname,
+      pinyinName: this.data.pinyinName,
+      englishName: this.data.englishName,
+      japaneseName: this.data.japaneseName,
       avator: this.data.avator,
       img: this.data.img,
       role: this.data.role,
@@ -239,7 +254,8 @@ Page({
         delete _r._id;
         return r;
       }),
-      group: this.data.group
+      group: this.data.group,
+      job: this.data.job
     };
     const factory = new CharacterFactory({ type: this.data.role});
     const biological = factory.create({data});

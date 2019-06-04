@@ -1,4 +1,7 @@
-import { get, getListInPriateReg, getListInGroup } from '../../database/people';
+import { get, getListInGroup } from '../../database/characterRepository';
+import {
+  fetchListInPriateReg
+} from '../../domain/characterDomain';
 import { convertBounty} from '../../common/implement';
 
 Page({
@@ -159,8 +162,8 @@ Page({
     })
   },
   getPriateRegMembers: function ({ priateRegimentName}){
-    getListInPriateReg({ priateRegimentName, success: res => {
-      this.setData({ partners: res.data});
+    fetchListInPriateReg({ priateRegimentName, success: res => {
+      this.setData({ partners: res});
     }});
   },
   bindPartnersClick: function(e) {

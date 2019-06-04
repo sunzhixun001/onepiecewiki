@@ -18,6 +18,15 @@
 		<view class='item'>
 			<input bindinput="bindFullNameInput" placeholder="全名" value='{{fullname}}' />
 		</view>
+    <view class='item'>
+			<input bindinput="bindPinyinNameInput" placeholder="拼音" value='{{pinyinName}}' />
+		</view>
+    <view class='item'>
+			<input bindinput="bindEnglishNameInput" placeholder="英文名" value='{{englishName}}' />
+		</view>
+    <view class='item'>
+			<input bindinput="bindJapaneseNameInput" placeholder="日语名" value='{{japaneseName}}' />
+		</view>
 		<view class='item'>
 			<radio-group class="radio-group" bindchange="roleChange">
 				<label class="radio" wx:for="{{roles}}" wx:key="type">
@@ -68,19 +77,10 @@
         <view wx:for="{{relationships}}" wx:key="index" class='li'>
           <view class='dl'>
             <view class='dt'>
-              <picker range="{{relationTypes}}" bindchange="bindRelationTypesChange" data-id='{{item._id}}'>
-                <view>{{item.type || '请选择'}}</view>
-              </picker>
+              <input placeholder='关系' value='{{item.type}}' bindinput='bindRelationTypesInput' data-id='{{item._id}}' />
             </view>
             <view class='dd'>
-              <picker 
-                range="{{relationCharacters}}" 
-                bindchange="bindRelationCharactersChange" 
-                range-key='name' 
-                data-id='{{item._id}}'
-              >
-                <view>{{item.name || '请选择'}}</view>
-              </picker>
+              <input placeholder='人物' value='{{item.name}}' bindinput='bindRelationCharactersInput' data-id='{{item._id}}' />
             </view>
           </view>
           <view><button class='remove'>-</button></view>

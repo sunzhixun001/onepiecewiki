@@ -15,18 +15,15 @@ export const create = ({ biological, success}) => {
   });
 }
 // 获取全部人物
-export const getList = ({ limit = 20, skip = 0, success}) => {
+export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'desc']}) => {
+  let promise = 
   collection
+    .orderBy(...orderby)
     .limit(limit)
     .skip(skip)
-    .field({name: true, avator: true})
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {
-
-    });
+    .field({name: true, fullname: true, avator: true})
+    .get();
+  return promise;
 }
 // 获取全部人物需要的字段
 export const getListField = ({ fields, success }) => {

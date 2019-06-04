@@ -1,8 +1,9 @@
 import {
+  getList,
   getListInPriateReg,
   getListHasDevilfruit,
   getListOrderByBountyDesc
-} from '../database/people';
+} from '../database/characterRepository';
 const convertBounty = ({ bounty }) => {
   let result = "";
   if (bounty < 10000) {
@@ -20,23 +21,20 @@ const convertBounty = ({ bounty }) => {
   }
   return result;
 }
-export const fetchStrawCharactersList = ({ success, faild}) => {
-  const promise = getListInPriateReg({ priateRegimentName: '草帽海贼团' });
+const fetchList = ({ limit, skip, orderby, success}) => {
+  const promise = getList({ limit, skip, orderby});
   promise
     .then(res => {
-      const data = res.data.map(c => {
-        return {
-          id: c._id,
-          avator: c.avator,
-          fullname: c.fullname,
-          job: c.job
-        };
-      });
-      success && success(data);
+      success && success(res.data);
     })
     .catch();
+}
+// 获取草帽团成员
+const fetchStrawCharactersList = ({ success, faild}) => {
+  fetchListInPriateReg({ priateRegimentName: '草帽海贼团', success, faild });
 };
-export const fetchListHasDevilfruit = ({ limit = 20, skip = 0, success }) => {
+// 获取有恶魔果实的人物
+const fetchListHasDevilfruit = ({ limit = 20, skip = 0, success }) => {
   const promise = getListHasDevilfruit({ limit, skip });
   promise
     .then(res => {
@@ -52,7 +50,8 @@ export const fetchListHasDevilfruit = ({ limit = 20, skip = 0, success }) => {
     })
     .catch();
 };
-export const fetchListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => {
+// 获取有赏金的人物
+const fetchListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => {
   const promise = getListOrderByBountyDesc({ limit, skip });
   promise
     .then(res => {
@@ -68,3 +67,27 @@ export const fetchListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => 
     })
     .catch();
 }
+// 获取某一海贼团的全部成员
+const fetchListInPriateReg = ({ priateRegimentName, success}) => {
+  const promise = getListInPriateReg({ priateRegimentName });
+  promise
+    .then(res => {
+      const data = res.data.map(c => {
+        return {
+          id: c._id,
+          avator: c.avator,
+          fullname: c.fullname,
+          job: c.job
+        };
+      });
+      success && success(data);
+    })
+    .catch();
+};
+export {
+  fetchList,
+  fetchStrawCharactersList,
+  fetchListInPriateReg,
+  fetchListHasDevilfruit,
+  fetchListOrderByBountyDesc,
+};

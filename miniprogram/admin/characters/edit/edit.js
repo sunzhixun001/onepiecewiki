@@ -1,4 +1,4 @@
-import { get, update, getListField } from '../../../database/people';
+import { get, update, getListField } from '../../../database/characterRepository';
 import { CharacterFactory } from '../../../entity/factory';
 import { getList as getGroupsList } from '../../../database/groups';
 
@@ -13,6 +13,9 @@ Page({
     img: '',
 		name: '',
 		fullname: '',
+    pinyinName: '',
+    englishName: '',
+    japaneseName: '',
     bounty: 0,
 		role: 0,
     height: 0,
@@ -28,9 +31,8 @@ Page({
 		roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
     levels: ['元帅', '大将', '中将'],
-    relationTypes: ['爷爷','父亲', '义兄'],
-    relationCharacters: [],
-    groups: ['极恶的世代', '王下七武海', '四皇'],
+    relationTypes: ['爷爷','父亲', '义兄', '母亲'],
+    groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星'],
     job: ''
 	},
 
@@ -39,7 +41,6 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.getCharacter({id: options.id});
-    this.getCharacterListField();
 	},
 
 	/**
@@ -135,7 +136,10 @@ Page({
           birthday,
           relationships,
           group,
-          job
+          job,
+          pinyinName,
+          englishName,
+          japaneseName
         } = res.data[0];
 				this.setData({ 
 					avator, 
@@ -153,21 +157,14 @@ Page({
           birthday: birthday || '',
           relationships: relationships || [],
           group: group || [],
-          job: job || ''
+          job: job || '',
+          pinyinName: pinyinName || '',
+          englishName: englishName || '',
+          japaneseName: japaneseName || ''
 				});
 			}
 		}})
 	},
-  getCharacterListField: function(){
-    getListField({ fields: {
-      _id: true,
-      avator: true,
-      name: true
-    }, success: res => {
-      console.log(res);
-      this.setData({ relationCharacters: res.data});
-    }});
-  },
 	bindPriateRegiments: function(e){
 		const value = e.detail.value;
 		this.setData({ priateRegimentName: value});
@@ -212,9 +209,9 @@ Page({
     _group.push("");
     this.setData({ group: _group});
   },
-  bindRelationTypesChange: function(e){
+  bindRelationTypesInput: function(e){
     const { id} = e.currentTarget.dataset;
-    const value = this.data.relationTypes[parseInt(e.detail.value)];
+    const value = e.detail.value;
     this.setData({
       relationships: this.data.relationships.map(r => {
         if (r._id === id){
@@ -224,19 +221,19 @@ Page({
       })
     });
   },
-  bindRelationCharactersChange: function(e){
+  bindRelationCharactersInput: function(e){
     const { id } = e.currentTarget.dataset;
-    const _chara = this.data.relationCharacters[parseInt(e.detail.value)];
-    this.setData({
-      relationships: this.data.relationships.map(r => {
-        if (r._id === id) {
-          r.name = _chara.name;
-          r.avator = _chara.avator;
-          r.charaId = _chara._id;
-        }
-        return r;
-      })
-    });
+    const _chara = e.detail.value;
+    // this.setData({
+    //   relationships: this.data.relationships.map(r => {
+    //     if (r._id === id) {
+    //       r.name = _chara.name;
+    //       r.avator = _chara.avator;
+    //       r.charaId = _chara._id;
+    //     }
+    //     return r;
+    //   })
+    // });
   },
   bindGroupsChange: function(e) {
     const _group = this.data.groups[parseInt(e.detail.value)];
@@ -268,7 +265,10 @@ Page({
         return r;
       }),
       group: this.data.group,
-      job: this.data.job
+      job: this.data.job,
+      pinyinName: this.data.pinyinName,
+      englishName: this.data.englishName,
+      japaneseName: this.data.japaneseName
     };
     const factory = new CharacterFactory({ type: this.data.role });
     const biological = factory.create({ data });

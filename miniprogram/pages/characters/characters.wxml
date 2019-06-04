@@ -68,6 +68,18 @@
                 />
               </view>
             </swiper-item>
+            <swiper-item>
+              <view class='itemList'>
+                <character-component 
+                  wx:for="{{nameCharacters}}" 
+                  wx:key="_id"
+                  characterid="{{item._id}}"
+                  fullname="{{item.name}}"
+                  comment="{{item.fullname}}"
+                  avator="{{item.avator}}"
+                />
+              </view>
+            </swiper-item>
           </swiper>
       </view>
     </view>

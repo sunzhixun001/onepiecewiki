@@ -1,8 +1,5 @@
 import { 
-  getListHasDevilfruit, 
-  getListOrderByBountyDesc
-} from '../../database/people';
-import { 
+  fetchList,
   fetchStrawCharactersList, 
   fetchListHasDevilfruit,
   fetchListOrderByBountyDesc
@@ -17,18 +14,21 @@ Page({
     strawHatCharacters: [],
     bountyCharacters: [],
     devilfruitCharacters: [],
+    nameCharacters: [],
     currentIndex: 0,
-    listEnd: { "strawHatCharacters": true, "bountyCharacters": false, "devilfruitCharacters":false},
+    listEnd: { "strawHatCharacters": true, "bountyCharacters": false, "devilfruitCharacters": false, "nameCharacters": false},
     pages: { 
       "strawHatCharacters": [-1, 20], 
       "bountyCharacters": [-1, 20], 
-      "devilfruitCharacters":[-1, 20]
+      "devilfruitCharacters":[-1, 20],
+      "nameCharacters": [-1, 20]
     },
-    tabKeys: ["strawHatCharacters", "bountyCharacters", "devilfruitCharacters"],
+    tabKeys: ["strawHatCharacters", "bountyCharacters", "devilfruitCharacters", "nameCharacters"],
     tabs: [
       { index: 0, name: '草帽团'}, 
       { index: 1, name: '悬赏金' }, 
-      { index: 2, name: '能力者' }
+      { index: 2, name: '能力者' },
+      { index: 3, name: '全部' }
     ],
     devilfruitTypes: ['','超人系','动物系','自然系'],
     swiperHeight: 0
@@ -41,6 +41,7 @@ Page({
     this.getCharactersList[0].call(this, true);
     this.getCharactersList[1].call(this, false);
     this.getCharactersList[2].call(this, false);
+    this.getCharactersList[3].call(this, false);
   },
 
   /**
@@ -132,6 +133,15 @@ Page({
         dataKey: "devilfruitCharacters",
         reviseHeight
       });
+    },
+    function (reviseHeight) {
+      this.getNameList({
+        pageIndx: this.data.pages["nameCharacters"][0],
+        pageSize: this.data.pages["nameCharacters"][1],
+        callback: this.getCharactersCallbacks,
+        dataKey: "nameCharacters",
+        reviseHeight
+      });
     }
   ],
   // 获取人物列表后的回调函数　
@@ -174,6 +184,14 @@ Page({
       success: res => { callback.call(this, res, dataKey, pageIndx, pageSize, reviseHeight);}
     });
   },
+  // 按名字排序 获取所有人物
+  getNameList: function ({ callback, dataKey, pageIndx, pageSize, reviseHeight }){
+    fetchList({
+      limit: pageSize,
+      skip: (pageIndx + 1) * pageSize,
+      success: res => { callback.call(this, res, dataKey, pageIndx, pageSize, reviseHeight); }
+    });
+  },
   bindAdmin: function() {
     wx.navigateTo({
       url: '/admin/characters/list/list',
@@ -182,7 +200,8 @@ Page({
   characters: [
     function() { return this.data.strawHatCharacters},
     function () { return this.data.bountyCharacters},
-    function () { return this.data.devilfruitCharacters }
+    function () { return this.data.devilfruitCharacters },
+    function () { return this.data.nameCharacters }
   ],
   bindSwiperChange: function(e) {
     const { current} = e.detail;

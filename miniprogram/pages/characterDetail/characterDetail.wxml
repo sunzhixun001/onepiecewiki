@@ -20,7 +20,7 @@
                   </view>
                   <view class='charaOverview'>
                     <view class='ul'>
-                      <view class='li'>
+                      <view class='li' wx:if="{{bounty && bounty !== '无'}}">
                         <view class='dl'>
                           <view class='dt'>悬赏金</view>
                           <view class='dd'>{{bounty}}</view>

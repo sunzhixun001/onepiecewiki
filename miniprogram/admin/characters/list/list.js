@@ -1,4 +1,4 @@
-import { getList} from '../../../database/people';
+import { fetchList } from '../../../domain/characterDomain';
 Page({
 
   /**
@@ -78,10 +78,10 @@ Page({
 		})
 	},
   getCharacters() {
-    getList({
+    fetchList({
       limit: this.data.pageSize,
       skip: this.data.pageSize * this.data.pageIndex,
-      success: ({data}) => {
+      success: data => {
         this.setData({
           pageIndex: this.data.pageIndex + 1,
           characters: this.data.characters.concat(data)
