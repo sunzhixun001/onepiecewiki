@@ -1,12 +1,12 @@
 {
   "cloud": true,
   "pages": [
+    "pages/timeLine/timeLine",
     "pages/home/home",
     "admin/characters/create/create",
     "pages/test/test",
     "pages/characters/characters",
     "pages/characterSearch/characterSearch",
-    "pages/timeLine/timeLine",
     "pages/timeLineSearch/timeLineSearch",
     "admin/events/list/list",
     "admin/events/create/create",
@@ -38,12 +38,6 @@
   "tabBar": {
     "selectedColor": "#D9312B",
     "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png"
-      },
       {
         "pagePath": "pages/timeLine/timeLine",
         "text": "时间线",

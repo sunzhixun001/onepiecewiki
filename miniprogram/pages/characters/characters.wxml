@@ -84,7 +84,7 @@
       </view>
     </view>
   </view>
-  <view class='control'>
+  <view class='control' wx:if="{{false}}">
     <view class='control-inner'>
       <view bindtap='bindAdmin'>管理</view>
     </view>
