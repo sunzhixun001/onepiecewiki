@@ -42,6 +42,9 @@
       <view class='item' wx:if="{{role === 1}}">
         <input bindinput='bindJob' value='{{job}}' placeholder='职业' />
       </view>
+      <view class='item' wx:if="{{role === 3}}">
+        <input bindinput='bindPosition' value='{{position}}' placeholder='军衔' />
+      </view>
       <view class='item' wx:if="{{role === 1 || role === 3}}">
         <input bindinput="bindBountyInput" placeholder="悬赏金" value='{{bounty}}' />
       </view>

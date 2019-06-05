@@ -143,7 +143,8 @@ Page({
           job,
           pinyinName,
           englishName,
-          japaneseName
+          japaneseName,
+          position
         } = res.data[0];
 				this.setData({ 
 					avator, 
@@ -164,7 +165,8 @@ Page({
           job: job || '',
           pinyinName: pinyinName || '',
           englishName: englishName || '',
-          japaneseName: japaneseName || ''
+          japaneseName: japaneseName || '',
+          position: position || ''
 				});
 			}
 		}})
@@ -207,6 +209,9 @@ Page({
       name: ''
     });
     this.setData({ relationships: _relationships});
+  },
+  bindPosition: function(e) {
+    this.setData({position: e.detail.value});
   },
   bindAddGroup: function(e) {
     let _group = this.data.group;
@@ -281,7 +286,8 @@ Page({
       job: this.data.job,
       pinyinName: this.data.pinyinName,
       englishName: this.data.englishName,
-      japaneseName: this.data.japaneseName
+      japaneseName: this.data.japaneseName,
+      position: this.data.position
     };
     const factory = new CharacterFactory({ type: this.data.role });
     const biological = factory.create({ data });
@@ -316,11 +322,11 @@ Page({
   },
   bindCharacterTap: function (e) {
     const { avator, id, name } = e.detail;
-    const { relationshipId } = this.data;
+    const { relationshipIndex } = this.data;
     this.setData({
       searchModalActivate: false,
-      relationships: this.data.relationships.map(r => {
-        if (r._id === relationshipId) {
+      relationships: this.data.relationships.map((r, i) => {
+        if (i === relationshipIndex) {
           r.name = name;
           r.avator = avator;
           r.name = name;
