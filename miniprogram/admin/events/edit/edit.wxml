@@ -5,7 +5,7 @@
         <view class='mainArea'>
           <view class='content'>
             <view class='contentDetail'>
-              <view class='item'><image src='{{photo}}' mode='widthFix'/></view>
+              <view class='item' wx:if="{{photo}}"><image src='{{photo}}' mode='widthFix'/></view>
               <view class='item'><input bindinput="bindPhotoInput" placeholder="图片" value='{{photo}}' /></view>
               <view class='item'><input bindinput="bindTitleInput" placeholder="标题" value='{{title}}' /></view>
               <view class='item'><input bindinput="bindAgeInput" placeholder="年份" value='{{age}}' /></view>
