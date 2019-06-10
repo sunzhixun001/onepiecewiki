@@ -1,7 +1,39 @@
-.body{
-  padding: 30rpx;
+@import "../../style/commos.wxss";
+@import "../../style/awesome.wxss";
+.scope{
+  display: flex;
+  padding-bottom: 50rpx;
+  padding-top: 50rpx;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px rgba(0,0,0,0.08);
 }
-.body navigator{
-  border-bottom: solid 1px #eee;
-  padding: 20rpx;
+.scope text{
+  color: rgba(0,0,0,0.08);
+  font-size: 100rpx;
+}
+.scope button{
+  font-size: 28rpx;
+  padding: 0;
+  width: 160rpx;
+  background-color: #ffffff;
+  height: 70rpx;
+  line-height: 70rpx;
+  border-radius: 0;
+  margin: 0;
+}
+.avator{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 60rpx;
+  overflow: hidden;
+}
+.detail{
+  display: flex;
+}
+.detail .nickname{
+  margin-left: 40rpx;
+  padding-top: 16rpx;
+  font-size: 32rpx;
+  font-weight: 700;
 }

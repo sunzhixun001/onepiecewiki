@@ -1,13 +1,20 @@
-<view>
-	<view class='body'>
-		<navigator url="/admin/characters/list/list" open-type="navigate">
-			<text>人物管理</text>
-		</navigator>
-    <navigator url="/admin/events/list/list" open-type="navigate">
-			<text>事件管理</text>
-		</navigator>
-		<navigator url="/admin/priateRegiments/list/list" open-type="navigate">
-			<text>海贼团管理</text>
-		</navigator>
+<view class='container'>
+	<view class='main'>
+    <view class='cw'>
+      <view class='userinfo'>
+          <view class='scope'>
+            <block wx:if="{{scopeUserInfo}}">
+              <view class='detail'>
+                <view class='avator'><open-data type="userAvatarUrl" /></view>
+                <view class='nickname'><open-data type="userNickName" /></view>
+              </view>
+            </block>
+            <block wx:else>
+              <text class='fa fa-user-circle' />
+              <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">登陆</button>
+            </block>
+          </view>
+      </view>
+    </view>
 	</view>
 </view>

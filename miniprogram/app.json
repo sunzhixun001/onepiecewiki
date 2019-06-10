@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "pages/user/user",
     "pages/timeLine/timeLine",
     "pages/home/home",
     "admin/characters/create/create",
@@ -11,7 +12,6 @@
     "admin/events/list/list",
     "admin/events/create/create",
     "admin/characters/list/list",
-    "pages/user/user",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -49,6 +49,12 @@
         "text": "人物",
         "iconPath": "images/character.png",
         "selectedIconPath": "images/character_selected.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/wiki.png",
+        "selectedIconPath": "images/wiki_selected.png"
       }
     ]
   },

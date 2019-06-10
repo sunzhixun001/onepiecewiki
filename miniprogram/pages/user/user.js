@@ -5,14 +5,20 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+    scopeUserInfo: false
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-
+    wx.getSetting({
+      success: res => {
+        if(res.authSetting['scope.userInfo']){
+          this.setData({ scopeUserInfo: true});
+        }
+      }
+    })
 	},
 
 	/**
@@ -62,5 +68,18 @@ Page({
 	 */
 	onShareAppMessage: function () {
 
-	}
+	},
+  bindGetUserInfo: function(e) {
+    // encryptedData: ""
+    // errMsg: "getUserInfo:ok"
+    // iv: "Xj4r/v35O4tMJdfNarUUGw=="
+    // rawData: ""
+    // signature: "8e8358cb9db7925e6000e7e12d27a8d115afe927"
+    const { encryptedData, errMsg, iv, rawData, signature, userInfo} = e.detail;
+    const { avatarUrl, city, country, gender, language, nickName, province } = userInfo || {};
+    if (errMsg === "getUserInfo:ok"){
+      this.setData({ scopeUserInfo: true });
+    }
+
+  }
 })
