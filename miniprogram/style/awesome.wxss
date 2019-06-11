@@ -29,3 +29,11 @@
 .fa-angle-down:before {
   content: "\f107";
 }
+.fa-search:before {
+  content: "\f002";
+}
+.fa-remove:before,
+.fa-close:before,
+.fa-times:before {
+  content: "\f00d";
+}

@@ -10,7 +10,9 @@ Page({
     pageIndex: 0,
     pageSize: 20,
     allData: false,
-    statusBarHeight: 0
+    statusBarHeight: 0,
+    searchActive: false,
+    keyword: '路飞'
   },
 
   /**
@@ -98,12 +100,14 @@ Page({
 			  // console.log(res);
 		}});
 	},
-  bindSearch: function(e) {
+  bindSearchInput: function(e) {
     const _keyword = e.detail.value;
-    this.getRegexpList({ keyword: _keyword});
+    this.setData({ keyword: _keyword});
   },
-  bindOpenSearch: function(e) {
-    this.setData({ searchActive: true});
+  bindJumpSearch: function(e) {
+    wx.navigateTo({
+      url: `../timeLineSearch/timeLineSearch?keyword=${this.data.keyword}`
+    })
   },
   getRegexpList: function ({ keyword}) {
     getRegexp({ 
@@ -117,5 +121,11 @@ Page({
     wx.navigateTo({
       url: '../timeLineSearch/timeLineSearch',
     })
+  },
+  bindSearchIcon: function(e) {
+    this.setData({searchActive:true});
+  },
+  bindSearchCloseIcon: function(e) {
+    this.setData({ searchActive: false, keyword: '' });
   }
 })

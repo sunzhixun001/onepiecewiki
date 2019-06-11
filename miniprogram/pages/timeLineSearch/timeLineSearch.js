@@ -9,14 +9,19 @@ Page({
     pageIndex: 0,
     pageSize: 20,
     allData: false,
-    keyWord: ''
+    keyword: '',
+    statusBarHeight: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ 
+      keyword: options.keyword,
+      statusBarHeight: getApp().globalData.statusBarHeight
+    });
+    this.getEventsList({keyword: options.keyword});
   },
 
   /**
@@ -68,14 +73,14 @@ Page({
 
   },
   bindSearch: function(e) {
-    this.getEventsList();
+    this.getEventsList({keyword: this.data.keyword});
   },
   bindKeyWord: function(e) {
-    this.setData({ keyWord: e.detail.value});
+    this.setData({ keyword: e.detail.value});
   },
-  getEventsList() {
+  getEventsList({ keyword}) {
     getRegexp({
-      keyword: this.data.keyWord,
+      keyword: keyword,
       limit: this.data.pageSize, 
       skip: this.data.pageSize * this.data.pageIndex, 
       success: res => {

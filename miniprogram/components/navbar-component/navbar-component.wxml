@@ -1,6 +1,8 @@
 <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
   <view class='nav-content'>
-    <view class='nav-head'><text class='fa fa-angle-left' wx:if="{{showCapsule}}"></text></view>
-    <view><image src="../../images/nav-log.png" mode='widthFix' /> </view>
+    <view class='nav-head' bind:tap="bindBackTap">
+      <text class='fa fa-angle-left' wx:if="{{showCapsule}}"></text>
+    </view>
+    <view class='nav-title'><text>{{title}}</text></view>
   </view>
 </view>

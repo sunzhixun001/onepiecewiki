@@ -4,7 +4,8 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    showCapsule: Boolean
+    showCapsule: Boolean,
+    title: String
   },
 
   /**
@@ -20,6 +21,10 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    bindBackTap: function(e){
+      wx.navigateBack({
+        
+      });
+    }
   }
 })

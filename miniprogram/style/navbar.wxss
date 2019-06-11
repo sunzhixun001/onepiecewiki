@@ -1,0 +1,47 @@
+.nav-wrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #D9312B;
+  width: 100%;
+  z-index: 9999;
+}
+.nav-content{
+  height: 100%;
+  display: flex;
+  align-items: flex-end; 
+  position: relative;
+  justify-content: flex-start;
+}
+.nav-head{
+  margin-bottom: 20rpx;
+  margin-left: 20rpx;
+  z-index: 10;
+  padding-right: 30rpx;
+  padding-top: 30rpx;
+}
+.nav-head .fa-angle-left{
+  font-size: 50rpx;
+  color: #FFFFFF;
+}
+.nav-head .fa-search, .nav-head .fa-close{
+  color: #FFFFFF;
+  padding-top: 30rpx;
+  padding-right: 30rpx;
+}
+.nav-content image{
+  width: 150rpx;
+}
+.nav-title{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 20rpx;
+}
+.nav-title text{
+  color: #FFFFFF;
+  font-size: 34rpx;
+}

@@ -16,6 +16,9 @@
   justify-content: center;
   position: relative;
   background: #FFFFFF;
+  overflow: hidden;
+  transition: height 0.3s, opacity 0.5s;
+  opacity: 1;
 }
 .container .mainTitleArea .h1{
   font-size: 32rpx;
@@ -29,6 +32,7 @@
   top: 28rpx;
   right: 40rpx;
   z-index: 100;
+  padding-left: 50rpx;
 }
 .searchDetailArea{
   padding: 28rpx 0;
@@ -46,8 +50,8 @@
   display: flex;
   width: 100%;
 }
-.searchDetailArea .inner text{
-  color: #9DA0A3;
+.searchDetailArea .inner input{
+  /* color: #9DA0A3; */
   font-size: 28rpx;
   text-align: start;
   padding-left: 32rpx;
