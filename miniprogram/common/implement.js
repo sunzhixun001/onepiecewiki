@@ -1,3 +1,4 @@
+const BASE_WIDTH = 375;
 export const convertBounty  =  ({bounty}) => {
   let result = "";
   if (bounty < 10000) {
@@ -14,4 +15,8 @@ export const convertBounty  =  ({bounty}) => {
     result = `${billion > 0 ? billion + '亿' : ''}${tenthousand > 0 ? tenthousand + '万' : ''}贝利`;
   }
   return result;
+}
+
+export const phonePx = ({ px, width}) => {
+  return px * (width / 375);
 }

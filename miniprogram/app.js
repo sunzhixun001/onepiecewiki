@@ -1,4 +1,4 @@
-//app.js
+import { phonePx} from './common/implement';
 App({
   onLaunch: function () {
     
@@ -9,7 +9,19 @@ App({
         traceUser: true,
       })
     }
-
-    this.globalData = {}
+    wx.getSystemInfo({
+      success: res => {
+        console.log('systemInfo: ', res);
+        const {
+          screenHeight,
+          screenWidth,
+          windowHeight,
+          windowWidth,
+          statusBarHeight
+        } = res;
+        // this.globalData = { statusBarHeight: phonePx({ px: statusBarHeight + 44, width: screenWidth})};
+        this.globalData = { statusBarHeight: statusBarHeight + 44 };
+      }
+    });
   }
 })

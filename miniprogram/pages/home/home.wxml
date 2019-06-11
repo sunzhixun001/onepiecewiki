@@ -1,39 +1,42 @@
-<view class="container">
-  <view class='main'>
-    <view class='bigInfoArea'>
-      <view class='cw'>
-        <view class='info'>
-          <view>
-            <video 
-              src='{{videoSrc}}'
-              poster='{{videoPoster}}'
-              controls
-            >
-            </video>
-          </view>
-          <view class='textArea'>
-            <view class='h2'>{{videoText}}</view>
+<block>
+  <navbar />
+  <view class="container">
+    <view class='main'>
+      <view class='bigInfoArea'>
+        <view class='cw'>
+          <view class='info'>
+            <view>
+              <video 
+                src='{{videoSrc}}'
+                poster='{{videoPoster}}'
+                controls
+              >
+              </video>
+            </view>
+            <view class='textArea'>
+              <view class='h2'>{{videoText}}</view>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <view class='mainVisual'>
-      <swiper
-        previous-margin="60rpx"
-        next-margin="60rpx"
-        circular
-        indicator-dots
-      >
-        <swiper-item wx:for="{{banners}}" wx:key="_id">
-          <navigator url='{{item.target}}?id={{item._id}}'>
-            <image 
-              src='{{item.src}}'
-              mode='widthFix'
-            /> 
-            <view class='title'><text>{{item.title}}</text></view>
-          </navigator>
-        </swiper-item>
-      </swiper>
+      <view class='mainVisual'>
+        <swiper
+          previous-margin="60rpx"
+          next-margin="60rpx"
+          circular
+          indicator-dots
+        >
+          <swiper-item wx:for="{{banners}}" wx:key="_id">
+            <navigator url='{{item.target}}?id={{item._id}}'>
+              <image 
+                src='{{item.src}}'
+                mode='widthFix'
+              /> 
+              <view class='title'><text>{{item.title}}</text></view>
+            </navigator>
+          </swiper-item>
+        </swiper>
+      </view>
     </view>
   </view>
-</view>
+</block>

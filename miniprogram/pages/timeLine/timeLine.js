@@ -1,4 +1,5 @@
 import { getList} from '../../database/events';
+
 Page({
 
   /**
@@ -8,7 +9,8 @@ Page({
 		events: [],
     pageIndex: 0,
     pageSize: 20,
-    allData: false
+    allData: false,
+    statusBarHeight: 0
   },
 
   /**
@@ -21,6 +23,7 @@ Page({
         console.log(res);
       }
     });
+    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 
   /**

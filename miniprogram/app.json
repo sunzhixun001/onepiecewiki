@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/user/user",
     "pages/timeLine/timeLine",
+    "pages/user/user",
     "pages/home/home",
     "admin/characters/create/create",
     "pages/test/test",
@@ -33,7 +33,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#D9312B",
     "navigationBarTitleText": "海贼王大百科",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "selectedColor": "#D9312B",

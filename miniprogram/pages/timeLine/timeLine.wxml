@@ -1,28 +1,31 @@
-<view class='container'>
-  <view class='main timeline listPage'>
-    <view class='mainTitleArea bgGray'>
-      <view class='searchDetailArea' bindtap='bindSearch'>
-        <view class='inner'>
-          <text>请输入搜索的关键词</text> 
+<block>
+  <navbar showCapsule="{{false}}"/>
+  <view class='container' style='margin-top: {{statusBarHeight}}px'>
+    <view class='main timeline listPage'>
+      <view class='mainTitleArea bgGray'>
+        <view class='searchDetailArea' bindtap='bindSearch'>
+          <view class='inner'>
+            <text>请输入搜索的关键词</text> 
+          </view>
+        </view>
+        <view class='searchIcon'>
+          <icon bindtap='bindOpenSearch' type="search" size="16" color='#3D3D3D'/>
         </view>
       </view>
-      <view class='searchIcon'>
-        <icon bindtap='bindOpenSearch' type="search" size="16" color='#3D3D3D'/>
-      </view>
-    </view>
-    <view class='cw'>
-      <view class='listArea'>
-        <view class='ul itemList'>
-          <view class='li' wx:for="{{events}}" wx:key="_id">
-            <view class='boxRadius'>
-              <view class='head'>
-                <view class='showage'>{{item.showAge}}</view>
-                <!-- <view class='triangle'></view> -->
-              </view>
-              <view class='body'>
-                <view class='title'>{{item.title}}</view>
-                <view class='photo' wx:if="{{item.photo}}">
-                  <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+      <view class='cw'>
+        <view class='listArea'>
+          <view class='ul itemList'>
+            <view class='li' wx:for="{{events}}" wx:key="_id">
+              <view class='boxRadius'>
+                <view class='head'>
+                  <view class='showage'>{{item.showAge}}</view>
+                  <!-- <view class='triangle'></view> -->
+                </view>
+                <view class='body'>
+                  <view class='title'>{{item.title}}</view>
+                  <view class='photo' wx:if="{{item.photo}}">
+                    <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+                  </view>
                 </view>
               </view>
             </view>
@@ -30,10 +33,10 @@
         </view>
       </view>
     </view>
-  </view>
-  <view class='control' wx:if="{{true}}">
-    <view class='control-inner'>
-      <view bindtap='bindAdmin'>管理</view>
+    <view class='control' wx:if="{{true}}">
+      <view class='control-inner'>
+        <view bindtap='bindAdmin'>管理</view>
+      </view>
     </view>
   </view>
-</view>
+</block>

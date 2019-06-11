@@ -1,0 +1,26 @@
+@import "../../style/awesome.wxss";
+
+.nav-wrap{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #D9312B;
+  width: 100%;
+  z-index: 9999;
+}
+.nav-content{
+  height: 100%;
+  display: flex;
+  align-items: flex-end; 
+}
+.nav-head{
+  margin-bottom: 20rpx;
+  margin-left: 20rpx;
+}
+.nav-head text{
+  font-size: 50rpx;
+  color: #FFFFFF;
+}
+.nav-content image{
+  width: 150rpx;
+}
