@@ -1,12 +1,19 @@
 @import "../../style/commos.wxss";
 @import "../../style/awesome.wxss";
+.cw{
+  padding: 0;
+}
+.userinfo{
+  padding-left: 5%;
+  padding-right: 5%;
+  border-bottom: solid 1px rgba(0,0,0,0.08);
+}
 .scope{
   display: flex;
   padding-bottom: 50rpx;
   padding-top: 50rpx;
   justify-content: space-between;
   align-items: center;
-  border-bottom: solid 1px rgba(0,0,0,0.08);
 }
 .scope text{
   color: rgba(0,0,0,0.08);
@@ -36,4 +43,24 @@
   padding-top: 16rpx;
   font-size: 32rpx;
   font-weight: 700;
+}
+/* 收藏 & 消息 tab */
+.swiper-tab{
+  display: flex;
+  justify-content: center;
+  border-bottom: 5px solid rgba(0,0,0,0.08);
+}
+.swiper-tab .tab-wrap{
+  padding-top: 30rpx;
+}
+.swiper-tab .tab-box{
+  display: flex;
+}
+.tab-box view{
+  padding-bottom: 36rpx;
+  margin-right: 50rpx;
+  margin-left: 50rpx;
+}
+.tab-box .active{
+  border-bottom: 3px solid #D9312B;
 }

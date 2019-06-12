@@ -17,10 +17,13 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+    const { globalData} = getApp();
+    const { scopeUserInfo, statusBarHeight } = globalData;
     this.setData({
-      statusBarHeight: getApp().globalData.statusBarHeight
+      scopeUserInfo: scopeUserInfo,
+      statusBarHeight: statusBarHeight
     });
-    this.getOpenIdStorage();
+    // this.getOpenIdStorage();
     
     // this.getSetting();
 	},
@@ -99,18 +102,7 @@ Page({
       success: result => {
         const { openid} = result;
         setStorage({ key: 'openid', data: openid});
-        fetchUserWithOpenId({ openid, success: res => {
-          const { data, errMsg} = res;
-          if (errMsg === 'collection.get:ok'){
-            if (data && data.length > 0){
-
-            }else{
-              //没有记录
-            }
-          }
-        }, fail: err => {
-          console.err(res);
-        } });
+        this.fetchGetUserWithOpenId({ openid});
       },
       fail: err => {
 
@@ -191,6 +183,25 @@ Page({
         if (errMsg === "collection.add:ok" && _id){
 
         }
+      }
+    });
+  },
+  // 用openid从数据库获取用户信息
+  fetchGetUserWithOpenId: function ({ openid}) {
+    fetchUserWithOpenId({
+      openid, success: res => {
+        const { data, errMsg } = res;
+        if (errMsg === 'collection.get:ok') {
+          if (data && data.length > 0) {
+            const _user = data[0];
+            this.setData({ scopeUserInfo: true });
+            this.setUserInfoStorage({ userinfo: _user });
+          } else {
+            //没有记录
+          }
+        }
+      }, fail: err => {
+        console.err(res);
       }
     });
   }

@@ -1,10 +1,10 @@
 {
   "cloud": true,
   "pages": [
-    "pages/characters/characters",
     "pages/timeLine/timeLine",
-    "pages/databaseGuide/databaseGuide",
     "pages/user/user",
+    "pages/characters/characters",
+    "pages/databaseGuide/databaseGuide",
     "pages/home/home",
     "admin/characters/create/create",
     "pages/test/test",

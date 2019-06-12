@@ -8,7 +8,7 @@
 .bgGray{
   background: #F7F7F7;
 }
-.container .mainTitleArea{
+.nav-wrap .mainTitleArea{
   height: 88rpx;
   display: flex;
   text-align: center;
@@ -21,14 +21,14 @@
   opacity: 1;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
 }
-.container .mainTitleArea .h1{
+.nav-wrap .mainTitleArea .h1{
   font-size: 32rpx;
   color: #FFF;
 }
 .t{
   font-weight: 700;
 }
-.container .mainTitleArea .searchIcon{
+.nav-wrap .mainTitleArea .searchIcon{
   position: absolute;
   top: 28rpx;
   right: 40rpx;
@@ -89,6 +89,7 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
+  z-index: 100;
 }
 .footer button{
 	background-color: #D9312B;
@@ -97,4 +98,9 @@
   font-size: 28rpx;
   height: 100rpx;
   line-height: 100rpx;
+}
+.footer .foot-wrap{
+  border-top: 1px solid rgba(0,0,0,0.08);
+  height: 110rpx;
+  background: #FFFFFF;
 }

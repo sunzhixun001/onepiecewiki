@@ -13,7 +13,7 @@ export const create = ({ biological, success}) => {
   .catch(err => {
     console.error(err);
   });
-}
+};
 // 获取全部人物
 export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'asc']}) => {
   let promise = 
@@ -24,7 +24,7 @@ export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'asc']}
     .field({name: true, fullname: true, avator: true})
     .get();
   return promise;
-}
+};
 // 获取全部人物需要的字段
 export const getListField = ({ fields, success }) => {
   collection
@@ -36,7 +36,7 @@ export const getListField = ({ fields, success }) => {
     .catch(err => {
 
     });
-}
+};
 // 使用ID获取一个人物
 export const get = ({id, success}) => {
 	collection.where({
@@ -45,15 +45,15 @@ export const get = ({id, success}) => {
 		.then(res => {
 			success && success(res);
 		})
-		.catch()
-}
+		.catch();
+};
 // 修改一个人
 export const update = ({ id, biological, success}) => {
 	collection.doc(id)
     .update({data:biological})
 		.then(res => { success && success(res)})
 		.catch(console.error);
-}
+};
 // 获取某一海贼团的全部人物
 export const getListInPriateReg = ({ priateRegimentName}) => {
   const promise =  
@@ -62,7 +62,7 @@ export const getListInPriateReg = ({ priateRegimentName}) => {
     .field({ fullname: true, avator: true, job: true })
     .get();
   return promise;
-}
+};
 // 获取有恶魔果实的人物
 export const getListHasDevilfruit = ({ limit = 20, skip = 0}) => {
   const promise =  
@@ -78,7 +78,7 @@ export const getListHasDevilfruit = ({ limit = 20, skip = 0}) => {
     })
     .get();
   return promise;
-}
+};
 // 按悬赏金降序排列索取所有人物 
 export const getListOrderByBountyDesc = ({ limit = 20, skip = 0}) => {
   const promise = 
@@ -94,7 +94,7 @@ export const getListOrderByBountyDesc = ({ limit = 20, skip = 0}) => {
     })
     .get();
   return promise;
-}
+};
 // 获取某一团体下的所有成员
 export const getListInGroup = ({ groupName, success}) => {
   collection
@@ -107,9 +107,9 @@ export const getListInGroup = ({ groupName, success}) => {
     .catch(err => {
 
     });
-}
+};
 // 模糊搜索角色
-export const getRegexp = ({ keyword, success}) => {
+export const getRegexp = ({ keyword}) => {
   const promise =  
   collection
     .where({
@@ -125,4 +125,14 @@ export const getRegexp = ({ keyword, success}) => {
     })
     .get();
   return promise;
-}
+};
+// 增加一个收藏
+export const pushFavorite = ({id, values}) => {
+  const promise = 
+  collection
+    .doc(id)
+    .update({ data: {
+      favorites: db.command.push(values) 
+    }});
+  return promise;
+};

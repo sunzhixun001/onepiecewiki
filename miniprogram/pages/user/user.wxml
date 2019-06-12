@@ -17,6 +17,14 @@
               </block>
             </view>
         </view>
+        <view class='swiper-tab'>
+          <view class='tab-wrap'>
+            <view class='tab-box'>
+              <view class='active'>收藏</view>
+              <view>消息</view>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
   </view>

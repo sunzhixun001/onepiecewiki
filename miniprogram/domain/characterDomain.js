@@ -3,7 +3,8 @@ import {
   getListInPriateReg,
   getListHasDevilfruit,
   getListOrderByBountyDesc,
-  getRegexp
+  getRegexp,
+  pushFavorite
 } from '../database/characterRepository';
 const convertBounty = ({ bounty }) => {
   let result = "";
@@ -94,11 +95,25 @@ const fetchRegexp = ({ keyword, success}) => {
     })
     .catch()
 };
+const fetchPushFavorite = ({id, charaid, avator, success}) => {
+  let _obj = {};
+  _obj[charaid] = avator;
+  const values = [_obj];
+  const promise = pushFavorite({ id, values});
+  promise
+    .then(res => {
+      success && success(res);
+    })
+    .catch(err => {
+
+    });
+};
 export {
   fetchList,
   fetchStrawCharactersList,
   fetchListInPriateReg,
   fetchListHasDevilfruit,
   fetchListOrderByBountyDesc,
-  fetchRegexp
+  fetchRegexp,
+  fetchPushFavorite
 };

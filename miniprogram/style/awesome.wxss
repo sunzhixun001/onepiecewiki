@@ -37,3 +37,9 @@
 .fa-times:before {
   content: "\f00d";
 }
+.fa-star-o:before {
+  content: "\f006";
+}
+.fa-share-square-o:before {
+  content: "\f045";
+}

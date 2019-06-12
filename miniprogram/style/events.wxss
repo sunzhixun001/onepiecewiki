@@ -14,7 +14,7 @@ page{
 	margin-top: 20rpx;
 }
 .boxRadius{
-	border-radius: 4rpx;
+	border-radius: 8rpx;
 	padding-top: 10rpx;
 	flex: 1;
 	background-color: #FFF;

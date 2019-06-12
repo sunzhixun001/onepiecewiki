@@ -1,4 +1,5 @@
 @import "../../style/commos.wxss";
+@import "../../style/awesome.wxss";
 page{
   font-size: 28rpx;
   color: rgb(61, 61, 61);
@@ -73,4 +74,32 @@ page{
 .relatedCharas .li image{
   height: 140rpx;
   width: 140rpx;
+}
+/* footer 分享 & 收藏 */
+.foot-wrap .ul{
+  display: flex;
+  height: 100%;
+}
+.foot-wrap .ul .li{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+.foot-wrap .ul .li:first-child::after{
+  content: "";
+  display: block;
+  position: absolute;
+  border-right: 1px solid rgba(0,0,0,0.08);
+  right: 0;
+  height: 50rpx;
+  top: 25rpx;
+}
+.foot-wrap .ul .li text{
+  font-size: 24rpx;
+}
+.foot-wrap .ul .li text.fa{
+  font-size: 40rpx;
 }

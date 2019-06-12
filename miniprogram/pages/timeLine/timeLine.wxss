@@ -10,7 +10,7 @@
   z-index: 150;
   background-color: #FFF;
 }
-.container .mainTitleArea.disabled{
+.nav-wrap .mainTitleArea.disabled{
   height: 0;
   opacity: 0;
 }
