@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "searchChara-component": "/components/searchChara-component/searchChara-component"
+    "searchChara-component": "/components/searchChara-component/searchChara-component",
+    "navbar": "/components/navbar-component/navbar-component"
   }
 }

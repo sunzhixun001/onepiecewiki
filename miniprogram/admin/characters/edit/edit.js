@@ -37,7 +37,8 @@ Page({
     groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星'],
     job: '',
     characters: [],
-    searchModalActivate: false
+    searchModalActivate: false,
+    statusBarHeight: 0
 	},
 
 	/**
@@ -45,6 +46,7 @@ Page({
 	 */
 	onLoad: function (options) {
 		this.getCharacter({id: options.id});
+    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
 	},
 
 	/**

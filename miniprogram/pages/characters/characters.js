@@ -31,7 +31,10 @@ Page({
       { index: 3, name: '全部' }
     ],
     devilfruitTypes: ['','超人系','动物系','自然系'],
-    swiperHeight: 0
+    swiperHeight: 0,
+    statusBarHeight: 0,
+    searchActive: false,
+    keyword: '路飞'
   },
 
   /**
@@ -42,6 +45,7 @@ Page({
     this.getCharactersList[1].call(this, false);
     this.getCharactersList[2].call(this, false);
     this.getCharactersList[3].call(this, false);
+    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 
   /**
@@ -101,9 +105,9 @@ Page({
   bindAvatoError: function(e){
     console.log(e);
   }, 
-  bindSearch: function(e) {
+  bindJumpSearch: function(e) {
     wx.navigateTo({
-      url: '../characterSearch/characterSearch',
+      url: `../characterSearch/characterSearch?keyword=${this.data.keyword}`
     });
   },
   getCharactersList: [
@@ -209,5 +213,15 @@ Page({
       currentIndex: current,
       swiperHeight: this.characters[current].call(this).length * 240
     });
+  },
+  bindSearchIcon: function (e) {
+    this.setData({ searchActive: true });
+  },
+  bindSearchCloseIcon: function (e) {
+    this.setData({ searchActive: false, keyword: '' });
+  },
+  bindSearchInput: function (e) {
+    const _keyword = e.detail.value;
+    this.setData({ keyword: _keyword });
   }
 })

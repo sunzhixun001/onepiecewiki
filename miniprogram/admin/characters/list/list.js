@@ -10,7 +10,8 @@ Page({
 		avatarWidth: 0,
     pageIndex: 0,
     pageSize: 20,
-    all: false
+    all: false,
+    statusBarHeight: 0
   },
 
   /**
@@ -19,6 +20,7 @@ Page({
   onLoad: function (options) {
     this.getCharacters();
 		this.getSystemInfo();
+    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 
   /**

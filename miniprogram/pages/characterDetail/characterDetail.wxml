@@ -1,4 +1,6 @@
-<view class="container">
+<block>
+<navbar showCapsule="{{true}}"/>
+<view class="container"  style='margin-top: {{statusBarHeight}}px'>
   <view class='main'>
     <view class='detail'>
       <view class='article'>
@@ -89,3 +91,4 @@
     </view>
   </view>
 </view>
+</block>

@@ -6,14 +6,19 @@ Page({
    */
   data: {
     characters: [],
-    keyWord: ''
+    statusBarHeight: 0,
+    keyword: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      keyword: options.keyword,
+      statusBarHeight: getApp().globalData.statusBarHeight
+    });
+    this.getCharacters({ keyword: options.keyword });
   },
 
   /**
@@ -65,14 +70,14 @@ Page({
 
   },
   bindKeyWord: function(e) {
-    this.setData({keyWord: e.detail.value});
+    this.setData({ keyword: e.detail.value});
   },
   bindSearch: function(e) {
-    this.getCharacters();
+    this.getCharacters({ keyword: this.data.keyword});
   },
-  getCharacters: function() {
+  getCharacters: function ({ keyword}) {
     fetchRegexp({
-      keyword: this.data.keyWord, 
+      keyword: keyword, 
       success: res => {
         this.setData({ characters: res});
       }

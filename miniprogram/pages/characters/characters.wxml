@@ -1,92 +1,107 @@
-<view class='container'>
-  <view class='main listPage'>
-    <view class='mainTitleArea bgGray'>
-      <view class='searchDetailArea' bindtap='bindSearch'>
-        <view class='inner'>
-          <text>请输入搜索的关键词</text> 
+<block>
+  <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
+    <view class='nav-content'>
+      <view class='nav-head'>
+        <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
+          <text class='fa fa-search'/>
+        </view>
+        <view bindtap="bindSearchCloseIcon" wx:else>
+          <text class='fa fa-close'/>
         </view>
       </view>
-      <view class='searchIcon'>
-        <icon bindtap='bindOpenSearch' type="search" size="16" color='#3D3D3D'/>
+      <view class='nav-title'><text>海贼王人物</text></view>
+    </view>
+  </view>
+  <view class='container' style='margin-top: {{statusBarHeight}}px'>
+    <view class='main listPage'>
+      <view class='mainTitleArea bgGray {{searchActive?"":"disabled"}}'>
+        <view class='searchDetailArea'>
+          <view class='inner'>
+            <input placeholder='请输入搜索的关键词' bindinput='bindSearchInput' value='{{keyword}}'/>
+          </view>
+        </view>
+        <view class='searchIcon'>
+          <icon bindtap='bindJumpSearch' type="search" size="16" color='#3D3D3D'/>
+        </view>
+      </view>
+      <view class='bgGray borderBottom tabListArea'>
+        <view class='swiper-container headerTabList'>
+          <view class='swiper-wrapper'>
+            <view 
+              class="swiper-slide item {{item.index === currentIndex ? 'on':''}}" 
+              wx:for="{{tabs}}" 
+              wx:key="index"
+              data-index="{{item.index}}"
+              bindtap="bindTabChange"
+            >
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='cw'>
+        <view class='listArea'>
+            <swiper 
+              style='height:{{swiperHeight}}rpx' 
+              bindchange='bindSwiperChange'
+              current="{{currentIndex}}"
+            >
+              <swiper-item>
+                <view class='itemList'>
+                  <character-component 
+                    wx:for="{{strawHatCharacters}}" 
+                    wx:key="id"
+                    characterid="{{item.id}}"
+                    fullname="{{item.fullname}}"
+                    comment="{{item.job}}"
+                    avator="{{item.avator}}"
+                  />
+                </view>
+              </swiper-item>
+              <swiper-item>
+                <view class='itemList'>
+                  <character-component 
+                    wx:for="{{bountyCharacters}}" 
+                    wx:key="id"
+                    characterid="{{item.id}}"
+                    fullname="{{item.fullname}}"
+                    comment="{{item.bounty}}"
+                    avator="{{item.avator}}"
+                  />
+                </view>
+              </swiper-item>
+              <swiper-item>
+                <view class='itemList'>
+                  <character-component 
+                    wx:for="{{devilfruitCharacters}}" 
+                    wx:key="id"
+                    characterid="{{item.id}}"
+                    fullname="{{item.fullname}}"
+                    comment="{{item.devilfruit}}"
+                    avator="{{item.avator}}"
+                  />
+                </view>
+              </swiper-item>
+              <swiper-item>
+                <view class='itemList'>
+                  <character-component 
+                    wx:for="{{nameCharacters}}" 
+                    wx:key="_id"
+                    characterid="{{item._id}}"
+                    fullname="{{item.name}}"
+                    comment="{{item.fullname}}"
+                    avator="{{item.avator}}"
+                  />
+                </view>
+              </swiper-item>
+            </swiper>
+        </view>
       </view>
     </view>
-		<view class='bgGray borderBottom tabListArea'>
-			<view class='swiper-container headerTabList'>
-				<view class='swiper-wrapper'>
-					<view 
-            class="swiper-slide item {{item.index === currentIndex ? 'on':''}}" 
-            wx:for="{{tabs}}" 
-            wx:key="index"
-            data-index="{{item.index}}"
-            bindtap="bindTabChange"
-          >
-            <text>{{item.name}}</text>
-					</view>
-				</view>
-			</view>
-		</view>
-    <view class='cw'>
-      <view class='listArea'>
-          <swiper 
-            style='height:{{swiperHeight}}rpx' 
-            bindchange='bindSwiperChange'
-            current="{{currentIndex}}"
-          >
-            <swiper-item>
-              <view class='itemList'>
-                <character-component 
-                  wx:for="{{strawHatCharacters}}" 
-                  wx:key="id"
-                  characterid="{{item.id}}"
-                  fullname="{{item.fullname}}"
-                  comment="{{item.job}}"
-                  avator="{{item.avator}}"
-                />
-              </view>
-            </swiper-item>
-            <swiper-item>
-              <view class='itemList'>
-                <character-component 
-                  wx:for="{{bountyCharacters}}" 
-                  wx:key="id"
-                  characterid="{{item.id}}"
-                  fullname="{{item.fullname}}"
-                  comment="{{item.bounty}}"
-                  avator="{{item.avator}}"
-                />
-              </view>
-            </swiper-item>
-            <swiper-item>
-              <view class='itemList'>
-                <character-component 
-                  wx:for="{{devilfruitCharacters}}" 
-                  wx:key="id"
-                  characterid="{{item.id}}"
-                  fullname="{{item.fullname}}"
-                  comment="{{item.devilfruit}}"
-                  avator="{{item.avator}}"
-                />
-              </view>
-            </swiper-item>
-            <swiper-item>
-              <view class='itemList'>
-                <character-component 
-                  wx:for="{{nameCharacters}}" 
-                  wx:key="_id"
-                  characterid="{{item._id}}"
-                  fullname="{{item.name}}"
-                  comment="{{item.fullname}}"
-                  avator="{{item.avator}}"
-                />
-              </view>
-            </swiper-item>
-          </swiper>
+    <view class='control' wx:if="{{true}}">
+      <view class='control-inner'>
+        <view bindtap='bindAdmin'>管理</view>
       </view>
     </view>
   </view>
-  <view class='control' wx:if="{{true}}">
-    <view class='control-inner'>
-      <view bindtap='bindAdmin'>管理</view>
-    </view>
-  </view>
-</view>
+</block>

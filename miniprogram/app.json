@@ -1,12 +1,13 @@
 {
   "cloud": true,
   "pages": [
+    "pages/characters/characters",
     "pages/timeLine/timeLine",
+    "pages/databaseGuide/databaseGuide",
     "pages/user/user",
     "pages/home/home",
     "admin/characters/create/create",
     "pages/test/test",
-    "pages/characters/characters",
     "pages/characterSearch/characterSearch",
     "pages/timeLineSearch/timeLineSearch",
     "admin/events/list/list",
@@ -15,7 +16,6 @@
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",

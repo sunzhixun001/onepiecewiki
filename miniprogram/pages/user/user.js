@@ -1,24 +1,28 @@
-// miniprogram/pages/user/user.js
+import { getOpenId} from '../../cloud/userCloud';
+import { fetchUserWithOpenId, createUser } from '../../domain/userDomain';
+import { setStorage, getStorage} from '../../common/storage';
+
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-    scopeUserInfo: false
+    scopeUserInfo: false,
+    statusBarHeight: 0,
+    openid: ''
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-    wx.getSetting({
-      success: res => {
-        if(res.authSetting['scope.userInfo']){
-          this.setData({ scopeUserInfo: true});
-        }
-      }
-    })
+    this.setData({
+      statusBarHeight: getApp().globalData.statusBarHeight
+    });
+    this.getOpenIdStorage();
+    
+    // this.getSetting();
 	},
 
 	/**
@@ -69,6 +73,10 @@ Page({
 	onShareAppMessage: function () {
 
 	},
+  authUserInfo: function() {
+
+  },
+  // 点击登入
   bindGetUserInfo: function(e) {
     // encryptedData: ""
     // errMsg: "getUserInfo:ok"
@@ -78,8 +86,112 @@ Page({
     const { encryptedData, errMsg, iv, rawData, signature, userInfo} = e.detail;
     const { avatarUrl, city, country, gender, language, nickName, province } = userInfo || {};
     if (errMsg === "getUserInfo:ok"){
+      const _userinfo = { avatarUrl, city, country, gender, language, nickName, province, openid: this.data.openid };
       this.setData({ scopeUserInfo: true });
+      this.setUserInfoStorage({ userinfo: _userinfo});
+      this.fetchCreateUser({ user: _userinfo});
     }
 
+  },
+  // 从云函数获取openid
+  fetchOpenIdCloud: function() {
+    getOpenId({
+      success: result => {
+        const { openid} = result;
+        setStorage({ key: 'openid', data: openid});
+        fetchUserWithOpenId({ openid, success: res => {
+          const { data, errMsg} = res;
+          if (errMsg === 'collection.get:ok'){
+            if (data && data.length > 0){
+
+            }else{
+              //没有记录
+            }
+          }
+        }, fail: err => {
+          console.err(res);
+        } });
+      },
+      fail: err => {
+
+      }
+    });
+  },
+  // 从缓存获取openid
+  getOpenIdStorage: function() {
+    getStorage({
+      key: 'openid',
+      successCallback: value => {
+        this.setData({ openid: value});
+        this.getUserInfoStorage({ openid: value});
+      },
+      failCallback: err => {
+        this.fetchOpenIdCloud();
+      }
+    });
+  },
+  // 从缓存获得用户信息
+  getUserInfoStorage: function ({ openid}) {
+    getStorage({
+      key: 'userinfo',
+      successCallback: res => {
+        this.setData({
+          scopeUserInfo: true
+        });
+      },
+      failCallback: err => {
+        // 缓存中没有用户信息
+        this.getUserInfoOpenApi({ openid });
+      }
+    });
+  },
+  // 把用户信息写入缓存
+  setUserInfoStorage: function({userinfo}) {
+    setStorage({
+      key: "userinfo",
+      data: userinfo
+    });
+  },
+  // 从小程序API开放接口获取用户信息
+  getUserInfoOpenApi: function ({ openid }) {
+    this.getSetting({
+      yes: res => {
+        const { userInfo} = res;
+        const { nickName, avatarUrl, gender, province, city, country } = userInfo;
+        this.createUser({user: {
+          nickName, avatarUrl, gender, province, city, country
+        }});
+      }, 
+      no: () => {
+        console.log('需要授权用户信息');
+      }});
+  },
+  // 判断是否已获得用户信息权限
+  getSetting: function ({yes, no}) {
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          this.setData({ scopeUserInfo: true });
+          yes && yes(res);
+        }else{
+          no && no();
+        }
+      },
+      fail: err => {
+        no && no();
+      }
+    });
+  },
+  // 创建数据库用户信息
+  fetchCreateUser: function({user}) {
+    createUser({ 
+      user,
+      success: res => {
+        const { errMsg, _id} = res;
+        if (errMsg === "collection.add:ok" && _id){
+
+        }
+      }
+    });
   }
 })

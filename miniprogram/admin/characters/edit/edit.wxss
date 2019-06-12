@@ -1,4 +1,4 @@
-/* body */
+@import "../../../style/commos.wxss";
 .body{
 	padding-top: 40rpx;
   margin-bottom: 200rpx;

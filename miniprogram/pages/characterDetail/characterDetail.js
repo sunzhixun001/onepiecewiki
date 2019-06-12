@@ -21,7 +21,8 @@ Page({
     height: 0,
     partners: [],
     relationships: [],
-    group: []
+    group: [],
+    statusBarHeight: 0
   },
 
   /**
@@ -29,6 +30,7 @@ Page({
    */
   onLoad: function (options) {
     this.getCharacter({ id: options.id});
+    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 
   /**

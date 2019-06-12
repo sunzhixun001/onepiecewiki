@@ -19,6 +19,7 @@
   overflow: hidden;
   transition: height 0.3s, opacity 0.5s;
   opacity: 1;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
 }
 .container .mainTitleArea .h1{
   font-size: 32rpx;
@@ -46,6 +47,8 @@
   z-index: 100;
 }
 .searchDetailArea .inner{
+  padding-right: 32rpx;
+  padding-left: 32rpx;
   position: relative;
   display: flex;
   width: 100%;
@@ -54,14 +57,14 @@
   /* color: #9DA0A3; */
   font-size: 28rpx;
   text-align: start;
-  padding-left: 32rpx;
+  /* padding-left: 32rpx; */
 }
 .searchDetailArea .inner .input{
   flex: 1;
 }
 .searchDetailArea .inner .input input{
   text-align: start;
-  padding-left: 68rpx;
+  /* padding-left: 68rpx; */
 }
 .searchDetailArea .inner .button{
   width: 100rpx;

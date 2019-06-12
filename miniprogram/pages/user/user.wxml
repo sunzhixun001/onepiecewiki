@@ -1,20 +1,23 @@
-<view class='container'>
-	<view class='main'>
-    <view class='cw'>
-      <view class='userinfo'>
-          <view class='scope'>
-            <block wx:if="{{scopeUserInfo}}">
-              <view class='detail'>
-                <view class='avator'><open-data type="userAvatarUrl" /></view>
-                <view class='nickname'><open-data type="userNickName" /></view>
-              </view>
-            </block>
-            <block wx:else>
-              <text class='fa fa-user-circle' />
-              <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">登陆</button>
-            </block>
-          </view>
+<block>
+  <navbar />
+  <view class='container' style='margin-top: {{statusBarHeight}}px'>
+    <view class='main'>
+      <view class='cw'>
+        <view class='userinfo'>
+            <view class='scope'>
+              <block wx:if="{{scopeUserInfo}}">
+                <view class='detail'>
+                  <view class='avator'><open-data type="userAvatarUrl" /></view>
+                  <view class='nickname'><open-data type="userNickName" /></view>
+                </view>
+              </block>
+              <block wx:else>
+                <text class='fa fa-user-circle' />
+                <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">登入</button>
+              </block>
+            </view>
+        </view>
       </view>
     </view>
-	</view>
-</view>
+  </view>
+</block>

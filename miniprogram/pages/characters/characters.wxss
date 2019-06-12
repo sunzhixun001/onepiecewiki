@@ -1,5 +1,7 @@
 @import "../../style/commos.wxss";
 @import "../../style/characterList.wxss";
+@import "../../style/navbar.wxss";
+@import "../../style/awesome.wxss";
 /* tab */
 .bgGray{
 	background-color: #F7F7F7;
@@ -54,4 +56,8 @@
   bottom: 40rpx;
   z-index: 150;
   background-color: #FFF;
+}
+.container .mainTitleArea.disabled{
+  height: 0;
+  opacity: 0;
 }

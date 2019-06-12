@@ -1,34 +1,36 @@
-<view class='container'>
-  <view class='main listPage'>
-    <view class='mainTitleArea'>
-      <view class='searchDetailArea'>
-        <view class='inner'>
-          <icon type='search' size='16' />
-          <view class='input'>
-            <input bindinput='bindKeyWord' placeholder='请输入搜索的关键词' focus />
-          </view>
-          <view class='button'>
-            <text bindtap='bindSearch'>搜索</text>
+<block>
+  <navbar showCapsule="{{true}}"/>
+  <view class='container' style='margin-top: {{statusBarHeight}}px'>
+    <view class='main listPage'>
+      <view class='mainTitleArea'>
+        <view class='searchDetailArea'>
+          <view class='inner'>
+            <view class='input'>
+              <input bindinput='bindKeyWord' placeholder='请输入搜索的关键词' focus value='{{keyword}}' />
+            </view>
+            <view class='button'>
+              <text bindtap='bindSearch'>搜索</text>
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <view class='cw'>
-      <view class='listArea'>
-        <view class='itemList'>
-          <view class='item' wx:for="{{characters}}" wx:key="_id">
-            <navigator url='../characterDetail/characterDetail?id={{item._id}}'>
-              <view class='detailBox'>
-                <view class='charaName'>{{item.fullname}}</view>
-                <view class='subComment'>{{item.priateRegimentName}}</view>
-              </view>
-              <view class='thumb'>
-                  <image src='{{item.avator}}' binderror="bindAvatoError" lazy-load="{{true}}"/>
+      <view class='cw'>
+        <view class='listArea'>
+          <view class='itemList'>
+            <view class='item' wx:for="{{characters}}" wx:key="_id">
+              <navigator url='../characterDetail/characterDetail?id={{item._id}}'>
+                <view class='detailBox'>
+                  <view class='charaName'>{{item.fullname}}</view>
+                  <view class='subComment'>{{item.priateRegimentName}}</view>
                 </view>
-            </navigator>
+                <view class='thumb'>
+                    <image src='{{item.avator}}' binderror="bindAvatoError" lazy-load="{{true}}"/>
+                  </view>
+              </navigator>
+            </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
-</view> 
+  </view> 
+</block>
