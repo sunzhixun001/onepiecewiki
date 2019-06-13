@@ -88,6 +88,9 @@ page{
   position: relative;
   flex-direction: column;
 }
+.foot-wrap .ul .li.had .fa{
+  color: #f60;
+}
 .foot-wrap .ul .li:first-child::after{
   content: "";
   display: block;

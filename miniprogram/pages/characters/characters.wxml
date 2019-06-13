@@ -55,6 +55,7 @@
                     fullname="{{item.fullname}}"
                     comment="{{item.job}}"
                     avator="{{item.avator}}"
+                    favorite="{{item.favorite}}"
                   />
                 </view>
               </swiper-item>
@@ -67,6 +68,7 @@
                     fullname="{{item.fullname}}"
                     comment="{{item.bounty}}"
                     avator="{{item.avator}}"
+                    favorite="{{item.favorite}}"
                   />
                 </view>
               </swiper-item>
@@ -79,6 +81,7 @@
                     fullname="{{item.fullname}}"
                     comment="{{item.devilfruit}}"
                     avator="{{item.avator}}"
+                    favorite="{{item.favorite}}"
                   />
                 </view>
               </swiper-item>
@@ -91,6 +94,7 @@
                     fullname="{{item.name}}"
                     comment="{{item.fullname}}"
                     avator="{{item.avator}}"
+                    favorite="{{item.favorite}}"
                   />
                 </view>
               </swiper-item>

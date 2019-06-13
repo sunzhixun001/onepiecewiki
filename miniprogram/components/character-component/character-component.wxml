@@ -1,5 +1,5 @@
 <character-component>
-  <view class='item'>
+  <view class='item {{favorite?"favorite":""}}'>
     <navigator url='/pages/characterDetail/characterDetail?id={{characterid}}'>
       <view class='detailBox'>
         <view class='charaName'>{{fullname}}</view>
@@ -9,5 +9,6 @@
         <image src='{{avator}}' lazy-load="{{true}}"/>
       </view>
     </navigator>
+    <view class='star'><text class='fa fa-star' /></view>
   </view>
 </character-component>

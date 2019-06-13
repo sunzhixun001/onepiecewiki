@@ -94,9 +94,13 @@
   <view class='footer'>
     <view class='foot-wrap'>
       <view class='ul'>
-        <view class='li'>
+        <view wx:if="{{!favorited}}" class='li' bind:tap='bindFavoriteTap'>
           <text class='fa fa-star-o' />
           <text>收藏</text>
+        </view>
+        <view wx:else class='li had' bind:tap='bindCancelFavoriteTap'>
+          <text class='fa fa-star' />
+          <text>已收藏</text>
         </view>
         <view class='li'>
           <text class='fa fa-share-square-o' />

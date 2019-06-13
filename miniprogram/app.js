@@ -1,7 +1,19 @@
 import { phonePx} from './common/implement';
+import { getOpenId, getUserId } from './common/auth';
 App({
+  _favorites: [],
+  globalData: {},
   onLaunch: function () {
-    this.globalData = {};
+    let globalDataObj = this.globalData;
+    Object.defineProperty(globalDataObj, 'favorites', {
+      set: value => {
+        this._favorites = value;
+        this.watchBallBack["favorites"] && this.watchBallBack["favorites"](value);
+      },
+      get: () => {
+        return this._favorites;
+      }
+    });
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -23,7 +35,7 @@ App({
     });
     wx.getSystemInfo({
       success: res => {
-        console.log('systemInfo: ', res);
+        // console.log('systemInfo: ', res);
         const {
           screenHeight,
           screenWidth,
@@ -34,5 +46,19 @@ App({
         this.globalData.statusBarHeight = statusBarHeight + 44;
       }
     });
-  }
+    getOpenId({
+      gotCallback: value => {
+        this.globalData.openid = value;
+      }
+    });
+    getUserId({
+      gotCallback: value => {
+        this.globalData.userid = value;
+      }
+    });
+  },
+  $watch({ method}) {
+
+  },
+  watchBallBack: {}
 })

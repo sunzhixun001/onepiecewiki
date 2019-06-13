@@ -1,10 +1,12 @@
 import {
+  getCharacter,
   getList,
   getListInPriateReg,
   getListHasDevilfruit,
   getListOrderByBountyDesc,
   getRegexp,
-  pushFavorite
+  pushFavorite,
+  getListInGroup
 } from '../database/characterRepository';
 const convertBounty = ({ bounty }) => {
   let result = "";
@@ -95,25 +97,30 @@ const fetchRegexp = ({ keyword, success}) => {
     })
     .catch()
 };
-const fetchPushFavorite = ({id, charaid, avator, success}) => {
-  let _obj = {};
-  _obj[charaid] = avator;
-  const values = [_obj];
-  const promise = pushFavorite({ id, values});
+// 获取单个人物
+const fetchCharacter = ({ id, success}) => {
+  const promise = getCharacter({id});
   promise
     .then(res => {
       success && success(res);
     })
-    .catch(err => {
-
-    });
+    .catch(err => {})
+    ;
+};
+const fetchListInGroup = ({ groupName, success }) => {
+  const promise = getListInGroup({ groupName});
+  promise
+  .then(res => {
+    success && success(res);
+  })
 };
 export {
+  fetchCharacter,
   fetchList,
+  fetchListInGroup,
   fetchStrawCharactersList,
   fetchListInPriateReg,
   fetchListHasDevilfruit,
   fetchListOrderByBountyDesc,
-  fetchRegexp,
-  fetchPushFavorite
+  fetchRegexp
 };

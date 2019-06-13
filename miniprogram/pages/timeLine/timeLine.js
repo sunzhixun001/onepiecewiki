@@ -20,11 +20,6 @@ Page({
    */
   onLoad: function (options) {
     this.getEventsList({ limit: this.data.pageSize, pageIndex: this.data.pageIndex });
-    wx.getSystemInfo({
-      success(res) {
-        console.log(res);
-      }
-    });
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 

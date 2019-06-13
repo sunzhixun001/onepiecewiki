@@ -5,7 +5,7 @@
       <view class='cw'>
         <view class='userinfo'>
             <view class='scope'>
-              <block wx:if="{{scopeUserInfo}}">
+              <block wx:if="{{scopeUserInfo && userid}}">
                 <view class='detail'>
                   <view class='avator'><open-data type="userAvatarUrl" /></view>
                   <view class='nickname'><open-data type="userNickName" /></view>
@@ -22,6 +22,21 @@
             <view class='tab-box'>
               <view class='active'>收藏</view>
               <view>消息</view>
+            </view>
+          </view>
+        </view>
+        <view class='swiper-container'>
+          <view class='swiper-main'>
+            <view class='swiper-wrap'>
+              <swiper style='height:{{favoriteSwiperItemHeight}}rpx'>
+                <swiper-item>
+                  <view class='ul'>
+                    <view class='li' wx:for="{{favorites}}" wx:key="index">
+                      <image src='{{item}}' />
+                    </view>
+                  </view>
+                </swiper-item>
+              </swiper>
             </view>
           </view>
         </view>

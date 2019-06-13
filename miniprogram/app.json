@@ -2,8 +2,8 @@
   "cloud": true,
   "pages": [
     "pages/timeLine/timeLine",
-    "pages/user/user",
     "pages/characters/characters",
+    "pages/user/user",
     "pages/databaseGuide/databaseGuide",
     "pages/home/home",
     "admin/characters/create/create",

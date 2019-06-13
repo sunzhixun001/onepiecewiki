@@ -1,8 +1,14 @@
-import { get, getListInGroup } from '../../database/characterRepository';
+import { 
+  fetchUpdateFavorite
+} from '../../domain/userDomain';
 import {
-  fetchListInPriateReg
+  fetchCharacter,
+  fetchListInPriateReg,
+  fetchListInGroup
 } from '../../domain/characterDomain';
-import { convertBounty} from '../../common/implement';
+import { 
+  convertBounty
+} from '../../common/implement';
 
 Page({
 
@@ -22,15 +28,17 @@ Page({
     partners: [],
     relationships: [],
     group: [],
-    statusBarHeight: 0
+    statusBarHeight: 0,
+    favorited: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const { statusBarHeight, scopeUserInfo, userid} = getApp().globalData;
     this.getCharacter({ id: options.id});
-    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
+    this.setData({ statusBarHeight });
   },
 
   /**
@@ -81,10 +89,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getCharacter: function ({ id }) {
-    get({
+  getCharacter: function ({ id}) {
+    fetchCharacter({
       id, success: res => {
-        if (res.data.length > 0) {
           const {
             avator,
             img,
@@ -103,7 +110,7 @@ Page({
             height,
             relationships,
             group
-          } = res.data[0];
+          } = res.data;
           // 人物关系
           const _set = new Set();
           if (relationships){
@@ -121,7 +128,7 @@ Page({
           if (group && group.length > 0){
             for(let g of group.values()){
               let value = [];
-              getListInGroup({
+              fetchListInGroup({
                 groupName: g, success: res => {
                   let _group = self.data.group;
                   _group.push({
@@ -159,7 +166,6 @@ Page({
           if(priateRegimentName){
             this.getPriateRegMembers({ priateRegimentName });
           }
-        }
       }
     })
   },
@@ -173,5 +179,24 @@ Page({
     wx.redirectTo({
       url: 'characterDetail?id=' + id,
     })
+  },
+  // 点击收藏
+  bindFavoriteTap: function(e) {
+    const _favorites = getApp().globalData.favorites;
+    _favorites[this.data.id] = this.data.avator;
+    fetchUpdateFavorite({ 
+      openid: getApp().globalData.openid, 
+      favorites: _favorites,
+      success: result => {
+        if (result){
+          getApp().globalData.favorites = _favorites;
+          this.setData({ favorited: true});
+        }
+      } 
+    })
+  },
+  // 点击取消收藏
+  bindCancelFavoriteTap: function(e) {
+
   }
 })

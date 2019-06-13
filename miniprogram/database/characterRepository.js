@@ -38,18 +38,17 @@ export const getListField = ({ fields, success }) => {
     });
 };
 // 使用ID获取一个人物
-export const get = ({id, success}) => {
-	collection.where({
-		_id: id
-	}).get()
-		.then(res => {
-			success && success(res);
-		})
-		.catch();
+export const getCharacter = ({id}) => {
+  const promise = 
+  collection
+    .doc(id)
+    .get();
+  return promise;
 };
 // 修改一个人
 export const update = ({ id, biological, success}) => {
-	collection.doc(id)
+	collection
+    .doc(id)
     .update({data:biological})
 		.then(res => { success && success(res)})
 		.catch(console.error);
@@ -97,16 +96,12 @@ export const getListOrderByBountyDesc = ({ limit = 20, skip = 0}) => {
 };
 // 获取某一团体下的所有成员
 export const getListInGroup = ({ groupName, success}) => {
+  const promise =
   collection
     .where({ group: groupName })
     .field({avator: true})
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {
-
-    });
+    .get();
+  return promise;
 };
 // 模糊搜索角色
 export const getRegexp = ({ keyword}) => {
@@ -124,15 +119,5 @@ export const getRegexp = ({ keyword}) => {
       priateRegimentName: true
     })
     .get();
-  return promise;
-};
-// 增加一个收藏
-export const pushFavorite = ({id, values}) => {
-  const promise = 
-  collection
-    .doc(id)
-    .update({ data: {
-      favorites: db.command.push(values) 
-    }});
   return promise;
 };

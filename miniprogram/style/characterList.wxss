@@ -1,10 +1,36 @@
 .item{
   padding-top: 40rpx;
+  position: relative;
 }
 .item navigator{
   display: flex;
   border: solid 1px rgba(0, 0, 0, 0.08);
   border-radius: 4rpx;
+}
+.item.favorite navigator{
+  border: solid 2px #D9312B;
+}
+.item .star{
+  display: none;
+  position: absolute;
+  border-color: transparent #D9312B transparent transparent ;
+  border-width: 40rpx;
+  border-style: solid;
+  width: 0;
+  height: 0;
+  left: -36rpx;
+  bottom: -36rpx;
+  transform: rotate(-45deg);
+  justify-content: center;
+  align-items: center;
+}
+.item.favorite .star{
+  display: flex;
+}
+.item .star .fa{
+  color: #FFF;
+  font-size: 24rpx;
+  margin-left: 40rpx;
 }
 .detailBox{
   margin-right: auto;

@@ -7,7 +7,8 @@ Component({
     characterid: String,
     fullname: String,
     comment: String,
-    avator: String
+    avator: String,
+    favorite: Boolean
   },
 
   /**

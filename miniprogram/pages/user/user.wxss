@@ -64,3 +64,28 @@
 .tab-box .active{
   border-bottom: 3px solid #D9312B;
 }
+/* 收藏列表 */
+.swiper-main{
+  padding-top: 50rpx;
+}
+.swiper-main .ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.swiper-main .li{
+  display: flex;
+  width: 33%;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.swiper-main .li image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 70rpx;
+}
+.swiper-main .swiper-wrap{
+  padding-left: 5%;
+  padding-right: 5%;
+}

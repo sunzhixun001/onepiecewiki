@@ -1,5 +1,5 @@
 import { getOpenId} from '../../cloud/userCloud';
-import { fetchUserWithOpenId, createUser } from '../../domain/userDomain';
+import { fetchUserWithOpenId, createUser, existOpenid, fetchFavorites } from '../../domain/userDomain';
 import { setStorage, getStorage} from '../../common/storage';
 
 Page({
@@ -10,19 +10,25 @@ Page({
 	data: {
     scopeUserInfo: false,
     statusBarHeight: 0,
-    openid: ''
+    openid: '',
+    favorites: [],
+    favoriteSwiperItemHeight: 0
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-    const { globalData} = getApp();
-    const { scopeUserInfo, statusBarHeight } = globalData;
+    const { scopeUserInfo, statusBarHeight, openid, userid } = getApp().globalData;
     this.setData({
-      scopeUserInfo: scopeUserInfo,
-      statusBarHeight: statusBarHeight
+      scopeUserInfo: scopeUserInfo || false,
+      statusBarHeight: statusBarHeight,
+      openid,
+      userid: userid || ''
     });
+    if(userid){
+      this.fetchGetFavorites({userid});
+    }
     // this.getOpenIdStorage();
     
     // this.getSetting();
@@ -89,10 +95,21 @@ Page({
     const { encryptedData, errMsg, iv, rawData, signature, userInfo} = e.detail;
     const { avatarUrl, city, country, gender, language, nickName, province } = userInfo || {};
     if (errMsg === "getUserInfo:ok"){
-      const _userinfo = { avatarUrl, city, country, gender, language, nickName, province, openid: this.data.openid };
+      const _userinfo = { avatarUrl, city, country, gender, language, nickName, province, openid: getApp().globalData.openid };
       this.setData({ scopeUserInfo: true });
-      this.setUserInfoStorage({ userinfo: _userinfo});
-      this.fetchCreateUser({ user: _userinfo});
+      getApp().globalData.scopeUserInfo = true;
+      existOpenid({ 
+        openid: getApp().globalData.openid,
+        success: result => {
+          if (result){
+            getApp().globalData.userid = result;
+            setStorage({ key: 'userid', data: result });
+            this.setData({ userid: result });
+          }else{
+            this.fetchCreateUser({ user: _userinfo });
+          }
+        }
+      });
     }
 
   },
@@ -181,7 +198,7 @@ Page({
       success: res => {
         const { errMsg, _id} = res;
         if (errMsg === "collection.add:ok" && _id){
-
+          setStorage({ key: 'userid', data: _id});
         }
       }
     });
@@ -202,6 +219,17 @@ Page({
         }
       }, fail: err => {
         console.err(res);
+      }
+    });
+  },
+  fetchGetFavorites: function ({ userid}) {
+    fetchFavorites({
+      userid,
+      success: res => {
+        this.setData({ 
+          favorites: res,
+          favoriteSwiperItemHeight: Math.ceil(res.length / 3) * 190
+        });
       }
     });
   }

@@ -2,6 +2,7 @@ import { getDatabase } from './common';
 const db = getDatabase();
 const collection = db.collection('user');
 
+// 用openid查找一个用户
 const getWithOpenId = ({openid}) => {
   const promise = 
     collection
@@ -16,4 +17,42 @@ const create = ({user}) => {
   });
   return promise;
 };
-export { getWithOpenId, create};
+// 查询一个openid的数量
+const countOpenId = ({openid}) => {
+  const promise = 
+  collection
+    .where({ openid})
+    .count();
+  return promise;
+}
+// 更新收藏
+const updateFavorite = ({ userid, favorites }) => {
+  const promise =
+    collection
+      .doc(userid)
+      .update({
+        data: { favorites}
+      });
+  return promise;
+};
+// 用一个人物id查看是否收藏了这个人物
+const getFavoriteWithCharaId = () => {
+
+};
+// 获取用户的全部收藏
+const getFavorites = ({ userid}) => {
+  const promise = 
+  collection
+    .doc(userid)
+    .field({favorites: true})
+    .get();
+  return promise;
+}
+export { 
+  getWithOpenId, 
+  create, 
+  countOpenId, 
+  updateFavorite,
+  getFavoriteWithCharaId,
+  getFavorites
+};

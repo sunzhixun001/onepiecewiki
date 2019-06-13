@@ -4,7 +4,11 @@ import {
   fetchListHasDevilfruit,
   fetchListOrderByBountyDesc
 } from '../../domain/characterDomain';
+import {
+  fetchFavorites
+} from '../../domain/userDomain';
 import { convertBounty} from '../../common/implement';
+let favorites = [];
 Page({
 
   /**
@@ -41,11 +45,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCharactersList[0].call(this, true);
-    this.getCharactersList[1].call(this, false);
-    this.getCharactersList[2].call(this, false);
-    this.getCharactersList[3].call(this, false);
-    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
+    const { globalData, watchBallBack} = getApp();
+    const { userid, statusBarHeight } = globalData;
+    watchBallBack["favorites"] = value => { 
+      this.refreshFavorites({ favorites: value});
+    };
+    this.setData({ statusBarHeight});
+    if(userid) {
+      this.fetchGetFavorites({ userid});
+    }else{
+      this.getCharacters();
+    }
   },
 
   /**
@@ -153,7 +163,7 @@ Page({
     let obj = {};
     let _pages = this.data.pages;
     let _listend = this.data.listEnd;
-    obj[dataKey] = this.data[dataKey].concat(res);
+    obj[dataKey] = this.matchFavorites({list:this.data[dataKey].concat(res)});
     _pages[dataKey] = [pageIndx + 1, pageSize];
     obj["pages"] = _pages;
     if (res.length < pageSize){
@@ -164,6 +174,29 @@ Page({
       obj["swiperHeight"] = (this.data[dataKey].length + res.length) * 240
     }
     this.setData(obj);
+  },
+  // 检查是不是我的收藏
+  matchFavorites: function({list}) {
+    let _list = list.map(e => {
+      if (favorites.length === 0){
+        e.favorite = false;
+      }else{
+        e.favorite = !!favorites[e.id];
+      }
+      return e;
+    });
+    return _list;
+  },
+  // 刷新收藏状态
+  refreshFavorites: function({favorites}) {
+    for (let key of this.data.tabKeys.values()){
+      let _dataObj = {};
+      _dataObj[key] = this.data[key].map(c => {
+        c.favorite = favorites[c.id];
+        return c;
+      });
+      this.setData(_dataObj);
+    }
   },
   // 获取草帽团成员 
   getStrawCharactersList: function ({ callback, dataKey, pageIndx, pageSize, reviseHeight}) {
@@ -223,5 +256,21 @@ Page({
   bindSearchInput: function (e) {
     const _keyword = e.detail.value;
     this.setData({ keyword: _keyword });
+  },
+  fetchGetFavorites: function ({ userid}) {
+    fetchFavorites({
+      userid,
+      success: list => {
+        getApp().globalData.favorites = list;
+        favorites = list;
+        this.getCharacters();
+      }
+    });
+  },
+  getCharacters: function() {
+    this.getCharactersList[0].call(this, true);
+    this.getCharactersList[1].call(this, false);
+    this.getCharactersList[2].call(this, false);
+    this.getCharactersList[3].call(this, false);
   }
 })
