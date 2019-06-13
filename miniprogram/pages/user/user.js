@@ -198,6 +198,7 @@ Page({
       success: res => {
         const { errMsg, _id} = res;
         if (errMsg === "collection.add:ok" && _id){
+          this.setData({ userid: _id});
           setStorage({ key: 'userid', data: _id});
         }
       }

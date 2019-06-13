@@ -46,7 +46,7 @@ const fetchUpdateFavorite = ({ userid, favorites, success }) => {
       success && success(errMsg === "document.update:ok" && stats.updated);
     })
     .catch(err => {
-
+      console.log('更新失败: ', err);
     });
 };
 // 用一个人物id查看是否收藏了这个人物

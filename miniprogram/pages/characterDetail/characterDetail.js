@@ -38,7 +38,9 @@ Page({
   onLoad: function (options) {
     const { statusBarHeight, scopeUserInfo, userid} = getApp().globalData;
     this.getCharacter({ id: options.id});
-    this.setData({ statusBarHeight });
+    this.setData({ 
+      statusBarHeight
+    });
   },
 
   /**
@@ -159,7 +161,8 @@ Page({
             age: age || 0,
             height: height || 0,
             birthday: birthday?`${birthday.split('-')[0]}月${birthday.split('-')[1]}日`:'',
-            relationships: newRelationships
+            relationships: newRelationships,
+            favorited: !!getApp().globalData.favorites[_id]
           }, () => {
 
           });
@@ -185,7 +188,7 @@ Page({
     const _favorites = getApp().globalData.favorites;
     _favorites[this.data.id] = this.data.avator;
     fetchUpdateFavorite({ 
-      openid: getApp().globalData.openid, 
+      userid: getApp().globalData.userid, 
       favorites: _favorites,
       success: result => {
         if (result){
@@ -193,10 +196,21 @@ Page({
           this.setData({ favorited: true});
         }
       } 
-    })
+    });
   },
   // 点击取消收藏
   bindCancelFavoriteTap: function(e) {
-
+    let _favorites = JSON.parse(JSON.stringify(getApp().globalData.favorites));
+    delete _favorites[this.data.id];
+    fetchUpdateFavorite({
+      userid: getApp().globalData.userid,
+      favorites: _favorites,
+      success: result => {
+        if (result) {
+          getApp().globalData.favorites = _favorites;
+          this.setData({ favorited: false });
+        }
+      }
+    });
   }
 })
