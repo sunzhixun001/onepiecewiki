@@ -31,7 +31,9 @@ const updateFavorite = ({ userid, favorites }) => {
     collection
       .doc(userid)
       .update({
-        data: { favorites}
+        data: {
+          favorites: db.command.set(favorites)
+        }
       });
   return promise;
 };

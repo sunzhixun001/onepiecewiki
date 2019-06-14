@@ -1,16 +1,33 @@
 <block>
-  <navbar showCapsule="{{true}}"/>
-  <view class='container' style='margin-top: {{statusBarHeight}}px'>
-    <view class='main listPage'>
-      <view class='mainTitleArea'>
-        <view class='searchDetailArea'>
-          <view class='inner'>
-            <view class='input'>
-              <input bindinput='bindKeyWord' placeholder='请输入搜索的关键词' focus value='{{keyword}}' />
-            </view>
-            <view class='button'>
-              <text bindtap='bindSearch'>搜索</text>
-            </view>
+  <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
+    <view class='nav-content'>
+      <back />
+      <view class='nav-title'><text>海贼王人物</text></view>
+    </view>
+    <view class='mainTitleArea bgGray'>
+      <view class='searchDetailArea'>
+        <view class='inner'>
+          <input 
+            placeholder='路飞' 
+            bindinput='bindKeyWord' 
+            value='{{keyword}}' 
+            confirm-type="搜索"
+            bindconfirm="bindSearch"
+          />
+        </view>
+      </view>
+      <view class='searchIcon' bindtap='bindSearch'>
+        <icon type="search" size="16" color='#3D3D3D'/>
+      </view>
+    </view>
+  </view>
+  <view class='container' style='margin-top: {{searchInputHeight}}rpx'>
+    <view class='main listPage' style='margin-top: {{statusBarHeight}}px'>
+      <view class='no-result' wx:if="{{nochara}}">
+        <view class='no-main'>
+          <view class='no-wrap'>
+            <view class='h4'>没有搜索到相关人物</view>
+            <view class='h5'>换个关键字试试吧</view>
           </view>
         </view>
       </view>

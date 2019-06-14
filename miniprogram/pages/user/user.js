@@ -12,7 +12,9 @@ Page({
     statusBarHeight: 0,
     openid: '',
     favorites: [],
-    favoriteSwiperItemHeight: 0
+    messages: [],
+    favoriteSwiperItemHeight: 0,
+    swiperCurrent: 0
 	},
 
 	/**
@@ -66,7 +68,9 @@ Page({
 	 * 页面相关事件处理函数--监听用户下拉动作
 	 */
 	onPullDownRefresh: function () {
-
+    if (this.data.userid) {
+      this.fetchGetFavorites({ userid: this.data.userid });
+    }
 	},
 
 	/**
@@ -227,11 +231,28 @@ Page({
     fetchFavorites({
       userid,
       success: res => {
+        let _favorites = [];
+        for(let k in res){
+          _favorites.push({
+            id: k,
+            avator: res[k]
+          });
+        }
         this.setData({ 
-          favorites: res,
-          favoriteSwiperItemHeight: Math.ceil(res.length / 3) * 190
+          favorites: _favorites,
+          favoriteSwiperItemHeight: Math.ceil(_favorites.length / 3) * 190
+        }, () => {
+          wx.stopPullDownRefresh();
         });
       }
     });
+  },
+  bindSwiperChange: function(e) {
+    const { current, source } = e.detail;
+    this.setData({swiperCurrent: current});
+  },
+  bindSwiperTabTap: function(e) {
+    const { index} = e.currentTarget.dataset;
+    this.setData({ swiperCurrent: index});
   }
 })

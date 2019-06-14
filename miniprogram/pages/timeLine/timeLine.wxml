@@ -1,6 +1,6 @@
 <block>
-  <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
-    <view class='nav-content'>
+  <view class='nav-wrap'>
+    <view class='nav-content' style='height:{{statusBarHeight}}px'>
       <view class='nav-head'>
         <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
           <text class='fa fa-search'/>
@@ -14,7 +14,13 @@
     <view class='mainTitleArea bgGray {{searchActive?"":"disabled"}}'>
         <view class='searchDetailArea'>
           <view class='inner'>
-            <input placeholder='请输入搜索的关键词' bindinput='bindSearchInput' value='{{keyword}}' />
+            <input 
+              placeholder='路飞' 
+              bindinput='bindSearchInput' 
+              value='{{keyword}}' 
+              confirm-type="搜索"
+              bindconfirm="bindJumpSearch"
+            />
           </view>
         </view>
         <view class='searchIcon' bindtap='bindJumpSearch'>
@@ -22,9 +28,8 @@
         </view>
       </view>
   </view>
-  <view class='container' style='margin-top: {{statusBarHeight}}px'>
-    <view class='main timeline listPage'>
-      
+  <view class='container' style="margin-top: {{searchInputHeight}}rpx">
+    <view class='main timeline listPage' style='margin-top: {{statusBarHeight}}px'>
       <view class='cw'>
         <view class='listArea'>
           <view class='ul itemList'>
@@ -46,7 +51,7 @@
         </view>
       </view>
     </view>
-    <view class='control' wx:if="{{true}}">
+    <view class='control' wx:if="{{false}}">
       <view class='control-inner'>
         <view bindtap='bindAdmin'>管理</view>
       </view>

@@ -10,7 +10,9 @@ Page({
     pageSize: 20,
     allData: false,
     keyword: '',
-    statusBarHeight: 0
+    statusBarHeight: 0,
+    searchInputHeight: 88,
+    nochara: false
   },
 
   /**
@@ -81,17 +83,21 @@ Page({
   getEventsList({ keyword}) {
     getRegexp({
       keyword: keyword,
-      limit: this.data.pageSize, 
-      skip: this.data.pageSize * this.data.pageIndex, 
+      limit: 20, 
+      skip: 0, 
       success: res => {
-        this.setData({
-          events: this.data.events.concat(res.data),
-          pageIndex: this.data.pageIndex + 1
-        });
-        if (res.data.length < this.data.pageSize) {
-          this.setData({ allData: true });
+        let _data = {
+          events: res.data,
+          nochara: false
+        };
+        if (res.data.length === 0){
+          _data.nochara = true
         }
-        console.log(res);
+        this.setData(_data);
+        // if (res.data.length < this.data.pageSize) {
+        //   this.setData({ allData: true });
+        // }
+        // console.log(res);
       }
     });
   }

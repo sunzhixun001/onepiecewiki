@@ -1,5 +1,5 @@
 <block>
-  <navbar />
+  <navbar showCapsule="{{false}}"/>
   <view class='container' style='margin-top: {{statusBarHeight}}px'>
     <view class='main'>
       <view class='cw'>
@@ -20,21 +20,36 @@
         <view class='swiper-tab'>
           <view class='tab-wrap'>
             <view class='tab-box'>
-              <view class='active'>收藏</view>
-              <view>消息</view>
+              <view class='{{swiperCurrent === 0 ? "active":""}}' bindtap='bindSwiperTabTap' data-index="{{0}}">收藏</view>
+              <view class='{{swiperCurrent === 1 ? "active":""}}' bindtap='bindSwiperTabTap' data-index="{{1}}">消息</view>
             </view>
           </view>
         </view>
         <view class='swiper-container'>
           <view class='swiper-main'>
             <view class='swiper-wrap'>
-              <swiper style='height:{{favoriteSwiperItemHeight}}rpx'>
+              <swiper 
+                style='height:{{favoriteSwiperItemHeight}}rpx'
+                current="{{swiperCurrent}}"
+                bindchange="bindSwiperChange"
+              >
                 <swiper-item>
                   <view class='ul'>
                     <view class='li' wx:for="{{favorites}}" wx:key="index">
-                      <image src='{{item}}' />
+                      <navigator url='/pages/characterDetail/characterDetail?id={{item.id}}'>
+                        <image src='{{item.avator}}' />
+                      </navigator>
                     </view>
                   </view>
+                </swiper-item>
+                <swiper-item>
+                  <view class='message-container'>
+                    <view class='message-main'>
+                      <view class='message-wrap'>
+                        <view class='no-message'><text>暂无消息</text></view>
+                      </view>
+                    </view>
+                  </view> 
                 </swiper-item>
               </swiper>
             </view>

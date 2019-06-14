@@ -89,3 +89,9 @@
   padding-left: 5%;
   padding-right: 5%;
 }
+/* 消息 */
+.no-message{
+  display: flex;
+  justify-content: center;
+  color: #B3B3B3;
+}

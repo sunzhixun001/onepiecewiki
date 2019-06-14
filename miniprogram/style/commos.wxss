@@ -8,7 +8,7 @@
 .bgGray{
   background: #F7F7F7;
 }
-.nav-wrap .mainTitleArea{
+.nav-wrap .mainTitleArea, .container .mainTitleArea{
   height: 88rpx;
   display: flex;
   text-align: center;
@@ -30,18 +30,17 @@
 }
 .nav-wrap .mainTitleArea .searchIcon{
   position: absolute;
-  top: 28rpx;
-  right: 40rpx;
-  z-index: 100;
+  top: 0;
+  right: 0;
+  z-index: 200;
   padding-left: 50rpx;
+  padding-right: 40rpx;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .searchDetailArea{
-  padding: 28rpx 0;
-  height: 32rpx;
-  left: 0;
   width: 100%;
-  position: absolute;
-  box-shadow: 0 10rpx 20rpx 0 rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   z-index: 100;
@@ -57,7 +56,10 @@
   /* color: #9DA0A3; */
   font-size: 28rpx;
   text-align: start;
-  /* padding-left: 32rpx; */
+  width: 100%;
+  margin-right: 80rpx;
+  height: 52rpx;
+  min-height: 52rpx;
 }
 .searchDetailArea .inner .input{
   flex: 1;
@@ -103,4 +105,28 @@
   border-top: 1px solid rgba(0,0,0,0.08);
   height: 110rpx;
   background: #FFFFFF;
+}
+/* 没有所搜结果 */
+.no-result{
+  background-color: #FFFFFF;
+}
+.no-main{
+  padding-top: 200rpx;
+  padding-bottom: 200rpx;
+}
+.no-wrap{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.no-result .h4, .no-result .h5{
+  text-align: center;
+  padding-bottom: 30rpx;
+}
+.no-result .h4{
+  font-size: 28rpx;
+}
+.no-result .h5{
+  color: #B2B2B2;
+  font-size: 24rpx;
 }

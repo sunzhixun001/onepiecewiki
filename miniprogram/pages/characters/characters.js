@@ -37,8 +37,10 @@ Page({
     devilfruitTypes: ['','超人系','动物系','自然系'],
     swiperHeight: 0,
     statusBarHeight: 0,
+    searchInputHeight: 0,
+    screenHeight: 0,
     searchActive: false,
-    keyword: '路飞'
+    keyword: ''
   },
 
   /**
@@ -46,11 +48,11 @@ Page({
    */
   onLoad: function (options) {
     const { globalData, watchBallBack} = getApp();
-    const { userid, statusBarHeight } = globalData;
+    const { userid, statusBarHeight, screenHeight } = globalData;
     watchBallBack["favorites"] = value => { 
       this.refreshFavorites({ favorites: value});
     };
-    this.setData({ statusBarHeight});
+    this.setData({ statusBarHeight, screenHeight});
     if(userid) {
       this.fetchGetFavorites({ userid});
     }else{
@@ -117,7 +119,7 @@ Page({
   }, 
   bindJumpSearch: function(e) {
     wx.navigateTo({
-      url: `../characterSearch/characterSearch?keyword=${this.data.keyword}`
+      url: `../characterSearch/characterSearch?keyword=${this.data.keyword || '路飞'}`
     });
   },
   getCharactersList: [
@@ -248,10 +250,17 @@ Page({
     });
   },
   bindSearchIcon: function (e) {
-    this.setData({ searchActive: true });
+    this.setData({ 
+      searchActive: true,
+      searchInputHeight: 88 
+    });
   },
   bindSearchCloseIcon: function (e) {
-    this.setData({ searchActive: false, keyword: '' });
+    this.setData({ 
+      searchActive: false, 
+      keyword: '',
+      searchInputHeight: 0  
+    });
   },
   bindSearchInput: function (e) {
     const _keyword = e.detail.value;

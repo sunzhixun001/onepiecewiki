@@ -6,7 +6,7 @@
         <view class='subComment'>{{comment}}</view>
       </view>
       <view class='thumb'>
-        <image src='{{avator}}' lazy-load="{{true}}"/>
+        <image src='{{avator}}' />
       </view>
     </navigator>
     <view class='star'><text class='fa fa-star' /></view>

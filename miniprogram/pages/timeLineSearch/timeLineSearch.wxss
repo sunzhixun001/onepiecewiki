@@ -1,2 +1,3 @@
 @import "../../style/commos.wxss";
 @import "../../style/events.wxss";
+@import "../../style/navbar.wxss";

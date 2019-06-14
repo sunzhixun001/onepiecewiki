@@ -7,7 +7,9 @@ Page({
   data: {
     characters: [],
     statusBarHeight: 0,
-    keyword: ''
+    searchInputHeight: 88,
+    keyword: '',
+    nochara: false
   },
 
   /**
@@ -77,9 +79,16 @@ Page({
   },
   getCharacters: function ({ keyword}) {
     fetchRegexp({
-      keyword: keyword, 
+      keyword: keyword || '路飞', 
       success: res => {
-        this.setData({ characters: res});
+        let _data = {
+          characters: res,
+          nochara: false
+        };
+        if (res.length === 0) {
+          _data.nochara = true
+        }
+        this.setData(_data);
       }
     });
   }

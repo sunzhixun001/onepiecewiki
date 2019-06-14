@@ -1,4 +1,5 @@
 const BASE_WIDTH = 375;
+const BASE_SCALE = 2;
 export const convertBounty  =  ({bounty}) => {
   let result = "";
   if (bounty < 10000) {
@@ -19,4 +20,8 @@ export const convertBounty  =  ({bounty}) => {
 
 export const phonePx = ({ px, width}) => {
   return px * (width / 375);
+}
+export const px2rpx = ({ px, screenWidth}) => {
+  let rpx = (screenWidth / BASE_WIDTH) * px * BASE_SCALE;
+  return rpx;
 }

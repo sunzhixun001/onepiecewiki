@@ -1,4 +1,4 @@
-import { phonePx} from './common/implement';
+import { phonePx, px2rpx} from './common/implement';
 import { getOpenId, getUserId } from './common/auth';
 App({
   _favorites: [],
@@ -35,7 +35,7 @@ App({
     });
     wx.getSystemInfo({
       success: res => {
-        // console.log('systemInfo: ', res);
+        console.log('systemInfo: ', res);
         const {
           screenHeight,
           screenWidth,
@@ -43,7 +43,9 @@ App({
           windowWidth,
           statusBarHeight
         } = res;
+        // this.globalData.statusBarHeight = px2rpx({ px: statusBarHeight, screenWidth}) + 88;
         this.globalData.statusBarHeight = statusBarHeight + 44;
+        this.globalData.screenHeight = screenHeight;
       }
     });
     getOpenId({

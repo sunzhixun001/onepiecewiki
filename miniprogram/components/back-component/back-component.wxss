@@ -1,0 +1,20 @@
+@import "../../style/awesome.wxss";
+.nav-head{
+  z-index: 300;
+  margin-bottom: 20rpx;
+  margin-left: 20rpx;
+  padding-right: 30rpx;
+  padding-top: 30rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.nav-head .fa-angle-left{
+  font-size: 50rpx;
+  color: #FFFFFF;
+}
+.nav-head .fa-search, .nav-head .fa-close{
+  color: #FFFFFF;
+  padding-top: 30rpx;
+  padding-right: 130rpx;
+}

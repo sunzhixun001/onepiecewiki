@@ -1,0 +1,3 @@
+<view class='nav-head' bind:tap="bindBackTap">
+  <view class='fa fa-angle-left'/>
+</view>
