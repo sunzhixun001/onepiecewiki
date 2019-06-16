@@ -89,7 +89,7 @@ Page({
   authUserInfo: function() {
 
   },
-  // 点击登入
+  // 点击登录
   bindGetUserInfo: function(e) {
     // encryptedData: ""
     // errMsg: "getUserInfo:ok"
@@ -106,9 +106,11 @@ Page({
         openid: getApp().globalData.openid,
         success: result => {
           if (result){
-            getApp().globalData.userid = result;
-            setStorage({ key: 'userid', data: result });
-            this.setData({ userid: result });
+            getApp().globalData.userid = result.userid;
+            setStorage({ key: 'userid', data: result.userid });
+            this.setData({ userid: result.userid });
+            getApp().globalData.favorites = result.favorites;
+            this.setDataFavorites({ favorites: result.favorites});
           }else{
             this.fetchCreateUser({ user: _userinfo });
           }
@@ -231,20 +233,23 @@ Page({
     fetchFavorites({
       userid,
       success: res => {
-        let _favorites = [];
-        for(let k in res){
-          _favorites.push({
-            id: k,
-            avator: res[k]
-          });
-        }
-        this.setData({ 
-          favorites: _favorites,
-          favoriteSwiperItemHeight: Math.ceil(_favorites.length / 3) * 190
-        }, () => {
-          wx.stopPullDownRefresh();
-        });
+        this.setDataFavorites({ favorites: res});
       }
+    });
+  },
+  setDataFavorites: function ({ favorites}) {
+    let _favorites = [];
+    for (let k in favorites) {
+      _favorites.push({
+        id: k,
+        avator: favorites[k]
+      });
+    }
+    this.setData({
+      favorites: _favorites,
+      favoriteSwiperItemHeight: Math.ceil(_favorites.length / 3) * 190
+    }, () => {
+      wx.stopPullDownRefresh();
     });
   },
   bindSwiperChange: function(e) {

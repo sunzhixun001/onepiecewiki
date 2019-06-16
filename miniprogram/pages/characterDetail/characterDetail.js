@@ -185,18 +185,34 @@ Page({
   },
   // 点击收藏
   bindFavoriteTap: function(e) {
-    const _favorites = getApp().globalData.favorites;
-    _favorites[this.data.id] = this.data.avator;
-    fetchUpdateFavorite({ 
-      userid: getApp().globalData.userid, 
-      favorites: _favorites,
-      success: result => {
-        if (result){
-          getApp().globalData.favorites = _favorites;
-          this.setData({ favorited: true});
+    const { openid, userid, favorites, scopeUserInfo } = getApp().globalData;
+    if (!userid || !scopeUserInfo){
+      wx.showModal({
+        title: '提示',
+        content: '您还未登录',
+        confirmText: '去登录',
+        success: res => {
+          if (res.confirm) {
+            wx.switchTab({
+              url: "../user/user",
+            })
+          }
         }
-      } 
-    });
+      });
+    }else{
+      const _favorites = favorites;
+      _favorites[this.data.id] = this.data.avator;
+      fetchUpdateFavorite({ 
+        userid: getApp().globalData.userid, 
+        favorites: _favorites,
+        success: result => {
+          if (result){
+            getApp().globalData.favorites = _favorites;
+            this.setData({ favorited: true});
+          }
+        } 
+      });
+    }
   },
   // 点击取消收藏
   bindCancelFavoriteTap: function(e) {

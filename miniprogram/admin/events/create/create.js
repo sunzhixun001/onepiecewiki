@@ -10,14 +10,18 @@ Page({
     age: 0,
     showAge: '',
 		photo: '',
-    tags: []
+    tags: [],
+    statusBarHeight: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const { statusBarHeight } = getApp().globalData;
+    this.setData({
+      statusBarHeight
+    });
   },
 
   /**

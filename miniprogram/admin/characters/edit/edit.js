@@ -1,7 +1,7 @@
-import { get, update, getListField } from '../../../database/characterRepository';
+import { update, getListField } from '../../../database/characterRepository';
 import { CharacterFactory } from '../../../entity/factory';
 import { getList as getGroupsList } from '../../../database/groups';
-import { fetchRegexp } from '../../../domain/characterDomain';
+import { fetchRegexp, fetchCharacter } from '../../../domain/characterDomain';
 
 Page({
 
@@ -32,9 +32,9 @@ Page({
     relationshipIndex: 0,
     roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
-    levels: ['元帅', '大将', '中将'],
+    levels: ['元帅', '大将', '中将', '大佐'],
     relationTypes: ['爷爷','父亲', '义兄', '母亲'],
-    groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星'],
+    groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星', 'CP9', 'CP0', '达旦家族'],
     job: '',
     characters: [],
     searchModalActivate: false,
@@ -123,8 +123,10 @@ Page({
     }
   },
 	getCharacter: function({id}){
-		get({id, success: res => {
-			if(res.data.length > 0){
+    fetchCharacter({
+      id, 
+      success: res => {
+			if(res.data){
         const { 
           avator, 
           img,
@@ -147,7 +149,7 @@ Page({
           englishName,
           japaneseName,
           position
-        } = res.data[0];
+        } = res.data;
 				this.setData({ 
 					avator, 
           img: img || '',

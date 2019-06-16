@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "navbar": "/components/navbar-component/navbar-component"
+  },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50
 }

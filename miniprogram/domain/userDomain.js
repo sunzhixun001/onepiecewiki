@@ -30,7 +30,10 @@ const existOpenid = ({ openid, success}) => {
   .then(res => {
     const { errMsg, data} = res;
     if (errMsg === "collection.get:ok" && data.length > 0){
-      success(data[0]._id);
+      success({
+        userid: data[0]._id,
+        favorites: data[0].favorites
+      });
     }else{
       success(false);
     }

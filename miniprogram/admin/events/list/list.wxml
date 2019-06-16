@@ -1,4 +1,6 @@
-<view class='container'>
+<block>
+<navbar showCapsule="{{true}}"/>
+<view class='container' style='margin-top: {{statusBarHeight}}px'>
   <view class='body'>
     <view>
       <view class='item' wx:for="{{events}}" wx:key="_id">
@@ -15,3 +17,4 @@
     <button bindtap='onAddClick'>新增</button>
   </view>
 </view>
+</block>

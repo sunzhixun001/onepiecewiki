@@ -101,6 +101,37 @@
   height: 100rpx;
   line-height: 100rpx;
 }
+.footer button.share{
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+.footer button.share:after{
+  border: none;
+}
+.footer button.share > view{
+  color: #353535;
+  height: 50%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+.footer button.share > view.icon{
+  align-items: flex-end;
+}
+.footer button.share > view text{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  line-height: 34rpx;
+}
 .footer .foot-wrap{
   border-top: 1px solid rgba(0,0,0,0.08);
   height: 110rpx;

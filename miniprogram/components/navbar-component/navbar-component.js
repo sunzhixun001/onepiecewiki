@@ -12,10 +12,14 @@ Component({
    * 组件的初始数据
    */
   data: {
-    statusBarHeight: 0
+    statusBarHeight: 0,
+    share: false
   },
   attached: function() {
-    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight});
+    this.setData({ 
+      statusBarHeight: getApp().globalData.statusBarHeight,
+      share: getApp().globalData.share 
+    });
   },
   /**
    * 组件的方法列表

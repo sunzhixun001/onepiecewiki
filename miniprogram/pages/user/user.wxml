@@ -13,7 +13,7 @@
               </block>
               <block wx:else>
                 <text class='fa fa-user-circle' />
-                <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">登入</button>
+                <button open-type='getUserInfo' bindgetuserinfo="bindGetUserInfo">登录</button>
               </block>
             </view>
         </view>

@@ -11,7 +11,8 @@ Page({
     photo: '',
     showAge: '',
     title: '',
-    tags: []
+    tags: [],
+    statusBarHeight: 0,
   },
 
   /**
@@ -19,6 +20,10 @@ Page({
    */
   onLoad: function (options) {
     this.getEvent({id: options.id});
+    const { statusBarHeight } = getApp().globalData;
+    this.setData({
+      statusBarHeight
+    });
   },
 
   /**

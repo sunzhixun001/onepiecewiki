@@ -3,7 +3,7 @@ import { getOpenId, getUserId } from './common/auth';
 App({
   _favorites: [],
   globalData: {},
-  onLaunch: function () {
+  onLaunch: function (options) {
     let globalDataObj = this.globalData;
     Object.defineProperty(globalDataObj, 'favorites', {
       set: value => {
@@ -58,6 +58,7 @@ App({
         this.globalData.userid = value;
       }
     });
+    this.globalData.share = (options.scene === 1007 || options.scene === 1008);
   },
   $watch({ method}) {
 

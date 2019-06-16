@@ -1,6 +1,0 @@
-<view class='container'>
-  <view class='main'>
-    <video src='{{videoSrc}}' object-fit='contain'></video>
-    <view class='title'>{{title}}</view>
-  </view>
-</view>

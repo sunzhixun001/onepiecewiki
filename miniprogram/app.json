@@ -5,7 +5,6 @@
     "pages/characters/characters",
     "pages/user/user",
     "pages/databaseGuide/databaseGuide",
-    "pages/home/home",
     "admin/characters/create/create",
     "pages/test/test",
     "pages/characterSearch/characterSearch",
@@ -25,8 +24,7 @@
     "pages/story/story",
     "pages/characterDetail/characterDetail",
     "admin/events/edit/edit",
-    "pages/news/news",
-    "pages/video/video"
+    "pages/news/news"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

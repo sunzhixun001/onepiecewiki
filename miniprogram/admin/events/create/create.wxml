@@ -1,41 +1,48 @@
-<view>
-	<view class='body'>
-		<view class='item'>
-			<input bindinput="bindTitleInput" placeholder="标题"></input>
-		</view>
-    <view class='item'>
-			<input bindinput="bindAgeInput" placeholder="年份"></input>
-		</view>
-    <view class='item'>
-			<input bindinput="bindShowAgeInput" placeholder="显示年份"></input>
-		</view>
-		<view class='item'>
-			<input bindinput="bindPhotoInput" placeholder="图片"></input>
-		</view>
-    <view class='item'>
-      <view class='add'>
-        <button 
-          bindtap='bindAddTag'
-        >+</button>
-      </view>
-      <view class='ul'>
-        <view 
-          wx:for="{{tags}}" 
-          wx:key="index" 
-          class='li' 
-          bindtouchstart="tagTouchStart"
-          bindtouchmove="tagTouchMove"
-          bindtouchend="tagTouchEnd"
-        >
-          <view class='dl'>
-            <input bindinput='bindTagInput' data-index="{{index}}" />
+<block>
+  <navbar showCapsule="{{true}}"/>
+  <view class='container' style='margin-top: {{statusBarHeight}}px'>
+    <view class='main'>
+      <view class='cw'>
+        <view class='body'>
+          <view class='item'>
+            <input bindinput="bindTitleInput" placeholder="标题"></input>
           </view>
-          <view class='dd'><button class='del'>删除</button></view>
+          <view class='item'>
+            <input bindinput="bindAgeInput" placeholder="年份"></input>
+          </view>
+          <view class='item'>
+            <input bindinput="bindShowAgeInput" placeholder="显示年份"></input>
+          </view>
+          <view class='item'>
+            <input bindinput="bindPhotoInput" placeholder="图片"></input>
+          </view>
+          <view class='item'>
+            <view class='add'>
+              <button 
+                bindtap='bindAddTag'
+              >+</button>
+            </view>
+            <view class='ul'>
+              <view 
+                wx:for="{{tags}}" 
+                wx:key="index" 
+                class='li' 
+                bindtouchstart="tagTouchStart"
+                bindtouchmove="tagTouchMove"
+                bindtouchend="tagTouchEnd"
+              >
+                <view class='dl'>
+                  <input bindinput='bindTagInput' data-index="{{index}}" />
+                </view>
+                <view class='dd'><button class='del'>删除</button></view>
+              </view>
+            </view>
+          </view>
         </view>
       </view>
-		</view>
-	</view>
-	<view class='footer'>
-		<button bindtap="onSureClick" >确定</button>
-	</view>
-</view>
+    </view>
+    <view class='footer'>
+      <button bindtap="onSureClick" >确定</button>
+    </view>
+  </view>
+</block>

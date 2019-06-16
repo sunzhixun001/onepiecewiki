@@ -8,7 +8,8 @@ Page({
     events: [],
     pageIndex: 0,
     pageSize: 20,
-    end: false
+    end: false,
+    statusBarHeight: 0
   },
 
   /**
@@ -16,6 +17,10 @@ Page({
    */
   onLoad: function (options) {
     this.getEvents();
+    const { statusBarHeight } = getApp().globalData;
+    this.setData({
+      statusBarHeight
+    });
   },
 
   /**

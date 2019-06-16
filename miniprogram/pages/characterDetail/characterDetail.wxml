@@ -1,5 +1,5 @@
 <block>
-  <navbar showCapsule="{{true}}"/>
+  <navbar showCapsule="{{true}}" title="{{name}}"/>
   <view class="container"  style='margin-top: {{statusBarHeight}}px'>
     <view class='main'>
       <view class='detail'>
@@ -103,8 +103,13 @@
           <text>已收藏</text>
         </view>
         <view class='li'>
-          <text class='fa fa-share-square-o' />
-          <text>分享</text>
+          <button
+            open-type="share"
+            class='share'
+          >
+            <view class='icon'><text class='fa fa-share-square-o' /></view>
+            <view><text>分享</text></view>
+          </button>
         </view>
       </view>
     </view>
