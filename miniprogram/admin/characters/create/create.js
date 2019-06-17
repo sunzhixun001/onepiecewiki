@@ -30,7 +30,7 @@ Page({
     birthday: '',
     roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
-    levels: ['元帅', '大将', '中将','大佐'],
+    levels: ['元帅', '大将', '中将', '大佐','三等兵'],
     positions: ['总司令官','参谋总长'],
     relationTypes: ['爷爷', '父亲', '义兄'],
     relationCharacters: [],
