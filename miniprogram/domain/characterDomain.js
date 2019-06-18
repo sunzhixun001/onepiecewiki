@@ -1,4 +1,5 @@
 import {
+  create,
   getCharacter,
   getList,
   getListInPriateReg,
@@ -114,7 +115,17 @@ const fetchListInGroup = ({ groupName, success }) => {
     success && success(res);
   })
 };
+// 新增一个人物
+const createCharacter = ({ biological, success}) => {
+  const promise 
+    = create({ biological})
+    .then(res => {
+      const { _id, errMsg } = res;
+      success && success(errMsg === "collection.add:ok" && _id);
+    });
+};
 export {
+  createCharacter,
   fetchCharacter,
   fetchList,
   fetchListInGroup,

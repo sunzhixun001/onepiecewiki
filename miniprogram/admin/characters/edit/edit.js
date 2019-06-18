@@ -1,7 +1,8 @@
 import { update, getListField } from '../../../database/characterRepository';
 import { CharacterFactory } from '../../../entity/factory';
 import { getList as getGroupsList } from '../../../database/groups';
-import { fetchRegexp, fetchCharacter } from '../../../domain/characterDomain';
+import { fetchRegexp, fetchCharacter, createCharacter } from '../../../domain/characterDomain';
+import { getFetchObj} from '../methods';
 
 Page({
 
@@ -45,7 +46,10 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-		this.getCharacter({id: options.id});
+    const { id } = options;
+    if (id){
+		  this.getCharacter({id: options.id});
+    }
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
 	},
 
@@ -266,7 +270,20 @@ Page({
   bindJapaneseNameInput: function (e) {
     this.setData({ japaneseName: e.detail.value });
   },
-	onSureClick: function() {
+  onCreateClick: function() {
+    const biological = getFetchObj.call(this);
+    createCharacter({
+      biological,
+      success: result => {
+        if (result) {
+          wx.showToast({
+            title: '新建成功'
+          })
+        }
+      }
+    });
+  },
+	onSaveClick: function() {
     let data = {
       name: this.data.name,
       fullname: this.data.fullname,

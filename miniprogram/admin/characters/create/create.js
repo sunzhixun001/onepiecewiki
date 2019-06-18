@@ -1,8 +1,8 @@
 import Biological from '../../../entity/biological';
 import Pirate from '../../../entity/pirate';
 import { CharacterFactory} from '../../../entity/factory';
-import { create, getListField } from '../../../database/characterRepository';
-import { fetchRegexp } from '../../../domain/characterDomain';
+import { getListField } from '../../../database/characterRepository';
+import { fetchRegexp, createCharacter } from '../../../domain/characterDomain';
 
 Page({
 
@@ -51,6 +51,10 @@ Page({
   onLoad: function (options) {
     this.getCharacterListField(); 
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
+    wx.showModal({
+      title: 'aaa',
+      content: 'bbb',
+    })
   },
 
 	/**
@@ -260,16 +264,14 @@ Page({
     const factory = new CharacterFactory({ type: this.data.role});
     const biological = factory.create({data});
     // console.log(biological);
-		create({ biological, success: res => {
-			// errMsg:"collection.add:ok"
-			// _id:"57896b495ce4c1a803352b52014c5f39"
-			const { _id, errMsg} = res;
-			if (errMsg === "collection.add:ok" && _id){
-				wx.showToast({
-					title: '添加成功'
-				});
-				// this.setData({ name:''});
-			}
+		createCharacter({ 
+      biological, 
+      success: result => {
+        if (result){
+          wx.showToast({
+            title: '新建成功'
+          })
+        }
 		}});
   },
   getBiological: () => {
@@ -306,5 +308,8 @@ Page({
   },
   closeModal: function() {
     this.setData({searchModalActivate: false});
+  },
+  formReast: function() {
+
   }
 })

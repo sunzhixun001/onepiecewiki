@@ -3,6 +3,7 @@
   <view class='container' style='margin-top: {{statusBarHeight}}px'>
     <view class='main'>
       <view class='body'>
+      <form bindreset='formReast'>
         <view class='item'>
           <view class='avator'><image src='{{avator}}' mode='widthFix' /></view>
         </view>
@@ -109,6 +110,7 @@
             </view>
           </view>
         </view>
+        </form>
       </view>
       <view class='footer'>
         <button bindtap="onSureClick" >确定</button>

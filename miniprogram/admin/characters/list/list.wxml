@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class='footer'>
-      <navigator url="/admin/characters/create/create" open-type="navigate">
+      <navigator url="/admin/characters/edit/edit" open-type="navigate">
         <text>新建</text>
       </navigator>
     </view>

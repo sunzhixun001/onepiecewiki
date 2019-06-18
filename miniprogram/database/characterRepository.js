@@ -4,15 +4,11 @@ const db = getDatabase();
 const collection = db.collection('biologicals');
 // 新增一个人物
 export const create = ({ biological, success}) => {
+  const promise = 
   collection.add({
     data: biological
-  })
-  .then(res => {
-		success && success(res);
-  })
-  .catch(err => {
-    console.error(err);
   });
+  return promise;
 };
 // 获取全部人物
 export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'asc']}) => {

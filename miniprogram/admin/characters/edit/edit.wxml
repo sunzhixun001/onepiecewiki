@@ -108,7 +108,8 @@
         </view>
       </view>
       <view class='footer'>
-        <button bindtap="onSureClick" >保存</button>
+        <button bindtap="onSaveClick" wx:if="{{id}}">保 存</button>
+        <button bindtap="onCreateClick" wx:else>确 定</button>
       </view>
     </view>
   </view>
