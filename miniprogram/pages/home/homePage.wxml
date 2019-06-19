@@ -1,0 +1,40 @@
+<block>
+  <navbar />
+  <view class="container" style='margin-top: {{statusBarHeight}}px'>
+    <view class="main">
+      <view class="cw">
+        <view class="banner-area">
+          <swiper
+            next-margin="100px"
+            circular
+          >
+            <swiper-item>
+                <view class="img">
+                  <image 
+                    src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-1.png" 
+                    mode="widthFix"
+                  />
+                </view>
+            </swiper-item>
+            <swiper-item>
+              <view class="img">
+                <image 
+                  src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-2.png" 
+                  mode="widthFix"
+                />
+              </view>
+            </swiper-item>
+            <swiper-item>
+              <view class="img">
+                <image 
+                  src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-3.png" 
+                  mode="widthFix"
+                />
+              </view>
+            </swiper-item>
+          </swiper>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

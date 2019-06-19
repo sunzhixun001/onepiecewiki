@@ -1,0 +1,21 @@
+@import "../../style/commos.wxss";
+.cw{
+  padding-right: 0;
+}
+.banner-area{
+  padding-top: 30rpx;
+}
+swiper{
+  height: 800rpx;
+}
+swiper .img{
+  width: 460rpx;
+  height: 600rpx;
+  overflow: hidden;
+  padding: 20rpx;
+}
+swiper .img image{
+  width: 460rpx;
+  border-radius: 20rpx;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);
+}

@@ -1,18 +1,18 @@
-// pages/deployFunctions/deployFunctions.js
+// miniprogram/pages/home/homePage.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    statusBarHeight: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 
   /**
