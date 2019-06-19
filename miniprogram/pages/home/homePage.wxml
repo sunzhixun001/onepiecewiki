@@ -5,7 +5,8 @@
       <view class="wrap">
         <view class="banner-area">
           <swiper
-            next-margin="100px"
+          previous-margin='30px'
+            next-margin="70px"
             circular
           >
             <swiper-item>
@@ -14,6 +15,7 @@
                     src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-1.png" 
                     mode="widthFix"
                   />
+                  <view class="years">海元历1522-1524年</view>
                 </view>
             </swiper-item>
             <swiper-item>
@@ -22,6 +24,7 @@
                   src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-2.png" 
                   mode="widthFix"
                 />
+                <view class="years">海元历0-1521年</view>
               </view>
             </swiper-item>
             <swiper-item>
@@ -30,6 +33,7 @@
                   src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-3.png" 
                   mode="widthFix"
                 />
+                <view class="years">史前历史</view>
               </view>
             </swiper-item>
           </swiper>
