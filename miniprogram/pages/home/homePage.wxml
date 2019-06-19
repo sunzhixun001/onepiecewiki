@@ -2,7 +2,7 @@
   <navbar />
   <view class="container" style='margin-top: {{statusBarHeight}}px'>
     <view class="main">
-      <view class="cw">
+      <view class="wrap">
         <view class="banner-area">
           <swiper
             next-margin="100px"

@@ -9,13 +9,13 @@ swiper{
   height: 800rpx;
 }
 swiper .img{
-  width: 460rpx;
+  width:100%;
   height: 600rpx;
   overflow: hidden;
   padding: 20rpx;
 }
 swiper .img image{
-  width: 460rpx;
+  width:100%;
   border-radius: 20rpx;
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);
 }
