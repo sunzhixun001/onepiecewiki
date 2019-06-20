@@ -1,4 +1,29 @@
 import { CharacterFactory } from '../../entity/factory';
+const getEmptyObj = function() {
+  let data = {
+    name: '',
+    fullname: '',
+    avator: '',
+    img: '',
+    role: '',
+    bounty: 0,
+    priateRegimentName: '',
+    devilfruitType: '',
+    devilfruitName: '',
+    levelName: '',
+    age: 0,
+    height: 0,
+    birthday: '',
+    relationships: [],
+    group: [],
+    job: '',
+    pinyinName: '',
+    englishName: '',
+    japaneseName: '',
+    position: ''
+  };
+  return data;
+};
 const getFetchObj = function() {
   let data = {
     name: this.data.name,
@@ -31,5 +56,6 @@ const getFetchObj = function() {
   return biological;
 }
 export {
-  getFetchObj
+  getFetchObj,
+  getEmptyObj
 };

@@ -51,9 +51,7 @@
           <input bindinput="bindBountyInput" placeholder="悬赏金" value='{{bounty}}' />
         </view>
         <view class='item' wx:if="{{role === 2}}">
-          <picker bindchange="bindLevelChange" range="{{levels}}">
-            <view class="picker"><text>{{levelName}}</text></view>
-          </picker>
+          <input placeholder="海军身份" value="{{levelName}}" bindchange="bindLevelChange"/>
         </view>
         <view class='item'>
           <radio-group class="radio-group" bindchange="devilfruitTypesChange">

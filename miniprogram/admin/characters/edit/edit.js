@@ -1,8 +1,7 @@
 import { update, getListField } from '../../../database/characterRepository';
 import { CharacterFactory } from '../../../entity/factory';
-import { getList as getGroupsList } from '../../../database/groups';
 import { fetchRegexp, fetchCharacter, createCharacter } from '../../../domain/characterDomain';
-import { getFetchObj} from '../methods';
+import { getFetchObj, getEmptyObj} from '../methods';
 
 Page({
 
@@ -27,14 +26,12 @@ Page({
 		priateRegimentName: '',
     devilfruitType: '无',
     devilfruitName: '',
-    levelName: '无',
+    levelName: '',
     group: [],
     relationships: [],
     relationshipIndex: 0,
     roles: [{ type: 0, name: '无' }, { type: 1, name: '海贼' }, { type: 2, name: '海军' }, { type: 3, name: '革命军' }],
     devilfruitTypes: ['无', '自然系', '动物系', '超人系'],
-    levels: ['元帅', '大将', '中将', '大佐','三等兵'],
-    groups: ['极恶的世代', '王下七武海', '四皇', '甜点四将星', 'CP9', 'CP0', '达旦家族'],
     job: '',
     characters: [],
     searchModalActivate: false,
@@ -195,9 +192,9 @@ Page({
     });
   },
   bindLevelChange: function (e) {
-    const index = parseInt(e.detail.value);
+    const value = e.detail.value;
     this.setData({
-      levelName: this.data.levels[index]
+      levelName: value
     });
   },
   bindBirthdayInput: function(e) {
@@ -277,7 +274,8 @@ Page({
         if (result) {
           wx.showToast({
             title: '新建成功'
-          })
+          });
+          this.setData(getEmptyObj());
         }
       }
     });

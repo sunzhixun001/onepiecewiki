@@ -4,7 +4,8 @@ page{
 	/* background-size: cover; */
 	/* background-position: center; */
 	color: #3D3D3D;
-}.listArea{
+}
+.listArea{
 	padding-bottom: 100rpx;
 }
 .listArea .ul .li{

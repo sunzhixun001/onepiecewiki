@@ -1,6 +1,7 @@
 {
   "cloud": true,
   "pages": [
+    "admin/events/list/list",
     "pages/home/homePage",
     "pages/timeLine/timeLine",
     "pages/characters/characters",
@@ -8,7 +9,6 @@
     "pages/test/test",
     "pages/characterSearch/characterSearch",
     "pages/timeLineSearch/timeLineSearch",
-    "admin/events/list/list",
     "admin/events/create/create",
     "admin/characters/list/list",
     "admin/characters/edit/edit",

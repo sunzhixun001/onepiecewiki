@@ -8,7 +8,7 @@
   background-color: #FFF;
   border: solid 1px #D9312B;
   border-radius: 10rpx;
-  top: 100rpx;
+  top: 150rpx;
   box-shadow: 1px 1px 5px 3px #D9312B;
   z-index: 100;
 }
