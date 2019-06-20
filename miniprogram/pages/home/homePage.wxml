@@ -11,18 +11,19 @@
           >
             <swiper-item>
                 <view class="img">
+                  <view class='title'>传说从这里开始!</view>
                   <image 
                     src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-1.png" 
-                    mode="widthFix"
+                    mode=""
                   />
-                  <view class="years">海元历1522-1524年</view>
+                  <view class="years">海元历1522年</view>
                 </view>
             </swiper-item>
             <swiper-item>
               <view class="img">
                 <image 
                   src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-2.png" 
-                  mode="widthFix"
+                  mode=""
                 />
                 <view class="years">海元历0-1521年</view>
               </view>
@@ -31,7 +32,7 @@
               <view class="img">
                 <image 
                   src="cloud://develop-6e54e7.6465-develop-6e54e7/img/timeline-banner-3.png" 
-                  mode="widthFix"
+                  mode=""
                 />
                 <view class="years">史前历史</view>
               </view>
