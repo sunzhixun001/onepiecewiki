@@ -10,11 +10,9 @@ export const get = ({ id, success}) => {
     .then(res => { success && success(res);})
     .catch();
 };
-export const getList = ({ success }) => {
+export const getList = () => {
+  const promise = 
   collection
-    .get()
-    .then(res => {
-      success && success(res);
-    })
-    .catch()
+    .get();
+  return promise;
 };

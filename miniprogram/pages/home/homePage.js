@@ -1,11 +1,16 @@
-// miniprogram/pages/home/homePage.js
+import { getBannerList} from '../../domain/bannersDomain';
+import { getStoryList } from '../../domain/storysDomain';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    statusBarHeight: 0
+    statusBarHeight: 0,
+    banners: [],
+    storys: [],
+    pageIndex: 1,
+    pageSize: 20
   },
 
   /**
@@ -13,6 +18,8 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
+    this.fetchBannerList();
+    this.fetchStoryList({pageIndex: this.data.pageIndex, pageSize: this.data.pageSize});
   },
 
   /**
@@ -62,5 +69,25 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  fetchBannerList: function() {
+    getBannerList({
+      success: data => {
+        this.setData({
+          banners: data
+        });
+      }
+    });
+  },
+  fetchStoryList: function ({ pageIndex, pageSize}) {
+    getStoryList({
+      pageIndex,
+      pageSize,
+      success: data => {
+        this.setData({
+          storys: data
+        });
+      }
+    });
   }
 })

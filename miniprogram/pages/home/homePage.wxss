@@ -1,43 +1,73 @@
 @import "../../style/commos.wxss";
 page{
 	height: 100%;
-	background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071);
+	/* background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071); */
 	color: #3D3D3D;
 }
 .banner-area{
   padding-top: 30rpx;
-  padding-left: 20rpx;
+  margin-bottom: 50rpx;
 }
 swiper{
-  height: 820rpx;
+  height: 320rpx;
+}
+.item-container{
+  position: relative;
+  padding: 20rpx 20rpx 20rpx 0;
 }
 swiper .img{
-  height: 820rpx;
+  height: 290rpx;
   overflow: hidden;
-  padding: 20rpx 20rpx 20rpx 0;
-  position: relative;
-}
-swiper .img image{
-  width:100%;
-  height: 90%;
   border-radius: 20rpx;
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);
 }
-swiper .img .years{
+swiper .img image{
+  width: 100%;
+  
+}
+swiper .item-container .years{
   position: absolute;
-  bottom: 150rpx;
+  bottom: 50rpx;
   left: 40rpx;
   font-weight: 700;
   color: #FFFFFF;
   font-size: 1.2rem;
   text-shadow: 1px 1px 0 #212121;
 }
-swiper .img .title{
+swiper .item-container .title{
   position: absolute;
   top: 50rpx;
   left: 40rpx;
-  text-shadow: 1px 1px 0 #212121;
-  color: #FFFFFF;
+  text-shadow: 1px 1px 1px #FFFFFF;
+  color: #D9312B;
   font-weight: 800;
   font-size: 1.4rem;
+}
+/* 瀑布流 故事篇章列表 */
+.water-area{
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 20rpx;
+  background: #f4f4f4;
+}
+.water-area .li{
+  background: #FFFFFF;
+  margin-bottom: 20rpx;
+  break-inside: avoid;
+}
+.water-area{
+  column-count: 2;
+  column-gap: 2%;
+  column-fill: auto;
+}
+.water-area .detail{
+  padding: 20rpx;
+}
+.water-area .img{
+  width: 100%;
+  border-radius: 10rpx 10rpx 0 0;
+  overflow: hidden;
+}
+.water-area image{
+  width: 100%;
 }

@@ -14,3 +14,30 @@
   height: 0;
   opacity: 0;
 }
+.area{
+  display: flex;
+  align-items: stretch;
+}
+.listArea{
+  flex: 1;
+}
+/* 时间轴 */
+.axisArea{
+  width: 10rpx;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 20rpx;
+}
+.axisArea .line{
+  height: 100%;
+  border-left: 1px #FFFFFF solid;
+  position: relative;
+  z-index: 300;
+}
+.axisArea .line .fa{
+  color: #D9312B;
+  z-index: 300;
+  position: absolute;
+  left: -2px;
+}

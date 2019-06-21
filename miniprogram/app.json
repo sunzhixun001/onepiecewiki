@@ -1,9 +1,9 @@
 {
   "cloud": true,
   "pages": [
+    "pages/timeLine/timeLine",
     "pages/home/homePage",
     "admin/events/list/list",
-    "pages/timeLine/timeLine",
     "pages/characters/characters",
     "pages/user/user",
     "pages/test/test",

@@ -46,3 +46,6 @@
 .fa-share-square-o:before {
   content: "\f045";
 }
+.fa-flag:before {
+  content: "\f024";
+}

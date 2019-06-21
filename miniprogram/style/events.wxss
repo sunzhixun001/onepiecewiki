@@ -11,7 +11,7 @@ page{
 .listArea .ul .li{
 	display: flex;
 	z-index: 100;
-	position: relative;
+	/* position: relative; */
 	margin-top: 20rpx;
 }
 .boxRadius{

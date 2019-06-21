@@ -13,7 +13,8 @@ Page({
     statusBarHeight: 0,
     searchInputHeight: 0,
     searchActive: false,
-    keyword: ''
+    keyword: '',
+    flegTop: 0
   },
 
   /**
@@ -64,7 +65,6 @@ Page({
    */
   onReachBottom: function () {
     if (!this.data.allData){
-      console.log("onReachBottom");
       const _pageIndex = this.data.pageIndex + 1;
       this.getEventsList({ limit: this.data.pageSize, pageIndex: _pageIndex});
     }
@@ -76,6 +76,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onPageScroll: function(e) {
+    const { scrollTop} = e;
+    this.fixFlag({ scrollTop});
   },
   bindAdmin: function() {
     wx.navigateTo({
@@ -89,6 +93,19 @@ Page({
         this.setData({
           events: this.data.events.concat(res.data),
           pageIndex
+        }, () => {
+          // const query = wx.createSelectorQuery();
+          // query.select('#area')
+          //   .boundingClientRect(rect => {
+          //     const { height} = rect;
+          //     console.log(rect); 
+          //   })
+          //   .exec();
+          // query.selectViewport('#area')
+          //   .scrollOffset(rect => {
+          //     console.log(rect);
+          //   })
+          //   .exec();
         });
         if (res.data.length < limit){
           this.setData({ allData: true});
@@ -130,5 +147,17 @@ Page({
       keyword: '' ,
       searchInputHeight: 0
     });
+  },
+  fixFlag: function ({ scrollTop}) {
+    const axisHeight = getApp().globalData.screenHeight - (this.data.statusBarHeight + 10);
+    const query = wx.createSelectorQuery();
+    query.select('#area')
+      .boundingClientRect(rect => {
+        const { height } = rect;
+        this.setData({
+          flegTop: axisHeight * (scrollTop / height)
+        });
+      })
+      .exec();
   }
 })
