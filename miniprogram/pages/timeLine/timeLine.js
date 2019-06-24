@@ -1,4 +1,4 @@
-import { getList} from '../../database/events';
+import { getEventList} from '../../domain/eventsDomain';
 
 Page({
 
@@ -7,21 +7,26 @@ Page({
    */
   data: {
 		events: [],
-    pageIndex: 0,
     pageSize: 20,
+    pageIndexs: [0,0,0,0],
     allData: false,
     statusBarHeight: 0,
     searchInputHeight: 0,
     searchActive: false,
+    chooseActive: false,
     keyword: '',
-    flegTop: 0
+    flegTop: 0, 
+    currentIndex: 0,
+    tabs: ['太古时代','0-1521','1522','1523-1524'],
+    ranges: [[-9999, 0]],
+    itemsHeight: getApp().globalData.screenHeight
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getEventsList({ limit: this.data.pageSize, pageIndex: this.data.pageIndex });
+    this.fetchEvetns();
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
   },
 
@@ -66,9 +71,8 @@ Page({
   onReachBottom: function () {
     if (!this.data.allData){
       const _pageIndex = this.data.pageIndex + 1;
-      this.getEventsList({ limit: this.data.pageSize, pageIndex: _pageIndex});
+      this.fetchEventsList({ limit: this.data.pageSize, pageIndex: _pageIndex});
     }
-    
   },
 
   /**
@@ -76,6 +80,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  fetchEvetns: function() {
+    this.doFetchEvetns({index: 0});
+  },
+  doFetchEvetns: function({index}) {
+    this.fetchEventsList({
+      lt: this.data.ranges[index][1],
+      gte: this.data.ranges[index][0],
+      limit: this.data.pageSize,
+      pageIndex: this.data.pageIndexs[index]
+    });
   },
   onPageScroll: function(e) {
     const { scrollTop} = e;
@@ -86,28 +101,25 @@ Page({
       url: '/admin/events/list/list'
     })
   },
-  getEventsList({ limit, pageIndex}) {
+  fetchEventsList({ limit, pageIndex, lt, gte}) {
     const skip = limit * pageIndex;
-    getList({
-      limit, skip, success: res => {
+    getEventList({
+      lt,
+      gte,
+      limit, skip, success: data => {
         this.setData({
-          events: this.data.events.concat(res.data),
+          events: this.data.events.concat(data),
           pageIndex
         }, () => {
-          // const query = wx.createSelectorQuery();
-          // query.select('#area')
-          //   .boundingClientRect(rect => {
-          //     const { height} = rect;
-          //     console.log(rect); 
-          //   })
-          //   .exec();
-          // query.selectViewport('#area')
-          //   .scrollOffset(rect => {
-          //     console.log(rect);
-          //   })
-          //   .exec();
+          const query = wx.createSelectorQuery();
+          query.select('#ul')
+            .boundingClientRect(rect => {
+              const { height} = rect;
+              this.setData({itemsHeight: height + 30});
+            })
+            .exec();
         });
-        if (res.data.length < limit){
+        if (data.length < limit){
           this.setData({ allData: true});
         }
 			  // console.log(res);

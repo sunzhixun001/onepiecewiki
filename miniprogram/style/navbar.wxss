@@ -36,7 +36,9 @@
   padding-right: 130rpx;
 }
 .nav-head .border-right{
-  border-right: solid 1px #FFFFFF;
+  border-right: solid 1px #CCCCCC;
+  margin-right: 20rpx;
+  padding-right: 20rpx;
 }
 .nav-content image{
   width: 150rpx;

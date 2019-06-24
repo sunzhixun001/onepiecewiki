@@ -1,4 +1,4 @@
-import { get, update } from '../../../database/events';
+import { get, update } from '../../../database/eventsRepository';
 import Event from '../../../entity/events';
 Page({
 

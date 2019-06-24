@@ -1,4 +1,4 @@
-import { getRegexp } from '../../database/events';
+import { getRegexp } from '../../database/eventsRepository';
 Page({
 
   /**

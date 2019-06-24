@@ -1,5 +1,5 @@
 import Event from '../../../entity/events';
-import { create} from '../../../database/events';
+import { create} from '../../../database/eventsRepository';
 Page({
 
   /**

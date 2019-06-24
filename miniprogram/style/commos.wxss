@@ -161,3 +161,50 @@
   color: #B2B2B2;
   font-size: 24rpx;
 }
+/* tab */
+.bgGray{
+	background-color: #F7F7F7;
+}
+.borderBottom{
+	border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.listPage .tabListArea {
+	height: 128rpx;
+	position: relative;
+}
+.listPage .tabListArea .headerTabList {
+	text-align: center;
+	height: 100%;
+	padding: 0 30px;
+}
+.swiper-wrapper{
+	height: 100%;
+}
+.listPage .tabListArea .headerTabList .swiper-wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.listPage .tabListArea .headerTabList .item{
+	padding: 0;
+	margin: 0 1em;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+.listPage .tabListArea .headerTabList .item.on::after{
+	content: "";
+	display: block;
+	width: 100%;
+	border-bottom: 6rpx solid #D9312B;
+	position: absolute;
+	bottom: 0;
+}
+.listPage .tabListArea .headerTabList .item text{
+	font-weight: bold;
+	color: rgb(61, 61, 61);
+}
+.listPage .tabListArea .headerTabList .item.on text{
+	color: #D9312B;
+}

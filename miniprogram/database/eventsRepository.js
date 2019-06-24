@@ -16,23 +16,20 @@ export const get = ({ id, success}) => {
     .catch()
 };
 // 获取全部事件列表
-export const getList = ({ limit = 20, skip = 0, field, success}) => {
+export const getList = ({ lt, gte, limit = 20, skip = 0, field}) => {
   let _collection = 
     collection
+      .where({
+        age: db.command.lt(lt).and(db.command.gte(gte))
+      })
       .orderBy('age', 'asc')
       .limit(limit)
       .skip(skip);
   if (field){
     _collection = _collection.field(field)
   } 
-  _collection
-    .get()
-		.then(res => {
-			success && success(res);
-		})
-		.catch(err => {
-
-		});
+  let promise = _collection.get();
+  return promise;
 };
 // 新增一个事件
 export const create = ({ event, success}) => {

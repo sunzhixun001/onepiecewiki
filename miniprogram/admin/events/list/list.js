@@ -1,4 +1,4 @@
-import { getList } from '../../../database/events';
+import { getList } from '../../../database/eventsRepository';
 Page({
 
   /**

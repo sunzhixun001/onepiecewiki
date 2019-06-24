@@ -2,7 +2,10 @@
   <view class='nav-wrap'>
     <view class='nav-content' style='height:{{statusBarHeight}}px'>
       <view class='nav-head'>
-        <view class="border-right">
+        <view wx:if="{{chooseActive}}" class="border-right">
+          <text class='fa fa-close'/>
+        </view>
+        <view wx:else class="border-right">
           <text class="fa fa-bars" />
         </view>
         <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
@@ -33,25 +36,44 @@
   </view>
   <view class='container' style="margin-top: {{searchInputHeight}}rpx">
     <view class='main timeline listPage' style='margin-top: {{statusBarHeight}}px'>
+      <view class='bgGray borderBottom tabListArea'>
+        <view class='swiper-container headerTabList'>
+          <view class='swiper-wrapper'>
+            <view 
+              class="swiper-slide item {{index === currentIndex ? 'on':''}}" 
+              wx:for="{{tabs}}" 
+              wx:key="index"
+              data-index="{{index}}"
+              bindtap="bindTabChange"
+            >
+              <text>{{item}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
       <view class='cw'>
         <view class="area" id="area">
           <view class='listArea'>
-            <view class='ul itemList'>
-              <view class='li' wx:for="{{events}}" wx:key="_id">
-                <view class='boxRadius'>
-                  <view class='head'>
-                    <view class='showage'>{{item.showAge}}</view>
-                    <!-- <view class='triangle'></view> -->
-                  </view>
-                  <view class='body'>
-                    <view class='title'>{{item.title}}</view>
-                    <view class='photo' wx:if="{{item.photo}}">
-                      <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+            <swiper style="height: {{itemsHeight}}px">
+              <swiper-item>
+                <view class='ul itemList' id="ul">
+                  <view class='li' wx:for="{{events}}" wx:key="_id">
+                    <view class='boxRadius'>
+                      <view class='head'>
+                        <view class='showage'>{{item.showAge}}</view>
+                        <!-- <view class='triangle'></view> -->
+                      </view>
+                      <view class='body'>
+                        <view class='title'>{{item.title}}</view>
+                        <view class='photo' wx:if="{{item.photo}}">
+                          <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+                        </view>
+                      </view>
                     </view>
                   </view>
                 </view>
-              </view>
-            </view>
+              </swiper-item>
+            </swiper>
           </view>
         </view>
       </view>
