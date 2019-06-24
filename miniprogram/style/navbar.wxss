@@ -22,15 +22,21 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  display: flex;
 }
 .nav-head .fa-angle-left{
   font-size: 50rpx;
   color: #FFFFFF;
 }
-.nav-head .fa-search, .nav-head .fa-close{
+.nav-head .fa{
   color: #FFFFFF;
+}
+.nav-head .fa-search, .nav-head .fa-close{
   padding-top: 30rpx;
   padding-right: 130rpx;
+}
+.nav-head .border-right{
+  border-right: solid 1px #FFFFFF;
 }
 .nav-content image{
   width: 150rpx;

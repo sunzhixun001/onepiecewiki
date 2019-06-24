@@ -11,7 +11,7 @@ const getStoryList = ({ pageIndex, pageSize, success}) => {
     const { errMsg, data } = res;
     if (errMsg === "collection.get:ok"){
       let _data = data.map(d => {
-        d.height = 150 + Math.round(Math.random() * (250 - 150));
+        d.height = 120 + Math.round(Math.random() * (250 - 120));
         return d;
       });
       success && success(_data);

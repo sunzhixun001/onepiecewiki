@@ -49,3 +49,6 @@
 .fa-flag:before {
   content: "\f024";
 }
+.fa-bars:before {
+  content: "\f0c9";
+}

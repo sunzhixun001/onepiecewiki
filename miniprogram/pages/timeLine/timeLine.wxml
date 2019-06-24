@@ -2,6 +2,9 @@
   <view class='nav-wrap'>
     <view class='nav-content' style='height:{{statusBarHeight}}px'>
       <view class='nav-head'>
+        <view class="border-right">
+          <text class="fa fa-bars" />
+        </view>
         <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
           <text class='fa fa-search'/>
         </view>

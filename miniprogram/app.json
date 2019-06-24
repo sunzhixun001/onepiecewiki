@@ -30,6 +30,12 @@
     "list": [
       {
         "pagePath": "pages/home/homePage",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_selected.png"
+      },
+      {
+        "pagePath": "pages/timeLine/timeLine",
         "text": "时间线",
         "iconPath": "images/timeline.png",
         "selectedIconPath": "images/timeline_selected.png"

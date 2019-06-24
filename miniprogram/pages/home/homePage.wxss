@@ -23,7 +23,7 @@ swiper .img{
 }
 swiper .img image{
   width: 100%;
-  
+  break-inside: avoid;
 }
 swiper .item-container .years{
   position: absolute;
@@ -59,6 +59,7 @@ swiper .item-container .title{
   column-count: 2;
   column-gap: 2%;
   column-fill: auto;
+  padding-bottom: 50rpx;
 }
 .water-area .detail{
   padding: 20rpx;
@@ -67,7 +68,11 @@ swiper .item-container .title{
   width: 100%;
   border-radius: 10rpx 10rpx 0 0;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  break-inside: avoid;
 }
 .water-area image{
   width: 100%;
+  break-inside: avoid;
 }
