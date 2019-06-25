@@ -3,7 +3,7 @@
 }
 .main{
   width: 100%;
-  padding-bottom: 128rpx;
+  /* padding-bottom: 128rpx; */
 }
 .bgGray{
   background: #F7F7F7;

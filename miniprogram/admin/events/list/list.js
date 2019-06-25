@@ -1,4 +1,4 @@
-import { getList } from '../../../database/eventsRepository';
+import { getEventList } from '../../../domain/eventsDomain';
 Page({
 
   /**
@@ -6,7 +6,7 @@ Page({
    */
   data: {
     events: [],
-    pageIndex: 0,
+    pageIndex: 1,
     pageSize: 20,
     end: false,
     statusBarHeight: 0
@@ -74,17 +74,19 @@ Page({
 
   },
   getEvents() {
-    getList({
-      limit: this.data.pageSize,
-      skip: this.data.pageSize * this.data.pageIndex,
+    getEventList({
+      lt: 9999, 
+      gte: -9999,
+      pageSize: this.data.pageSize,
+      pageIndex: this.data.pageIndex,
       field: {title: true, age: true},
-      success: res => {
-        console.log(res);
+      success: data => {
+        // console.log(res);
         let _data = {
-          events: this.data.events.concat(res.data),
+          events: this.data.events.concat(data),
           pageIndex: this.data.pageIndex + 1
         };
-        if (res.data.length < this.data.pageSize){
+        if (data.length < this.data.pageSize){
           _data.end = true;
         }
         this.setData(_data);

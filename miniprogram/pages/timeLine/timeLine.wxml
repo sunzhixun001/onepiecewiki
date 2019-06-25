@@ -1,6 +1,6 @@
 <block>
   <view class='nav-wrap'>
-    <view class='nav-content' style='height:{{statusBarHeight}}px'>
+    <view class='nav-content' style='height:{{barHeight}}px'>
       <view class='nav-head'>
         <view wx:if="{{chooseActive}}" class="border-right">
           <text class='fa fa-close'/>
@@ -35,7 +35,7 @@
       </view>
   </view>
   <view class='container' style="margin-top: {{searchInputHeight}}rpx">
-    <view class='main timeline listPage' style='margin-top: {{statusBarHeight}}px'>
+    <view class='main timeline listPage' style='height: {{mainHeight}}px;margin-top: {{barHeight}}px'>
       <view class='bgGray borderBottom tabListArea'>
         <view class='swiper-container headerTabList'>
           <view class='swiper-wrapper'>
@@ -51,42 +51,83 @@
           </view>
         </view>
       </view>
-      <view class='cw'>
-        <view class="area" id="area">
-          <view class='listArea'>
-            <swiper style="height: {{itemsHeight}}px">
-              <swiper-item>
-                <view class='ul itemList' id="ul">
-                  <view class='li' wx:for="{{events}}" wx:key="_id">
-                    <view class='boxRadius'>
-                      <view class='head'>
-                        <view class='showage'>{{item.showAge}}</view>
-                        <!-- <view class='triangle'></view> -->
-                      </view>
-                      <view class='body'>
-                        <view class='title'>{{item.title}}</view>
-                        <view class='photo' wx:if="{{item.photo}}">
-                          <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
-                        </view>
-                      </view>
-                    </view>
-                  </view>
-                </view>
-              </swiper-item>
-            </swiper>
+      <view class="scroll-wrap" style="height: {{scrollViewHeight}}px">
+        <view class="axisArea">
+            <view class="line">
+              <view class="fa fa-flag" style="top: {{flegTop}}px" />
+            </view>
           </view>
-        </view>
+        <scroll-view 
+          style="height: {{scrollViewHeight}}px"
+          scroll-y 
+          lower-threshold="100"
+          bindscrolltolower="scrolltolower"
+        >
+          <view class='cw'>
+            <view class="area" id="area">
+              <view class='listArea'>
+                <swiper 
+                  style="height: {{itemsHeight}}px"
+                  current="{{currentIndex}}"
+                  circular
+                  bindchange="swiperChange"
+                >
+                  <swiper-item>
+                    <view class='ul itemList' id="ul0">
+                      <event-item 
+                        wx:for="{{events[0]}}" 
+                        wx:key="_id"
+                        showAge="{{item.showAge}}"
+                        title="{{item.title}}"
+                        photo="{{item.photo}}"
+                        img="{{item.img}}"
+                      />
+                    </view>
+                  </swiper-item>
+                  <swiper-item>
+                    <view class='ul itemList' id="ul1">
+                      <event-item 
+                        wx:for="{{events[1]}}" 
+                        wx:key="_id"
+                        showAge="{{item.showAge}}"
+                        title="{{item.title}}"
+                        photo="{{item.photo}}"
+                      />
+                    </view>
+                  </swiper-item>
+                  <swiper-item>
+                    <view class='ul itemList' id="ul2">
+                      <event-item 
+                        wx:for="{{events[2]}}" 
+                        wx:key="_id"
+                        showAge="{{item.showAge}}"
+                        title="{{item.title}}"
+                        photo="{{item.photo}}"
+                      />
+                    </view>
+                  </swiper-item>
+                  <swiper-item>
+                    <view class='ul itemList' id="ul3">
+                      <event-item 
+                        wx:for="{{events[3]}}" 
+                        wx:key="_id"
+                        showAge="{{item.showAge}}"
+                        title="{{item.title}}"
+                        photo="{{item.photo}}"
+                      />
+                    </view>
+                  </swiper-item>
+                </swiper>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
       </view>
     </view>
     <view class='control' wx:if="{{true}}">
       <view class='control-inner'>
         <view bindtap='bindAdmin'>管理</view>
       </view>
-    </view>
-  </view>
-  <view class="axisArea" style='padding-top:{{statusBarHeight + 10}}px'>
-    <view class="line">
-      <view class="fa fa-flag" style="top: {{flegTop}}px" />
     </view>
   </view>
 </block>

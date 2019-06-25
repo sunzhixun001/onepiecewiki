@@ -5,7 +5,7 @@
       <view class="wrap">
         <view class="banner-area">
           <swiper
-          previous-margin='30px'
+            previous-margin='30px'
             next-margin="70px"
             circular
           >
@@ -14,7 +14,7 @@
               wx:key="_id"
             >
               <view class="item-container">
-                <view class="img">
+                <view class="img" bindtap="switchTimelineTab">
                   <image 
                     src="{{item.url}}" 
                     mode="widthFix"

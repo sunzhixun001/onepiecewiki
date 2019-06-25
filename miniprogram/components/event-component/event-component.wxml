@@ -1,0 +1,13 @@
+<view class='li' data-img="{{img}}" bindtap="itemTap">
+  <view class='boxRadius'>
+    <view class='head'>
+      <view class='showage'>{{showAge}}</view>
+    </view>
+    <view class='body'>
+      <view class='title'>{{title}}</view>
+      <view class='photo' wx:if="{{photo}}">
+        <image src='{{photo}}' mode="widthFix" lazy-load='{{true}}'></image>
+      </view>
+    </view>
+  </view>
+</view>

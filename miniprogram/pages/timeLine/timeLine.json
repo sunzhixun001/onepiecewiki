@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "navbar": "/components/navbar-component/navbar-component"
-  },
-  "onReachBottomDistance": 100
+    "navbar": "/components/navbar-component/navbar-component",
+    "event-item": "/components/event-component/event-component"
+  }
 }

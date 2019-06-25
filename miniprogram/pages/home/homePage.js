@@ -33,7 +33,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**
@@ -89,5 +88,11 @@ Page({
         });
       }
     });
+  },
+  switchTimelineTab: function() {
+    getApp().globalData.timeLineIndex = 2;
+    wx.switchTab({
+      url: '/pages/timeLine/timeLine',
+    })
   }
 })

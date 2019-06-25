@@ -46,6 +46,8 @@ App({
         // this.globalData.statusBarHeight = px2rpx({ px: statusBarHeight, screenWidth}) + 88;
         this.globalData.statusBarHeight = statusBarHeight + 44;
         this.globalData.screenHeight = screenHeight;
+        this.globalData.screenWidth = screenWidth;
+        this.globalData.windowHeight = windowHeight;
       }
     });
     getOpenId({

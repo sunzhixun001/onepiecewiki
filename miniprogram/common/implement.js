@@ -25,3 +25,7 @@ export const px2rpx = ({ px, screenWidth}) => {
   let rpx = (screenWidth / BASE_WIDTH) * px * BASE_SCALE;
   return rpx;
 }
+export const rpx2px = ({ rpx, screenWidth }) => {
+  let px = rpx * (screenWidth / (BASE_WIDTH * BASE_SCALE));
+  return px;
+}

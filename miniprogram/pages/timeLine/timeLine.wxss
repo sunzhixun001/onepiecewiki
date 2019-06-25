@@ -1,7 +1,20 @@
 @import "../../style/commos.wxss";
-@import "../../style/events.wxss";
 @import "../../style/navbar.wxss";
 @import "../../style/awesome.wxss";
+page{
+	height: 100%;
+	background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071);
+	color: #3D3D3D;
+}
+.main{
+  height: 624px;
+}
+.scroll-wrap{
+  position: relative;
+}
+.listArea{
+	padding-bottom: 100rpx;
+}
 /* control */
 .control{
   position: fixed;
@@ -24,7 +37,7 @@
 /* 时间轴 */
 .axisArea{
   width: 10rpx;
-  position: fixed;
+  position: absolute;
   height: 100%;
   top: 0;
   left: 20rpx;

@@ -3,5 +3,5 @@
     "navbar": "/components/navbar-component/navbar-component"
   },
   "enablePullDownRefresh": true,
-  "onReachBottomDistance": 50
+  "onReachBottomDistance": 100
 }

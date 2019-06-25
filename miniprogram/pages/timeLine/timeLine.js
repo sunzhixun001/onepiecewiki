@@ -1,4 +1,6 @@
 import { getEventList} from '../../domain/eventsDomain';
+import { rpx2px} from '../../common/implement';
+const { statusBarHeight, windowHeight, screenHeight, screenWidth} = getApp().globalData;
 
 Page({
 
@@ -6,11 +8,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-		events: [],
+		events: [[],[],[],[]],
     pageSize: 20,
-    pageIndexs: [0,0,0,0],
-    allData: false,
-    statusBarHeight: 0,
+    pageIndexs: [1,1,1,1],
+    allData: [false, false,false,false],
+    barHeight: 0,
     searchInputHeight: 0,
     searchActive: false,
     chooseActive: false,
@@ -18,8 +20,10 @@ Page({
     flegTop: 0, 
     currentIndex: 0,
     tabs: ['太古时代','0-1521','1522','1523-1524'],
-    ranges: [[-9999, 0]],
-    itemsHeight: getApp().globalData.screenHeight
+    ranges: [[-9999, 0], [0, 1522], [1522, 1523], [1523, 1525]],
+    itemsHeight: screenHeight,
+    mainHeight: windowHeight - statusBarHeight,
+    scrollViewHeight: windowHeight - statusBarHeight - rpx2px({ rpx: 128, screenWidth: screenWidth}) - 1
   },
 
   /**
@@ -27,7 +31,7 @@ Page({
    */
   onLoad: function (options) {
     this.fetchEvetns();
-    this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
+    this.setData({ barHeight: statusBarHeight });
   },
 
   /**
@@ -41,7 +45,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const { timeLineIndex } = getApp().globalData;
+    if (timeLineIndex){
+      this.setData({
+        currentIndex: timeLineIndex || 0
+      });
+    }
+    getApp().globalData.timeLineIndex = null;
   },
 
   /**
@@ -69,12 +79,13 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (!this.data.allData){
-      const _pageIndex = this.data.pageIndex + 1;
-      this.fetchEventsList({ limit: this.data.pageSize, pageIndex: _pageIndex});
+    
+  },
+  scrolltolower: function() {
+    if (!this.data.allData[this.data.currentIndex]) {
+      this.doFetchEvetns({ index: this.data.currentIndex });
     }
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -82,14 +93,49 @@ Page({
 
   },
   fetchEvetns: function() {
-    this.doFetchEvetns({index: 0});
+    this.doFetchEvetns({ index: 0 });
+    this.doFetchEvetns({ index: 1 });
+    this.doFetchEvetns({ index: 2 });
+    this.doFetchEvetns({ index: 3 });
   },
   doFetchEvetns: function({index}) {
     this.fetchEventsList({
+      index,
       lt: this.data.ranges[index][1],
       gte: this.data.ranges[index][0],
-      limit: this.data.pageSize,
+      pageSize: this.data.pageSize,
       pageIndex: this.data.pageIndexs[index]
+    });
+  },
+  fetchEventsList({ index, pageSize, pageIndex, lt, gte }) {
+    getEventList({
+      lt,
+      gte,
+      pageSize, 
+      pageIndex, 
+      success: data => {
+        let _events = this.data.events;
+        _events[index] = _events[index].concat(data)
+        this.setData({
+          events: _events
+        }, () => {
+          this.refreshHeight();
+        });
+        if (data.length < pageSize) {
+          this.setData({ 
+            allData: this.data.allData.map((a, i) => {
+              if(i === index){
+                a = true
+              }
+              return a;
+            }) 
+          });
+        }else{
+          let _pageIndexs = this.data.pageIndexs;
+          _pageIndexs[index] = pageIndex + 1;
+          this.setData({ pageIndexs: _pageIndexs});
+        }
+      }
     });
   },
   onPageScroll: function(e) {
@@ -101,30 +147,6 @@ Page({
       url: '/admin/events/list/list'
     })
   },
-  fetchEventsList({ limit, pageIndex, lt, gte}) {
-    const skip = limit * pageIndex;
-    getEventList({
-      lt,
-      gte,
-      limit, skip, success: data => {
-        this.setData({
-          events: this.data.events.concat(data),
-          pageIndex
-        }, () => {
-          const query = wx.createSelectorQuery();
-          query.select('#ul')
-            .boundingClientRect(rect => {
-              const { height} = rect;
-              this.setData({itemsHeight: height + 30});
-            })
-            .exec();
-        });
-        if (data.length < limit){
-          this.setData({ allData: true});
-        }
-			  // console.log(res);
-		}});
-	},
   bindSearchInput: function(e) {
     const _keyword = e.detail.value;
     this.setData({ keyword: _keyword});
@@ -161,7 +183,7 @@ Page({
     });
   },
   fixFlag: function ({ scrollTop}) {
-    const axisHeight = getApp().globalData.screenHeight - (this.data.statusBarHeight + 10);
+    const axisHeight = getApp().globalData.screenHeight - (statusBarHeight + 10);
     const query = wx.createSelectorQuery();
     query.select('#area')
       .boundingClientRect(rect => {
@@ -171,5 +193,24 @@ Page({
         });
       })
       .exec();
+  },
+  refreshHeight: function() {
+    const query = wx.createSelectorQuery();
+    query.select(`#ul${this.data.currentIndex}`)
+      .boundingClientRect(rect => {
+        const { height } = rect;
+        this.setData({ itemsHeight: height + 30 });
+      })
+      .exec();
+  },
+  swiperChange: function(e) {
+    const { current, source } = e.detail;
+    this.setData({currentIndex: current});
+  },
+  bindTabChange: function(e) {
+    const { index} = e.currentTarget.dataset;
+    this.setData({ currentIndex: index}, () => {
+      this.refreshHeight();
+    });
   }
 })

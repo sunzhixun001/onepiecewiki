@@ -9,6 +9,7 @@ Page({
     id: '',
     age: 0,
     photo: '',
+    img: '',
     showAge: '',
     title: '',
     tags: [],
@@ -94,6 +95,11 @@ Page({
       photo: e.detail.value
     });
   },
+  bindImgInput: function(e){
+    this.setData({
+      img: e.detail.value
+    });
+  },
   bindAddTag: function(e) {
     const _tags = this.data.tags;
     _tags.push('');
@@ -123,9 +129,9 @@ Page({
     get({
       id, success: res => {
         if (res.data && res.data.length > 0){
-          const { age, photo, showAge, title, _id, tags} = res.data[0];
+          const { age, photo, showAge, title, _id, tags, img} = res.data[0];
           this.setData({
-            age, photo, showAge, title, id: _id, tags: tags || []
+            age, photo, showAge, title, id: _id, tags: tags || [], img: img || ''
           });
         }
         console.log(res);
@@ -138,7 +144,8 @@ Page({
       age: parseFloat(this.data.age),
       showAge: this.data.showAge,
       photo: this.data.photo,
-      tags: this.data.tags
+      tags: this.data.tags,
+      img: this.data.img
     });
     update({
       id: this.data.id,

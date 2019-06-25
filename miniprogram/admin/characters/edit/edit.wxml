@@ -3,13 +3,13 @@
   <view class='container' style='margin-top: {{statusBarHeight}}px'>
     <view class='main'>
       <view class='body'>
-        <view class='item'>
+        <view class='item' wx:if="{{avator}}">
           <view class='avator'><image src='{{avator}}' mode='widthFix' /></view>
         </view>
         <view class='item'>
           <input bindinput="bindAvatorInput" placeholder="头像" value='{{avator}}' />
         </view>
-        <view class='item'>
+        <view class='item' wx:if="{{img}}">
           <view class='img'><image src='{{img}}' mode='widthFix' /></view>
         </view>
         <view class='item'>
