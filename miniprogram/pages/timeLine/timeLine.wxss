@@ -38,8 +38,6 @@ page{
 .axisArea{
   width: 10rpx;
   position: absolute;
-  height: 100%;
-  top: 0;
   left: 20rpx;
 }
 .axisArea .line{

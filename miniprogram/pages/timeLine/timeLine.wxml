@@ -51,12 +51,16 @@
           </view>
         </view>
       </view>
-      <view class="scroll-wrap" style="height: {{scrollViewHeight}}px">
-        <view class="axisArea">
-            <view class="line">
-              <view class="fa fa-flag" style="top: {{flegTop}}px" />
-            </view>
+      <view class="scroll-wrap" style="height: {{scrollViewHeight}}px;">
+        <view 
+          wx:if="{{currentIndex === 1}}"
+          class="axisArea" 
+          style="height:{{axisHeight}}px;top: {{axisTop}}px;"
+        >
+          <view class="line">
+            <view class="fa fa-flag" style="top: {{flegTop}}px" />
           </view>
+        </view>
         <scroll-view 
           style="height: {{scrollViewHeight}}px"
           scroll-y 

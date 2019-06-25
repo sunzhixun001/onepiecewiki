@@ -1,7 +1,7 @@
 import { getEventList} from '../../domain/eventsDomain';
 import { rpx2px} from '../../common/implement';
 const { statusBarHeight, windowHeight, screenHeight, screenWidth} = getApp().globalData;
-
+const scrollViewHeight = windowHeight - statusBarHeight - rpx2px({ rpx: 128, screenWidth: screenWidth }) - 1;
 Page({
 
   /**
@@ -23,7 +23,9 @@ Page({
     ranges: [[-9999, 0], [0, 1522], [1522, 1523], [1523, 1525]],
     itemsHeight: screenHeight,
     mainHeight: windowHeight - statusBarHeight,
-    scrollViewHeight: windowHeight - statusBarHeight - rpx2px({ rpx: 128, screenWidth: screenWidth}) - 1
+    scrollViewHeight: scrollViewHeight,
+    axisHeight: scrollViewHeight * 0.9,
+    axisTop: scrollViewHeight * 0.05
   },
 
   /**
