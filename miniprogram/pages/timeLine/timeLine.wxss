@@ -7,7 +7,7 @@ page{
 	color: #3D3D3D;
 }
 .main{
-  height: 624px;
+  padding-bottom: 0;
 }
 .scroll-wrap{
   position: relative;

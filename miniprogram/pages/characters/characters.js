@@ -252,14 +252,14 @@ Page({
   bindSearchIcon: function (e) {
     this.setData({ 
       searchActive: true,
-      searchInputHeight: 88 
+      // searchInputHeight: 88 
     });
   },
   bindSearchCloseIcon: function (e) {
     this.setData({ 
       searchActive: false, 
       keyword: '',
-      searchInputHeight: 0  
+      // searchInputHeight: 0  
     });
   },
   bindSearchInput: function (e) {

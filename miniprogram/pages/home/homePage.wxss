@@ -9,14 +9,14 @@ page{
   margin-bottom: 50rpx;
 }
 swiper{
-  height: 320rpx;
+  height: 310rpx;
 }
 .item-container{
   position: relative;
   padding: 20rpx 20rpx 20rpx 0;
 }
 swiper .img{
-  height: 290rpx;
+  height: 280rpx;
   overflow: hidden;
   border-radius: 20rpx;
   box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);

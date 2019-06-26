@@ -1,8 +1,9 @@
 {
   "cloud": true,
   "pages": [
-    "pages/timeLine/timeLine",
     "pages/home/homePage",
+    "admin/wikis/createOrEdit/createOrEdit",
+    "pages/timeLine/timeLine",
     "admin/events/list/list",
     "pages/characters/characters",
     "pages/user/user",
@@ -15,7 +16,8 @@
     "admin/priateRegiments/list/list",
     "admin/priateRegiments/create/create",
     "pages/characterDetail/characterDetail",
-    "admin/events/edit/edit"
+    "admin/events/edit/edit",
+    "pages/wiki/detail/wikiDetailPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

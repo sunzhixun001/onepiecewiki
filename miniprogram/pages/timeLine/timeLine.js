@@ -1,7 +1,7 @@
 import { getEventList} from '../../domain/eventsDomain';
 import { rpx2px} from '../../common/implement';
 const { statusBarHeight, windowHeight, screenHeight, screenWidth} = getApp().globalData;
-const scrollViewHeight = windowHeight - statusBarHeight - rpx2px({ rpx: 128, screenWidth: screenWidth }) - 1;
+const scrollViewHeight = windowHeight - statusBarHeight - 64;
 Page({
 
   /**
@@ -12,7 +12,7 @@ Page({
     pageSize: 20,
     pageIndexs: [1,1,1,1],
     allData: [false, false,false,false],
-    barHeight: 0,
+    barHeight: statusBarHeight,
     searchInputHeight: 0,
     searchActive: false,
     chooseActive: false,
@@ -33,7 +33,6 @@ Page({
    */
   onLoad: function (options) {
     this.fetchEvetns();
-    this.setData({ barHeight: statusBarHeight });
   },
 
   /**
@@ -174,14 +173,14 @@ Page({
   bindSearchIcon: function(e) {
     this.setData({
       searchActive:true,
-      searchInputHeight: 88
+      // searchInputHeight: 88
     });
   },
   bindSearchCloseIcon: function(e) {
     this.setData({ 
       searchActive: false, 
       keyword: '' ,
-      searchInputHeight: 0
+      // searchInputHeight: 0
     });
   },
   fixFlag: function ({ scrollTop}) {

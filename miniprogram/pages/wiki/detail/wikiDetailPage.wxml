@@ -1,0 +1,46 @@
+<block>
+  <navbar showCapsule="{{true}}" />
+  <view class="container" style="margin-top:{{barHeight}}px">
+    <view class="main">
+      <view class="wrap">
+        <swiper 
+          style="height: {{albumHeight}}px"
+          indicator-dots
+          circular
+        >
+          <swiper-item 
+            wx:for="{{album}}"
+            wx:key="index"
+          >
+            <image src="{{item}}" mode="widthFix" />
+          </swiper-item>
+        </swiper>
+        <view class="summary-wrap">
+          <view class="h3">{{title}}</view>
+          <view class="ul">
+            <view
+              wx:for="{{summary}}"
+              wx:key="_id"
+              class="para"
+            >
+              <text>{{item}}</text>
+            </view>
+          </view>
+        </view>
+        <view class="character-wrap" wx:if="{{characters && characters.length > 0}}">
+          <view class="h3">相关人物</view>
+          <view class="ul">
+            <navigator
+              url="/pages/characterDetail/characterDetail?id={{item.id}}"
+              class="li"
+              wx:for="{{characters}}"
+              wx:key="index"
+            >
+              <image src="{{item.avator}}" />
+            </navigator>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

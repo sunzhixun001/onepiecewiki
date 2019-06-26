@@ -34,19 +34,14 @@
       <view class='cw'>
         <view class='listArea'>
           <view class='ul itemList'>
-            <view class='li' wx:for="{{events}}" wx:key="_id">
-              <view class='boxRadius'>
-                <view class='head'>
-                  <view class='showage'>{{item.showAge}}</view>
-                </view>
-                <view class='body'>
-                  <view class='title'>{{item.title}}</view>
-                  <view class='photo' wx:if="{{item.photo}}">
-                    <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}'></image>
-                  </view>
-                </view>
-              </view>
-            </view>
+            <event-item 
+              wx:for="{{events}}" 
+              wx:key="_id"
+              showAge="{{item.showAge}}"
+              title="{{item.title}}"
+              photo="{{item.photo}}"
+              img="{{item.img}}"
+            />
           </view>
         </view>
       </view>

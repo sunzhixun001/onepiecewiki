@@ -1,0 +1,18 @@
+<block>
+  <navbar />
+  <view class="container">
+    <view class="main" style='margin-top: {{barHeight}}px;'>
+      <editor
+        id="editor"
+        class="ql-container"
+        placeholder="{{''}}"
+        showImgSize
+        showImgToolbar
+        showImgResize
+        bindready="onEditorReady"
+      >
+      </editor>
+    </view>
+  </view>
+  
+</block>

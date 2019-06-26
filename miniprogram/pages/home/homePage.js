@@ -1,5 +1,6 @@
 import { getBannerList} from '../../domain/bannersDomain';
 import { getStoryList } from '../../domain/storysDomain';
+import { getWikiList } from '../../domain/wikisDomain';
 Page({
 
   /**
@@ -9,6 +10,7 @@ Page({
     statusBarHeight: 0,
     banners: [],
     storys: [],
+    wikis: [],
     pageIndex: 1,
     pageSize: 20
   },
@@ -19,7 +21,8 @@ Page({
   onLoad: function (options) {
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
     this.fetchBannerList();
-    this.fetchStoryList({pageIndex: this.data.pageIndex, pageSize: this.data.pageSize});
+    // this.fetchStoryList({pageIndex: this.data.pageIndex, pageSize: this.data.pageSize});
+    this.fetchWikiList({ pageIndex: this.data.pageIndex, pageSize: this.data.pageSize });
   },
 
   /**
@@ -86,6 +89,15 @@ Page({
         this.setData({
           storys: data
         });
+      }
+    });
+  },
+  fetchWikiList: function ({ pageIndex, pageSize }){
+    getWikiList({
+      pageIndex, 
+      pageSize,
+      success: data => {
+        this.setData({ wikis: data});
       }
     });
   },

@@ -1,0 +1,38 @@
+@import "../../../style/commos.wxss";
+.para{
+  text-indent: 56rpx;
+  margin-bottom: 30rpx;
+  line-height: 48rpx;
+}
+swiper{
+  margin-bottom: 40rpx;
+}
+swiper-item image{
+  width: 100%;
+}
+.summary-wrap, .character-wrap{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.summary-wrap .h3, .character-wrap .h3{
+  font-weight: bold;
+  border-bottom: 2px solid #DDE1E6;
+  padding-bottom: 0.9em;
+}
+.summary-wrap .ul,.character-wrap .ul{
+  margin-top: 40rpx;
+}
+.character-wrap .ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.character-wrap .li{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 6rpx;
+  margin-bottom: 6rpx;
+}
+.character-wrap .li image{
+  width: 140rpx;
+  height: 140rpx;
+}

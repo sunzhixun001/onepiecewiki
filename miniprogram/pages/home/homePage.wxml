@@ -27,14 +27,14 @@
           </swiper>
         </view>
         <view class="water-area">
-          <view class="li" wx:for="{{storys}}" wx:key="_id">
-            <view class="img" style="height:{{item.height}}rpx">
-              <image src="{{item.url}}" mode="widthFix"/>
+          <navigator url="../wiki/detail/wikiDetailPage?id={{item._id}}" class="li" wx:for="{{wikis}}" wx:key="_id">
+            <view class="img">
+              <image src="{{item.cover}}" mode="widthFix"/>
             </view>
             <view class="detail">
               <view class="title">{{item.title}}</view>
             </view>
-          </view>
+          </navigator>
         </view>
       </view>
     </view>

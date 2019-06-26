@@ -53,7 +53,7 @@
       </view>
       <view class="scroll-wrap" style="height: {{scrollViewHeight}}px;">
         <view 
-          wx:if="{{currentIndex === 1}}"
+          wx:if="{{currentIndex === 10}}"
           class="axisArea" 
           style="height:{{axisHeight}}px;top: {{axisTop}}px;"
         >
@@ -96,6 +96,7 @@
                         showAge="{{item.showAge}}"
                         title="{{item.title}}"
                         photo="{{item.photo}}"
+                        img="{{item.img}}"
                       />
                     </view>
                   </swiper-item>
@@ -107,6 +108,7 @@
                         showAge="{{item.showAge}}"
                         title="{{item.title}}"
                         photo="{{item.photo}}"
+                        img="{{item.img}}"
                       />
                     </view>
                   </swiper-item>
@@ -118,6 +120,7 @@
                         showAge="{{item.showAge}}"
                         title="{{item.title}}"
                         photo="{{item.photo}}"
+                        img="{{item.img}}"
                       />
                     </view>
                   </swiper-item>
@@ -128,7 +131,7 @@
         </scroll-view>
       </view>
     </view>
-    <view class='control' wx:if="{{true}}">
+    <view class='control' wx:if="{{false}}">
       <view class='control-inner'>
         <view bindtap='bindAdmin'>管理</view>
       </view>
