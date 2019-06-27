@@ -5,10 +5,8 @@
 }
 .boxRadius{
 	border-radius: 8rpx;
-	padding-top: 10rpx;
 	flex: 1;
 	background-color: #FFF;
-	padding: 20rpx 20rpx 20rpx 20rpx;
   opacity: 0.8;
   box-shadow: 2rpx 2rpx 12rpx #000;
 }
@@ -21,7 +19,7 @@
 }
 .boxRadius .head{
 	display: flex;
-	padding: 0 0 20rpx 0;
+	padding: 20rpx;
 	align-items: center;
 	position: relative;
 }
@@ -47,6 +45,8 @@
 }
 .boxRadius .body .title{
   font-size: 28rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 .photo{
 	overflow: hidden;
