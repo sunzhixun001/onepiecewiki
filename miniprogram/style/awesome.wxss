@@ -52,3 +52,6 @@
 .fa-bars:before {
   content: "\f0c9";
 }
+.fa-home:before {
+  content: "\f015";
+}

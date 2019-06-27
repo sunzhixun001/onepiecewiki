@@ -13,7 +13,11 @@
   font-size: 50rpx;
   color: #FFFFFF;
 }
-.nav-head .fa-search, .nav-head .fa-close{
+.nav-head .fa-home{
+  font-size: 40rpx;
+  color: #FFFFFF;
+}
+.nav-head .fa-search, .nav-head .fa-close, .nav-head .fa-home{
   color: #FFFFFF;
   padding-top: 30rpx;
   padding-right: 130rpx;
