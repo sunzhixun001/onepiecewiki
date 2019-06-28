@@ -131,9 +131,9 @@
         </scroll-view>
       </view>
     </view>
-    <view class='control' wx:if="{{false}}">
+    <view class='control'>
       <view class='control-inner'>
-        <view bindtap='bindAdmin'>管理</view>
+        
       </view>
     </view>
   </view>

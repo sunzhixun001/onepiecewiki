@@ -95,3 +95,7 @@
   justify-content: center;
   color: #B3B3B3;
 }
+/* 管理 */
+.swiper-main .permissions-wrap .ul{
+  flex-direction: column;
+}

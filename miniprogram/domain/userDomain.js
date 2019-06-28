@@ -3,7 +3,8 @@ import {
   create,
   countOpenId,
   updateFavorite,
-  getFavorites
+  getFavorites,
+  getPermissions
 } from '../database/userRepository';
 // 用openid查找一个用户
 const fetchUserWithOpenId = ({ openid, success, fail}) => {
@@ -64,11 +65,23 @@ const fetchFavorites = ({ userid, success }) => {
       const { favorites} = res.data;
       success(favorites || {});
     });
-}
+};
+// 获取用户的管理权限
+const getUserPermissions = ({ userid, success}) => {
+  let promise = getPermissions({ userid});
+  promise
+  .then(res => {
+    const { data, errMsg } = res;
+    if (errMsg === "document.get:ok"){
+      success(data);
+    }
+  });
+};
 export {
   fetchUserWithOpenId, 
   createUser, 
   existOpenid,
   fetchUpdateFavorite,
-  fetchFavorites
+  fetchFavorites,
+  getUserPermissions
 };

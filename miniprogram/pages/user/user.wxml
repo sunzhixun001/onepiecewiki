@@ -22,6 +22,12 @@
             <view class='tab-box'>
               <view class='{{swiperCurrent === 0 ? "active":""}}' bindtap='bindSwiperTabTap' data-index="{{0}}">收藏</view>
               <view class='{{swiperCurrent === 1 ? "active":""}}' bindtap='bindSwiperTabTap' data-index="{{1}}">消息</view>
+              <view 
+                class='{{swiperCurrent === 2 ? "active":""}}' 
+                wx:if="{{permissions.length > 0}}"
+                bindtap='bindSwiperTabTap'
+                data-index="{{2}}"
+              >管理</view>
             </view>
           </view>
         </view>
@@ -50,6 +56,15 @@
                       </view>
                     </view>
                   </view> 
+                </swiper-item>
+                <swiper-item wx:if="{{permissions.length > 0}}">
+                  <view class="permissions-wrap">
+                    <view class="ul">
+                      <view class="li" wx:for="{{permissions}}" wx:key="index">
+                        <navigator url="{{item.url}}">{{item.name}}</navigator>
+                      </view>
+                    </view>
+                  </view>
                 </swiper-item>
               </swiper>
             </view>

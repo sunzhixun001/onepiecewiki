@@ -49,12 +49,22 @@ const getFavorites = ({ userid}) => {
     .field({favorites: true})
     .get();
   return promise;
-}
+};
+// 获取用户的管理权限
+const getPermissions = ({ userid }) => {
+  const promise =
+    collection
+      .doc(userid)
+      .field({ permissions: true })
+      .get();
+  return promise;
+};
 export { 
   getWithOpenId, 
   create, 
   countOpenId, 
   updateFavorite,
   getFavoriteWithCharaId,
-  getFavorites
+  getFavorites,
+  getPermissions
 };

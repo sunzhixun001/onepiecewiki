@@ -1,5 +1,11 @@
 import { getOpenId} from '../../cloud/userCloud';
-import { fetchUserWithOpenId, createUser, existOpenid, fetchFavorites } from '../../domain/userDomain';
+import { 
+  fetchUserWithOpenId, 
+  createUser, 
+  existOpenid, 
+  fetchFavorites,
+  getUserPermissions
+} from '../../domain/userDomain';
 import { setStorage, getStorage} from '../../common/storage';
 
 Page({
@@ -14,7 +20,8 @@ Page({
     favorites: [],
     messages: [],
     favoriteSwiperItemHeight: 0,
-    swiperCurrent: 0
+    swiperCurrent: 0,
+    permissions: []
 	},
 
 	/**
@@ -29,7 +36,8 @@ Page({
       userid: userid || ''
     });
     if(userid){
-      this.fetchGetFavorites({userid});
+      this.fetchGetFavorites({ userid});
+      this.fetchPermissions({ userid });
     }
     // this.getOpenIdStorage();
     
@@ -236,6 +244,12 @@ Page({
         this.setDataFavorites({ favorites: res});
       }
     });
+  },
+  fetchPermissions: function ({ userid }) {
+    getUserPermissions({ userid, success: data => {
+      const { permissions} = data;
+      this.setData({ permissions});
+    }});
   },
   setDataFavorites: function ({ favorites}) {
     let _favorites = [];
