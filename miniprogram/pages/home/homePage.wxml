@@ -14,7 +14,11 @@
               wx:key="_id"
             >
               <view class="item-container">
-                <view class="img" bindtap="switchTimelineTab">
+                <view 
+                  class="img" 
+                  bindtap="switchTimelineTab"
+                  data-index="{{item.index}}"
+                >
                   <image 
                     src="{{item.url}}" 
                     mode="widthFix"

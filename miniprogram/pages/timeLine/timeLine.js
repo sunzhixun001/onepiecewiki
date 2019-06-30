@@ -2,6 +2,7 @@ import { getEventList} from '../../domain/eventsDomain';
 import { rpx2px} from '../../common/implement';
 const { statusBarHeight, windowHeight, screenHeight, screenWidth} = getApp().globalData;
 const scrollViewHeight = windowHeight - statusBarHeight - 64;
+let currentIndex = 0;
 Page({
 
   /**
@@ -25,7 +26,19 @@ Page({
     mainHeight: windowHeight - statusBarHeight,
     scrollViewHeight: scrollViewHeight,
     axisHeight: scrollViewHeight * 0.9,
-    axisTop: scrollViewHeight * 0.05
+    axisTop: scrollViewHeight * 0.05,
+    chapter: [[],[],[
+      { name: '东海篇'},
+      { name: '阿拉巴斯坦篇'},
+      { name: '空岛篇' },
+      { name: '七水之都篇' },
+      { name: '司法岛篇' },
+      { name: '恐怖三桅帆' },
+      { name: '香波地群岛篇' },
+      { name: '女儿国篇' },
+      { name: '推进城监狱篇' },
+      { name: '马林梵多篇' }
+    ],[]]
   },
 
   /**
@@ -51,6 +64,7 @@ Page({
       this.setData({
         currentIndex: timeLineIndex || 0
       });
+      currentIndex = timeLineIndex || 0;
     }
     getApp().globalData.timeLineIndex = null;
   },
@@ -120,7 +134,10 @@ Page({
         this.setData({
           events: _events
         }, () => {
-          this.refreshHeight();
+          console.log(`index:${index }, currentIndex:${ currentIndex}`);
+          if(index === currentIndex){
+            this.refreshHeight();
+          }
         });
         if (data.length < pageSize) {
           this.setData({ 
@@ -196,6 +213,7 @@ Page({
       .exec();
   },
   refreshHeight: function() {
+    console.log("refreshHeight:", this.data.currentIndex);
     const query = wx.createSelectorQuery();
     query.select(`#ul${this.data.currentIndex}`)
       .boundingClientRect(rect => {
@@ -207,9 +225,11 @@ Page({
   swiperChange: function(e) {
     const { current, source } = e.detail;
     this.setData({currentIndex: current});
+    currentIndex = current;
   },
   bindTabChange: function(e) {
     const { index} = e.currentTarget.dataset;
+    currentIndex = index;
     this.setData({ currentIndex: index}, () => {
       this.refreshHeight();
     });

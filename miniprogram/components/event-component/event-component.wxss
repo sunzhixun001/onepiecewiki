@@ -52,7 +52,7 @@
 	overflow: hidden;
 	margin-top: 20rpx;
   display: flex;
-  /* height: 158rpx; */
+  height: 169rpx;
 }
 .photo image{
 	width: 100%;

@@ -101,8 +101,8 @@ Page({
       }
     });
   },
-  switchTimelineTab: function() {
-    getApp().globalData.timeLineIndex = 2;
+  switchTimelineTab: function(e) {
+    getApp().globalData.timeLineIndex = e.currentTarget.dataset.index;
     wx.switchTab({
       url: '/pages/timeLine/timeLine',
     })

@@ -18,21 +18,24 @@
       <view class='nav-title'><text>海贼王时间线</text></view>
     </view>
     <view class='mainTitleArea bgGray {{searchActive?"":"disabled"}}'>
-        <view class='searchDetailArea'>
-          <view class='inner'>
-            <input 
-              placeholder='路飞' 
-              bindinput='bindSearchInput' 
-              value='{{keyword}}' 
-              confirm-type="搜索"
-              bindconfirm="bindJumpSearch"
-            />
-          </view>
-        </view>
-        <view class='searchIcon' bindtap='bindJumpSearch'>
-          <icon type="search" size="16" color='#3D3D3D'/>
+      <view class='searchDetailArea'>
+        <view class='inner'>
+          <input 
+            placeholder='路飞' 
+            bindinput='bindSearchInput' 
+            value='{{keyword}}' 
+            confirm-type="搜索"
+            bindconfirm="bindJumpSearch"
+          />
         </view>
       </view>
+      <view class='searchIcon' bindtap='bindJumpSearch'>
+        <icon type="search" size="16" color='#3D3D3D'/>
+      </view>
+    </view>
+    <view class="chapterArea bgGray">
+      
+    </view>
   </view>
   <view class='container' style="margin-top: {{searchInputHeight}}rpx">
     <view class='main timeline listPage' style='height: {{mainHeight}}px;margin-top: {{barHeight}}px'>
