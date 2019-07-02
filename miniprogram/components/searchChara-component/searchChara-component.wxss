@@ -73,3 +73,6 @@
   width: 192rpx;
   height: 192rpx;
 }
+scroll-view{
+  height: 330px;
+}

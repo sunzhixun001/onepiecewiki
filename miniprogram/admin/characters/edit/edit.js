@@ -223,11 +223,11 @@ Page({
     this.setData({ group: _group});
   },
   bindRelationTypesInput: function(e){
-    const { id} = e.currentTarget.dataset;
+    const { index} = e.currentTarget.dataset;
     const value = e.detail.value;
     this.setData({
-      relationships: this.data.relationships.map(r => {
-        if (r._id === id){
+      relationships: this.data.relationships.map((r, i) => {
+        if (i === index){
           r.type = value;
         }
         return r;
