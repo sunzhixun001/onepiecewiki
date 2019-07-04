@@ -1,0 +1,24 @@
+<block>
+  <navbar showCapsule="{{true}}" />
+  <view class="container" style="margin-top:{{barHeight}}px">
+    <view class="main">
+      <view class="wrap">
+        <view class="search-area">
+          <view class="input">
+            <text class="fa fa-search" />
+            <input placeholder="大家都在搜" />
+          </view>
+          <view class="btn"><text>搜索</text></view>
+        </view>
+        <view class="hot-area">
+          <view class="title"><text>热门搜索</text></view>
+          <view class="ul">
+            <view class="li" wx:for="{{hots}}">
+              <text>{{item}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>

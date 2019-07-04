@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ statusBarHeight: getApp().globalData.statusBarHeight });
-    this.fetchBannerList();
+    // this.fetchBannerList();
     // this.fetchStoryList({pageIndex: this.data.pageIndex, pageSize: this.data.pageSize});
     this.fetchWikiList({ pageIndex: this.data.pageIndex, pageSize: this.data.pageSize });
   },

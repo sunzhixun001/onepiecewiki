@@ -3,7 +3,13 @@
   <view class="container" style='margin-top: {{statusBarHeight}}px'>
     <view class="main">
       <view class="wrap">
-        <view class="banner-area">
+        <view class="search-area">
+          <navigator class="input" url="../wiki/search/wikiSearchPage">
+            <input placeholder="大家都在搜" disabled />
+            <text class="fa fa-search" />
+          </navigator>
+        </view>
+        <view class="banner-area" wx:if="{{banners && banners.length}}">
           <swiper
             previous-margin='30px'
             next-margin="70px"

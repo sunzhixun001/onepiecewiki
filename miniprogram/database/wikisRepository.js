@@ -17,7 +17,25 @@ const getList = ({limit, skip}) => {
     .get();
   return promise;
 };
+// 模糊搜索
+const getRegexp = ({ keyword }) => {
+  const promise =
+    collection
+      .where({
+        fullname: db.RegExp({
+          regexp: `.*${keyword}.*`,
+          options: 'i'
+        })
+      })
+      .field({
+        cover: true,
+        title: true
+      })
+      .get();
+  return promise;
+};
 export {
   getList,
-  getOne
+  getOne,
+  getRegexp
 };

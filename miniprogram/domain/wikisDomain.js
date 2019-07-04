@@ -1,6 +1,7 @@
 import {
   getList,
-  getOne
+  getOne,
+  getRegexp
 } from '../database/wikisRepository';
 const getWikiList = ({ pageIndex, pageSize, success }) => {
   let promise = getList({
@@ -24,7 +25,17 @@ const getOneWiki = ({ id, success}) => {
     }
   });
 };
+const getRegexpWikiList = ({ keyword, success }) => {
+  let promise = getRegexp({ keyword });
+  promise.then(res => {
+    const { errMsg, data } = res;
+    if (errMsg === "document.get:ok") {
+      success(data);
+    }
+  });
+}
 export {
   getWikiList,
-  getOneWiki
+  getOneWiki,
+  getRegexpWikiList
 }

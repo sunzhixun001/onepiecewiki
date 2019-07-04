@@ -1,0 +1,69 @@
+@import "../../../style/commos.wxss";
+@import "../../../style/awesome.wxss";
+/* 搜索 */
+.search-area{
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+}
+.search-area .input{
+  width: 100%;
+  height: 50rpx;
+  border-radius: 25rpx;
+  background-color: #F5F5F5;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  padding-left: 70rpx;
+  position: relative;
+}
+.search-area .input input{
+  color: #C6C6C6;
+  font-weight: 300;
+  font-size: 28rpx;
+  flex: 1;
+}
+.search-area .fa{
+  color: #C6C6C6;
+  position: absolute;
+  left: 30rpx;
+  top: 18rpx;
+}
+.search-area .btn{
+  width: 190rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-area .btn text{
+  color: #999999;
+}
+/* hot */
+.hot-area{
+  background: linear-gradient(#fbfbfb, #ffffff);
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+}
+.hot-area .title{
+  padding-left: 10rpx;
+  margin-bottom: 20rpx;
+}
+.hot-area .title text{
+  font-weight: bold;
+  color: #333333;
+}
+.hot-area .ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.hot-area .ul .li{
+  background: #F5F5F5;
+  margin-right: 30rpx;
+  margin-bottom: 30rpx;
+  padding: 16rpx 30rpx;
+  border-radius: 36rpx;
+}
+.hot-area .ul .li text{
+  color: #333333;
+}
