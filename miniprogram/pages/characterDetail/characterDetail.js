@@ -131,11 +131,12 @@ Page({
             for(let g of group.values()){
               let value = [];
               fetchListInGroup({
-                groupName: g, success: res => {
+                groupName: g, 
+                success: data => {
                   let _group = self.data.group;
                   _group.push({
                     key: g,
-                    value: res.data
+                    value: data
                   });
                   self.setData({
                     group: _group

@@ -91,11 +91,11 @@ export const getListOrderByBountyDesc = ({ limit = 20, skip = 0}) => {
   return promise;
 };
 // 获取某一团体下的所有成员
-export const getListInGroup = ({ groupName, success}) => {
+export const getListInGroup = ({ groupName, field}) => {
   const promise =
   collection
     .where({ group: groupName })
-    .field({avator: true})
+    .field(field)
     .get();
   return promise;
 };

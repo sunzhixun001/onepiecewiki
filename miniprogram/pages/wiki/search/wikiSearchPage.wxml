@@ -6,16 +6,29 @@
         <view class="search-area">
           <view class="input">
             <text class="fa fa-search" />
-            <input placeholder="大家都在搜" />
+            <input placeholder="大家都在搜" bindinput="onSearchInput"/>
+            <text class="fa fa-times-circle" />
           </view>
-          <view class="btn"><text>搜索</text></view>
+          <view class="btn" bindtap="onSearch"><text>搜索</text></view>
         </view>
-        <view class="hot-area">
+        <view class="hot-area" wx:if="{{searchActive}}">
           <view class="title"><text>热门搜索</text></view>
           <view class="ul">
-            <view class="li" wx:for="{{hots}}">
+            <view class="li" wx:for="{{hots}}" wx:key="index">
               <text>{{item}}</text>
             </view>
+          </view>
+        </view>
+        <view class="water-area" wx:else>
+          <view class="ul">
+            <wiki-item
+              wx:for="{{wikis}}"
+              wx:key="id"
+              id="{{item.id}}"
+              title="{{item.title}}"
+              img="{{item.img}}"
+              url="{{item.url}}"
+            />
           </view>
         </view>
       </view>

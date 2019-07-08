@@ -79,29 +79,9 @@ swiper .item-container .title{
   padding-top: 20rpx;
   background: #f2f5f7;
 }
-.water-area .li{
-  background: #FFFFFF;
-  margin-bottom: 20rpx;
-  break-inside: avoid;
-}
 .water-area{
   column-count: 2;
   column-gap: 2%;
   column-fill: auto;
   padding-bottom: 50rpx;
-}
-.water-area .detail{
-  padding: 20rpx;
-}
-.water-area .img{
-  width: 100%;
-  border-radius: 10rpx 10rpx 0 0;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  break-inside: avoid;
-}
-.water-area image{
-  width: 100%;
-  break-inside: avoid;
 }

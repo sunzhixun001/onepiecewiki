@@ -25,11 +25,12 @@ const getOneWiki = ({ id, success}) => {
     }
   });
 };
+// 模糊搜索
 const getRegexpWikiList = ({ keyword, success }) => {
   let promise = getRegexp({ keyword });
   promise.then(res => {
     const { errMsg, data } = res;
-    if (errMsg === "document.get:ok") {
+    if (errMsg === "collection.get:ok") {
       success(data);
     }
   });

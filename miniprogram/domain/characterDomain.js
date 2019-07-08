@@ -108,11 +108,14 @@ const fetchCharacter = ({ id, success}) => {
     .catch(err => {})
     ;
 };
-const fetchListInGroup = ({ groupName, success }) => {
-  const promise = getListInGroup({ groupName});
+const fetchListInGroup = ({ groupName, success, field = { avator: true} }) => {
+  const promise = getListInGroup({ groupName, field});
   promise
   .then(res => {
-    success && success(res);
+    const { errMsg, data } = res;
+    if (errMsg === "collection.get:ok"){
+      success && success(data);
+    }
   })
 };
 // 新增一个人物

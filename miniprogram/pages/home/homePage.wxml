@@ -37,14 +37,13 @@
           </swiper>
         </view>
         <view class="water-area">
-          <navigator url="../wiki/detail/wikiDetailPage?id={{item._id}}" class="li" wx:for="{{wikis}}" wx:key="_id">
-            <view class="img">
-              <image src="{{item.cover}}" mode="widthFix"/>
-            </view>
-            <view class="detail">
-              <view class="title">{{item.title}}</view>
-            </view>
-          </navigator>
+          <wiki-item
+            wx:for="{{wikis}}" 
+            wx:key="_id"
+            id="{{item._id}}"
+            cover="{{item.cover}}"
+            title="{{item.title}}"
+          />
         </view>
       </view>
     </view>

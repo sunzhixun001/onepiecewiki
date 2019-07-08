@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "navbar": "/components/navbar-component/navbar-component"
+    "navbar": "/components/navbar-component/navbar-component",
+    "wiki-item": "/components/wiki-item-component/wiki-item-component"
   }
 }

@@ -55,3 +55,6 @@
 .fa-home:before {
   content: "\f015";
 }
+.fa-times-circle:before {
+  content: "\f057";
+}

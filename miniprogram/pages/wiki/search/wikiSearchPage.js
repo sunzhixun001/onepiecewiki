@@ -1,4 +1,9 @@
-import { getRegexpWikiList } from '../../../domain/wikisDomain';
+import { 
+  getRegexpWikiList 
+} from '../../../domain/wikisDomain';
+import {
+  fetchListInGroup
+} from '../../../domain/characterDomain';
 const { statusBarHeight } = getApp().globalData;
 Page({
 
@@ -7,7 +12,10 @@ Page({
    */
   data: {
     barHeight: statusBarHeight,
-    hots: ["四皇", "七武海", "和之国", "阿拉巴斯坦", "拉夫德鲁", "凯多", "霸气"]
+    hots: ["四皇", "七武海", "和之国", "阿拉巴斯坦", "拉夫德鲁", "凯多", "霸气"],
+    wikis: [],
+    searchActive: true,
+    keyword: ''
   },
 
   /**
@@ -65,12 +73,61 @@ Page({
   onShareAppMessage: function () {
 
   },
-  fetchWikiList: function ({ keyword}) {
+  fetchWikiList: function ({ keyword }) {
     getRegexpWikiList({
       keyword,
       success: data => {
-        
+        this.setData({
+          searchActive: false,
+          wikis: this.data.wikis.concat(
+            data.map(w => {
+              return {
+                id: w._id,
+                img: w.cover,
+                title: w.title,
+                type: 1,
+                url: `/pages/wiki/detail/wikiDetailPage?id=${w._id}`
+              }
+            })
+          ).sort((a, b) => { return a.type - b.type})
+        });
+        console.log(data);
       }
+    });
+  },
+  fetchCharacterList: function ({ keyword }){
+    fetchListInGroup({
+      groupName: keyword,
+      field: { img: true, name: true },
+      success: data => {
+        this.setData({
+          searchActive: false,
+          wikis: this.data.wikis.concat(
+            data.map(c => {
+              return {
+                id: c._id,
+                img: c.img,
+                title: c.name,
+                type: 2,
+                url: `/pages/characterDetail/characterDetail?id=${c._id}`
+              }
+            })
+          ).sort((a, b) => { return a.type - b.type })
+        });
+      }
+    });
+  },
+  onSearch: function() {
+    this.fetchWikiList({
+      keyword: '四皇'
+    });
+    this.fetchCharacterList({
+      keyword: '四皇',
+    });
+  },
+  onSearchInput: function(e) {
+    this.setData({
+      keyword: e.detail.value
     });
   }
 })

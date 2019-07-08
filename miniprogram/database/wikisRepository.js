@@ -22,7 +22,7 @@ const getRegexp = ({ keyword }) => {
   const promise =
     collection
       .where({
-        fullname: db.RegExp({
+        title: db.RegExp({
           regexp: `.*${keyword}.*`,
           options: 'i'
         })

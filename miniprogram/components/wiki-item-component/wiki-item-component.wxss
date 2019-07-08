@@ -1,0 +1,20 @@
+.li{
+  background: #FFFFFF;
+  margin-bottom: 20rpx;
+  break-inside: avoid;
+}
+.detail{
+  padding: 20rpx;
+}
+.img{
+  width: 100%;
+  border-radius: 10rpx 10rpx 0 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  break-inside: avoid;
+}
+image{
+  width: 100%;
+  break-inside: avoid;
+}
