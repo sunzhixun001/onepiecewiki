@@ -2,5 +2,7 @@
   "usingComponents": {
     "navbar": "/components/navbar-component/navbar-component",
     "wiki-item": "/components/wiki-item-component/wiki-item-component"
-  }
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }

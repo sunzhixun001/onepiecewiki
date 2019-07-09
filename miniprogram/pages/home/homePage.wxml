@@ -5,8 +5,8 @@
       <view class="wrap">
         <view class="search-area">
           <navigator class="input" url="../wiki/search/wikiSearchPage">
-            <input placeholder="大家都在搜" disabled />
-            <text class="fa fa-search" />
+            <view class="icon"><text class="fa fa-search" /></view>
+            <text class="placehold">输入关键字</text>
           </navigator>
         </view>
         <view class="banner-area" wx:if="{{banners && banners.length}}">
@@ -41,8 +41,9 @@
             wx:for="{{wikis}}" 
             wx:key="_id"
             id="{{item._id}}"
-            cover="{{item.cover}}"
+            img="{{item.cover}}"
             title="{{item.title}}"
+            url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"
           />
         </view>
       </view>

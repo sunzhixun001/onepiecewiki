@@ -8,6 +8,10 @@
 .bgGray{
   background: #F7F7F7;
 }
+.placehold{
+  color: #808080;
+  font-weight: 400;
+}
 .nav-wrap .mainTitleArea, .container .mainTitleArea{
   height: 64px;
   display: flex;

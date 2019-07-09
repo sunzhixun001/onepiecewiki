@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/wiki/search/wikiSearchPage",
     "pages/home/homePage",
+    "pages/wiki/search/wikiSearchPage",
     "admin/wikis/createOrEdit/createOrEdit",
     "pages/timeLine/timeLine",
     "admin/events/list/list",

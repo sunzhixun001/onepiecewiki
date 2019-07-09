@@ -118,16 +118,41 @@ Page({
     });
   },
   onSearch: function() {
-    this.fetchWikiList({
-      keyword: '四皇'
-    });
-    this.fetchCharacterList({
-      keyword: '四皇',
-    });
+    this.doSearch({ keyword: this.data.keyword });
   },
   onSearchInput: function(e) {
     this.setData({
       keyword: e.detail.value
     });
+  },
+  onClear: function(){
+    this.setData({ 
+      keyword: '',
+      searchActive: true
+    });
+  },
+  onFocus: function() {
+    this.setData({ searchActive: true});
+  },
+  onConfirm: function() {
+    this.doSearch({ keyword: this.data.keyword});
+  },
+  doSearch: function ({ keyword}) {
+    this.setData({
+      wikis: []
+    });
+    this.fetchWikiList({
+      keyword: keyword
+    });
+    this.fetchCharacterList({
+      keyword: keyword
+    });
+  },
+  onHotItemTap: function(e) {
+    const { value } = e.currentTarget.dataset;
+    this.setData({
+      keyword: value
+    });
+    this.doSearch({ keyword: value});
   }
 })

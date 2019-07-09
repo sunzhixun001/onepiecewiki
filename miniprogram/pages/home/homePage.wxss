@@ -13,24 +13,27 @@ page{
   margin-bottom: 30rpx;
 }
 .search-area .input{
-  height: 50rpx;
+  height: 60rpx;
   border-radius: 25rpx;
   background-color: #F5F5F5;
-  padding-top: 10rpx;
-  padding-bottom: 10rpx;
-  padding-left: 70rpx;
   position: relative;
+  display: flex;
+  align-items: center;
 }
-.search-area .input input{
-  color: #C6C6C6;
-  font-weight: 300;
+.search-area .input .placehold{
   font-size: 28rpx;
+  flex: 1;
+}
+.search-area .icon{
+  width: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .search-area .fa{
-  color: #C6C6C6;
-  position: absolute;
-  left: 30rpx;
-  top: 18rpx;
+  color: #999999;
+  font-size: 32rpx;
+  font-weight: 200;
 }
 /* banner */
 .banner-area{

@@ -5,16 +5,31 @@
       <view class="wrap">
         <view class="search-area">
           <view class="input">
-            <text class="fa fa-search" />
-            <input placeholder="大家都在搜" bindinput="onSearchInput"/>
-            <text class="fa fa-times-circle" />
+            <view class="icon"><text class="fa fa-search" /></view>
+            <input 
+              placeholder="输入关键字" 
+              bindinput="onSearchInput" 
+              value="{{keyword}}"
+              type='text'
+              confirm-type="search"
+              bindfocus="onFocus"
+              placeholder-style="color:#808080"
+              bindconfirm="onConfirm"
+            />
+            <view class="icon">
+              <text 
+                class="fa fa-times-circle" 
+                wx:if="{{keyword}}" 
+                bindtap="onClear"
+              />
+            </view>
           </view>
           <view class="btn" bindtap="onSearch"><text>搜索</text></view>
         </view>
         <view class="hot-area" wx:if="{{searchActive}}">
           <view class="title"><text>热门搜索</text></view>
           <view class="ul">
-            <view class="li" wx:for="{{hots}}" wx:key="index">
+            <view class="li" wx:for="{{hots}}" wx:key="index" bindtap="onHotItemTap" data-value="{{item}}">
               <text>{{item}}</text>
             </view>
           </view>

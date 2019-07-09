@@ -1,4 +1,4 @@
-page{
+page, input, view, text{
 	font-size: 26rpx;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
