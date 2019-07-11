@@ -1,7 +1,5 @@
-import { getDatabase } from './common';
+import { db } from './common';
 import { BANNERS } from './collectionNames';
-
-const db = getDatabase();
 const collection = db.collection(BANNERS);
 export const get = ({ id, success}) => {
   collection

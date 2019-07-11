@@ -7,7 +7,9 @@ Component({
     id: String,
     img: String,
     title: String,
-    url: String
+    url: String,
+    left: Boolean,
+    index: Number
   },
 
   /**
@@ -21,6 +23,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    onImageLoad: function(e) {
+      const { height, width} = e.detail;
+      this.triggerEvent('imageload', { height, left: this.data.left, index: this.data.index}, {});
+    }
   }
 })

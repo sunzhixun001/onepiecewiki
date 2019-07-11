@@ -1,5 +1,4 @@
-import { getDatabase } from './common';
-const db = getDatabase();
+import { db } from './common';
 const collection = db.collection('wikis');
 const getOne = ({id}) => {
   let promise =

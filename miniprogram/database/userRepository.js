@@ -1,5 +1,4 @@
-import { getDatabase } from './common';
-const db = getDatabase();
+import { db } from './common';
 const collection = db.collection('user');
 
 // 用openid查找一个用户

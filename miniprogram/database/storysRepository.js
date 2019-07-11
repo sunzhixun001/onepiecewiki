@@ -1,5 +1,5 @@
-import { getDatabase } from './common';
-const collection = getDatabase().collection('storys');
+import { db } from './common';
+const collection = db.collection('storys');
 const getList = ({ limit, skip}) => {
   const promise = 
     collection

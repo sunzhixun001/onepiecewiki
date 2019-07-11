@@ -1,6 +1,4 @@
-import { getDatabase } from './common';
-
-const db = getDatabase();
+import { db } from './common';
 const collection = db.collection('biologicals');
 // 新增一个人物
 export const create = ({ biological, success}) => {

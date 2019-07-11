@@ -1,7 +1,5 @@
 // 事件
-import { getDatabase } from './common';
-
-const db = getDatabase()
+import { db } from './common';
 const collection = db.collection('events');
 // 获取一个事件
 export const get = ({ id, success}) => {

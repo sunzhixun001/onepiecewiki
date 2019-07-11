@@ -9,42 +9,33 @@
             <text class="placehold">输入关键字</text>
           </navigator>
         </view>
-        <view class="banner-area" wx:if="{{banners && banners.length}}">
-          <swiper
-            previous-margin='30px'
-            next-margin="70px"
-            circular
-          >
-            <swiper-item
-              wx:for="{{banners}}"
-              wx:key="_id"
-            >
-              <view class="item-container">
-                <view 
-                  class="img" 
-                  bindtap="switchTimelineTab"
-                  data-index="{{item.index}}"
-                >
-                  <image 
-                    src="{{item.url}}" 
-                    mode="widthFix"
-                  />
-                </view>
-                <view class='title'>{{item.title}}</view>
-                <view class="years">{{item.year}}</view>
-              </view>
-            </swiper-item>
-          </swiper>
-        </view>
         <view class="water-area">
-          <wiki-item
-            wx:for="{{wikis}}" 
-            wx:key="_id"
-            id="{{item._id}}"
-            img="{{item.cover}}"
-            title="{{item.title}}"
-            url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"
-          />
+          <view class="half left">
+            <wiki-item
+              wx:for="{{wikisLeft}}" 
+              wx:key="_id"
+              id="{{item._id}}"
+              img="{{item.cover}}"
+              title="{{item.title}}"
+              url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"
+              bind:imageload="onImageLoad"
+              left="{{true}}"
+              index="{{index}}"
+            />
+          </view>
+          <view class="half right">
+            <wiki-item
+              wx:for="{{wikisRight}}" 
+              wx:key="_id"
+              id="{{item._id}}"
+              img="{{item.cover}}"
+              title="{{item.title}}"
+              url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"
+              bind:imageload="onImageLoad"
+              left="{{false}}"
+              index="{{index}}"
+            />
+          </view>
         </view>
       </view>
     </view>

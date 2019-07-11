@@ -1,7 +1,41 @@
-import { getBannerList} from '../../domain/bannersDomain';
-import { getStoryList } from '../../domain/storysDomain';
 import { getWikiList } from '../../domain/wikisDomain';
 const { statusBarHeight } = getApp().globalData;
+
+class WaterArea {
+  constructor() {
+    this.left = [];
+    this.right = [];
+  }
+  fillup({ index, number, left }) {
+    if (left) {
+      this.left[index] = number;
+    } else {
+      this.right[index] = number;
+    }
+    this.checkLoadStatus();
+  }
+  checkLoadStatus() {
+    let _allready = true;
+    for(let height of this.left){
+      if (!height){
+        _allready = false;
+        break;
+      }
+    }
+    for (let height of this.right) {
+      if (!height) {
+        _allready = false;
+        break;
+      }
+    }
+    if (_allready){
+      console.log('全部加载好了');
+    }
+  }
+}
+let heightLeft = [];
+let heightRight = [];
+let water = new WaterArea();
 Page({
 
   /**
@@ -9,9 +43,8 @@ Page({
    */
   data: {
     statusBarHeight: statusBarHeight,
-    banners: [],
-    storys: [],
-    wikis: [],
+    wikisLeft: [],
+    wikisRight: [],
     pageIndex: 1,
     pageSize: 20
   },
@@ -44,7 +77,8 @@ Page({
       pageIndex: this.data.pageIndex, 
       pageSize: this.data.pageSize,
       success: data => {
-        handleData({ key: 'wikis', value: data});
+        handleData({ key: 'wikisLeft', value: data.filter((element, index) => { return index % 2 === 0})});
+        handleData({ key: 'wikisRight', value: data.filter((element, index) => { return index % 2 === 1 }) });
       }
     });
   },
@@ -61,5 +95,9 @@ Page({
     wx.switchTab({
       url: '/pages/timeLine/timeLine',
     })
+  },
+  onImageLoad: function(e) {
+    const { height, left, index} = e.detail;
+    water.fillup({ index, number: height, left });
   }
-})
+});

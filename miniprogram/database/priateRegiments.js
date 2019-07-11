@@ -1,6 +1,6 @@
-import { getDatabase } from './common';
+import { db } from './common';
 
-const collection = getDatabase().collection('priateRegiments');
+const collection = db.collection('priateRegiments');
 // 新增一个海盗团
 export const create = ({ regiments, success }) => {
 	collection.add({
