@@ -25,7 +25,7 @@ Component({
   methods: {
     onImageLoad: function(e) {
       const { height, width} = e.detail;
-      this.triggerEvent('imageload', { height, left: this.data.left, index: this.data.index}, {});
+      this.triggerEvent('imageload', { height, width, left: this.data.left, index: this.data.index}, {});
     }
   }
 })

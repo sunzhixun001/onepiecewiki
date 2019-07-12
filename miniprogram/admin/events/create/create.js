@@ -8,9 +8,9 @@ Page({
   data: {
     title: '',
     age: 0,
-    showAge: '',
+    showAge: '海元历1522年',
 		photo: '',
-    tags: [],
+    tags: ["阿拉巴斯坦"],
     statusBarHeight: 0
   },
 

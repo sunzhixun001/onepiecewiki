@@ -11,7 +11,7 @@
             <input bindinput="bindAgeInput" placeholder="年份"></input>
           </view>
           <view class='item'>
-            <input bindinput="bindShowAgeInput" placeholder="显示年份"></input>
+            <input bindinput="bindShowAgeInput" placeholder="显示年份" value="海元历1522年"></input>
           </view>
           <view class='item'>
             <input bindinput="bindPhotoInput" placeholder="图片"></input>

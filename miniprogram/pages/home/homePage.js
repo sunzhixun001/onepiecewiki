@@ -5,32 +5,60 @@ class WaterArea {
   constructor() {
     this.left = [];
     this.right = [];
+    this.leftCount = 0;
+    this.rightCount = 0;
+    this.startup = false;
   }
-  fillup({ index, number, left }) {
+  fillup({ index, height, width, left }) {
+    const _h = height * (200 / width)
     if (left) {
-      this.left[index] = number;
+      this.left[index] = _h;
     } else {
-      this.right[index] = number;
+      this.right[index] = _h;
     }
-    this.checkLoadStatus();
+    return this.checkLoadStatus();
   }
+  // 判断所有的图片都加载好了没
   checkLoadStatus() {
     let _allready = true;
-    for(let height of this.left){
-      if (!height){
-        _allready = false;
-        break;
+    if (this.leftCount === this.left.length){
+      for(let height of this.left){
+        if (!height){
+          _allready = false;
+          break;
+        }
+      }
+    } else _allready = false;
+    if (_allready && this.rightCount === this.right.length){
+      for (let height of this.right) {
+        if (!height) {
+          _allready = false;
+          break;
+        }
       }
     }
-    for (let height of this.right) {
-      if (!height) {
-        _allready = false;
-        break;
-      }
+    return _allready;
+  }
+  compare() {
+    console.log(this.left, this.right);
+    this.startup = false;
+    let movetype = 0;
+    const _leftheight = this.doReduce(this.left);
+    const _rightheight = this.doReduce(this.right);
+    const _leftlast = this.left[this.left.length - 1];
+    const _rightlast = this.right[this.right.length - 1];
+    if (_leftheight - _leftlast > _rightheight){
+      movetype = 1;
+    } else if (_rightheight - _rightlast > _leftheight){
+      movetype = 2;
     }
-    if (_allready){
-      console.log('全部加载好了');
-    }
+    return movetype;
+  }
+  doReduce(array) {
+    console.log("array: ", array);
+    return array.reduce((acc, cur) => {
+      return acc + cur;
+    });
   }
 }
 let heightLeft = [];
@@ -73,12 +101,17 @@ Page({
 
   },
   fetchWikiList: function ({ handleData}){
+    water.startup = true;
     getWikiList({
       pageIndex: this.data.pageIndex, 
       pageSize: this.data.pageSize,
       success: data => {
-        handleData({ key: 'wikisLeft', value: data.filter((element, index) => { return index % 2 === 0})});
-        handleData({ key: 'wikisRight', value: data.filter((element, index) => { return index % 2 === 1 }) });
+        const _leftarray = data.filter((element, index) => { return index % 2 === 0 });
+        const _rightarray = data.filter((element, index) => { return index % 2 === 1 });
+        handleData({ key: 'wikisLeft', value: _leftarray});
+        handleData({ key: 'wikisRight', value: _rightarray });
+        water.leftCount = _leftarray.length;
+        water.rightCount = _rightarray.length;
       }
     });
   },
@@ -97,7 +130,21 @@ Page({
     })
   },
   onImageLoad: function(e) {
-    const { height, left, index} = e.detail;
-    water.fillup({ index, number: height, left });
+    const { height, width, left, index} = e.detail;
+    if (water.startup && water.fillup({ index, height, width, left })){
+      const move = water.compare();
+      let _left = this.data.wikisLeft;
+      let _right = this.data.wikisRight;
+      if(move === 1){
+        _right.push(_left.pop());
+      } else if (move === 2){
+        _left.push(_right.pop());
+      }
+      console.log("开始移动");
+      this.setData({
+        wikisLeft: _left,
+        wikisRight: _right
+      });
+    }
   }
 });
