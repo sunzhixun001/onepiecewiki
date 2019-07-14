@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "navbar": "/components/navbar-component/navbar-component",
-    "event-item": "/components/event-component/event-component"
+    "event-item": "/components/event-component/event-component",
+    "no-event": "/components/no-event-component/no-event-component"
   }
 }

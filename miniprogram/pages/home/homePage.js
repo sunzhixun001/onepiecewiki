@@ -10,11 +10,11 @@ class WaterArea {
     this.startup = false;
   }
   fillup({ index, height, width, left }) {
-    const _h = height * (200 / width)
+    // const _h = height * (200 / width)
     if (left) {
-      this.left[index] = _h;
+      this.left[index] = height;
     } else {
-      this.right[index] = _h;
+      this.right[index] = height;
     }
     return this.checkLoadStatus();
   }
@@ -74,7 +74,8 @@ Page({
     wikisLeft: [],
     wikisRight: [],
     pageIndex: 1,
-    pageSize: 20
+    pageSize: 20,
+    pageEnd: false
   },
 
   /**
@@ -92,26 +93,34 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.fetchWikiList({ handleData: this.directSetData});
+    water.leftCount = 0;
+    water.rightCount = 0;
+    this.fetchWikiList({ handleData: this.directSetData, pageIndex: 1, pageSize: this.data.pageSize});
   },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if (!this.data.pageEnd)
+      this.fetchWikiList({ handleData: this.appendSetData, pageIndex: this.data.pageIndex + 1, pageSize: this.data.pageSize });
   },
-  fetchWikiList: function ({ handleData}){
+  fetchWikiList: function ({ handleData, pageIndex, pageSize}){
     water.startup = true;
     getWikiList({
-      pageIndex: this.data.pageIndex, 
-      pageSize: this.data.pageSize,
+      pageIndex: pageIndex, 
+      pageSize: pageSize,
       success: data => {
+        this.data.pageIndex = pageIndex
+        if (data.length < this.data.pageSize){
+          this.data.pageEnd = true;
+        }
         const _leftarray = data.filter((element, index) => { return index % 2 === 0 });
         const _rightarray = data.filter((element, index) => { return index % 2 === 1 });
         handleData({ key: 'wikisLeft', value: _leftarray});
         handleData({ key: 'wikisRight', value: _rightarray });
-        water.leftCount = _leftarray.length;
-        water.rightCount = _rightarray.length;
+        water.leftCount = water.leftCount + _leftarray.length;
+        water.rightCount = water.rightCount + _rightarray.length;
+        wx.stopPullDownRefresh();
       }
     });
   },
@@ -121,7 +130,9 @@ Page({
     this.setData(_data);
   },
   appendSetData: function ({ key, value }) {
-
+    let _data = {};
+    _data[key] = this.data[key].concat(value);
+    this.setData(_data);
   },
   switchTimelineTab: function(e) {
     getApp().globalData.timeLineIndex = e.currentTarget.dataset.index;

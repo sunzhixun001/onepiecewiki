@@ -58,3 +58,6 @@
 .fa-times-circle:before {
   content: "\f057";
 }
+.fa-check:before {
+  content: "\f00c";
+}

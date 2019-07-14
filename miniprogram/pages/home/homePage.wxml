@@ -14,7 +14,7 @@
             <wiki-item
               wx:for="{{wikisLeft}}" 
               wx:key="_id"
-              id="{{item._id}}"
+              wikiid="{{item._id}}"
               img="{{item.cover}}"
               title="{{item.title}}"
               url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"

@@ -1,8 +1,10 @@
-<navigator url="{{url}}" class="li">
-  <view class="img">
-    <image src="{{img}}" mode="widthFix" bindload="onImageLoad"/>
-  </view>
-  <view class="detail">
-    <view class="title">{{title}}</view>
+<navigator url="{{url}}" class="li" >
+  <view id="wiki{{wikiid}}">
+    <view class="img">
+      <image src="{{img}}" mode="widthFix" bindload="onImageLoad"/>
+    </view>
+    <view class="detail">
+      <view class="title">{{title}}</view>
+    </view>
   </view>
 </navigator>

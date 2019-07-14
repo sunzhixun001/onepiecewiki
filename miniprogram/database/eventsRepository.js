@@ -14,15 +14,21 @@ export const get = ({ id, success}) => {
     .catch()
 };
 // 获取全部事件列表
-export const getList = ({ lt, gte, limit = 20, skip = 0, field}) => {
+export const getList = ({ lt, gte, limit = 20, skip = 0, field, tag}) => {
   let _collection = 
     collection
       .where({
         age: db.command.lt(lt).and(db.command.gte(gte))
-      })
-      .orderBy('age', 'asc')
-      .limit(limit)
-      .skip(skip);
+      });
+  if (tag && tag.length > 0){
+    _collection = _collection.where({
+      tags: db.command.in(tag)
+    })
+  }
+  _collection = _collection    
+    .orderBy('age', 'asc')
+    .limit(limit)
+    .skip(skip);
   if (field){
     _collection = _collection.field(field)
   } 

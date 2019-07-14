@@ -2,6 +2,8 @@
 	display: flex;
 	z-index: 100;
 	margin-top: 20rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 .boxRadius{
 	border-radius: 8rpx;

@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-		events: [[],[],[],[]],
+		// events: [[],[],[],[]],
+    events: [{}, {}, {}, {}],
     pageSize: 20,
     pageIndexs: [1,1,1,1],
     allData: [false, false,false,false],
@@ -27,18 +28,25 @@ Page({
     scrollViewHeight: scrollViewHeight,
     axisHeight: scrollViewHeight * 0.9,
     axisTop: scrollViewHeight * 0.05,
-    chapter: [[],[],[
-      { name: '东海篇'},
-      { name: '阿拉巴斯坦篇'},
-      { name: '空岛篇' },
-      { name: '七水之都篇' },
-      { name: '司法岛篇' },
-      { name: '恐怖三桅帆' },
-      { name: '香波地群岛篇' },
-      { name: '女儿国篇' },
-      { name: '推进城监狱篇' },
-      { name: '马林梵多篇' }
-    ],[]]
+    chapters: [
+      { name: '东海', selected: false},
+      { name: '阿拉巴斯坦', selected: false},
+      { name: '空岛', selected: false },
+      { name: '七水之都', selected: false },
+      { name: '司法岛', selected: false },
+      { name: '恐怖三桅帆', selected: false },
+      { name: '香波地群岛', selected: false },
+      { name: '女儿国', selected: false },
+      { name: '推进城监狱', selected: false },
+      { name: '马林梵多', selected: false },
+      { name: '鱼人岛', selected: false },
+      { name: '班克禁区', selected: false },
+      { name: '德雷斯罗萨', selected: false },
+      { name: '佐乌', selected: false },
+      { name: '蛋糕岛', selected: false },
+      { name: '和之国', selected: false }
+    ],
+    chooseChapter: []
   },
 
   /**
@@ -119,23 +127,28 @@ Page({
       lt: this.data.ranges[index][1],
       gte: this.data.ranges[index][0],
       pageSize: this.data.pageSize,
-      pageIndex: this.data.pageIndexs[index]
+      pageIndex: this.data.pageIndexs[index],
+      tag: this.data.chooseChapter
     });
   },
-  fetchEventsList({ index, pageSize, pageIndex, lt, gte }) {
+  fetchEventsList({ index, pageSize, pageIndex, lt, gte, tag }) {
     getEventList({
       lt,
       gte,
       pageSize, 
       pageIndex, 
+      tag,
       success: data => {
         let _events = this.data.events;
-        _events[index] = _events[index].concat(data)
+        for (let k in data){
+          _events[index][data[k]._id] = data[k];
+        }
+        // _events[index] = _events[index].concat(data)
         this.setData({
           events: _events
         }, () => {
-          console.log(`index:${index }, currentIndex:${ currentIndex}`);
-          if(index === currentIndex){
+          // wx.stopPullDownRefresh();
+          if (_events.length > 0 && index === currentIndex){
             this.refreshHeight();
           }
         });
@@ -151,7 +164,7 @@ Page({
         }else{
           let _pageIndexs = this.data.pageIndexs;
           _pageIndexs[index] = pageIndex + 1;
-          this.setData({ pageIndexs: _pageIndexs});
+          this.data.pageIndexs = _pageIndexs;
         }
       }
     });
@@ -232,6 +245,55 @@ Page({
     currentIndex = index;
     this.setData({ currentIndex: index}, () => {
       this.refreshHeight();
+    });
+  },
+  // 点击关闭篇章选择
+  onCloseChoose: function() {
+    this.setData({
+      chooseActive: false
+    });
+  },
+  // 点击打开篇章选择
+  onOpenChoose: function() {
+    this.setData({
+      chooseActive: true
+    });
+  },
+  // 点击篇章名称
+  onChapterTap: function(e) {
+    const { index } = e.currentTarget.dataset;
+    this.setData({ 
+      chapters: this.data.chapters.map((v, i) => {
+        if(i === index){
+          v.selected = !v.selected;
+        }
+        return v;
+      })
+    });
+  },
+  // 选择篇章后确定按钮
+  onChooseConfirm: function() {
+    let array = [];
+    for(let k in this.data.chapters){
+      let item = this.data.chapters[k];
+      if(item.selected){
+        array.push(item.name);
+      }
+    }
+    this.data.chooseChapter = array;
+    this.data.pageIndexs = [1,1,1,1];
+    this.setData({ 
+      events: [[],[],[],[]],
+      chooseActive: false
+    });
+    this.fetchEvetns();
+  },
+  onChooseReset: function() {
+    this.setData({
+      chapters: this.data.chapters.map((v, i) => {
+        v.selected = false;
+        return v;
+      })
     });
   }
 })

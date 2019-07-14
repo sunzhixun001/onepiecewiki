@@ -4,7 +4,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    id: String,
+    wikiid: String,
     img: String,
     title: String,
     url: String,
@@ -24,8 +24,12 @@ Component({
    */
   methods: {
     onImageLoad: function(e) {
-      const { height, width} = e.detail;
-      this.triggerEvent('imageload', { height, width, left: this.data.left, index: this.data.index}, {});
+      const query = wx.createSelectorQuery().in(this);
+      const { wikiid } = this.data;
+      query.select('#wiki' + wikiid).boundingClientRect(rect => {
+        const { height} = rect;
+        this.triggerEvent('imageload', { height, width:0, left: this.data.left, index: this.data.index }, {});
+      }).exec();
     }
   }
 })

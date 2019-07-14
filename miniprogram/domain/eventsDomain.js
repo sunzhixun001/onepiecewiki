@@ -1,13 +1,14 @@
 import {
   getList
 } from '../database/eventsRepository';
-const getEventList = ({ lt, gte, pageSize = 20, pageIndex = 0, field, success }) => {
+const getEventList = ({ lt, gte, pageSize = 20, pageIndex = 0, field, success, tag }) => {
   let promise = getList({ 
     lt, 
     gte, 
     limit: pageSize, 
     skip: (pageIndex - 1) * pageSize, 
-    field 
+    field,
+    tag 
   });
   promise
   .then(res => {
