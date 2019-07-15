@@ -4,39 +4,45 @@ import {
   getOne,
   getRegexp
 } from '../database/wikisRepository';
-const g = function* (p, success) {
+const g = function* (promise) {
   try {
-    const res = yield p;
+    promise.then(function(res){
+      yield res;
+    });
     // res: { data: Array(20), errMsg: "collection.get:ok"}
-    success(res.data);
+    return res.data;
   } catch (e) {
     console.log(e);
   }
 };
-function run(generator, p, success) {
-  const it = generator(p, success);
-  function go(result) {
+function run(generator, promise) {
+  const it = generator(promise);
+  function go(promise) {
     // result:
     // 第一次 value: Promise, done: false
     // 第二次 value: undefined, done: true
-    if (result.done) return result.value;
-    return result.value.then(function (value) {
-      return go(it.next(value));
+    if (promise.done) return promise.value;
+    return promise.value.then(function (value) {
+      console.log("value", value);
+      console.log("it.next(value)", it.next(value));
     });
   };
   // return Promise
   // [[PromiseStatus]]: "resolved"
   // [[PromiseValue]]: undefined
-  go(it.next());
+  let res = go(it.next());
+  console.log("res", res);
 }
+// 获取列表
 const getWikiList = ({ pageIndex, pageSize, success }) => {
   let promise = getList({
     limit: pageSize,
     skip: (pageIndex - 1) * pageSize
   });
-  // return undefined
-  run(g, promise, success);
+  const it = generator(promise);
+  console.log("1:", it.next());
 };
+// 获取单个
 const getOneWiki = ({ id, success}) => {
   let promise = getOne({ id});
   promise.then(res => {
