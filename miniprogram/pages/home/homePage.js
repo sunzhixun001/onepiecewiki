@@ -1,4 +1,5 @@
 import { getWikiList } from '../../domain/wikisDomain';
+import { getList } from '../../database/wikisRepository';
 const { statusBarHeight } = getApp().globalData;
 
 class WaterArea {

@@ -19,6 +19,7 @@ export const getList = ({ lt, gte, limit = 20, skip = 0, field, tag}) => {
     collection
       .where({
         age: db.command.lt(lt).and(db.command.gte(gte))
+        // tags: db.command.in(tag)
       });
   if (tag && tag.length > 0){
     _collection = _collection.where({

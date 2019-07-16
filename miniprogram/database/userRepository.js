@@ -2,17 +2,17 @@ import { db } from './common';
 const collection = db.collection('user');
 
 // 用openid查找一个用户
-const getWithOpenId = ({openid}) => {
+const getWithOpenId = ({ openid}) => {
   const promise = 
     collection
     .where({ openid})
     .get();
   return promise;
 };
-const create = ({user}) => {
+const create = ({ user}) => {
   const promise = 
   collection.add({
-    data: user
+      data: user
   });
   return promise;
 };

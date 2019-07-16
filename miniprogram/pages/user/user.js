@@ -1,4 +1,5 @@
-import { getOpenId} from '../../cloud/userCloud';
+import { getOpenId } from '../../cloud/userCloud';
+import regeneratorRuntime from '../../common/regeneratorRuntime';
 import { 
   fetchUserWithOpenId, 
   createUser, 
@@ -6,42 +7,37 @@ import {
   fetchFavorites,
   getUserPermissions
 } from '../../domain/userDomain';
+import {
+  create,
+  getWithOpenId
+} from '../../database/userRepository';
 import { setStorage, getStorage} from '../../common/storage';
-
+const { scopeUserInfo, statusBarHeight, openid, userid } = getApp().globalData;
 Page({
 
 	/**
 	 * 页面的初始数据
 	 */
 	data: {
-    scopeUserInfo: false,
-    statusBarHeight: 0,
-    openid: '',
+    scopeUserInfo: scopeUserInfo || false,
+    statusBarHeight: statusBarHeight,
+    openid: openid,
     favorites: [],
     messages: [],
     favoriteSwiperItemHeight: 0,
     swiperCurrent: 0,
-    permissions: []
+    permissions: [],
+    userid: userid || ''
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
-    const { scopeUserInfo, statusBarHeight, openid, userid } = getApp().globalData;
-    this.setData({
-      scopeUserInfo: scopeUserInfo || false,
-      statusBarHeight: statusBarHeight,
-      openid,
-      userid: userid || ''
-    });
-    if(userid){
+    if (userid){
       this.fetchGetFavorites({ userid});
       this.fetchPermissions({ userid });
     }
-    // this.getOpenIdStorage();
-    
-    // this.getSetting();
 	},
 
 	/**
@@ -55,13 +51,6 @@ Page({
 	 * 生命周期函数--监听页面显示
 	 */
 	onShow: function () {
-
-	},
-
-	/**
-	 * 生命周期函数--监听页面隐藏
-	 */
-	onHide: function () {
 
 	},
 
@@ -80,93 +69,52 @@ Page({
       this.fetchGetFavorites({ userid: this.data.userid });
     }
 	},
-
-	/**
-	 * 页面上拉触底事件的处理函数
-	 */
-	onReachBottom: function () {
-
-	},
-
-	/**
-	 * 用户点击右上角分享
-	 */
-	onShareAppMessage: function () {
-
-	},
-  authUserInfo: function() {
-
-  },
   // 点击登录
   bindGetUserInfo: function(e) {
+    
     // encryptedData: ""
     // errMsg: "getUserInfo:ok"
     // iv: "Xj4r/v35O4tMJdfNarUUGw=="
     // rawData: ""
     // signature: "8e8358cb9db7925e6000e7e12d27a8d115afe927"
     const { encryptedData, errMsg, iv, rawData, signature, userInfo} = e.detail;
-    const { avatarUrl, city, country, gender, language, nickName, province } = userInfo || {};
+    // const { avatarUrl, city, country, gender, language, nickName, province } = userInfo || {};
     if (errMsg === "getUserInfo:ok"){
-      const _userinfo = { avatarUrl, city, country, gender, language, nickName, province, openid: getApp().globalData.openid };
       this.setData({ scopeUserInfo: true });
       getApp().globalData.scopeUserInfo = true;
-      existOpenid({ 
-        openid: getApp().globalData.openid,
-        success: result => {
-          if (result){
-            getApp().globalData.userid = result.userid;
-            setStorage({ key: 'userid', data: result.userid });
-            this.setData({ userid: result.userid });
-            getApp().globalData.favorites = result.favorites;
-            this.setDataFavorites({ favorites: result.favorites});
-          }else{
-            this.fetchCreateUser({ user: _userinfo });
-          }
+      const it = this.getUserInfoGen({ openid: getApp().globalData.openid});
+      const user = it.next();
+      user.value.then(res => {
+        const userData = it.next(res);
+        if (userData.value){
+          const { _id, favorites } = userData.value;
+          setStorage({ key: 'userid', data: _id });
+          getApp().globalData.userid = _id;
+          getApp().globalData.favorites = favorites;
+          this.setData({ userid: _id });
+          this.setDataFavorites({ favorites: favorites });
+        } else{
+          const createUserPromise = it.next(userInfo);
+          createUserPromise.value.then(createRes => {
+            if (createRes.errMsg === "collection.add:ok" && createRes._id){
+              this.setData({ userid: createRes._id });
+              it.next(createRes._id);
+            }
+          });
         }
       });
     }
 
   },
-  // 从云函数获取openid
-  fetchOpenIdCloud: function() {
-    getOpenId({
-      success: result => {
-        const { openid} = result;
-        setStorage({ key: 'openid', data: openid});
-        this.fetchGetUserWithOpenId({ openid});
-      },
-      fail: err => {
-
-      }
-    });
-  },
-  // 从缓存获取openid
-  getOpenIdStorage: function() {
-    getStorage({
-      key: 'openid',
-      successCallback: value => {
-        this.setData({ openid: value});
-        this.getUserInfoStorage({ openid: value});
-      },
-      failCallback: err => {
-        this.fetchOpenIdCloud();
-      }
-    });
-  },
-  // 从缓存获得用户信息
-  getUserInfoStorage: function ({ openid}) {
-    getStorage({
-      key: 'userinfo',
-      successCallback: res => {
-        this.setData({
-          scopeUserInfo: true
-        });
-      },
-      failCallback: err => {
-        // 缓存中没有用户信息
-        this.getUserInfoOpenApi({ openid });
-      }
-    });
+  getUserInfoGen: function* ({ openid}){
+    const getWithOpenIdRes = yield getWithOpenId({ openid})
+    const userinfo = yield (
+      getWithOpenIdRes.errMsg === "collection.get:ok" 
+      && getWithOpenIdRes.data.length > 0 
+      && getWithOpenIdRes.data[0]) || false;
+    const userid = yield create({ user: userinfo});
+    setStorage({ key: 'userid', data: userid });
+    
   },
   // 把用户信息写入缓存
   setUserInfoStorage: function({userinfo}) {

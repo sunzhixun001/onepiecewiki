@@ -11,6 +11,7 @@ Page({
   data: {
 		// events: [[],[],[],[]],
     events: [{}, {}, {}, {}],
+    eventsCount: [0, 0, 0, 0],
     pageSize: 20,
     pageIndexs: [1,1,1,1],
     allData: [false, false,false,false],
@@ -33,7 +34,6 @@ Page({
       { name: '阿拉巴斯坦', selected: false},
       { name: '空岛', selected: false },
       { name: '七水之都', selected: false },
-      { name: '司法岛', selected: false },
       { name: '恐怖三桅帆', selected: false },
       { name: '香波地群岛', selected: false },
       { name: '女儿国', selected: false },
@@ -140,12 +140,15 @@ Page({
       tag,
       success: data => {
         let _events = this.data.events;
+        let _eventsCount = this.data.eventsCount;
         for (let k in data){
           _events[index][data[k]._id] = data[k];
         }
+        _eventsCount[index] = Object.keys(_events[index]).length;
         // _events[index] = _events[index].concat(data)
         this.setData({
-          events: _events
+          events: _events,
+          eventsCount: _eventsCount
         }, () => {
           // wx.stopPullDownRefresh();
           if (_events.length > 0 && index === currentIndex){
@@ -283,7 +286,8 @@ Page({
     this.data.chooseChapter = array;
     this.data.pageIndexs = [1,1,1,1];
     this.setData({ 
-      events: [[],[],[],[]],
+      events: [{},{},{},{}],
+      allData: [false, false, false, false],
       chooseActive: false
     });
     this.fetchEvetns();
