@@ -61,12 +61,19 @@ const fetchListOrderByBountyDesc = ({ limit = 20, skip = 0, success}) => {
   promise
     .then(res => {
       const data = res.data.map(c => {
-        return {
+        return new Proxy({
           id: c._id,
           avator: c.avator,
           fullname: c.fullname,
-          bounty: convertBounty({bounty: c.bounty})
-        };
+          bounty: c.bounty
+        }, { 
+          get: (target, property) => {
+            if (property === "bounty"){
+              return convertBounty({ bounty: target[property] })
+            } else{
+              return target[property];
+            }
+        }});
       });
       success && success(data);
     })
