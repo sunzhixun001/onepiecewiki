@@ -32,7 +32,7 @@
                 bindtouchend="tagTouchEnd"
               >
                 <view class='dl'>
-                  <input bindinput='bindTagInput' data-index="{{index}}" />
+                  <input bindinput='bindTagInput' data-index="{{index}}" value="{{item}}" />
                 </view>
                 <view class='dd'><button class='del'>删除</button></view>
               </view>

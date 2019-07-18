@@ -5,7 +5,7 @@ const collection = db.collection('user');
 const getWithOpenId = ({ openid}) => {
   const promise = 
     collection
-    .where({ openid})
+      .where({ _openid: openid})
     .get();
   return promise;
 };
@@ -20,7 +20,7 @@ const create = ({ user}) => {
 const countOpenId = ({openid}) => {
   const promise = 
   collection
-    .where({ openid})
+      .where({ _openid: openid})
     .count();
   return promise;
 }

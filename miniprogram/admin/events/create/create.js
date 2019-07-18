@@ -10,7 +10,7 @@ Page({
     age: 0,
     showAge: '海元历1522年',
 		photo: '',
-    tags: ["阿拉巴斯坦"],
+    tags: ["空岛"],
     statusBarHeight: 0
   },
 

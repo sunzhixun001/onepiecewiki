@@ -44,6 +44,9 @@
   font-size: 32rpx;
   font-weight: 700;
 }
+swiper{
+  min-height: 200rpx;
+}
 /* 收藏 & 消息 tab */
 .swiper-tab{
   display: flex;

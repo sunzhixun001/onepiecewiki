@@ -12,7 +12,7 @@ import {
   getWithOpenId
 } from '../../database/userRepository';
 import { setStorage, getStorage} from '../../common/storage';
-const { scopeUserInfo, statusBarHeight, openid, userid } = getApp().globalData;
+const { scopeUserInfo, statusBarHeight, openid } = getApp().globalData;
 Page({
 
 	/**
@@ -27,13 +27,18 @@ Page({
     favoriteSwiperItemHeight: 0,
     swiperCurrent: 0,
     permissions: [],
-    userid: userid || ''
+    userid: ''
 	},
 
 	/**
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+    const { userid } = getApp().globalData;
+    this.setData({ 
+      userid: userid,
+      scopeUserInfo: getApp().globalData.scopeUserInfo
+    });
     if (userid){
       this.fetchGetFavorites({ userid});
       this.fetchPermissions({ userid });
