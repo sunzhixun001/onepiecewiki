@@ -10,7 +10,9 @@
 	flex: 1;
 	background-color: #FFF;
   opacity: 0.8;
-  box-shadow: 2rpx 2rpx 12rpx #000;
+}
+.shadow{
+  box-shadow: 4rpx 4rpx 4rpx 4rpx rgba(0,0,0,0.8);
 }
 .showage{
 	border-bottom: 2px solid #DDE1E6;

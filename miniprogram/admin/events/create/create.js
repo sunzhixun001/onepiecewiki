@@ -10,7 +10,7 @@ Page({
     age: 0,
     showAge: '海元历1522年',
 		photo: '',
-    tags: ["空岛"],
+    tags: ["七水之都"],
     statusBarHeight: 0
   },
 

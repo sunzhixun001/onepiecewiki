@@ -36,7 +36,7 @@ Page({
 	onLoad: function (options) {
     const { userid } = getApp().globalData;
     this.setData({ 
-      userid: userid,
+      userid: userid || '',
       scopeUserInfo: getApp().globalData.scopeUserInfo
     });
     if (userid){

@@ -1,5 +1,5 @@
 <view class='li' data-img="{{img}}" bindtap="itemTap">
-  <view class='boxRadius'>
+  <view class='boxRadius {{img?"shadow":""}}'>
     <view class='head'>
       <view class='showage'>{{showAge}}</view>
     </view>
