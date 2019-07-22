@@ -10,7 +10,7 @@ Page({
     age: 0,
     showAge: '海元历1522年',
 		photo: '',
-    tags: ["七水之都"],
+    tags: ["香波地群岛"],
     statusBarHeight: 0
   },
 

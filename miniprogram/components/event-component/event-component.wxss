@@ -57,7 +57,26 @@
 	margin-top: 20rpx;
   display: flex;
   height: 169rpx;
+  position: relative;
 }
 .photo image{
 	width: 100%;
+}
+.shine{
+  position: absolute;
+  height: 300rpx;
+  width: 100rpx;
+  top: -50rpx;
+  background: linear-gradient(to right,rgba(255,255,255,0.2), rgba(255,255,255,0.5),rgba(255,255,255,0.2));
+  transform: rotate(25deg);
+  animation: imageshine 8s;
+  animation-iteration-count: infinite;
+}
+@keyframes imageshine{
+  0%, 75%{
+    transform: translateX(-200rpx) rotate(25deg);
+  }
+  100%{
+    transform: translateX(1000rpx) rotate(25deg);
+  }
 }
