@@ -2,6 +2,5 @@
   "usingComponents": {
     "character-component": "/components/character-component/character-component"
   },
-  "enablePullDownRefresh": true,
   "onReachBottomDistance": 80
 }

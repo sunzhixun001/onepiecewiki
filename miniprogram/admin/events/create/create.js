@@ -10,7 +10,7 @@ Page({
     age: 0,
     showAge: '海元历1522年',
 		photo: '',
-    tags: ["香波地群岛"],
+    tags: ["马林梵多"],
     statusBarHeight: 0
   },
 
@@ -106,12 +106,12 @@ Page({
       const { errMsg, _id} = res;
       if (errMsg === 'collection.add:ok' && _id){
         wx.showToast({
-          title: '添加成功'
-        });
-        this.setData({
-          title: '',
-          age: 0,
-          showAge: ''
+          title: '添加成功',
+          success: () => {
+            wx.navigateBack({
+              
+            });
+          }
         });
       }
     }})

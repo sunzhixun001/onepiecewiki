@@ -95,9 +95,11 @@ Page({
           const { _id, favorites } = userData.value;
           setStorage({ key: 'userid', data: _id });
           getApp().globalData.userid = _id;
-          getApp().globalData.favorites = favorites;
           this.setData({ userid: _id });
-          this.setDataFavorites({ favorites: favorites });
+          if (favorites) {
+            getApp().globalData.favorites = favorites;
+            this.setDataFavorites({ favorites: favorites });
+          }
         } else{
           const createUserPromise = it.next(userInfo);
           createUserPromise.value.then(createRes => {

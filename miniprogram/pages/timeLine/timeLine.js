@@ -14,7 +14,8 @@ Page({
     eventsCount: [0, 0, 0, 0],
     pageSize: 20,
     pageIndexs: [1,1,1,1],
-    allData: [false, false,false,false],
+    allData: [false, false, false, false],
+    loading: [false, false, false, false],
     barHeight: statusBarHeight,
     searchInputHeight: 0,
     searchActive: false,
@@ -131,7 +132,18 @@ Page({
       tag: this.data.chooseChapter
     });
   },
+  openLoading({ index}) {
+    let _loading = this.data.loading;
+    _loading[index] = true;
+    this.setData({ loading: _loading});
+  },
+  closeLoading({ index }) {
+    let _loading = this.data.loading;
+    _loading[index] = false;
+    this.setData({ loading: _loading });
+  },
   fetchEventsList({ index, pageSize, pageIndex, lt, gte, tag }) {
+    this.openLoading({ index});
     getEventList({
       lt,
       gte,
@@ -139,6 +151,7 @@ Page({
       pageIndex, 
       tag,
       success: data => {
+        this.closeLoading({ index});
         let _events = this.data.events;
         let _eventsCount = this.data.eventsCount;
         for (let k in data){
@@ -229,9 +242,9 @@ Page({
       .exec();
   },
   refreshHeight: function() {
-    console.log("refreshHeight:", this.data.currentIndex);
+    console.log("refreshHeight:", currentIndex);
     const query = wx.createSelectorQuery();
-    query.select(`#ul${this.data.currentIndex}`)
+    query.select(`#ul${currentIndex}`)
       .boundingClientRect(rect => {
         const { height } = rect;
         this.setData({ itemsHeight: height + 30 });
@@ -240,14 +253,17 @@ Page({
   },
   swiperChange: function(e) {
     const { current, source } = e.detail;
-    this.setData({currentIndex: current});
+    this.setData({currentIndex: current}, () => {
+      
+    });
     currentIndex = current;
+    this.refreshHeight();
   },
   bindTabChange: function(e) {
     const { index} = e.currentTarget.dataset;
     currentIndex = index;
     this.setData({ currentIndex: index}, () => {
-      this.refreshHeight();
+      // this.refreshHeight();
     });
   },
   // 点击关闭篇章选择

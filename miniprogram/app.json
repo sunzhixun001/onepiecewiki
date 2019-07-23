@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/timeLine/timeLine",
     "pages/home/homePage",
+    "pages/timeLine/timeLine",
     "admin/events/list/list",
     "pages/user/user",
     "pages/wiki/search/wikiSearchPage",
