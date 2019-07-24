@@ -14,7 +14,7 @@
               confirm-type="search"
               bindfocus="onFocus"
               placeholder-style="color:#808080"
-              bindconfirm="onConfirm"
+              bindconfirm="onSearch"
             />
             <view class="icon">
               <text 
@@ -27,6 +27,15 @@
           <view class="btn" bindtap="onSearch"><text>搜索</text></view>
         </view>
         <view class="hot-area" wx:if="{{searchActive}}">
+          <view class="title" wx:if="{{historyKeyword.length > 0}}">
+            <text>历史搜索</text>
+            <text class="fa fa-trash-o" bindtap="onTrashHistoryTap" />
+          </view>
+          <view class="ul">
+            <view class="li"  wx:for="{{historyKeyword}}" wx:key="index" bindtap="onHotItemTap" data-value="{{item}}">
+              <view>{{item}}</view>
+            </view>
+          </view>
           <view class="title"><text>热门搜索</text></view>
           <view class="ul">
             <view class="li" wx:for="{{hots}}" wx:key="index" bindtap="onHotItemTap" data-value="{{item}}">
@@ -34,16 +43,19 @@
             </view>
           </view>
         </view>
-        <view class="water-area" wx:else>
-          <view class="ul">
-            <wiki-item
-              wx:for="{{wikis}}"
-              wx:key="id"
-              id="{{item.id}}"
-              title="{{item.title}}"
-              img="{{item.img}}"
-              url="{{item.url}}"
-            />
+        <view wx:else>
+          <no-result wx:if="{{wikis.length === 0}}" />
+          <view class="water-area">
+            <view class="ul">
+              <wiki-item
+                wx:for="{{wikis}}"
+                wx:key="id"
+                id="{{item.id}}"
+                title="{{item.title}}"
+                img="{{item.img}}"
+                url="{{item.url}}"
+              />
+            </view>
           </view>
         </view>
       </view>

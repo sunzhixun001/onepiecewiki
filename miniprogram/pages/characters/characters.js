@@ -7,7 +7,7 @@ import {
 import {
   fetchFavorites
 } from '../../domain/userDomain';
-import { convertBounty} from '../../common/implement';
+import { clearUserId} from '../../common/auth'; 
 let favorites = [];
 Page({
 
@@ -40,7 +40,8 @@ Page({
     searchInputHeight: 0,
     screenHeight: 0,
     searchActive: false,
-    keyword: ''
+    keyword: '',
+    userid: ''
   },
 
   /**
@@ -52,7 +53,10 @@ Page({
     watchBallBack["favorites"] = value => { 
       this.refreshFavorites({ favorites: value});
     };
-    this.setData({ statusBarHeight, screenHeight});
+    this.setData({ 
+      userid,
+      statusBarHeight, screenHeight
+    });
     if(userid) {
       this.fetchGetFavorites({ userid});
     }else{
@@ -273,6 +277,12 @@ Page({
         getApp().globalData.favorites = list;
         favorites = list;
         this.getCharacters();
+      },
+      fail: errCode => {
+        if (errCode === -1){
+          clearUserId();
+          this.getCharacters();
+        }
       }
     });
   },

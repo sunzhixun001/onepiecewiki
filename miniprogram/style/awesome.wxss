@@ -61,3 +61,6 @@
 .fa-check:before {
   content: "\f00c";
 }
+.fa-trash-o:before {
+  content: "\f014";
+}

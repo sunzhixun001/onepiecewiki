@@ -1,4 +1,5 @@
 import { getRegexp } from '../../database/eventsRepository';
+import { setStorage, getStorage } from '../../common/storage';
 Page({
 
   /**
@@ -10,6 +11,7 @@ Page({
     pageSize: 20,
     allData: false,
     keyword: '',
+    historyKeyword: [], 
     statusBarHeight: 0,
     searchInputHeight: 88,
     nochara: false

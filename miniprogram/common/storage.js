@@ -17,3 +17,9 @@ export const getStorage = ({ key, successCallback, failCallback}) => {
     } 
   })
 };
+export const removeStorage = ({ key}) => {
+  wx.removeStorage({
+    key,
+    success: function(res) {}
+  })
+};

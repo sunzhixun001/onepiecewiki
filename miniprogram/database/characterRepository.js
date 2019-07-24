@@ -92,12 +92,18 @@ export const getListOrderByBountyDesc = ({ limit = 20, skip = 0}) => {
 export const getListInGroup = ({ groupName, field}) => {
   const promise =
   collection
-    .where({ 
-      group: db.RegExp({
-        regexp: `.*${groupName}.*`,
-        options: 'i'
-      }) 
-    })
+    .where(db.command.or([{ 
+        group: db.RegExp({
+          regexp: `.*${groupName}.*`,
+          options: 'i'
+        })
+      },{
+        fullname: db.RegExp({
+          regexp: `.*${groupName}.*`,
+          options: 'i'
+        })
+      }
+    ]))
     .field(field)
     .get();
   return promise;

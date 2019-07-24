@@ -23,14 +23,7 @@
   </view>
   <view class='container' style='margin-top: {{searchInputHeight}}rpx'>
     <view class='main listPage' style='margin-top: {{statusBarHeight}}px'>
-      <view class='no-result' wx:if="{{nochara}}">
-        <view class='no-main'>
-          <view class='no-wrap'>
-            <view class='h4'>没有搜索到相关事件</view>
-            <view class='h5'>换个关键字试试吧</view>
-          </view>
-        </view>
-      </view>
+      <no-result class='no-result' wx:if="{{nochara}}" />
       <view class='cw'>
         <view class='listArea'>
           <view class='ul itemList'>

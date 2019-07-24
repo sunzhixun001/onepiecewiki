@@ -2,10 +2,10 @@
   "cloud": true,
   "pages": [
     "pages/home/homePage",
+    "pages/wiki/search/wikiSearchPage",
     "pages/timeLine/timeLine",
     "admin/events/list/list",
     "pages/user/user",
-    "pages/wiki/search/wikiSearchPage",
     "admin/wikis/createOrEdit/createOrEdit",
     "pages/characters/characters",
     "pages/test/test",

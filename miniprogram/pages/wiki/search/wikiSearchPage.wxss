@@ -69,10 +69,16 @@
 .hot-area .title{
   padding-left: 10rpx;
   margin-bottom: 20rpx;
+  display: flex;
+  justify-content: space-between;
 }
 .hot-area .title text{
   font-weight: bold;
   color: #333333;
+}
+.hot-area .title .fa{
+  font-weight: 200;
+  padding: 0 15px;
 }
 .hot-area .ul{
   display: flex;

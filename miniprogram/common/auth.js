@@ -1,5 +1,5 @@
 import { getOpenId as getOpenIdFromCloud} from '../cloud/userCloud';
-import { setStorage, getStorage } from './storage';
+import { setStorage, getStorage, removeStorage } from './storage';
 
 // 从云函数获取openid
 const fetchOpenIdCloud = ({ successCallback}) => {
@@ -56,4 +56,9 @@ export const getUserId = ({ gotCallback }) => {
   getUserIdStorage({ success: value => {
     gotCallback(value);
   }});
+}
+// 清除缓存和全局变量中的userid
+export const clearUserId = () => {
+  getApp().globalData.userid = null;
+  removeStorage({ key: "userid"});
 }

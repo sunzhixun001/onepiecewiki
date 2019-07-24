@@ -31,6 +31,7 @@ Page({
     axisHeight: scrollViewHeight * 0.9,
     axisTop: scrollViewHeight * 0.05,
     chapters: [
+      { name: '海贼王罗杰', selected: false, hot: true },
       { name: '东海', selected: false},
       { name: '阿拉巴斯坦', selected: false},
       { name: '空岛', selected: false },

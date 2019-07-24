@@ -58,12 +58,18 @@ const checkHadFavoriteCharaId = () => {
 
 };
 // 获取用户的全部收藏
-const fetchFavorites = ({ userid, success }) => {
+const fetchFavorites = ({ userid, success, fail }) => {
   const promise = getFavorites({ userid});
   promise
     .then(res => {
       const { favorites} = res.data;
       success(favorites || {});
+    })
+    .catch(err => {
+      // errCode: -1
+      // errMsg "document.get:fail Error: cannot find document with _id 123, please make sure that the document exists and you have the corresponding access permission; at document.get api; "
+      const { errCode, errMsg} = err;
+      fail && fail(errCode);
     });
 };
 // 获取用户的管理权限
