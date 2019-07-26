@@ -4,6 +4,7 @@
 	margin-top: 20rpx;
   padding-left: 20rpx;
   padding-right: 20rpx;
+  position: relative;
 }
 .boxRadius{
 	border-radius: 8rpx;
@@ -13,7 +14,20 @@
 }
 .shadow{
   box-shadow: 4rpx 4rpx 4rpx 4rpx rgba(0,0,0,0.8);
+  /* border: 3px transparent solid; */
+  position: relative;
 }
+/* .shadow:after{
+  content: "";
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  right: -3px;
+  left: -3px;
+  background: linear-gradient(to right, #ff9200, #ffffff);
+	border-radius: 8rpx;
+  z-index: -1;
+} */
 .showage{
 	border-bottom: 2px solid #DDE1E6;
 	font-weight: bold;
