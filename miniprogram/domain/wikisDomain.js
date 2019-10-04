@@ -1,21 +1,24 @@
 import regeneratorRuntime from '../common/regeneratorRuntime';
 import {
+  getCount,
   getList,
   getOne,
   getRegexp
 } from '../database/wikisRepository';
 // 获取列表
-const getWikiList = ({ pageIndex, pageSize, success }) => {
-  let promise = getList({
+const getWikiList = async ({ pageindex = 1, pageSize = 20 }) => {
+  let response = await getList({
     limit: pageSize,
-    skip: (pageIndex - 1) * pageSize
+    skip: (pageindex - 1) * pageSize
   });
-  promise.then(res => {
-    const { errMsg, data } = res;
-    if (errMsg === "collection.get:ok") {
-      success(data);
-    }
-  });
+  let data = response.data;
+  return data;
+  // promise.then(res => {
+  //   const { errMsg, data } = res;
+  //   if (errMsg === "collection.get:ok") {
+  //     success(data);
+  //   }
+  // });
 };
 // 获取单个
 const getOneWiki = ({ id, success}) => {
@@ -37,8 +40,15 @@ const getRegexpWikiList = ({ keyword, success }) => {
     }
   });
 }
+// 获取总记录数
+const getTotal = async () => {
+  let response = await getCount();
+  let total = response.total;
+  return total;
+}
 export {
   getWikiList,
   getOneWiki,
-  getRegexpWikiList
+  getRegexpWikiList,
+  getTotal
 }

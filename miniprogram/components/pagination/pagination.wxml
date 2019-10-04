@@ -1,0 +1,51 @@
+<view class="pagingListArea">
+  <view class="ul pagingListStart">
+    <view class="li start {{pageindex === 1 ? 'off': ''}}">
+      <view class="a">
+        <text 
+          class="fa fa-angle-double-left"
+          bindtap="jump"
+          data-pageindex="{{1}}" 
+        />
+      </view>
+    </view>
+    <view class="li prev {{pageindex === 1 ? 'off': ''}}">
+      <view class="a">
+        <text 
+          class="fa fa-angle-left"
+          bindtap="jump"
+          data-pageindex="{{pageindex - 1}}"  
+        />
+      </view>
+    </view>
+  </view>
+  <view class="ul pagingList">
+    <view class="li" wx:for="{{pageList}}" wx:key="index">
+      <view 
+        class="a {{item === pageindex ? 'on' : ''}}"
+        bindtap="jump"
+        data-pageindex="{{item}}"
+      >{{item}}</view>
+    </view>
+  </view>
+  <view class="ul pagingListEnd">
+    <view class="li next {{pageindex === pagecount ? 'off': ''}}">
+      <view class="a">
+        <text 
+          class="fa fa-angle-right" 
+          bindtap="jump"
+          data-pageindex="{{pageindex + 1}}"
+        />
+      </view>
+    </view>
+    <view class="li end {{pageindex === pagecount ? 'off': ''}}">
+      <view class="a">
+        <text 
+          class="fa fa-angle-double-right"
+          bindtap="jump"
+          data-pageindex="{{pagecount}}" 
+        />
+      </view>
+    </view>
+  </view>
+</view>

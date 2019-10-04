@@ -33,7 +33,14 @@ const getRegexp = ({ keyword }) => {
       .get();
   return promise;
 };
+// 获取总数
+const getCount = () => {
+  const promise = 
+    collection.count();
+  return promise;
+}
 export {
+  getCount,
   getList,
   getOne,
   getRegexp

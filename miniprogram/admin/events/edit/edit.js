@@ -14,6 +14,7 @@ Page({
     title: '',
     tags: [],
     statusBarHeight: 0,
+    source: ''
   },
 
   /**
@@ -117,6 +118,11 @@ Page({
       })
     });
   },
+  bindSourceInput: function(e) {
+    this.setData({
+      source: e.detail.value
+    });
+  },
   bindDelTap: function(e) {
     const _index = e.currentTarget.dataset.index;
     this.setData({
@@ -145,7 +151,8 @@ Page({
       showAge: this.data.showAge,
       photo: this.data.photo,
       tags: this.data.tags,
-      img: this.data.img
+      img: this.data.img,
+      source: this.data.source
     });
     update({
       id: this.data.id,

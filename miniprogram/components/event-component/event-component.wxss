@@ -28,25 +28,22 @@
 	border-radius: 8rpx;
   z-index: -1;
 } */
-.showage{
-	border-bottom: 2px solid #DDE1E6;
-	font-weight: bold;
-	color: #000;
-	width:100%;
-	padding-bottom: 10rpx;
-}
+
 .boxRadius .head{
 	display: flex;
 	padding: 20rpx;
 	align-items: center;
 	position: relative;
 }
-.head .triangle{
-	border-style: solid;
-	border-width: 10rpx;
-	border-color: transparent #D9312B transparent transparent;
-	position: absolute;
-	left: -20rpx;
+.head .showage{
+	border-bottom: 2px solid #DDE1E6;
+	font-weight: bold;
+	color: #000;
+	flex: 1;
+	padding-bottom: 10rpx;
+}
+.head .source {
+  color: #777;
 }
 .age{
 	font-size: 24rpx;

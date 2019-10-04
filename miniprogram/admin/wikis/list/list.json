@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navbar": "../../../components/navbar/navbar",
+    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell",
+    "mp-cells": "/miniprogram_npm/weui-miniprogram/cells/cells",
+    "pagination": "/components/pagination/pagination"
+  }
+}

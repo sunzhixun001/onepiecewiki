@@ -1,7 +1,8 @@
 import { phonePx, px2rpx} from './common/implement';
 import { getOpenId, getUserId } from './common/auth';
+import regeneratorRuntime from './common/regeneratorRuntime';
 App({
-  _favorites: [],
+  _favorites: {},
   globalData: {},
   onLaunch: function (options) {
     let globalDataObj = this.globalData;

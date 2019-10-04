@@ -7,7 +7,8 @@ Component({
     showAge: String,
     title: String,
     photo: String,
-    img: String
+    img: String,
+    source: String
   },
 
   /**

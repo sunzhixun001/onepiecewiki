@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "navigation-bar": "../../miniprogram_npm/weui-miniprogram/navigation-bar/navigation-bar"
+  }
+}

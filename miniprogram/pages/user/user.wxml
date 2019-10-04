@@ -35,7 +35,6 @@
           <view class='swiper-main'>
             <view class='swiper-wrap'>
               <swiper 
-                style='height:{{favoriteSwiperItemHeight}}rpx'
                 current="{{swiperCurrent}}"
                 bindchange="bindSwiperChange"
               >
@@ -59,11 +58,11 @@
                 </swiper-item>
                 <swiper-item wx:if="{{permissions.length > 0}}">
                   <view class="permissions-wrap">
-                    <view class="ul">
-                      <view class="li" wx:for="{{permissions}}" wx:key="index">
+                    <mp-cells>
+                      <mp-cell wx:for="{{permissions}}" wx:key="index">
                         <navigator url="{{item.url}}">{{item.name}}</navigator>
-                      </view>
-                    </view>
+                      </mp-cell>
+                    </mp-cells>
                   </view>
                 </swiper-item>
               </swiper>

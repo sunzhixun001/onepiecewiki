@@ -1,5 +1,5 @@
-import { getOpenId } from '../../cloud/userCloud';
 import regeneratorRuntime from '../../common/regeneratorRuntime';
+import { getOpenId } from '../../cloud/userCloud';
 import { 
   fetchUserWithOpenId, 
   createUser, 
@@ -24,7 +24,7 @@ Page({
     openid: openid,
     favorites: [],
     messages: [],
-    favoriteSwiperItemHeight: 0,
+    // favoriteSwiperItemHeight: 0,
     swiperCurrent: 0,
     permissions: [],
     userid: ''
@@ -37,7 +37,7 @@ Page({
     const { userid } = getApp().globalData;
     this.setData({ 
       userid: userid || '',
-      scopeUserInfo: getApp().globalData.scopeUserInfo
+      scopeUserInfo: getApp().globalData.scopeUserInfo || {}
     });
     if (userid){
       this.fetchGetFavorites({ userid});
@@ -216,14 +216,18 @@ Page({
     }
     this.setData({
       favorites: _favorites,
-      favoriteSwiperItemHeight: Math.ceil(_favorites.length / 3) * 190
+      // favoriteSwiperItemHeight: Math.ceil(_favorites.length / 3) * 190
     }, () => {
       wx.stopPullDownRefresh();
     });
   },
   bindSwiperChange: function(e) {
     const { current, source } = e.detail;
-    this.setData({swiperCurrent: current});
+    let data = { swiperCurrent: current};
+    // if (current === 2){
+    //   data.favoriteSwiperItemHeight = this.data.permissions.length * 48
+    // }
+    this.setData(data);
   },
   bindSwiperTabTap: function(e) {
     const { index} = e.currentTarget.dataset;

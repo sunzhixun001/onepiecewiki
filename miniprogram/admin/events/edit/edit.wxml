@@ -14,6 +14,7 @@
                 <view class='item'><input bindinput="bindTitleInput" placeholder="标题" value='{{title}}' /></view>
                 <view class='item'><input bindinput="bindAgeInput" placeholder="年份" value='{{age}}' /></view>
                 <view class='item'><input bindinput="bindShowAgeInput" placeholder="显示年份" value='{{showAge}}' /></view>
+                <view class='item'><input bindinput="bindSourceInput" placeholder="出处" value='{{source}}' /></view>
                 <view class='item tags'>
                   <view class='add'>
                     <button bindtap='bindAddTag'>+</button>

@@ -1,0 +1,21 @@
+<View>
+  <navbar
+    title="{{title}}" 
+    back="{{true}}"
+  />
+  <view class="main">
+    <view class="cw">
+      <view>
+        <mp-cells>
+          <mp-cell wx:for="{{list}}" wx:key="index" link="{{true}}">
+            <view>{{item.title}}</view>
+          </mp-cell>
+        </mp-cells>
+      </view>
+      <pagination 
+        total="{{total}}"
+        bindbuttontap="onJumpEvent"
+      />
+    </view>
+  </view>
+</View>

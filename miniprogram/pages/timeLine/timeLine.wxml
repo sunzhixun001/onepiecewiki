@@ -126,6 +126,7 @@
                         title="{{item.title}}"
                         photo="{{item.photo}}"
                         img="{{item.img}}"
+                        source="{{item.source}}"
                       />
                       <no-event wx:if="{{!loading[1] && eventsCount[1] === 0}}" />
                     </view>

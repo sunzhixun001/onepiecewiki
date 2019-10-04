@@ -1,7 +1,14 @@
 @import "../../style/commos.wxss";
 @import "../../style/awesome.wxss";
+.main {
+  flex: 1;
+  display: flex;
+}
 .cw{
   padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .userinfo{
   padding-left: 5%;
@@ -45,7 +52,7 @@
   font-weight: 700;
 }
 swiper{
-  min-height: 200rpx;
+  flex: 1;
 }
 /* 收藏 & 消息 tab */
 .swiper-tab{
@@ -70,6 +77,8 @@ swiper{
 /* 收藏列表 */
 .swiper-main{
   padding-top: 50rpx;
+  display: flex;
+  flex: 1;
 }
 .swiper-main .ul{
   display: flex;
@@ -91,6 +100,8 @@ swiper{
 .swiper-main .swiper-wrap{
   padding-left: 5%;
   padding-right: 5%;
+  display: flex;
+  flex: 1;
 }
 /* 消息 */
 .no-message{
@@ -101,4 +112,8 @@ swiper{
 /* 管理 */
 .swiper-main .permissions-wrap .ul{
   flex-direction: column;
+}
+.swiper-container{
+  display: flex;
+  flex: 1;
 }
