@@ -8,7 +8,7 @@
       <view>
         <mp-cells>
           <mp-cell wx:for="{{list}}" wx:key="index" link="{{true}}">
-            <view>{{item.title}}</view>
+            <navigator url="../createOrEdit/createOrEdit?id={{item._id}}">{{item.title}}</navigator>
           </mp-cell>
         </mp-cells>
       </view>

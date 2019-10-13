@@ -1,18 +1,21 @@
-const { statusBarHeight} = getApp().globalData;
+import { getOneWiki} from '../../../domain/wikisDomain.js';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    barHeight: statusBarHeight
+    title: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getOneWiki({ id: options.id})
+    .then(data => {
+      this.setData(data);
+    })
   },
 
   /**

@@ -13,22 +13,14 @@ const getWikiList = async ({ pageindex = 1, pageSize = 20 }) => {
   });
   let data = response.data;
   return data;
-  // promise.then(res => {
-  //   const { errMsg, data } = res;
-  //   if (errMsg === "collection.get:ok") {
-  //     success(data);
-  //   }
-  // });
 };
 // 获取单个
-const getOneWiki = ({ id, success}) => {
-  let promise = getOne({ id});
-  promise.then(res => {
-    const { errMsg, data } = res;
-    if (errMsg === "document.get:ok") {
-      success(data);
-    }
-  });
+const getOneWiki = async ({ id }) => {
+  let response = await getOne({ id});
+  const { errMsg, data } = response;
+  if (errMsg === "document.get:ok") {
+    return data;
+  }
 };
 // 模糊搜索
 const getRegexpWikiList = ({ keyword, success }) => {

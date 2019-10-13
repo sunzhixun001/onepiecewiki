@@ -1,5 +1,6 @@
 import { db } from './common';
 const collection = db.collection('wikis');
+// 获取单个详情
 const getOne = ({id}) => {
   let promise =
     collection
