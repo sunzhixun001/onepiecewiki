@@ -19,7 +19,8 @@
     "admin/priateRegiments/create/create",
     "pages/characterDetail/characterDetail",
     "admin/events/edit/edit",
-    "pages/wiki/detail/wikiDetailPage"
+    "pages/wiki/detail/wikiDetailPage",
+    "admin/common/plugcharacters/plugcharacters"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

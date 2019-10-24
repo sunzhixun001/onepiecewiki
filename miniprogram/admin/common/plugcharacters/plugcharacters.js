@@ -1,21 +1,18 @@
-import { getOneWiki} from '../../../domain/wikisDomain.js';
+// miniprogram/admin/common/plugcharacters/plugcharacters.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    title: ''
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getOneWiki({ id: options.id})
-    .then(data => {
-      this.setData(data);
-    })
+
   },
 
   /**
@@ -65,16 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  onEditorReady: function() {
-    const that = this
-    wx.createSelectorQuery().select('#editor').context(function (res) {
-      that.editorCtx = res.context
-    }).exec();
-  },
-  plugchara: function () {
-    wx.navigateTo({
-      url: '/admin/common/plugcharacters/plugcharacters',
-    })
   }
 })

@@ -5,10 +5,13 @@
   />
   <view class="main">
     <view class="cw">
-      <view>
+      <view class="item-list">
         <mp-cells>
           <mp-cell wx:for="{{list}}" wx:key="index" link="{{true}}">
-            <navigator url="../createOrEdit/createOrEdit?id={{item._id}}">{{item.title}}</navigator>
+            <navigator 
+              url="../createOrEdit/createOrEdit?id={{item._id}}"
+              hover-class="none"
+            >{{item.title}}</navigator>
           </mp-cell>
         </mp-cells>
       </view>

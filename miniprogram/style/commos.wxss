@@ -86,10 +86,6 @@
   left: 20rpx;
   top: 6rpx;
 }
-.cw{
-  padding-left: 5%;
-  padding-right: 5%;
-}
 .footer{
 	position: fixed;
 	bottom: 0;

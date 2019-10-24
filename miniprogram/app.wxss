@@ -4,6 +4,7 @@ page, input, view, text{
 }
 page {
   height: 100%;
+  background: hsla(0,0%,97%,.98);
 }
 .container {
   display: flex;
@@ -16,6 +17,6 @@ page {
   padding-bottom: 128rpx;
 } 
 .cw {
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
 }
