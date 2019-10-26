@@ -74,7 +74,7 @@ Page({
   },
   plugchara: function () {
     wx.navigateTo({
-      url: '/admin/common/plugcharacters/plugcharacters',
+      url: `/admin/common/plugcharacters/plugcharacters?id=${this.data._id}`,
     })
   }
 })

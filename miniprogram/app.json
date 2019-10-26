@@ -2,6 +2,7 @@
   "cloud": true,
   "pages": [
     "admin/wikis/list/list",
+    "admin/common/plugcharacters/plugcharacters",
     "pages/home/homePage",
     "pages/user/user",
     "pages/timeLine/timeLine",
@@ -19,8 +20,7 @@
     "admin/priateRegiments/create/create",
     "pages/characterDetail/characterDetail",
     "admin/events/edit/edit",
-    "pages/wiki/detail/wikiDetailPage",
-    "admin/common/plugcharacters/plugcharacters"
+    "pages/wiki/detail/wikiDetailPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

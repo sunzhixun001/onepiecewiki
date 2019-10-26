@@ -71,4 +71,10 @@
   content: "\f014";
 }.fa-plus-square-o:before {
   content: "\f196";
+}.fa-circle-o-notch:before {
+  content: "\f1ce";
+}.fa-check-circle:before {
+  content: "\f058";
+}.fa-circle-o:before {
+  content: "\f10c";
 }

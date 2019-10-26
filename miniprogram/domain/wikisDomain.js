@@ -2,7 +2,7 @@ import regeneratorRuntime from '../common/regeneratorRuntime';
 import {
   getCount,
   getList,
-  getOne,
+  getDoc,
   getRegexp
 } from '../database/wikisRepository';
 // 获取列表
@@ -16,7 +16,7 @@ const getWikiList = async ({ pageindex = 1, pageSize = 20 }) => {
 };
 // 获取单个
 const getOneWiki = async ({ id }) => {
-  let response = await getOne({ id});
+  let response = await getDoc({ id});
   const { errMsg, data } = response;
   if (errMsg === "document.get:ok") {
     return data;
@@ -38,9 +38,19 @@ const getTotal = async () => {
   let total = response.total;
   return total;
 }
+// 获取wiki的相关人物
+const getWikiCharacters = async ({ id}) => {
+  const response = await getDoc({ id});
+  const { errMsg, data } = response;
+  if (errMsg === "document.get:ok") {
+    const { characters } = data
+    return characters;
+  }
+};
 export {
   getWikiList,
   getOneWiki,
   getRegexpWikiList,
-  getTotal
+  getTotal,
+  getWikiCharacters
 }

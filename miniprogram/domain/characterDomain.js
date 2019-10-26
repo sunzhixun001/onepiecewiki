@@ -9,6 +9,7 @@ import {
   pushFavorite,
   getListInGroup
 } from '../database/characterRepository';
+import regeneratorRuntime from '../common/regeneratorRuntime';
 const convertBounty = ({ bounty }) => {
   let result = "";
   if (bounty < 10000) {
@@ -97,13 +98,17 @@ const fetchListInPriateReg = ({ priateRegimentName, success}) => {
     .catch();
 };
 // 模糊搜索角色
-const fetchRegexp = ({ keyword, success}) => {
-  const promise = getRegexp({ keyword});
-  promise
-    .then(res => {
-      success && success(res.data);
-    })
-    .catch()
+const fetchRegexp = async ({ keyword}) => {
+  const response = await getRegexp({ keyword});
+  const { errMsg, data} = response;
+  if (errMsg === "collection.get:ok") {
+    return data;
+  }
+  // promise
+  //   .then(res => {
+  //     success && success(res.data);
+  //   })
+  //   .catch()
 };
 // 获取单个人物
 const fetchCharacter = ({ id, success}) => {

@@ -110,14 +110,19 @@ export const getListInGroup = ({ groupName, field}) => {
 };
 // 模糊搜索角色
 export const getRegexp = ({ keyword}) => {
-  const promise =  
-  collection
-    .where({
+  const promise = collection.where(db.command.or(
+    [{
       fullname: db.RegExp({
         regexp: `.*${keyword}.*`,
         options: 'i'
       })
-    })
+    }, {
+        group: db.RegExp({
+          regexp: `.*${keyword}.*`,
+          options: 'i'
+        })
+    }]
+  ))
     .field({
       avator: true,
       fullname: true,
