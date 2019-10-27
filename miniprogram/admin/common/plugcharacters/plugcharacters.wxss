@@ -14,6 +14,11 @@
   width: 33.33333%;
 }
 
+.ul .li.lock {
+  /* opacity: 0.5; */
+  filter: grayscale(0.9);
+}
+
 .ul .li .image-box {
   padding: 20rpx;
   position: relative;
@@ -31,4 +36,25 @@
 
 .ul .li.checked .image-box .icon {
   color: #D9312B;
+}
+
+.foot {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+}
+
+.foot .button {
+  background: #D9312B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+}
+
+.foot .button text {
+  color: #FFFFFF;
+  font-size: 28rpx;
 }

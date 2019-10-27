@@ -1,23 +1,27 @@
 <view>
-  <navbar back title="添加相关人物" />
+  <navbar back title="{{name}} 添加相关人物" />
   <search-bar bind:search="search" />
   <view class="main">
     <view class="ul">
       <view 
-        class="li {{item.selected ? 'checked':''}}" 
+        class="li {{item.selected ? 'checked':''}} {{item.lock ? 'lock':''}}" 
         wx:for="{{characters}}" 
         wx:key="_id"
         bindtap="bindtap"
         data-id="{{item._id}}"
         data-avator="{{item.avator}}"
+        data-lock="{{item.lock}}"
       >
         <view class="image-box">
           <image src="{{item.avator}}" mode="widthFix" />
-          <view class="icon">
+          <view class="icon" wx:if="{{!item.lock}}">
             <text class="fa {{item.selected ? 'fa-check-circle':'fa-circle-o'}}" />
           </view>
         </view>
       </view>
     </view>
+  </view>
+  <view class="foot">
+    <view class="button"><text>保存</text></view>
   </view>
 </view>

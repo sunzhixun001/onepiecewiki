@@ -14,7 +14,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { id, type } = options;
+    const { id, type, name } = options;
+    this.setData({ name});
     getWikiCharacters({ 
       id
     }).then(characters => {
@@ -57,7 +58,7 @@ Page({
     }).then(data => {
       this.setData({ 
         characters: data.map(d => {
-          if (existCharacters.find(c => c._id === d._id)) {
+          if (existCharacters.find(c => c.id === d._id)) {
             d.lock = true;
           } else {
             d.lock = false;
@@ -68,14 +69,16 @@ Page({
     });
   },
   bindtap: function (e) {
-    const { id, avator} = e.currentTarget.dataset;
-    this.setData({
-      characters: this.data.characters.map(c => {
-        if (c._id === id) {
-          c.selected = !c.selected;
-        }
-        return c;
-      })
-    });
+    const { id, avator, lock} = e.currentTarget.dataset;
+    if (!lock) {
+      this.setData({
+        characters: this.data.characters.map(c => {
+          if (c._id === id) {
+            c.selected = !c.selected;
+          }
+          return c;
+        })
+      });
+    }
   }
 })
