@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "character-component": "/components/character-component/character-component"
+    "navbar": "/miniprogram_npm/weui-miniprogram/navigation-bar/navigation-bar",
+    "character-component": "/components/character-component/character-component",
+    "character-list": "/components/character/list/character-list/character-list"
   },
   "onReachBottomDistance": 80
 }

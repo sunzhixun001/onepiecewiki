@@ -1,4 +1,6 @@
 import { db } from './common';
+import regeneratorRuntime from '../common/regeneratorRuntime';
+
 const collection = db.collection('wikis');
 // 获取单个详情
 const getDoc = ({id}) => {
@@ -8,14 +10,14 @@ const getDoc = ({id}) => {
       .get();
   return promise;
 };
-const getList = ({limit, skip}) => {
-  let promise = 
-    collection
-    .skip(skip)
-    .limit(limit)
-    .field({title: true, cover: true})
-    .get();
-  return promise;
+const getList = async ({limit, skip}) => {
+  let result = 
+  await collection
+  .skip(skip)
+  .limit(limit)
+  .field({title: true, cover: true})
+  .get();
+  return result;
 };
 // 模糊搜索
 const getRegexp = ({ keyword }) => {
@@ -35,10 +37,9 @@ const getRegexp = ({ keyword }) => {
   return promise;
 };
 // 获取总数
-const getCount = () => {
-  const promise = 
-    collection.count();
-  return promise;
+const getCount = async () => {
+  const result = await collection.count();
+  return result;
 }
 export {
   getCount,

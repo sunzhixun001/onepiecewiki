@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "end": "/components/common/end/end"
+  }
+}

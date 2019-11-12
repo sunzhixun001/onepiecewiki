@@ -1,18 +1,11 @@
-.container{
-	height: 100%;
-}
-.main{
-  width: 100%;
-  padding-bottom: 128rpx;
-}
-.bgGray{
+.bgGray {
   background: #F7F7F7;
 }
-.placehold{
+.placehold {
   color: #808080;
   font-weight: 400;
 }
-.nav-wrap .mainTitleArea, .container .mainTitleArea{
+.nav-wrap .mainTitleArea, .container .mainTitleArea {
   height: 64px;
   display: flex;
   text-align: center;
@@ -25,11 +18,11 @@
   opacity: 1;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
 }
-.nav-wrap .mainTitleArea .h1{
+.nav-wrap .mainTitleArea .h1 {
   font-size: 32rpx;
   color: #FFF;
 }
-.t{
+.t {
   font-weight: 700;
 }
 .nav-wrap .mainTitleArea .searchIcon{
@@ -146,7 +139,7 @@
 }
 .listPage .tabListArea {
   box-sizing: border-box;
-	height: 64px;
+	height: 128rpx;
 	position: relative;
 }
 .listPage .tabListArea .headerTabList {

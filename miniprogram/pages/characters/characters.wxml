@@ -1,5 +1,11 @@
 <block>
-  <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
+  <navbar 
+    title="人物"
+    back="{{false}}"
+    background="#D9312B"
+    color="#FFFFFF"
+  />   
+  <!-- <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
     <view class='nav-content'>
       <view class='nav-head'>
         <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
@@ -27,9 +33,9 @@
           <icon bindtap='bindJumpSearch' type="search" size="16" color='#3D3D3D'/>
         </view>
       </view>
-  </view>
-  <view class='container' style='margin-top: {{searchInputHeight}}rpx'>
-    <view class='main listPage' style='margin-top: {{statusBarHeight}}px'>
+  </view> -->
+  <view class='container'>
+    <view class='main listPage'>
       <view class='bgGray borderBottom tabListArea'>
         <view class='swiper-container headerTabList'>
           <view class='swiper-wrapper'>
@@ -47,70 +53,40 @@
       </view>
       <view class='cw'>
         <view class='listArea'>
-            <swiper 
-              style='height:{{swiperHeight}}rpx;min-height: {{this.globalData.screenHeight}}px' 
+            <swiper
+              class="swiper"
               bindchange='bindSwiperChange'
               current="{{currentIndex}}"
             >
               <swiper-item>
-                <view class='itemList'>
-                  <character-component 
-                    wx:for="{{strawHatCharacters}}" 
-                    wx:key="id"
-                    characterid="{{item.id}}"
-                    fullname="{{item.fullname}}"
-                    comment="{{item.job}}"
-                    avator="{{item.avator}}"
-                    favorite="{{item.favorite}}"
-                  />
-                </view>
+                <character-list 
+                  items="{{strawHatCharacters.data}}"
+                  total="{{strawHatCharacters.total}}"
+                />
               </swiper-item>
               <swiper-item>
-                <view class='itemList'>
-                  <character-component 
-                    wx:for="{{bountyCharacters}}" 
-                    wx:key="id"
-                    characterid="{{item.id}}"
-                    fullname="{{item.fullname}}"
-                    comment="{{item.bounty}}"
-                    avator="{{item.avator}}"
-                    favorite="{{item.favorite}}"
-                  />
-                </view>
+                <character-list 
+                  items="{{pirates.data}}"
+                  total="{{pirates.total}}"
+                  bind:scrolltolower="piratesscrolltolower"
+                />
               </swiper-item>
               <swiper-item>
-                <view class='itemList'>
-                  <character-component 
-                    wx:for="{{devilfruitCharacters}}" 
-                    wx:key="id"
-                    characterid="{{item.id}}"
-                    fullname="{{item.fullname}}"
-                    comment="{{item.devilfruit}}"
-                    avator="{{item.avator}}"
-                    favorite="{{item.favorite}}"
-                  />
-                </view>
+                <character-list 
+                  items="{{marines.data}}"
+                  total="{{marines.total}}"
+                  bind:scrolltolower="marinescrolltolower"
+                />
               </swiper-item>
               <swiper-item>
-                <view class='itemList'>
-                  <character-component 
-                    wx:for="{{nameCharacters}}" 
-                    wx:key="_id"
-                    characterid="{{item._id}}"
-                    fullname="{{item.name}}"
-                    comment="{{item.fullname}}"
-                    avator="{{item.avator}}"
-                    favorite="{{item.favorite}}"
-                  />
-                </view>
+                <character-list 
+                  items="{{antagonists.data}}"
+                  total="{{antagonists.total}}"
+                  bind:scrolltolower="antagonistsscrolltolower"
+                />
               </swiper-item>
             </swiper>
         </view>
-      </view>
-    </view>
-    <view class='control'>
-      <view class='control-inner'>
-       
       </view>
     </view>
   </view>

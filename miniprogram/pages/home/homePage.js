@@ -1,6 +1,6 @@
 import { getWikiList } from '../../domain/wikisDomain';
-import { getList } from '../../database/wikisRepository';
-const { statusBarHeight } = getApp().globalData;
+
+let wikitotal = 0;
 
 class WaterArea {
   constructor() {
@@ -71,7 +71,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    statusBarHeight: statusBarHeight,
     wikisLeft: [],
     wikisRight: [],
     pageIndex: 1,
@@ -97,32 +96,42 @@ Page({
     water.leftCount = 0;
     water.rightCount = 0;
     this.fetchWikiList({ handleData: this.directSetData, pageIndex: 1, pageSize: this.data.pageSize});
+    this.setData({
+      pageEnd: false
+    });
   },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (!this.data.pageEnd)
-      this.fetchWikiList({ handleData: this.appendSetData, pageIndex: this.data.pageIndex + 1, pageSize: this.data.pageSize });
+    if (this.data.wikisLeft.length + this.data.wikisRight.length < wikitotal)
+      this.fetchWikiList({ 
+        handleData: this.appendSetData, 
+        pageIndex: this.data.pageIndex + 1, 
+        pageSize: this.data.pageSize 
+      });
   },
   fetchWikiList: function ({ handleData, pageIndex, pageSize}){
     water.startup = true;
     getWikiList({
       pageIndex: pageIndex, 
-      pageSize: pageSize,
-      success: data => {
-        this.data.pageIndex = pageIndex
-        if (data.length < this.data.pageSize){
-          this.data.pageEnd = true;
-        }
-        const _leftarray = data.filter((element, index) => { return index % 2 === 0 });
-        const _rightarray = data.filter((element, index) => { return index % 2 === 1 });
-        handleData({ key: 'wikisLeft', value: _leftarray});
-        handleData({ key: 'wikisRight', value: _rightarray });
-        water.leftCount = water.leftCount + _leftarray.length;
-        water.rightCount = water.rightCount + _rightarray.length;
-        wx.stopPullDownRefresh();
+      pageSize: pageSize
+    }).then(response => {
+      const { data, total} = response;
+      wikitotal = total;
+      this.data.pageIndex = pageIndex
+      if (this.data.wikisLeft.length + this.data.wikisRight.length + data.length === total) {
+        this.setData({
+          pageEnd: true
+        });
       }
+      const _leftarray = data.filter((element, index) => { return index % 2 === 0 });
+      const _rightarray = data.filter((element, index) => { return index % 2 === 1 });
+      handleData({ key: 'wikisLeft', value: _leftarray });
+      handleData({ key: 'wikisRight', value: _rightarray });
+      water.leftCount = water.leftCount + _leftarray.length;
+      water.rightCount = water.rightCount + _rightarray.length;
+      wx.stopPullDownRefresh();
     });
   },
   directSetData: function ({ key, value}) {

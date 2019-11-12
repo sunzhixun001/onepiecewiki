@@ -1,0 +1,26 @@
+<scroll-view 
+  class="character-list"
+  scroll-y
+  bindscrolltolower="bindscrolltolower"
+  lower-threshold="100"
+>
+  <view class="item-list">
+    <view 
+      class='item {{favorite?"favorite":""}}'
+      wx:for="{{items}}" 
+      wx:key="id"
+    >
+      <navigator url='/pages/characterDetail/characterDetail?id={{item.id}}'>
+        <view class='detailBox'>
+          <view class='charaName'>{{item.fullname}}</view>
+          <view class='subComment'>{{item.comment}}</view>
+        </view>
+        <view class='thumb'>
+          <image src='{{item.avator}}' />
+        </view>
+      </navigator>
+      <view class='star'><text class='fa fa-star' /></view>
+    </view>
+  </view>
+  <end wx:if="{{items.length >= total}}" />
+</scroll-view>

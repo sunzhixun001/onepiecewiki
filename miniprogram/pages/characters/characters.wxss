@@ -1,16 +1,13 @@
-@import "../../style/commos.wxss";
-@import "../../style/characterList.wxss";
-@import "../../style/navbar.wxss";
 @import "../../style/awesome.wxss";
-/* control */
-.control{
-  position: fixed;
-  right: 20rpx;
-  bottom: 40rpx;
-  z-index: 150;
-  background-color: #FFF;
+@import "/style/commos.wxss";
+page {
+  display: flex;
+  flex-direction: column;
 }
-.nav-wrap .mainTitleArea.disabled{
-  height: 0;
-  opacity: 0;
+
+.swiper {
+  height: 100%;
 }
+
+
+

@@ -6,13 +6,18 @@ import {
   getRegexp
 } from '../database/wikisRepository';
 // 获取列表
-const getWikiList = async ({ pageindex = 1, pageSize = 20 }) => {
-  let response = await getList({
+const getWikiList = async ({ pageIndex = 1, pageSize = 20 }) => {
+  let countPromise = getCount();
+  let listPromise = getList({
     limit: pageSize,
-    skip: (pageindex - 1) * pageSize
+    skip: (pageIndex - 1) * pageSize
   });
-  let data = response.data;
-  return data;
+  let countResult = await countPromise;
+  let dataResult = await listPromise;
+  return {
+    total: countResult.total, 
+    data: dataResult.data
+  };
 };
 // 获取单个
 const getOneWiki = async ({ id }) => {

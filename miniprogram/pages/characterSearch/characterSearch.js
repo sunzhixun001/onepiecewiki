@@ -79,17 +79,12 @@ Page({
   },
   getCharacters: function ({ keyword}) {
     fetchRegexp({
-      keyword: keyword || '路飞', 
-      success: res => {
-        let _data = {
-          characters: res,
-          nochara: false
-        };
-        if (res.length === 0) {
-          _data.nochara = true
-        }
-        this.setData(_data);
-      }
+      keyword: keyword || '路飞'
+    }).then(res => {
+      this.setData({
+        characters: res,
+        nochara: res.length === 0
+      });
     });
   }
 })

@@ -174,9 +174,11 @@ Page({
     })
   },
   getPriateRegMembers: function ({ priateRegimentName}){
-    fetchListInPriateReg({ priateRegimentName, success: res => {
-      this.setData({ partners: res});
-    }});
+    fetchListInPriateReg({ 
+      priateRegimentName
+    }).then(result => {
+      this.setData({ partners: result.data });
+    });
   },
   bindPartnersClick: function(e) {
     const { id} = e.currentTarget.dataset;

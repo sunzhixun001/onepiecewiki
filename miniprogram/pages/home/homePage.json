@@ -1,7 +1,8 @@
 {
   "usingComponents": {
-    "navbar": "/components/navbar-component/navbar-component",
-    "wiki-item": "/components/wiki-item-component/wiki-item-component"
+    "navbar": "/miniprogram_npm/weui-miniprogram/navigation-bar/navigation-bar",
+    "wiki-item": "/components/wiki-item-component/wiki-item-component",
+    "end": "/components/common/end/end"
   },
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 100,

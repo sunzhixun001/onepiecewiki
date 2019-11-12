@@ -1,5 +1,7 @@
+import regeneratorRuntime from '../common/regeneratorRuntime';
 import { db } from './common';
 const collection = db.collection('biologicals');
+export const _c = db.command;
 // 新增一个人物
 export const create = ({ biological, success}) => {
   const promise = 
@@ -46,15 +48,6 @@ export const update = ({ id, biological, success}) => {
     .update({data:biological})
 		.then(res => { success && success(res)})
 		.catch(console.error);
-};
-// 获取某一海贼团的全部人物
-export const getListInPriateReg = ({ priateRegimentName}) => {
-  const promise =  
-  collection
-    .where({ priateRegimentName})
-    .field({ fullname: true, avator: true, job: true })
-    .get();
-  return promise;
 };
 // 获取有恶魔果实的人物
 export const getListHasDevilfruit = ({ limit = 20, skip = 0}) => {
@@ -130,4 +123,23 @@ export const getRegexp = ({ keyword}) => {
     })
     .get();
   return promise;
+};
+// 按条件查询列表
+export const getListByCondition = async ({ condition, field, limit = 20, skip = 0}) => {
+  const result =
+    await collection
+      .where({ ...condition })
+      .skip(skip)
+      .limit(limit)
+      .field({ ...field })
+      .get();
+  return result;
+}
+// 按条件查询数量
+export const getCountByCondition = async({ condition}) => {
+  const result =
+    await collection
+      .where({ ...condition })
+      .count();
+  return result;
 };

@@ -4,84 +4,82 @@
     <view class='main'>
       <view class='detail'>
         <view class='article'>
-          <view class='cw'>
-            <view class='wrap'>
-              <view class='mainArea'>
-                <view class='content'>
-                  <view class='contDetail'>
-                    <view class='contImg'>
-                      <image src='{{img}}' style='width:100%;' mode='widthFix'/>
-                    </view>
-                    <view class='charaTxtBox underline'>
-                      <view class='charaNameBox'>
-                        <view class='charaNameArea'>
-                          <view class='t h1 large'>{{fullname}}</view>
-                          <view class='t middle' wx:if="{{role === 1}}">{{priateRegimentName}} / {{job}}</view>
-                        </view>
+          <view class='wrap'>
+            <view class='mainArea'>
+              <view class='content'>
+                <view class='contDetail'>
+                  <view class='contImg'>
+                    <image src='{{img}}' style='width:100%;' mode='widthFix'/>
+                  </view>
+                  <view class='charaTxtBox underline'>
+                    <view class='charaNameBox'>
+                      <view class='charaNameArea'>
+                        <view class='t h1 large'>{{fullname}}</view>
+                        <view class='t middle' wx:if="{{role === 1}}">{{priateRegimentName}} / {{job}}</view>
                       </view>
                     </view>
-                    <view class='charaOverview'>
-                      <view class='ul'>
-                        <view class='li' wx:if="{{bounty && bounty !== '无'}}">
-                          <view class='dl'>
-                            <view class='dt'>悬赏金</view>
-                            <view class='dd'>{{bounty}}</view>
-                          </view>
+                  </view>
+                  <view class='charaOverview'>
+                    <view class='ul'>
+                      <view class='li' wx:if="{{bounty && bounty !== '无'}}">
+                        <view class='dl'>
+                          <view class='dt'>悬赏金</view>
+                          <view class='dd'>{{bounty}}</view>
                         </view>
-                        <view class='li' wx:if="{{devilfruitName}}">
-                          <view class='dl'>
-                            <view class='dt'>恶魔果实</view>
-                            <view class='dd'>{{devilfruitName}}</view>
-                          </view>
+                      </view>
+                      <view class='li' wx:if="{{devilfruitName}}">
+                        <view class='dl'>
+                          <view class='dt'>恶魔果实</view>
+                          <view class='dd'>{{devilfruitName}}</view>
                         </view>
-                        <view class='li' wx:if="{{age}}">
-                          <view class='dl'>
-                            <view class='dt'>年龄</view>
-                            <view class='dd'>{{age}}</view>
-                          </view>
+                      </view>
+                      <view class='li' wx:if="{{age}}">
+                        <view class='dl'>
+                          <view class='dt'>年龄</view>
+                          <view class='dd'>{{age}}</view>
                         </view>
-                        <view class='li' wx:if="{{height}}">
-                          <view class='dl'>
-                            <view class='dt'>身高</view>
-                            <view class='dd'>{{height}}</view>
-                          </view>
+                      </view>
+                      <view class='li' wx:if="{{height}}">
+                        <view class='dl'>
+                          <view class='dt'>身高</view>
+                          <view class='dd'>{{height}}</view>
                         </view>
-                        <view class='li' wx:if="{{birthday}}">
-                          <view class='dl'>
-                            <view class='dt'>生日</view>
-                            <view class='dd'>{{birthday}}</view>
-                          </view>
+                      </view>
+                      <view class='li' wx:if="{{birthday}}">
+                        <view class='dl'>
+                          <view class='dt'>生日</view>
+                          <view class='dd'>{{birthday}}</view>
                         </view>
                       </view>
                     </view>
                   </view>
                 </view>
               </view>
-              <view class='sideArea'>
-                <view class='related' wx:for="{{relationships}}" wx:key="index">
-                  <view class='t middle underline'>{{item.type}}</view>
-                  <view class='ul relatedCharas'>
-                    <view class='li' wx:for="{{item.items}}" wx:for-item="ritem" wx:key="ritem.charaId">
-                      <view bindtap='bindPartnersClick' data-id='{{ritem.charaId}}'>
-                        <image src="{{ritem.avator}}" />
-                      </view>
+            </view>
+            <view class='sideArea'>
+              <view class='related' wx:for="{{relationships}}" wx:key="index">
+                <view class='t middle underline'>{{item.type}}</view>
+                <view class='ul relatedCharas'>
+                  <view class='li' wx:for="{{item.items}}" wx:for-item="ritem" wx:key="charaId">
+                    <view bindtap='bindPartnersClick' data-id='{{ritem.charaId}}'>
+                      <image src="{{ritem.avator}}" />
                     </view>
                   </view>
                 </view>
-                <view class='related' wx:for="{{group}}" wx:key="index">
-                  <view class='t middle underline'>{{item.key}}</view>
-                  <view class='ul relatedCharas'>
-                    <view class='li' wx:for="{{item.value}}" wx:key="_id">
-                      <view bindtap='bindPartnersClick' data-id='{{item._id}}'><image src="{{item.avator}}" /></view>
-                    </view>
+              </view>
+              <view class='related' wx:for="{{group}}" wx:key="index">
+                <view class='t middle underline'>{{item.key}}</view>
+                <view class='ul relatedCharas'>
+                  <view class='li' wx:for="{{item.value}}" wx:key="_id">
+                    <view bindtap='bindPartnersClick' data-id='{{item._id}}'><image src="{{item.avator}}" /></view>
                   </view>
                 </view>
-                <view class='related' wx:if="{{role === 1 && priateRegimentName && priateRegimentName !== '无'}}">
-                  <view class='t middle underline'>{{priateRegimentName}}</view>
-                  <view class='ul relatedCharas'>
-                    <view class='li' wx:for="{{partners}}" wx:key="_id">
-                      <view bindtap='bindPartnersClick' data-id='{{item.id}}'><image src="{{item.avator}}" /></view>
-                    </view>
+              </view>
+              <view class='related' wx:if="{{role === 1 && priateRegimentName && priateRegimentName !== '无'}}">
+                <view class='t middle underline'>{{priateRegimentName}}</view>
+                <view class='ul relatedCharas'>
+                  <view class='li' wx:for="{{partners}}" wx:key="_id">
+                    <view bindtap='bindPartnersClick' data-id='{{item.id}}'><image src="{{item.avator}}" /></view>
                   </view>
                 </view>
               </view>

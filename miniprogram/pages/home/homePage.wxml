@@ -1,6 +1,11 @@
 <block>
-  <navbar />
-  <view class="container" style='margin-top: {{statusBarHeight}}px'>
+  <navbar 
+    title="OnePiece大百科" 
+    back="{{false}}"
+    background="#D9312B"
+    color="#FFFFFF"
+  />
+  <view class="container">
     <view class="main">
       <view class="wrap">
         <view class="search-area">
@@ -37,6 +42,7 @@
             />
           </view>
         </view>
+        <end wx:if="{{pageEnd}}" />
       </view>
     </view>
   </view>

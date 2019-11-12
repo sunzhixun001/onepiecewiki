@@ -71,16 +71,15 @@ Page({
   },
   fetchWiki: function ({ id}){
     getOneWiki({
-      id,
-      success: data => {
-        const { summary, album, title, characters} = data;
-        this.setData({
-          summary,
-          album,
-          title,
-          characters
-        });
-      }
+      id
+    }).then(data => {
+      const { summary, album, title, characters } = data;
+      this.setData({
+        summary: summary || [],
+        album: album || [],
+        title,
+        characters: characters || []
+      });
     });
   }
 })

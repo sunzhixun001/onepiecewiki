@@ -1,0 +1,14 @@
+.end-component {
+  padding: 50rpx;
+}
+
+.end-component view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.end-component view text {
+  color: gray;
+  font-size: 24rpx;
+}

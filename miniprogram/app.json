@@ -1,15 +1,15 @@
 {
   "cloud": true,
   "pages": [
+    "pages/characters/characters",
+    "pages/home/homePage",
     "admin/wikis/list/list",
     "admin/common/plugcharacters/plugcharacters",
-    "pages/home/homePage",
     "pages/user/user",
     "pages/timeLine/timeLine",
     "pages/wiki/search/wikiSearchPage",
     "admin/events/list/list",
     "admin/wikis/createOrEdit/createOrEdit",
-    "pages/characters/characters",
     "pages/test/test",
     "pages/characterSearch/characterSearch",
     "pages/timeLineSearch/timeLineSearch",
