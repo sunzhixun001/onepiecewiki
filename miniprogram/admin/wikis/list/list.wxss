@@ -1,9 +1,0 @@
-@import "../../../style/commos.wxss";
-
-.main {
-  padding-top: 20rpx;
-}
-
-.item-list {
-  background: #FFFFFF;
-}

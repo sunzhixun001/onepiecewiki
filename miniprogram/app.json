@@ -3,23 +3,13 @@
   "pages": [
     "pages/characters/characters",
     "pages/home/homePage",
-    "admin/wikis/list/list",
-    "admin/common/plugcharacters/plugcharacters",
     "pages/user/user",
     "pages/timeLine/timeLine",
     "pages/wiki/search/wikiSearchPage",
-    "admin/events/list/list",
-    "admin/wikis/createOrEdit/createOrEdit",
     "pages/test/test",
     "pages/characterSearch/characterSearch",
     "pages/timeLineSearch/timeLineSearch",
-    "admin/events/create/create",
-    "admin/characters/list/list",
-    "admin/characters/edit/edit",
-    "admin/priateRegiments/list/list",
-    "admin/priateRegiments/create/create",
     "pages/characterDetail/characterDetail",
-    "admin/events/edit/edit",
     "pages/wiki/detail/wikiDetailPage"
   ],
   "window": {
