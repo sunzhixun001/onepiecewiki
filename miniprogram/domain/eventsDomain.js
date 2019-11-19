@@ -1,22 +1,22 @@
 import {
-  getList
+  getCollection,
+  getCount
 } from '../database/eventsRepository';
-const getEventList = ({ lt, gte, pageSize = 20, pageIndex = 0, field, success, tag }) => {
-  let promise = getList({ 
+import regeneratorRuntime from '../common/regeneratorRuntime';
+const getEventList = async ({ lt, gte, pagesize = 20, pageindex = 1, field, tags }) => {
+  const list_result = await getCollection({ 
     lt, 
     gte, 
-    limit: pageSize, 
-    skip: (pageIndex - 1) * pageSize, 
+    limit: pagesize, 
+    skip: (pageindex - 1) * pagesize, 
     field,
-    tag 
+    tags: tags ? [tags]:null
   });
-  promise
-  .then(res => {
-    const { data, errMsg} = res;
-    if (errMsg === "collection.get:ok"){
-      success(data);
-    }
-  });
+  const count_result = await getCount({ lt, gte, tags: tags ? [tags] : null });
+  return {
+    data: list_result.data, 
+    total: count_result.total
+  };
 };
 export {
   getEventList

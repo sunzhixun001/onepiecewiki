@@ -1,0 +1,68 @@
+.search-list {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.search-list .ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.search-list .ul .li {
+  /* width: 50%; */
+  margin-top: 20rpx;
+}
+
+.search-list .ul .li .box {
+  padding: 20rpx 40rpx;
+  /* border: 1px solid rgba(0,0,0,0.08); */
+  background: #FFFFFF;
+}
+
+.search-list .ul .li .box .title-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-list .ul .li .box .title-box .title {
+  flex: 1;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: rgb(61, 61, 61);
+}
+
+.search-list .ul .li .box .title-box .img-box {
+  width: 200rpx;
+  height: 120rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.search-list .ul .li image {
+  width: 100%;
+}
+
+.search-list .ul .li .avator image {
+  width: 200rpx;
+}
+
+.search-list .ul .li .describe {
+  color: rgb(157, 160, 163);
+  font-size: 24rpx;
+  margin-top: 30rpx;
+  line-height: 36rpx;
+}
+
+.search-list .ul .li .type {
+  margin-top: 24rpx;
+}
+
+.search-list .ul .li .type text {
+  color: rgb(173, 176, 179);
+  border: 1px solid rgba(0,0,0,0.16);
+  font-size: 24rpx;
+  padding: 6rpx 12rpx;
+}

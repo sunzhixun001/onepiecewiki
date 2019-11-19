@@ -1,8 +1,15 @@
 <block>
-  <navbar showCapsule="{{true}}" />
-  <view class="container" style="margin-top:{{barHeight}}px">
+  <navbar
+    title="{{title}}" 
+    background="#D9312B"
+    color="#FFFFFF"
+  />
+  <view class="container">
     <view class="main">
-      <view class="wrap">
+      <scroll-view 
+        class="wrap"
+        scroll-y
+      >
         <swiper 
           style="height: {{albumHeight}}px"
           indicator-dots
@@ -31,7 +38,7 @@
           <view class="h3">相关人物</view>
           <view class="ul">
             <navigator
-              url="/pages/characterDetail/characterDetail?id={{item.id}}"
+              url="/pages/characters/detail/characterDetail?id={{item.id}}"
               class="li"
               wx:for="{{characters}}"
               wx:key="index"
@@ -40,7 +47,7 @@
             </navigator>
           </view>
         </view>
-      </view>
+      </scroll-view>
     </view>
   </view>
 </block>

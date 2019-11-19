@@ -1,0 +1,28 @@
+<view 
+  class="timeline-chapters"
+>
+  <view class="chapterArea bgGray">
+    <view class="box">
+      <view class="ul">
+        <view 
+          class="li {{item.selected?'selected':''}}" 
+          wx:for="{{datasource}}" 
+          wx:key="index"
+          data-name="{{item.name}}"
+          catchtap="tap"
+        >
+          <view class="dl">
+            <!-- <text class="fa fa-check" wx:if="{{item.selected}}"/> -->
+            <view class="dt">{{item.name}}篇</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="action">
+      <view class="action-wrap">
+        <view bindtap="onChooseReset">重置</view>
+        <view class="r-btn" bindtap="onChooseConfirm">确定</view>
+      </view>
+    </view> -->
+  </view>
+</view> 

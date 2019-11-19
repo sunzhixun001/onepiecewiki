@@ -1,8 +1,7 @@
 {
   "usingComponents": {
-    "navbar": "/miniprogram_npm/weui-miniprogram/navigation-bar/navigation-bar",
-    "character-component": "/components/character-component/character-component",
+    "navbar": "/components/common/navigation-bar/navigation-bar",
     "character-list": "/components/character/list/character-list/character-list"
   },
-  "onReachBottomDistance": 80
+  "enablePullDownRefresh": true
 }

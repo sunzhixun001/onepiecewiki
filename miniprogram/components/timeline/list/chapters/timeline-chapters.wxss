@@ -1,0 +1,65 @@
+.timeline-chapters {
+  position: absolute;
+  z-index: 20;
+  background: #FFFFFF;
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
+  transition: all 2.2s;
+  transform-origin: 0 0 0;
+}
+
+.timeline-chapters .chapterArea {
+  /* border-radius: 0 0 10px 10px; */
+  overflow: hidden;
+}
+
+.timeline-chapters .chapterArea.disabled {
+  transform: scaleY(0);
+}
+
+.timeline-chapters .chapterArea .box {
+  padding: 20rpx;
+}
+
+.timeline-chapters .chapterArea .ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20rpx;
+}
+
+.timeline-chapters .chapterArea .ul .li {
+  width: 33%;
+  margin-bottom: 30rpx;
+}
+
+.timeline-chapters .chapterArea .ul .li .dl {
+  display: flex;
+  padding-left: 30rpx;
+}
+
+.timeline-chapters .chapterArea .ul .li.selected .dt {
+  font-weight: 700;
+  color: #D9312B;
+}
+
+.action-wrap {
+  display: flex;
+  /* box-shadow: 1px -1px 3px 1px rgba(0, 0, 0, 0.08); */
+}
+
+.action-wrap > view {
+  flex: 1;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+}
+
+.r-btn {
+  background: #f31a0b;
+  color: #FFFFFF;
+}
+
+.fa-check {
+  color: #f31a0b;
+  margin-right: 10rpx;
+}

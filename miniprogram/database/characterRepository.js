@@ -11,16 +11,23 @@ export const create = ({ biological, success}) => {
   return promise;
 };
 // 获取全部人物
-export const getList = ({ limit = 20, skip = 0, orderby = ['pinyinName', 'asc']}) => {
-  let promise = 
-  collection
+export const getCollection = async ({ limit = 20, skip = 0, orderby = ['pinyinName', 'asc']}) => {
+  let result = 
+  await collection
     .orderBy(...orderby)
     .limit(limit)
     .skip(skip)
     .field({name: true, fullname: true, avator: true})
     .get();
-  return promise;
+  return result;
 };
+// 获取全部总数
+export const getCount = async () => {
+  const result =
+    await collection.count();
+  return result;
+};
+  ;
 // 获取全部人物需要的字段
 export const getListField = ({ fields, success }) => {
   collection
@@ -34,12 +41,12 @@ export const getListField = ({ fields, success }) => {
     });
 };
 // 使用ID获取一个人物
-export const getCharacter = ({id}) => {
-  const promise = 
-  collection
+export const getDoc = async ({id}) => {
+  const result = 
+  await collection
     .doc(id)
     .get();
-  return promise;
+  return result;
 };
 // 修改一个人
 export const update = ({ id, biological, success}) => {
@@ -102,7 +109,7 @@ export const getListInGroup = ({ groupName, field}) => {
   return promise;
 };
 // 模糊搜索角色
-export const getRegexp = ({ keyword}) => {
+export const getRegexp = ({ keyword, field = {}}) => {
   const promise = collection.where(db.command.or(
     [{
       fullname: db.RegExp({
@@ -110,25 +117,37 @@ export const getRegexp = ({ keyword}) => {
         options: 'i'
       })
     }, {
+        pinyinName: db.RegExp({
+          regexp: `.*${keyword}.*`,
+          options: 'i'
+        })
+      }, {
+        englishName: db.RegExp({
+          regexp: `.*${keyword}.*`,
+          options: 'i'
+        })
+      }, {
+        japaneseName: db.RegExp({
+          regexp: `.*${keyword}.*`,
+          options: 'i'
+        })
+      },{
         group: db.RegExp({
           regexp: `.*${keyword}.*`,
           options: 'i'
         })
     }]
   ))
-    .field({
-      avator: true,
-      fullname: true,
-      priateRegimentName: true
-    })
+    .field(field)
     .get();
   return promise;
 };
 // 按条件查询列表
-export const getListByCondition = async ({ condition, field, limit = 20, skip = 0}) => {
+export const getListByCondition = async ({ condition, field, limit = 20, skip = 0, orderbys }) => {
   const result =
     await collection
       .where({ ...condition })
+      .orderBy(...orderbys)
       .skip(skip)
       .limit(limit)
       .field({ ...field })

@@ -78,7 +78,10 @@ Page({
         summary: summary || [],
         album: album || [],
         title,
-        characters: characters || []
+        characters: characters ? characters.map(c => {
+          c.avator = c.avator.trim();
+          return c;
+        }) : []
       });
     });
   }

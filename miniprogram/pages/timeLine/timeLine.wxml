@@ -1,69 +1,19 @@
-<block>
-  <view class='nav-wrap'>
-    <view class='nav-content' style='height:{{barHeight}}px'>
-      <view class='nav-head'>
-        <view wx:if="{{chooseActive}}" class="border-right" bindtap="onCloseChoose">
-          <text class='fa fa-bars'/>
-        </view>
-        <view wx:else class="border-right" bindtap="onOpenChoose">
-          <text class="fa fa-bars" />
-        </view>
-        <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
-          <text class='fa fa-search'/>
-        </view>
-        <view bindtap="bindSearchCloseIcon" wx:else>
-          <text class='fa fa-close'/>
-        </view>
-      </view>
-      <view class='nav-title'><text>海贼王时间线</text></view>
-    </view>
-    <view class='mainTitleArea bgGray {{searchActive?"":"disabled"}}'>
-      <view class='searchDetailArea'>
-        <view class='inner'>
-          <input 
-            placeholder='路飞' 
-            bindinput='bindSearchInput' 
-            value='{{keyword}}' 
-            confirm-type="搜索"
-            bindconfirm="bindJumpSearch"
-          />
-        </view>
-      </view>
-      <view class='searchIcon' bindtap='bindJumpSearch'>
-        <icon type="search" size="16" color='#3D3D3D'/>
-      </view>
-    </view>
-  </view>
-  <view 
-    class="chapterArea bgGray {{chooseActive?'':'disabled'}}"
-    style="margin-top: {{barHeight}}px"
+<view class="wrap">
+  <navbar 
+    title="{{title}}"
+    back="{{false}}"
+    background="#D9312B"
+    color="#FFFFFF"
   >
-    <view class="box">
-      <view class="ul">
-        <view 
-          class="li {{item.selected?'selected':''}}" 
-          wx:for="{{chapters}}" 
-          wx:key="index"
-          data-index="{{index}}"
-          data-name="{{item.name}}"
-          bindtap="onChapterTap"
-        >
-          <view class="dl">
-            <text class="fa fa-check" wx:if="{{item.selected}}"/>
-            <view class="dt">{{item.name}}篇</view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="action">
-      <view class="action-wrap">
-        <view bindtap="onChooseReset">重置</view>
-        <view class="r-btn" bindtap="onChooseConfirm">确定</view>
-      </view>
-    </view>
-  </view>
-  <view class='container' style="margin-top: {{searchInputHeight}}rpx">
-    <view class='main timeline listPage' style='height: {{mainHeight}}px;margin-top: {{barHeight}}px'>
+    <view slot="left"><text class="fa fa-bars" bindtap="switchchapters"/></view>
+  </navbar>
+  <chapters 
+    datasource="{{chapterlist}}" 
+    bind:tap="onChapterTap"
+    wx:if="{{visiblechapter}}"
+  />
+  <view class='container'>
+    <view class='main timeline listPage'>
       <view class='bgGray borderBottom tabListArea'>
         <view class='swiper-container headerTabList'>
           <view class='swiper-wrapper'>
@@ -79,96 +29,47 @@
           </view>
         </view>
       </view>
-      <view class="scroll-wrap" style="height: {{scrollViewHeight}}px;">
-        <view 
-          wx:if="{{currentIndex === 10}}"
-          class="axisArea" 
-          style="height:{{axisHeight}}px;top: {{axisTop}}px;"
-        >
-          <view class="line">
-            <view class="fa fa-flag" style="top: {{flegTop}}px" />
-          </view>
-        </view>
-        <scroll-view 
-          style="height: {{scrollViewHeight}}px"
-          scroll-y 
-          lower-threshold="100"
-          bindscrolltolower="scrolltolower"
-        >
-          <view class='wrap'>
-            <view class="area" id="area">
-              <view class='listArea'>
-                <swiper 
-                  style="height: {{itemsHeight}}px;min-height:{{scrollViewHeight}}px"
-                  current="{{currentIndex}}"
-                  circular
-                  bindchange="swiperChange"
-                >
-                  <swiper-item>
-                    <view class='ul itemList' id="ul0">
-                      <event-item 
-                        wx:for="{{events[0]}}" 
-                        wx:key="_id"
-                        showAge="{{item.showAge}}"
-                        title="{{item.title}}"
-                        photo="{{item.photo}}"
-                        img="{{item.img}}"
-                      />
-                      <no-event wx:if="{{!loading[0] && eventsCount[0] === 0}}" />
-                    </view>
-                  </swiper-item>
-                  <swiper-item>
-                    <view class='ul itemList' id="ul1">
-                      <event-item 
-                        wx:for="{{events[1]}}" 
-                        wx:key="_id"
-                        showAge="{{item.showAge}}"
-                        title="{{item.title}}"
-                        photo="{{item.photo}}"
-                        img="{{item.img}}"
-                        source="{{item.source}}"
-                      />
-                      <no-event wx:if="{{!loading[1] && eventsCount[1] === 0}}" />
-                    </view>
-                  </swiper-item>
-                  <swiper-item>
-                    <view class='ul itemList' id="ul2">
-                      <event-item 
-                        wx:for="{{events[2]}}" 
-                        wx:key="_id"
-                        showAge="{{item.showAge}}"
-                        title="{{item.title}}"
-                        photo="{{item.photo}}"
-                        img="{{item.img}}"
-                      />
-                      <no-event wx:if="{{!loading[2] && eventsCount[2] === 0}}" />
-                    </view>
-                  </swiper-item>
-                  <swiper-item>
-                    <view class='ul itemList' id="ul3">
-                      <event-item 
-                        wx:for="{{events[3]}}" 
-                        wx:key="_id"
-                        showAge="{{item.showAge}}"
-                        title="{{item.title}}"
-                        photo="{{item.photo}}"
-                        img="{{item.img}}"
-                      />
-                      <no-event wx:if="{{!loading[3] && eventsCount[3] === 0}}" />
-                    </view>
-                  </swiper-item>
-                </swiper>
-              </view>
+      <view class='wrap'>
+          <view class="area">
+            <view class='listArea'>
+              <swiper 
+                class="swiper"
+                current="{{currentIndex}}"
+                circular
+                bindchange="swiperChange"
+              >
+                <swiper-item>
+                  <timeline-list 
+                    datasource="{{immemorialevents.data}}"
+                    total="{{immemorialevents.total}}"
+                  />
+                </swiper-item>
+                <swiper-item>
+                  <timeline-list 
+                    datasource="{{bcevents.data}}"
+                    total="{{bcevents.total}}"
+                    bind:scrolltolower="bceventsscrolltolower"
+                  />
+                </swiper-item>
+                <swiper-item>
+                  <timeline-list 
+                    datasource="{{standardevents.data}}"
+                    total="{{standardevents.total}}"
+                    bind:scrolltolower="standardeventsscrolltolower"
+                  />
+                </swiper-item>
+                <swiper-item>
+                  <timeline-list 
+                    datasource="{{newworldevents.data}}"
+                    total="{{newworldevents.total}}"
+                    bind:scrolltolower="newworldeventsscrolltolower"
+                  />
+                </swiper-item>
+              </swiper>
             </view>
           </view>
-        </scroll-view>
-      </view>
-    </view>
-    <view class='control'>
-      <view class='control-inner'>
-        
-      </view>
+        </view>
     </view>
   </view>
   <view class="mask" wx:if="{{chooseActive}}"/>
-</block>
+</view>

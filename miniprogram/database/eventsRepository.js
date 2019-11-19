@@ -1,5 +1,9 @@
 // 事件
 import { db } from './common';
+import regeneratorRuntime from '../common/regeneratorRuntime';
+
+export const _c = db.command;
+
 const collection = db.collection('events');
 // 获取一个事件
 export const get = ({ id, success}) => {
@@ -14,16 +18,15 @@ export const get = ({ id, success}) => {
     .catch()
 };
 // 获取全部事件列表
-export const getList = ({ lt, gte, limit = 20, skip = 0, field, tag}) => {
+export const getCollection = async ({ lt, gte, limit = 20, skip = 0, field, tags}) => {
   let _collection = 
     collection
       .where({
-        age: db.command.lt(lt).and(db.command.gte(gte))
-        // tags: db.command.in(tag)
+        age: _c.lt(lt).and(_c.gte(gte))
       });
-  if (tag && tag.length > 0){
+  if (tags && tags.length > 0){
     _collection = _collection.where({
-      tags: db.command.in(tag)
+      tags: _c.in(tags)
     })
   }
   _collection = _collection    
@@ -33,8 +36,23 @@ export const getList = ({ lt, gte, limit = 20, skip = 0, field, tag}) => {
   if (field){
     _collection = _collection.field(field)
   } 
-  let promise = _collection.get();
-  return promise;
+  const result = await _collection.get();
+  return result;
+};
+// 获取总数
+export const getCount = async ({ lt, gte, tags }) => {
+  let _collection =
+    collection
+      .where({
+        age: _c.lt(lt).and(_c.gte(gte))
+      });
+  if (tags && tags.length > 0) {
+    _collection = _collection.where({
+      tags: _c.in(tags)
+    })
+  }
+  const result = await _collection.count();
+  return result;
 };
 // 新增一个事件
 export const create = ({ event, success}) => {

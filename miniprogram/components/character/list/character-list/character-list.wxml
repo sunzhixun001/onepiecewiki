@@ -10,10 +10,11 @@
       wx:for="{{items}}" 
       wx:key="id"
     >
-      <navigator url='/pages/characterDetail/characterDetail?id={{item.id}}'>
+      <navigator url='/pages/characters/detail/characterDetail?id={{item.id}}'>
         <view class='detailBox'>
           <view class='charaName'>{{item.fullname}}</view>
-          <view class='subComment'>{{item.comment}}</view>
+          <view class='comment'>{{item.comment}}</view>
+          <view class='sub'>{{item.sub}}</view>
         </view>
         <view class='thumb'>
           <image src='{{item.avator}}' />

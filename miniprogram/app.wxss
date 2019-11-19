@@ -6,6 +6,8 @@ page, input, view, text {
 page {
   height: 100%;
   background: hsla(0,0%,97%,.98);
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -15,6 +17,7 @@ page {
   box-sizing: border-box;
   flex: 1;
 	height: 100%;
+  overflow: hidden;
 }
 
 .main {
@@ -31,6 +34,14 @@ page {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+.wrap {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .listArea {

@@ -1,0 +1,142 @@
+@import "../../../style/commos.wxss";
+@import "../../../style/awesome.wxss";
+page {
+  font-size: 28rpx;
+  color: rgb(61, 61, 61);
+  background: #FFFFFF;
+}
+
+.large{
+  font-size: 28rpx;
+}
+.middle{
+  font-size: 24rpx;
+}
+.t{
+  font-weight: 700;
+}
+
+.charaNameBox {
+  
+}
+
+.charaNameArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.charaNameArea .h1 {
+  margin-bottom: 6rpx;
+}
+.detail {
+  width: 100%;
+}
+
+.underline{
+  border-bottom: 4rpx solid #DDE1E6;
+  padding-bottom: 26rpx;
+}
+.h3{
+  font-weight: bold;
+}
+.basicInfo{
+  margin-top: 40rpx;
+}
+/* basicInfo */
+.charaOverview::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.charaOverview .li{
+  float: left;
+  padding-right: 70rpx;
+}
+.charaOverview .dl{
+  /* display: flex; */
+  align-content: center;
+}
+.charaOverview .dl .dt{
+  font-weight: 700;
+  margin-top: 40rpx;
+}
+.charaOverview .dl .dd{
+  line-height: 48rpx;
+}
+.related{
+  margin-top: 50rpx;
+}
+.relatedCharas{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 40rpx;
+}
+.relatedCharas .li{
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 6rpx;
+  margin-bottom: 6rpx;
+}
+.relatedCharas .li image{
+  height: 140rpx;
+  width: 140rpx;
+}
+/* footer 分享 & 收藏 */
+.foot-wrap .ul{
+  display: flex;
+  height: 100%;
+}
+.foot-wrap .ul .li{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+}
+.foot-wrap .ul .li.had .fa{
+  color: #f60;
+}
+.foot-wrap .ul .li:first-child::after{
+  content: "";
+  display: block;
+  position: absolute;
+  border-right: 1px solid rgba(0,0,0,0.08);
+  right: 0;
+  height: 50rpx;
+  top: 25rpx;
+}
+.foot-wrap .ul .li text{
+  font-size: 24rpx;
+}
+.foot-wrap .ul .li text.fa{
+  font-size: 40rpx;
+}
+
+.charaTxtBox {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.charaOverview {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.sideArea {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  margin-bottom: 150rpx;
+}
+
+.content .profile {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  margin-top: 20rpx;
+}
+
+.content .profile text {
+  color: rgb(61, 61, 61);
+  line-height: 48rpx;
+  font-size: 28rpx;
+}

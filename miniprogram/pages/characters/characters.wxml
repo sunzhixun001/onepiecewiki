@@ -5,35 +5,6 @@
     background="#D9312B"
     color="#FFFFFF"
   />   
-  <!-- <view class='nav-wrap' style='height:{{statusBarHeight}}px'>
-    <view class='nav-content'>
-      <view class='nav-head'>
-        <view bindtap="bindSearchIcon" wx:if="{{!searchActive}}">
-          <text class='fa fa-search'/>
-        </view>
-        <view bindtap="bindSearchCloseIcon" wx:else>
-          <text class='fa fa-close'/>
-        </view>
-      </view>
-      <view class='nav-title'><text>海贼王人物</text></view>
-    </view>
-    <view class='mainTitleArea bgGray {{searchActive?"":"disabled"}}'>
-        <view class='searchDetailArea'>
-          <view class='inner'>
-            <input 
-              placeholder='路飞' 
-              bindinput='bindSearchInput' 
-              value='{{keyword}}'
-              confirm-type="搜索"
-              bindconfirm="bindJumpSearch"
-            />
-          </view>
-        </view>
-        <view class='searchIcon'>
-          <icon bindtap='bindJumpSearch' type="search" size="16" color='#3D3D3D'/>
-        </view>
-      </view>
-  </view> -->
   <view class='container'>
     <view class='main listPage'>
       <view class='bgGray borderBottom tabListArea'>
@@ -83,6 +54,13 @@
                   items="{{antagonists.data}}"
                   total="{{antagonists.total}}"
                   bind:scrolltolower="antagonistsscrolltolower"
+                />
+              </swiper-item>
+              <swiper-item>
+                <character-list 
+                  items="{{characters.data}}"
+                  total="{{characters.total}}"
+                  bind:scrolltolower="charactersscrolltolower"
                 />
               </swiper-item>
             </swiper>

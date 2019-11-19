@@ -1,4 +1,0 @@
-<view class='nav-head' bind:tap="bindBackTap">
-  <view wx:if="{{share}}" class='fa fa-home'></view>
-  <view wx:else class='fa fa-angle-left'/>
-</view>

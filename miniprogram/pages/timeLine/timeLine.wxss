@@ -12,9 +12,17 @@ page{
 .scroll-wrap{
   position: relative;
 }
-.listArea{
-	padding-bottom: 100rpx;
+
+.listArea {
+  flex: 1;
+  /* padding-left: 20rpx; */
+  /* padding-right: 20rpx; */
 }
+
+.listArea .swiper {
+  height: 100%;
+}
+
 /* control */
 .control{
   position: fixed;
@@ -27,12 +35,12 @@ page{
   height: 0;
   opacity: 0;
 }
-.area{
+
+.area {
+  height: 100%;
+  overflow: hidden;
   display: flex;
   align-items: stretch;
-}
-.listArea{
-  flex: 1;
 }
 /* 时间轴 */
 .axisArea{
@@ -52,57 +60,7 @@ page{
   position: absolute;
   left: -2px;
 }
-/* 篇章选择 */
-.chapterArea{
-  position: absolute;
-  z-index: 20;
-  transition: transform 0.2s;
-  transform-origin: 0 0 0;
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-}
-.chapterArea.disabled{
-  transform: scaleY(0);
-}
-.chapterArea .box{
-  padding: 20rpx;
-}
-.chapterArea .ul{
-  display: flex;
-  flex-wrap: wrap;
-  padding-top: 20rpx;
-}
-.chapterArea .ul .li{
-  width: 33%;
-  margin-bottom: 30rpx;
-  
-}
-.chapterArea .ul .li .dl{
-  display: flex;
-  padding-left: 30rpx;
-}
-.chapterArea .ul .li.selected .dt{
-  font-weight: 700;
-}
-.action-wrap{
-  display: flex;
-  box-shadow: 1px -1px 3px 1px rgba(0, 0, 0, 0.08);
-}
-.action-wrap > view{
-  flex: 1;
-  text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 30rpx;
-}
-.r-btn{
-  background: #f31a0b;
-  color: #FFFFFF;
-}
-.fa-check{
-  color: #f31a0b;
-  margin-right: 10rpx;
-}
+
 /* 遮罩 */
 .mask{
   position: fixed;

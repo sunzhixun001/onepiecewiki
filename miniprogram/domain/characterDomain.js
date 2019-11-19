@@ -1,7 +1,8 @@
 import {
   create,
-  getCharacter,
-  getList,
+  getDoc,
+  getCollection,
+  getCount,
   getListHasDevilfruit,
   getRegexp,
   pushFavorite,
@@ -28,13 +29,24 @@ const convertBounty = ({ bounty }) => {
   }
   return result;
 }
-const fetchList = ({ limit, skip, orderby, success}) => {
-  const promise = getList({ limit, skip, orderby});
-  promise
-    .then(res => {
-      success && success(res.data);
-    })
-    .catch();
+const getList = async ({ pageindex = 1, pagesize = 20, orderby}) => {
+  const list_result = await getCollection({ 
+    limit: pagesize,
+    skip: (pageindex - 1) * pagesize, 
+    orderby
+  });
+  const count_result = await getCount();
+  return {
+    data: list_result.data.map(c => {
+      return {
+        id: c._id,
+        avator: c.avator,
+        fullname: c.name,
+        comment: c.fullname
+      }
+    }),
+    total: count_result.total
+  };
 }
 // 获取草帽团成员
 const getStrawCharactersList = async () => {
@@ -59,7 +71,7 @@ const fetchListHasDevilfruit = ({ limit = 20, skip = 0, success }) => {
     .catch();
 };
 // 获取海贼
-const getPirates = async ({ pageindex = 1, pagesize = 20}) => {
+const getPirates = async ({ pageindex = 1, pagesize = 20, orderbys}) => {
   const condition = {
     role: 1
   };
@@ -67,6 +79,7 @@ const getPirates = async ({ pageindex = 1, pagesize = 20}) => {
     limit: pagesize,
     skip: (pageindex - 1) * pagesize,
     condition,
+    orderbys,
     field: {
       avator: true,
       fullname: true,
@@ -84,19 +97,21 @@ const getPirates = async ({ pageindex = 1, pagesize = 20}) => {
         id: c._id,
         avator: c.avator,
         fullname: c.fullname,
-        comment: `${c.priateRegimentName} ${c.job}`
+        comment: `${c.priateRegimentName} ${c.job}`,
+        sub: convertBounty({ bounty: c.bounty})
       }
     }),
     total: count_result.total
   };
 };
 // 获取海军
-const getMarines = async ({ pageindex = 1, pagesize = 20}) => {
+const getMarines = async ({ pageindex = 1, pagesize = 20, orderbys}) => {
   const condition = {
     role: 2
   };
   const list_result = await getListByCondition({
     condition,
+    orderbys,
     limit: pagesize,
     skip: (pageindex - 1) * pagesize,
     field: {
@@ -121,12 +136,13 @@ const getMarines = async ({ pageindex = 1, pagesize = 20}) => {
   };
 };
 // 获取革命军
-const getAntagonists = async({ pageindex = 1, pagesize = 20 }) => {
+const getAntagonists = async ({ pageindex = 1, pagesize = 20, orderbys }) => {
   const condition = {
     role: 3
   };
   const list_result = await getListByCondition({
     condition,
+    orderbys,
     limit: pagesize,
     skip: (pageindex - 1) * pagesize,
     field: {
@@ -155,6 +171,7 @@ const fetchListInPriateReg = async ({ priateRegimentName}) => {
   const condition = { priateRegimentName };
   const list_result = await getListByCondition({
     condition, 
+    orderbys: ['role', 'asc'],
     field: {
       avator: true,
       fullname: true,
@@ -174,22 +191,17 @@ const fetchListInPriateReg = async ({ priateRegimentName}) => {
   }
 };
 // 模糊搜索角色
-const fetchRegexp = async ({ keyword}) => {
-  const response = await getRegexp({ keyword});
+const getSearch = async ({ keyword, field = {}}) => {
+  const response = await getRegexp({ keyword, field});
   const { errMsg, data} = response;
   if (errMsg === "collection.get:ok") {
     return data;
   }
 };
 // 获取单个人物
-const fetchCharacter = ({ id, success}) => {
-  const promise = getCharacter({id});
-  promise
-    .then(res => {
-      success && success(res);
-    })
-    .catch(err => {})
-    ;
+const getCharacter = async ({ id}) => {
+  const result = await getDoc({ id});
+  return result.data;
 };
 const fetchListInGroup = ({ groupName, success, field = { avator: true} }) => {
   const promise = getListInGroup({ groupName, field});
@@ -212,8 +224,8 @@ const createCharacter = ({ biological, success}) => {
 };
 export {
   createCharacter,
-  fetchCharacter,
-  fetchList,
+  getCharacter,
+  getList,
   fetchListInGroup,
   getStrawCharactersList,
   fetchListInPriateReg,
@@ -221,5 +233,5 @@ export {
   getPirates,
   getMarines,
   getAntagonists,
-  fetchRegexp
+  getSearch
 };

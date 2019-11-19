@@ -1,16 +1,12 @@
 {
   "cloud": true,
   "pages": [
-    "pages/characters/characters",
-    "pages/home/homePage",
-    "pages/user/user",
+    "pages/wiki/list/list",
     "pages/timeLine/timeLine",
-    "pages/wiki/search/wikiSearchPage",
-    "pages/test/test",
-    "pages/characterSearch/characterSearch",
-    "pages/timeLineSearch/timeLineSearch",
-    "pages/characterDetail/characterDetail",
-    "pages/wiki/detail/wikiDetailPage"
+    "pages/characters/characters",
+    "pages/user/user",
+    "pages/wiki/detail/wikiDetailPage",
+    "pages/search/search"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -24,7 +20,7 @@
     "selectedColor": "#D9312B",
     "list": [
       {
-        "pagePath": "pages/home/homePage",
+        "pagePath": "pages/wiki/list/list",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home_selected.png"

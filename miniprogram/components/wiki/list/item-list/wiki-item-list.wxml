@@ -1,0 +1,41 @@
+<scroll-view
+  class="wiki-item-list"
+  scroll-y
+  lower-threshold="100"
+  bindscrolltolower="scrolltolower"
+>
+  <view class="scroll-inner">
+    <view class="item-list">
+      <view
+          class="ul"
+        >
+          <navigator 
+            url="/pages/wiki/detail/wikiDetailPage?id={{item._id}}"
+            class="li"
+            wx:for="{{left}}"
+          >
+            <view class="cover">
+              <image src="{{item.cover}}" mode="widthFix"/>
+            </view>
+            <view class="title"><text>{{item.title}}</text></view>
+          </navigator>
+        </view>
+    </view>  
+    <view class="item-list">  
+      <view
+          class="ul"
+        >
+          <navigator 
+            url="/pages/wiki/detail/wikiDetailPage?id={{item._id}}"
+            class="li"
+            wx:for="{{right}}"
+          >
+            <view class="cover">
+              <image src="{{item.cover}}" mode="widthFix"/>
+            </view>
+            <view class="title"><text>{{item.title}}</text></view>
+          </navigator>
+        </view>
+    </view>
+  </view>
+</scroll-view>

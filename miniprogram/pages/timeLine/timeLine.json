@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "navbar": "/components/navbar-component/navbar-component",
-    "event-item": "/components/event-component/event-component",
-    "no-event": "/components/no-event-component/no-event-component"
+    "navbar": "/components/common/navigation-bar/navigation-bar",
+    "timeline-list": "/components/timeline/list/timeline-list/timeline-list",
+    "chapters": "/components/timeline/list/chapters/timeline-chapters"
   }
 }

@@ -1,7 +1,6 @@
 import { getEventList} from '../../domain/eventsDomain';
 import { rpx2px} from '../../common/implement';
-const { statusBarHeight, windowHeight, screenHeight, screenWidth} = getApp().globalData;
-const scrollViewHeight = windowHeight - statusBarHeight - 64;
+const { statusBarHeight, windowHeight, screenHeight} = getApp().globalData;
 let currentIndex = 0;
 Page({
 
@@ -9,28 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-		// events: [[],[],[],[]],
-    events: [{}, {}, {}, {}],
-    eventsCount: [0, 0, 0, 0],
-    pageSize: 20,
-    pageIndexs: [1,1,1,1],
-    allData: [false, false, false, false],
-    loading: [false, false, false, false],
-    barHeight: statusBarHeight,
-    searchInputHeight: 0,
-    searchActive: false,
-    chooseActive: false,
+		title: '海贼王时间线',
+    immemorialevents: { data: [], total: 0},
+    bcevents: { data: [], total: 0 },
+    standardevents: { data: [], total: 0 },
+    newworldevents: { data: [], total: 0 },
     keyword: '',
-    flegTop: 0, 
     currentIndex: 0,
     tabs: ['太古时代','0-1521','1522','1523-1524'],
-    ranges: [[-9999, 0], [0, 1522], [1522, 1523], [1523, 1525]],
-    itemsHeight: screenHeight,
-    mainHeight: windowHeight - statusBarHeight,
-    scrollViewHeight: scrollViewHeight,
-    axisHeight: scrollViewHeight * 0.9,
-    axisTop: scrollViewHeight * 0.05,
-    chapters: [
+    chapterlist: [
       { name: '海贼王罗杰', selected: false, hot: true },
       { name: '东海', selected: false},
       { name: '阿拉巴斯坦', selected: false},
@@ -48,7 +34,8 @@ Page({
       { name: '蛋糕岛', selected: false },
       { name: '和之国', selected: false }
     ],
-    chooseChapter: []
+    chapter: '',
+    visiblechapter: false
   },
 
   /**
@@ -107,9 +94,7 @@ Page({
     
   },
   scrolltolower: function() {
-    if (!this.data.allData[this.data.currentIndex]) {
-      this.doFetchEvetns({ index: this.data.currentIndex });
-    }
+
   },
   /**
    * 用户点击右上角分享
@@ -118,203 +103,111 @@ Page({
 
   },
   fetchEvetns: function() {
-    this.doFetchEvetns({ index: 0 });
-    this.doFetchEvetns({ index: 1 });
-    this.doFetchEvetns({ index: 2 });
-    this.doFetchEvetns({ index: 3 });
-  },
-  doFetchEvetns: function({index}) {
-    this.fetchEventsList({
-      index,
-      lt: this.data.ranges[index][1],
-      gte: this.data.ranges[index][0],
-      pageSize: this.data.pageSize,
-      pageIndex: this.data.pageIndexs[index],
-      tag: this.data.chooseChapter
+    this.setData({
+      immemorialevents: { data: [], total: 0 },
+      bcevents: { data: [], total: 0 },
+      standardevents: { data: [], total: 0 },
+      newworldevents: { data: [], total: 0 }
+    }, () => {
+      this.fetchImmemorialEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
+      this.fetchBCevents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
+      this.fetchStandardEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
+      this.fetchNewWorldEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
     });
   },
-  openLoading({ index}) {
-    let _loading = this.data.loading;
-    _loading[index] = true;
-    this.setData({ loading: _loading});
+  fetchImmemorialEvents: function ({ pageindex = 1, pagesize = 20, tags = ''}) {
+    getEventList({ 
+      lt: 0, gte: -9999, pagesize, pageindex, tags 
+    }).then(response => {
+      this.setData({ immemorialevents: response});
+    });
   },
-  closeLoading({ index }) {
-    let _loading = this.data.loading;
-    _loading[index] = false;
-    this.setData({ loading: _loading });
-  },
-  fetchEventsList({ index, pageSize, pageIndex, lt, gte, tag }) {
-    this.openLoading({ index});
+  fetchBCevents: function ({ pageindex = 1, pagesize = 20, tags = '' }) {
     getEventList({
-      lt,
-      gte,
-      pageSize, 
-      pageIndex, 
-      tag,
-      success: data => {
-        this.closeLoading({ index});
-        let _events = this.data.events;
-        let _eventsCount = this.data.eventsCount;
-        for (let k in data){
-          _events[index][data[k]._id] = data[k];
-        }
-        _eventsCount[index] = Object.keys(_events[index]).length;
-        // _events[index] = _events[index].concat(data)
-        this.setData({
-          events: _events,
-          eventsCount: _eventsCount
-        }, () => {
-          // wx.stopPullDownRefresh();
-          if (_events.length > 0 && index === currentIndex){
-            this.refreshHeight();
-          }
-        });
-        if (data.length < pageSize) {
-          this.setData({ 
-            allData: this.data.allData.map((a, i) => {
-              if(i === index){
-                a = true
-              }
-              return a;
-            }) 
-          });
-        }else{
-          let _pageIndexs = this.data.pageIndexs;
-          _pageIndexs[index] = pageIndex + 1;
-          this.data.pageIndexs = _pageIndexs;
-        }
-      }
+      lt: 1522, gte: 0, pagesize, pageindex, tags 
+    }).then(response => {
+      this.setData({ bcevents: {
+        total: response.total,
+        data: this.data.bcevents.data.concat(response.data)
+      } });
     });
+  },
+  fetchStandardEvents: function ({ pageindex = 1, pagesize = 20, tags = '' }) {
+    getEventList({
+      lt: 1523, gte: 1522, pagesize, pageindex, tags 
+    }).then(response => {
+      this.setData({
+        standardevents: {
+          total: response.total,
+          data: this.data.standardevents.data.concat(response.data)
+        }
+      });
+    });
+  },
+  fetchNewWorldEvents: function ({ pageindex = 1, pagesize = 20, tags = '' }) {
+    getEventList({
+      lt: 9999, gte: 1523, pagesize, pageindex, tags 
+    }).then(response => {
+      this.setData({
+        newworldevents: {
+          total: response.total,
+          data: this.data.newworldevents.data.concat(response.data)
+        }
+      });
+    });
+  },
+  bceventsscrolltolower: function (e) {
+    this.fetchBCevents({ ...e.detail, tags: this.data.chapter});
+  },
+  standardeventsscrolltolower: function (e) {
+    this.fetchStandardEvents({ ...e.detail, tags: this.data.chapter });
+  },
+  newworldeventsscrolltolower: function (e) {
+    this.fetchNewWorldEvents({ ...e.detail, tags: this.data.chapter });
   },
   onPageScroll: function(e) {
-    const { scrollTop} = e;
-    this.fixFlag({ scrollTop});
-  },
-  bindAdmin: function() {
-    wx.navigateTo({
-      url: '/admin/events/list/list'
-    })
-  },
-  bindSearchInput: function(e) {
-    const _keyword = e.detail.value;
-    this.setData({ keyword: _keyword});
-  },
-  bindJumpSearch: function(e) {
-    wx.navigateTo({
-      url: `../timeLineSearch/timeLineSearch?keyword=${this.data.keyword || '路飞'}`
-    })
-  },
-  getRegexpList: function ({ keyword}) {
-    getRegexp({ 
-      keyword, 
-      success: res => {
-        console.log(res);
-      }
-    })
-  },
-  bindSearch: function(e) {
-    wx.navigateTo({
-      url: '../timeLineSearch/timeLineSearch',
-    })
-  },
-  bindSearchIcon: function(e) {
-    this.setData({
-      searchActive:true,
-      // searchInputHeight: 88
-    });
-  },
-  bindSearchCloseIcon: function(e) {
-    this.setData({ 
-      searchActive: false, 
-      keyword: '' ,
-      // searchInputHeight: 0
-    });
-  },
-  fixFlag: function ({ scrollTop}) {
-    const axisHeight = getApp().globalData.screenHeight - (statusBarHeight + 10);
-    const query = wx.createSelectorQuery();
-    query.select('#area')
-      .boundingClientRect(rect => {
-        const { height } = rect;
-        this.setData({
-          flegTop: axisHeight * (scrollTop / height)
-        });
-      })
-      .exec();
-  },
-  refreshHeight: function() {
-    console.log("refreshHeight:", currentIndex);
-    const query = wx.createSelectorQuery();
-    query.select(`#ul${currentIndex}`)
-      .boundingClientRect(rect => {
-        const { height } = rect;
-        this.setData({ itemsHeight: height + 30 });
-      })
-      .exec();
+    // const { scrollTop} = e;
+    // this.fixFlag({ scrollTop});
   },
   swiperChange: function(e) {
     const { current, source } = e.detail;
-    this.setData({currentIndex: current}, () => {
-      
-    });
+    this.setData({currentIndex: current});
     currentIndex = current;
-    this.refreshHeight();
   },
   bindTabChange: function(e) {
     const { index} = e.currentTarget.dataset;
     currentIndex = index;
     this.setData({ currentIndex: index}, () => {
-      // this.refreshHeight();
-    });
-  },
-  // 点击关闭篇章选择
-  onCloseChoose: function() {
-    this.setData({
-      chooseActive: false
     });
   },
   // 点击打开篇章选择
-  onOpenChoose: function() {
+  switchchapters: function() {
     this.setData({
-      chooseActive: true
+      visiblechapter: !this.data.visiblechapter
     });
   },
   // 点击篇章名称
   onChapterTap: function(e) {
-    const { index } = e.currentTarget.dataset;
-    this.setData({ 
-      chapters: this.data.chapters.map((v, i) => {
-        if(i === index){
-          v.selected = !v.selected;
+    const { name } = e.detail;
+    let chapter = '';
+    let title = '海贼王时间线';
+    const new_chapters = this.data.chapterlist.map(c => {
+      if (c.name === name) {
+        c.selected = !c.selected;
+        if (c.selected) {
+          title = `${name}篇`;
+          chapter = name;
         }
-        return v;
-      })
-    });
-  },
-  // 选择篇章后确定按钮
-  onChooseConfirm: function() {
-    let array = [];
-    for(let k in this.data.chapters){
-      let item = this.data.chapters[k];
-      if(item.selected){
-        array.push(item.name);
+      } else {
+        c.selected = false;
       }
-    }
-    this.data.chooseChapter = array;
-    this.data.pageIndexs = [1,1,1,1];
+      return c;
+    });
     this.setData({ 
-      events: [{},{},{},{}],
-      allData: [false, false, false, false],
-      chooseActive: false
-    });
-    this.fetchEvetns();
-  },
-  onChooseReset: function() {
-    this.setData({
-      chapters: this.data.chapters.map((v, i) => {
-        v.selected = false;
-        return v;
-      })
-    });
+      visiblechapter: false,
+      chapter: chapter,
+      title: title,
+      chapterlist: new_chapters
+    }, this.fetchEvetns());
   }
 })

@@ -1,0 +1,45 @@
+.wiki-item-list {
+  overflow: hidden;
+  height: 100%;
+  
+}
+
+.wiki-item-list .scroll-inner {
+  display: flex;
+  flex-direction: row;
+  padding-left: 20rpx;
+}
+
+.wiki-item-list .item-list {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+
+.wiki-item-list .item-list .ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20rpx;
+  /* flex-wrap: wrap; */
+}
+
+.wiki-item-list .ul .li {
+  width: 100%;
+  margin-top: 20rpx;
+  background: #FFFFFF;
+}
+
+.wiki-item-list .ul .li .cover image {
+  width: 100%;
+}
+
+.wiki-item-list .ul .li .title {
+  padding: 20rpx;
+}
+
+.wiki-item-list .ul .li .title text {
+  color: rgb(61, 61, 61);
+  font-size: 28rpx;
+}

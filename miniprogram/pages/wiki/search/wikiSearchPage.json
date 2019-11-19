@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "navbar": "/components/navbar-component/navbar-component",
-    "wiki-item": "/components/wiki-item-component/wiki-item-component",
-    "no-result": "/components/no-search-component/no-search-component"
-  }
-}

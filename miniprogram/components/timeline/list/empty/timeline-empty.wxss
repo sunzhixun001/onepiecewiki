@@ -1,0 +1,11 @@
+.timeline-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.8);
+  height: 100%;
+}
+
+.timeline-empty text {
+  color: rgba(0,0,0,0.25);
+}

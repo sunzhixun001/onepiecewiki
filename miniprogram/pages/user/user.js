@@ -12,7 +12,7 @@ import {
   getWithOpenId
 } from '../../database/userRepository';
 import { setStorage, getStorage} from '../../common/storage';
-const { scopeUserInfo, statusBarHeight, openid } = getApp().globalData;
+const { scopeUserInfo, openid } = getApp().globalData;
 Page({
 
 	/**
@@ -20,13 +20,11 @@ Page({
 	 */
 	data: {
     scopeUserInfo: scopeUserInfo || false,
-    statusBarHeight: statusBarHeight,
     openid: openid,
     favorites: [],
     messages: [],
     // favoriteSwiperItemHeight: 0,
     swiperCurrent: 0,
-    permissions: [],
     userid: ''
 	},
 
@@ -34,6 +32,11 @@ Page({
 	 * 生命周期函数--监听页面加载
 	 */
 	onLoad: function (options) {
+    wx.cloud.callFunction({
+      name: 'login',
+    }).then(value => {
+      console.log(value);
+    });
     const { userid } = getApp().globalData;
     this.setData({ 
       userid: userid || '',
@@ -41,7 +44,6 @@ Page({
     });
     if (userid){
       this.fetchGetFavorites({ userid});
-      this.fetchPermissions({ userid });
     }
 	},
 
@@ -199,12 +201,6 @@ Page({
         this.setDataFavorites({ favorites: res});
       }
     });
-  },
-  fetchPermissions: function ({ userid }) {
-    getUserPermissions({ userid, success: data => {
-      const { permissions} = data;
-      this.setData({ permissions});
-    }});
   },
   setDataFavorites: function ({ favorites}) {
     let _favorites = [];

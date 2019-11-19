@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "navbar": "/components/common/navigation-bar/navigation-bar",
+    "list": "/components/search/list/search-list",
+    "empty": "/components/search/empty/search-empty"
+  }
+}

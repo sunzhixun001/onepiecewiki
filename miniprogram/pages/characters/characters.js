@@ -1,5 +1,5 @@
 import { 
-  fetchList,
+  getList,
   getStrawCharactersList, 
   fetchListHasDevilfruit,
   getPirates,
@@ -17,10 +17,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    strawHatCharacters: {},
+    strawHatCharacters: { total: 0, data: []},
     pirates: { total: 0, data: []},
     marines: { total: 0, data: []},
     antagonists: { total: 0, data: [] },
+    characters: { total: 0, data: [] },
     devilfruitCharacters: [],
     nameCharacters: [],
     currentIndex: 0,
@@ -31,7 +32,7 @@ Page({
       "devilfruitCharacters":[-1, 20],
       "nameCharacters": [-1, 20]
     },
-    tabKeys: ["strawHatCharacters", "bountyCharacters", "devilfruitCharacters", "nameCharacters"],
+    tabKeys: ["strawHatCharacters", "pirates", "marines", "antagonists"],
     tabs: [
       { index: 0, name: '草帽团'}, 
       { index: 1, name: '海贼' }, 
@@ -64,13 +65,17 @@ Page({
     if(userid) {
       this.fetchGetFavorites({ userid});
     }else{
-      this.fetchGetStrawCharactersList();
-      this.fetchGetPirates({ pageindex: 1, pagesize: 20 });
-      this.fetchGetMarines({ pageindex: 1, pagesize: 20 });
-      this.fetchGetAntagonists({ pageindex: 1, pagesize: 20 });
+      this.fetchGetCharacters();
     }
   },
 
+  fetchGetCharacters: function () {
+    this.fetchGetStrawCharactersList();
+    this.fetchGetPirates({ pageindex: 1, pagesize: 20 });
+    this.fetchGetMarines({ pageindex: 1, pagesize: 20 });
+    this.fetchGetAntagonists({ pageindex: 1, pagesize: 20 });
+    this.fetchGetPinyinNameList({ pageindex: 1, pagesize: 20 });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -103,16 +108,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    this.setData({
+      strawHatCharacters: { total: 0, data: [] },
+      pirates: { total: 0, data: [] },
+      marines: { total: 0, data: [] },
+      antagonists: { total: 0, data: [] },
+      characters: { total: 0, data: [] }
+    });
+    this.fetchGetCharacters();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    if (!this.data.listEnd[this.data.tabKeys[this.data.currentIndex]]) {
-      this.getCharactersList[this.data.currentIndex].call(this, true);
-    }
+
   },
 
   /**
@@ -204,10 +214,13 @@ Page({
   refreshFavorites: function({favorites}) {
     for (let key of this.data.tabKeys.values()){
       let _dataObj = {};
-      _dataObj[key] = this.data[key].map(c => {
-        c.favorite = favorites[c.id];
-        return c;
-      });
+      _dataObj[key] = {
+        data: this.data[key].data.map(c => {
+          c.favorite = favorites[c.id];
+          return c;
+        }),
+        total: this.data[key].total
+      };
       this.setData(_dataObj);
     }
   },
@@ -228,20 +241,24 @@ Page({
   },
   // 获取海贼
   fetchGetPirates: function ({ pageindex, pagesize }) {
+    
     getPirates({ 
       pageindex: pageindex, 
-      pagesize: pagesize
+      pagesize: pagesize,
+      orderbys: ['bounty', 'desc']
     }).then(result => {
       this.setData({ pirates: { 
         total: result.total,
         data: this.data.pirates.data.concat(result.data)
-      }});
+      }}, () => {
+        if (this.data.currentIndex === 1) { wx.stopPullDownRefresh(); }
+      });
     });
   },
   // 获取海军
   fetchGetMarines: function ({ pageindex, pagesize }) {
     getMarines({
-      pageindex, pagesize
+      pageindex, pagesize, orderbys: ['pinyinName', 'asc']
     }).then(result => {
       this.setData({ marines: {
         total: result.total,
@@ -252,7 +269,7 @@ Page({
   // 获取革命军
   fetchGetAntagonists: function ({ pageindex, pagesize }) {
     getAntagonists({
-      pageindex, pagesize
+      pageindex, pagesize, orderbys: ['pinyinName', 'asc']
     }).then(result => {
       this.setData({
         antagonists: {
@@ -262,12 +279,18 @@ Page({
       });
     });
   },
-  // 按名字排序 获取所有人物
-  getNameList: function ({ callback, dataKey, pageIndx, pageSize, reviseHeight }){
-    fetchList({
-      limit: pageSize,
-      skip: (pageIndx + 1) * pageSize,
-      success: res => { callback.call(this, res, dataKey, pageIndx, pageSize, reviseHeight); }
+  // 按拼音名字排序 获取所有人物
+  fetchGetPinyinNameList: function ({ pageindex, pagesize }){
+    getList({
+      pagesize: pagesize,
+      pageindex: pageindex
+    }).then(result => {
+      this.setData({
+        characters: {
+          total: result.total,
+          data: this.data.characters.data.concat(result.data),
+        }
+      });
     });
   },
   bindAdmin: function() {
@@ -275,17 +298,10 @@ Page({
       url: '/admin/characters/list/list',
     })
   },
-  characters: [
-    function() { return this.data.strawHatCharacters},
-    function () { return this.data.bountyCharacters},
-    function () { return this.data.devilfruitCharacters },
-    function () { return this.data.nameCharacters }
-  ],
   bindSwiperChange: function(e) {
     const { current} = e.detail;
     this.setData({
       currentIndex: current
-      // swiperHeight: this.characters[current].call(this).length * 240
     });
   },
   bindSearchIcon: function (e) {
@@ -309,12 +325,10 @@ Page({
     fetchFavorites({
       userid,
       success: list => {
+        console.log(getApp());
         getApp().globalData.favorites = list;
         favorites = list;
-        this.fetchGetStrawCharactersList();
-        this.fetchGetPirates({});
-        this.fetchGetMarines({ pageindex: 1, pagesize: 20 });
-        this.fetchGetAntagonists({ pageindex: 1, pagesize: 20 });
+        this.fetchGetCharacters();
       },
       fail: errCode => {
         if (errCode === -1){
@@ -333,5 +347,8 @@ Page({
 
   antagonistsscrolltolower: function (e) {
     this.fetchGetAntagonists(e.detail);
+  },
+  charactersscrolltolower: function (e) {
+    this.fetchGetPinyinNameList(e.detail);
   }
 })

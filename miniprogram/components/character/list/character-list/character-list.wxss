@@ -43,11 +43,12 @@
   color: rgb(61, 61, 61);
 }
 
-.subComment{
+.character-list .comment {
   font-weight: bold;
   color: #9DA0A3;
   margin-top: 8rpx;
   line-height: 36rpx;
+  margin-bottom: 16rpx;
 }
 
 .thumb{
@@ -57,4 +58,9 @@
 .thumb image{
   width: 192rpx;
   height: 192rpx;
+}
+
+.character-list .sub {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 24rpx;
 }

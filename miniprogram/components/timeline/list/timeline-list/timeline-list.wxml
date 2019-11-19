@@ -1,0 +1,46 @@
+<view class="timeline-list">
+  <scroll-view
+    scroll-y
+    lower-threshold="100"
+    bindscrolltolower="scrolltolower"
+  >
+    <view class="ul">
+      <view
+        class='li'
+        data-index="{{index}}"
+        data-name="{{item.name}}"
+        data-img="{{item.img}}"
+        wx:for="{{datasource}}"
+        wx:key="_id"
+      >
+        <view class="cover">
+          <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
+        </view>
+        <!-- <view class='head'>
+          <view class="source">{{item.source}}</view>
+        </view> -->
+        <view class='body'>
+          <view class="meta">
+            <view class="detail">
+              <view class='title'>
+                <text>{{item.showAge}}</text>
+                <text class="source" wx:if="{{item.source}}">{{item.source}}</text>
+                <text
+                  class="tag"
+                  wx:for="{{item.tags}}"
+                  wx:for-item="tag"
+                  wx:key="tag"
+                >{{tag}}篇</text>
+              </view>
+              <view class='description'>{{item.title}}</view>
+            </view>
+          </view>
+        </view>
+        <!-- <view class="shine" wx:if="{{item.img}}"/> -->
+      </view>
+    </view>
+    <end wx:if="{{idend}}" />
+    <empty wx:if="{{isempty}}" />
+  </scroll-view>
+</view>
+

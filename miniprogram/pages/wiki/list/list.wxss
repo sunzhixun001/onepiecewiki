@@ -1,0 +1,121 @@
+@import "/style/commos.wxss";
+@import "/style/awesome.wxss";
+page{
+	height: 100%;
+	/* background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071); */
+	color: #3D3D3D;
+}
+/* 搜索 */
+.search-area{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+  padding-bottom: 30rpx;
+  background: #FFFFFF;
+}
+.search-area .input{
+  height: 60rpx;
+  border-radius: 25rpx;
+  background-color: #F5F5F5;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-area .input .placehold{
+  font-size: 28rpx;
+  flex: 1;
+}
+.search-area .icon{
+  width: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-area .fa{
+  color: #999999;
+  font-size: 32rpx;
+  font-weight: 200;
+}
+/* banner */
+.banner-area{
+  padding-top: 30rpx;
+  margin-bottom: 50rpx;
+}
+swiper{
+  height: 310rpx;
+}
+.item-container{
+  position: relative;
+  padding: 20rpx 20rpx 20rpx 0;
+}
+swiper .img{
+  height: 280rpx;
+  overflow: hidden;
+  border-radius: 20rpx;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.5);
+}
+swiper .img image{
+  width: 100%;
+  break-inside: avoid;
+}
+swiper .item-container .years{
+  position: absolute;
+  bottom: 50rpx;
+  left: 40rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  text-shadow: 1px 1px 0 #212121;
+}
+swiper .item-container .title{
+  position: absolute;
+  top: 50rpx;
+  left: 40rpx;
+  text-shadow: 1px 1px 1px #FFFFFF;
+  color: #D9312B;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+/* 瀑布流 故事篇章列表 */
+.water-area {
+  background: #f2f5f7;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.water-area scroll-view {
+  height: 100%;
+}
+
+.water-area .half {
+  flex: 1;
+}
+
+.water-area .scroll-main {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.water-area .left {
+  /* background: blue; */
+  padding-left: 2%;
+  padding-right: 1%;
+}
+
+.water-area .right {
+  /* background: red; */
+  padding-left: 1%;
+  padding-right: 2%;
+}
+
+.wikis-main {
+  flex: 1;
+  overflow: hidden;
+}
+
+.wikis-main list {
+  height: 100%;
+  overflow: hidden;
+}

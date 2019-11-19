@@ -13,6 +13,7 @@ swiper-item image{
 .summary-wrap, .character-wrap{
   padding-left: 5%;
   padding-right: 5%;
+  margin-bottom: 100rpx;
 }
 .summary-wrap .h3, .character-wrap .h3{
   font-weight: bold;
