@@ -43,33 +43,25 @@ Page({
     devilfruitTypes: ['','超人系','动物系','自然系'],
     swiperHeight: 0,
     searchInputHeight: 0,
-    screenHeight: 0,
     searchActive: false,
-    keyword: '',
-    userid: ''
+    keyword: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const { globalData, watchBallBack} = getApp();
-    const { userid, screenHeight } = globalData;
-    watchBallBack["favorites"] = value => { 
-      this.refreshFavorites({ favorites: value});
-    };
-    this.setData({ 
-      userid: userid || '',
-      screenHeight
-    });
-    if(userid) {
-      this.fetchGetFavorites({ userid});
-    }else{
-      this.fetchGetCharacters();
-    }
+    // const { globalData, watchBallBack} = getApp();
+    // watchBallBack["favorites"] = value => { 
+    //   this.refreshFavorites({ favorites: value});
+    // };
+    this.initCharacters();
   },
 
-  fetchGetCharacters: function () {
+  initCharacters: function () {
+    wx.showLoading({
+      title: '加载中...',
+    })
     this.fetchGetStrawCharactersList();
     this.fetchGetPirates({ pageindex: 1, pagesize: 20 });
     this.fetchGetMarines({ pageindex: 1, pagesize: 20 });
@@ -115,7 +107,7 @@ Page({
       antagonists: { total: 0, data: [] },
       characters: { total: 0, data: [] }
     });
-    this.fetchGetCharacters();
+    this.initCharacters();
   },
 
   /**
@@ -138,78 +130,6 @@ Page({
   bindAvatoError: function(e){
     console.log(e);
   }, 
-  bindJumpSearch: function(e) {
-    wx.navigateTo({
-      url: `../characterSearch/characterSearch?keyword=${this.data.keyword || '路飞'}`
-    });
-  },
-  getCharactersList: [
-    function (reviseHeight){
-      this.fetchGetStrawCharactersList({ 
-        pageIndx: this.data.pages["strawHatCharacters"][0],
-        pageSize: this.data.pages["strawHatCharacters"][1],
-        callback: this.getCharactersCallbacks, 
-        dataKey: "strawHatCharacters",
-        reviseHeight
-      });
-    },
-    function (reviseHeight) {
-      this.fetchGetBountyListDesc({
-        pageIndx: this.data.pages["bountyCharacters"][0], 
-        pageSize: this.data.pages["bountyCharacters"][1],
-        callback: this.getCharactersCallbacks,
-        dataKey: "bountyCharacters",
-        reviseHeight
-      });
-    },
-    function (reviseHeight) {
-      this.getDevilfruitCharactersList({
-        pageIndx: this.data.pages["devilfruitCharacters"][0],
-        pageSize: this.data.pages["devilfruitCharacters"][1],
-        callback: this.getCharactersCallbacks,
-        dataKey: "devilfruitCharacters",
-        reviseHeight
-      });
-    },
-    function (reviseHeight) {
-      this.getNameList({
-        pageIndx: this.data.pages["nameCharacters"][0],
-        pageSize: this.data.pages["nameCharacters"][1],
-        callback: this.getCharactersCallbacks,
-        dataKey: "nameCharacters",
-        reviseHeight
-      });
-    }
-  ],
-  // 获取人物列表后的回调函数　
-  getCharactersCallbacks: function (res, dataKey, pageIndx, pageSize, reviseHeight) {
-    let obj = {};
-    let _pages = this.data.pages;
-    let _listend = this.data.listEnd;
-    obj[dataKey] = this.matchFavorites({list:this.data[dataKey].concat(res)});
-    _pages[dataKey] = [pageIndx + 1, pageSize];
-    obj["pages"] = _pages;
-    if (res.length < pageSize){
-      _listend[dataKey] = true;
-      obj["listEnd"] = _listend;
-    }
-    if (reviseHeight){
-      obj["swiperHeight"] = (this.data[dataKey].length + res.length) * 240
-    }
-    this.setData(obj);
-  },
-  // 检查是不是我的收藏
-  matchFavorites: function({list}) {
-    let _list = list.map(e => {
-      if (favorites.length === 0){
-        e.favorite = false;
-      }else{
-        e.favorite = !!favorites[e.id];
-      }
-      return e;
-    });
-    return _list;
-  },
   // 刷新收藏状态
   refreshFavorites: function({favorites}) {
     for (let key of this.data.tabKeys.values()){
@@ -229,19 +149,16 @@ Page({
     getStrawCharactersList().then(result => {
       this.setData({
         strawHatCharacters: result
+      }, () => {
+        if (this.data.currentIndex === 0) {
+          wx.stopPullDownRefresh();
+          wx.hideLoading();
+        }
       });
     });
   },
-  // 获取有恶魔果实的角色
-  getDevilfruitCharactersList: function ({ callback, dataKey, pageIndx, pageSize, reviseHeight }) {
-    fetchListHasDevilfruit({
-      limit: pageSize,
-      skip: (pageIndx + 1) * pageSize,
-      success: res => { callback.call(this, res, dataKey, pageIndx, pageSize, reviseHeight)}});
-  },
   // 获取海贼
   fetchGetPirates: function ({ pageindex, pagesize }) {
-    
     getPirates({ 
       pageindex: pageindex, 
       pagesize: pagesize,
@@ -251,7 +168,7 @@ Page({
         total: result.total,
         data: this.data.pirates.data.concat(result.data)
       }}, () => {
-        if (this.data.currentIndex === 1) { wx.stopPullDownRefresh(); }
+        if (this.data.currentIndex === 1) { wx.stopPullDownRefresh(); wx.hideLoading();}
       });
     });
   },
@@ -263,7 +180,9 @@ Page({
       this.setData({ marines: {
         total: result.total,
         data: this.data.marines.data.concat(result.data)
-      }});
+      }}, () => {
+        if (this.data.currentIndex === 2) { wx.stopPullDownRefresh(); wx.hideLoading();}
+      });
     });
   },
   // 获取革命军
@@ -276,6 +195,8 @@ Page({
           total: result.total,
           data: this.data.antagonists.data.concat(result.data),
         }
+      }, () => {
+        if (this.data.currentIndex === 3) { wx.stopPullDownRefresh(); wx.hideLoading();}
       });
     });
   },
@@ -290,6 +211,8 @@ Page({
           total: result.total,
           data: this.data.characters.data.concat(result.data),
         }
+      }, () => {
+        if (this.data.currentIndex === 4) { wx.stopPullDownRefresh(); wx.hideLoading(); }
       });
     });
   },
@@ -321,22 +244,22 @@ Page({
     const _keyword = e.detail.value;
     this.setData({ keyword: _keyword });
   },
-  fetchGetFavorites: function ({ userid}) {
-    fetchFavorites({
-      userid,
-      success: list => {
-        console.log(getApp());
-        getApp().globalData.favorites = list;
-        favorites = list;
-        this.fetchGetCharacters();
-      },
-      fail: errCode => {
-        if (errCode === -1){
-          clearUserId();
-        }
-      }
-    });
-  },
+  // fetchGetFavorites: function ({ userid}) {
+  //   fetchFavorites({
+  //     userid,
+  //     success: list => {
+  //       console.log(getApp());
+  //       getApp().globalData.favorites = list;
+  //       favorites = list;
+  //       this.initCharacters();
+  //     },
+  //     fail: errCode => {
+  //       if (errCode === -1){
+  //         clearUserId();
+  //       }
+  //     }
+  //   });
+  // },
   piratesscrolltolower: function (e) {
     this.fetchGetPirates(e.detail);
   },

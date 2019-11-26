@@ -77,4 +77,6 @@
   content: "\f058";
 }.fa-circle-o:before {
   content: "\f10c";
+}.fa-thumb-tack:before {
+  content: "\f08d";
 }

@@ -20,9 +20,9 @@ const getList = async ({limit, skip}) => {
   return result;
 };
 // 模糊搜索
-const getRegexp = ({ keyword }) => {
-  const promise =
-    collection
+const getRegexp = async ({ keyword }) => {
+  const result =
+  await collection
       .where({
         title: db.RegExp({
           regexp: `.*${keyword}.*`,
@@ -31,10 +31,11 @@ const getRegexp = ({ keyword }) => {
       })
       .field({
         cover: true,
-        title: true
+        title: true,
+        summary: true
       })
       .get();
-  return promise;
+  return result;
 };
 // 获取总数
 const getCount = async () => {

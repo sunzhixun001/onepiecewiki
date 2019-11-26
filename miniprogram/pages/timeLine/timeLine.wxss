@@ -3,7 +3,7 @@
 @import "../../style/awesome.wxss";
 page{
 	height: 100%;
-	background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071);
+	/* background-image: url(https://6465-develop-6e54e7-1259274378.tcb.qcloud.la/img/Wiki-background.jpg?sign=cf18c1ff8a9b8ff9b7bc4516e1f70ad0&t=1558681071); */
 	color: #3D3D3D;
 }
 .main{
@@ -59,16 +59,4 @@ page{
   z-index: 300;
   position: absolute;
   left: -2px;
-}
-
-/* 遮罩 */
-.mask{
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  right: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 10;
 }

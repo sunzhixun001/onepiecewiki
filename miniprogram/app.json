@@ -36,12 +36,6 @@
         "text": "人物",
         "iconPath": "images/character.png",
         "selectedIconPath": "images/character_selected.png"
-      },
-      {
-        "pagePath": "pages/user/user",
-        "text": "我的",
-        "iconPath": "images/wiki.png",
-        "selectedIconPath": "images/wiki_selected.png"
       }
     ]
   },

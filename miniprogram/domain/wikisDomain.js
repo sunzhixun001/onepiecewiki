@@ -6,11 +6,11 @@ import {
   getRegexp
 } from '../database/wikisRepository';
 // 获取列表
-const getWikiList = async ({ pageIndex = 1, pageSize = 20 }) => {
+const getWikiList = async ({ pageindex = 1, pagesize = 20 }) => {
   let countPromise = getCount();
   let listPromise = getList({
-    limit: pageSize,
-    skip: (pageIndex - 1) * pageSize
+    limit: pagesize,
+    skip: (pageindex - 1) * pagesize
   });
   let countResult = await countPromise;
   let dataResult = await listPromise;
@@ -28,14 +28,9 @@ const getOneWiki = async ({ id }) => {
   }
 };
 // 模糊搜索
-const getRegexpWikiList = ({ keyword, success }) => {
-  let promise = getRegexp({ keyword });
-  promise.then(res => {
-    const { errMsg, data } = res;
-    if (errMsg === "collection.get:ok") {
-      success(data);
-    }
-  });
+const searchWikiList = async ({ keyword }) => {
+  const result = await getRegexp({ keyword });
+  return result.data;
 }
 // 获取总记录数
 const getTotal = async () => {
@@ -55,7 +50,7 @@ const getWikiCharacters = async ({ id}) => {
 export {
   getWikiList,
   getOneWiki,
-  getRegexpWikiList,
+  searchWikiList,
   getTotal,
   getWikiCharacters
 }

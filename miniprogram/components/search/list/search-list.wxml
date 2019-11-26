@@ -9,12 +9,12 @@
         <view class="title-box">
           <view class="title">{{item.title}}</view>
           <view class="img-box {{item.type === 2 ? 'avator':''}}">
-            <image src="{{item.img}}" mode="widthFix"/>
+            <image class="image" src="{{item.img}}" mode="widthFix"/>
           </view>
         </view>
         <view class="detail">
           <view class="describe">{{item.describe}}</view>
-          <view class="type"><text>{{item.typename}}</text> </view>
+          <view class="type"><text class="text">{{item.typename}}</text> </view>
         </view> 
       </view>
     </navigator>

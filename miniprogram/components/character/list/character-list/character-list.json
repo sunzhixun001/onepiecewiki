@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "end": "/components/common/end/end"
+    "end": "/components/common/end/end",
+    "fetching": "/components/common/fetching/fetching"
   }
 }

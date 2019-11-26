@@ -15,45 +15,13 @@
           </navigator>
         </view>
         <view class="wikis-main">
-          <list datasource="{{wikis}}" left="{{wikisLeft}}" right="{{wikisRight}}" />
+          <list 
+            total="{{total}}" 
+            left="{{wikisLeft}}" 
+            right="{{wikisRight}}" 
+            bind:scrolltolower="scrolltolower"
+          />
         </view>
-        <!-- <view class="water-area">
-          <scroll-view
-            scroll-y
-            lower-threshold="100"
-            bindscrolltolower="scrolltolower"
-          >
-            <view class="scroll-main">
-              <view class="half left">
-                <wiki-item
-                  wx:for="{{wikisLeft}}" 
-                  wx:key="_id"
-                  wikiid="{{item._id}}"
-                  img="{{item.cover}}"
-                  title="{{item.title}}"
-                  url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"
-                  bind:imageload="onImageLoad"
-                  left="{{true}}"
-                  index="{{index}}"
-                />
-              </view>
-              <view class="half right">
-                <wiki-item
-                  wx:for="{{wikisRight}}" 
-                  wx:key="_id"
-                  id="{{item._id}}"
-                  img="{{item.cover}}"
-                  title="{{item.title}}"
-                  url="{{'/pages/wiki/detail/wikiDetailPage?id=' + item._id}}"
-                  bind:imageload="onImageLoad"
-                  left="{{false}}"
-                  index="{{index}}"
-                />
-              </view>
-            </view>
-            <end wx:if="{{pageEnd}}" />
-          </scroll-view>
-        </view> -->
       </view>
     </view>
   </view>

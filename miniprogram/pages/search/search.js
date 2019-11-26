@@ -1,5 +1,5 @@
 import {
-  getRegexpWikiList
+  searchWikiList
 } from '../../domain/wikisDomain';
 import {
   getSearch
@@ -74,26 +74,25 @@ Page({
 
   },
   fetchWikiList: function ({ keyword }) {
-    getRegexpWikiList({
-      keyword,
-      success: data => {
-        this.setData({
-          searchActive: false,
-          wikis: this.data.wikis.concat(
-            data.map(w => {
-              return {
-                id: w._id,
-                img: w.cover,
-                title: w.title,
-                type: 1,
-                typename: '百科',
-                url: `/pages/wiki/detail/wikiDetailPage?id=${w._id}`
-              }
-            })
-          )
-        });
-        console.log(data);
-      }
+    searchWikiList({
+      keyword
+    }).then(data => {
+      this.setData({
+        searchActive: false,
+        wikis: this.data.wikis.concat(
+          data.map(w => {
+            return {
+              id: w._id,
+              img: w.cover,
+              title: w.title,
+              type: 1,
+              typename: '百科',
+              describe: w.summary[0],
+              url: `/pages/wiki/detail/wikiDetailPage?id=${w._id}`
+            }
+          })
+        )
+      });
     });
   },
   fetchCharacterList: function ({ keyword }) {

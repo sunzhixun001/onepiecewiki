@@ -72,14 +72,16 @@ page {
   margin-top: 40rpx;
 }
 .relatedCharas .li{
-  width: 140rpx;
-  height: 140rpx;
-  margin-right: 6rpx;
-  margin-bottom: 6rpx;
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
 }
 .relatedCharas .li image{
-  height: 140rpx;
-  width: 140rpx;
+  height: 150rpx;
+  width: 150rpx;
+  border-radius: 4px;
 }
 /* footer 分享 & 收藏 */
 .foot-wrap .ul{

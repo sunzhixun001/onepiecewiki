@@ -102,7 +102,7 @@
       </scroll-view>
     </view>
   </view>
-  <view class='footer'>
+  <!-- <view class='footer'>
     <view class='foot-wrap'>
       <view class='ul'>
         <view wx:if="{{!favorited}}" class='li' bind:tap='bindFavoriteTap'>
@@ -124,5 +124,5 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
 </block>

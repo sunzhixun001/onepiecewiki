@@ -23,5 +23,6 @@
       <view class='star'><text class='fa fa-star' /></view>
     </view>
   </view>
-  <end wx:if="{{items.length >= total}}" />
+  <end wx:if="{{idend}}" />
+  <fetching wx:if="{{isloading}}" />
 </scroll-view>

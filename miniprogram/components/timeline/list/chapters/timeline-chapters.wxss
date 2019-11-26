@@ -1,6 +1,6 @@
 .timeline-chapters {
-  position: absolute;
-  z-index: 20;
+  position: fixed;
+  z-index: 2000;
   background: #FFFFFF;
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
   transition: all 2.2s;
@@ -39,19 +39,6 @@
 .timeline-chapters .chapterArea .ul .li.selected .dt {
   font-weight: 700;
   color: #D9312B;
-}
-
-.action-wrap {
-  display: flex;
-  /* box-shadow: 1px -1px 3px 1px rgba(0, 0, 0, 0.08); */
-}
-
-.action-wrap > view {
-  flex: 1;
-  text-align: center;
-  height: 100rpx;
-  line-height: 100rpx;
-  font-size: 30rpx;
 }
 
 .r-btn {

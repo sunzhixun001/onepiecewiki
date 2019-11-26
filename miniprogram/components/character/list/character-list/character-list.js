@@ -1,4 +1,7 @@
 // components/character/list/character-list/character-list.js
+
+let loading = false;
+
 Component({
   /**
    * 组件的属性列表
@@ -13,7 +16,20 @@ Component({
    */
   data: {
     pageindex: 1,
-    pagesize: 20
+    pagesize: 20,
+    isloading: false,
+    idend: false
+  },
+
+  observers: {
+    'items, total': function (items, total) {
+      this.setData({
+        idend: (items.length >= total) && (items.length > 0),
+        isloading: false
+      }, () => {
+        loading = false;
+      });
+    }
   },
 
   /**
@@ -21,7 +37,9 @@ Component({
    */
   methods: {
     bindscrolltolower: function () {
-      if (this.data.items.length < this.data.total) {
+      if (this.data.items.length < this.data.total && !loading) {
+        this.setData({ isloading: true});
+        loading = true;
         const nextindex = this.data.pageindex + 1;
         this.setData({ pageindex: nextindex});
         console.log("bindscrolltolower");

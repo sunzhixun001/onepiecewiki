@@ -1,5 +1,5 @@
 <view class="end-component">
-  <view>
-    <text>没有更多了</text>
+  <view class="view">
+    <text class="text">没有更多了~</text>
   </view>
 </view>

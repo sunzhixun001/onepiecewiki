@@ -2,6 +2,8 @@
   "usingComponents": {
     "navbar": "/components/common/navigation-bar/navigation-bar",
     "timeline-list": "/components/timeline/list/timeline-list/timeline-list",
-    "chapters": "/components/timeline/list/chapters/timeline-chapters"
-  }
+    "chapters": "/components/timeline/list/chapters/timeline-chapters",
+    "mask": "/components/common/mask/mask"
+  },
+  "enablePullDownRefresh": true
 }

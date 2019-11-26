@@ -2,13 +2,14 @@
   padding: 50rpx;
 }
 
-.end-component view {
+.end-component .view {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.end-component view text {
-  color: gray;
+.end-component .view .text {
+  color: rgb(61,61,61);
   font-size: 24rpx;
+  text-shadow: 1px 1px 1px #FFFFFF;
 }

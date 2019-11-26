@@ -1,10 +1,10 @@
-// components/timeline/list/chapters/timeline-chapters.js
+// components/common/mask/mask.js
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-    datasource: Array
+
   },
 
   /**
@@ -19,9 +19,7 @@ Component({
    */
   methods: {
     tap: function (e) {
-      const { name} = e.currentTarget.dataset;
-      console.log(name);
-      this.triggerEvent("itemtap", { name}, {});
+      this.triggerEvent("close", {}, {});
     }
   }
 })

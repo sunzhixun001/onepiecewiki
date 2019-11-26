@@ -1,0 +1,19 @@
+.mask-component {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 0;
+  background: rgba(0,0,0,0.8);
+}
+
+.mask-component .inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  background: rgba(0,0,0,0.8);
+}

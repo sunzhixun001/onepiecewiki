@@ -1,4 +1,6 @@
 // components/timeline/list/timeline-list/timeline-list.js
+let loading = false;
+
 Component({
   /**
    * 组件的属性列表
@@ -14,6 +16,7 @@ Component({
   data: {
     idend: false,
     isempty: false,
+    isloading: false,
     pageindex: 1,
     pagesize: 20
   },
@@ -22,7 +25,10 @@ Component({
     'datasource, total': function (datasource, total) {
       this.setData({
         idend: (datasource.length >= total) && (datasource.length > 0),
-        isempty: total === 0
+        isempty: total === 0,
+        isloading: false
+      }, () => {
+        loading = false;
       });
     }
   },
@@ -40,7 +46,9 @@ Component({
       }
     },
     scrolltolower: function (e) {
-      if (!this.data.idend) {
+      if (!this.data.idend && !loading) {
+        this.setData({ isloading: true});
+        loading = true;
         const next = this.data.pageindex + 1;
         this.setData({ pageindex: next});
         this.triggerEvent('scrolltolower', { pageindex: next, pagesize: this.data.pagesize}, {})

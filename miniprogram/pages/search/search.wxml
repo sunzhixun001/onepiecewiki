@@ -11,10 +11,10 @@
           <view class="input">
             <view class="icon"><text class="fa fa-search" /></view>
             <input 
-              placeholder="输入关键字" 
-              bindinput="onSearchInput" 
-              value="{{keyword}}"
+              placeholder="输入关键字"
+              bindinput="onSearchInput"
               type='text'
+              value="{{keyword}}"
               confirm-type="search"
               bindfocus="onFocus"
               placeholder-style="color:#808080"

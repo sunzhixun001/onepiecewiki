@@ -41,11 +41,11 @@
   align-items: center;
 }
 
-.search-list .ul .li image {
+.search-list .ul .li .image {
   width: 100%;
 }
 
-.search-list .ul .li .avator image {
+.search-list .ul .li .avator .image {
   width: 200rpx;
 }
 
@@ -60,7 +60,7 @@
   margin-top: 24rpx;
 }
 
-.search-list .ul .li .type text {
+.search-list .ul .li .type .text {
   color: rgb(173, 176, 179);
   border: 1px solid rgba(0,0,0,0.16);
   font-size: 24rpx;

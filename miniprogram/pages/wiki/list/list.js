@@ -1,10 +1,6 @@
 import { getWikiList } from '../../../domain/wikisDomain';
 import regeneratorRuntime from '../../../common/regeneratorRuntime';
 
-
-let wikitotal = 0;
-let heightLeft = [];
-let heightRight = [];
 Page({
 
   /**
@@ -43,32 +39,44 @@ Page({
   onReachBottom: function () {
     
   },
-  scrolltolower: function () {
+  scrolltolower: function (e) {
+    this.fetchWikiList(e.detail);
   },
-  fetchWikiList: function ({ pageIndex = 1, pageSize = 20}) {
-    wx.showLoading({
-      title: '加载中',
-    })
+  fetchWikiList: function ({ pageindex = 1, pagesize = 20}) {
+    if (this.data.wikisLeft.length + this.data.wikisRight.length === 0 ) {
+      wx.showLoading({
+        title: '加载中'
+      });
+    }
     getWikiList({
-      pageIndex: pageIndex,
-      pageSize: pageSize
+      pageindex: pageindex,
+      pagesize: pagesize
     }).then(response => {
       const { data, total } = response;
       const promiselist = data.map(item => {
         return new Promise((resolve, reject) => {
-          wx.getImageInfo({
-            src: item.cover,
-            success(res) {
-              resolve({ ...res, ...item});
-            }
-          })
+          if (item.cover) {
+            wx.getImageInfo({
+              src: item.cover,
+              success(res) {
+                resolve({ ...res, ...item });
+              }
+            });
+          } else {
+            resolve({ height: 0, ...item });
+          }
+          
         }).then(res => res);
       });
       Promise.all(
         promiselist
       ).then(result => {
-        let left = 0;
-        let right = 0;
+        let left = this.data.wikisLeft.reduce((acc, cur) => {
+          return acc + cur.height
+        }, 0);
+        let right = this.data.wikisRight.reduce((acc, cur) => {
+          return acc + cur.height
+        }, 0);;
         let leftlist = [];
         let rightlist = [];
         for (const item of result) {
@@ -81,8 +89,9 @@ Page({
           }
         }
         this.setData({
-          wikisLeft: leftlist,
-          wikisRight: rightlist
+          total: total,
+          wikisLeft: this.data.wikisLeft.concat(leftlist),
+          wikisRight: this.data.wikisRight.concat(rightlist)
         }, () => {
           wx.hideLoading();
         });

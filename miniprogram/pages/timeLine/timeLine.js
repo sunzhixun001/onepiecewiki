@@ -42,7 +42,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.fetchEvetns();
+    this.initEvetns();
   },
 
   /**
@@ -84,7 +84,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.initEvetns();
   },
 
   /**
@@ -102,24 +102,35 @@ Page({
   onShareAppMessage: function () {
 
   },
-  fetchEvetns: function() {
+  initEvetns: function() {
+    wx.showLoading({
+      title: '加载中...',
+    });
+    this.selectComponent('#bcevents').__data__.pageindex = 1;
+    this.selectComponent('#standardevents').__data__.pageindex = 1;
+    this.selectComponent('#newworldevents').__data__.pageindex = 1;
     this.setData({
+      currentIndex: 0,
       immemorialevents: { data: [], total: 0 },
       bcevents: { data: [], total: 0 },
       standardevents: { data: [], total: 0 },
       newworldevents: { data: [], total: 0 }
-    }, () => {
-      this.fetchImmemorialEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
-      this.fetchBCevents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
-      this.fetchStandardEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
-      this.fetchNewWorldEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
     });
+    this.fetchImmemorialEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
+    this.fetchBCevents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
+    this.fetchStandardEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
+    this.fetchNewWorldEvents({ pageindex: 1, pagesize: 20, tags: this.data.chapter });
   },
   fetchImmemorialEvents: function ({ pageindex = 1, pagesize = 20, tags = ''}) {
     getEventList({ 
       lt: 0, gte: -9999, pagesize, pageindex, tags 
     }).then(response => {
-      this.setData({ immemorialevents: response});
+      this.setData({ immemorialevents: response}, () => {
+        if (this.data.currentIndex === 0) {
+          wx.hideLoading(); 
+          wx.stopPullDownRefresh();
+        }
+      });
     });
   },
   fetchBCevents: function ({ pageindex = 1, pagesize = 20, tags = '' }) {
@@ -129,7 +140,12 @@ Page({
       this.setData({ bcevents: {
         total: response.total,
         data: this.data.bcevents.data.concat(response.data)
-      } });
+      }}, () => {
+        if (this.data.currentIndex === 1) {
+          wx.hideLoading(); 
+          wx.stopPullDownRefresh();
+        }
+      });
     });
   },
   fetchStandardEvents: function ({ pageindex = 1, pagesize = 20, tags = '' }) {
@@ -140,6 +156,11 @@ Page({
         standardevents: {
           total: response.total,
           data: this.data.standardevents.data.concat(response.data)
+        }
+      }, () => {
+        if (this.data.currentIndex === 2) {
+          wx.hideLoading(); 
+          wx.stopPullDownRefresh();
         }
       });
     });
@@ -152,6 +173,11 @@ Page({
         newworldevents: {
           total: response.total,
           data: this.data.newworldevents.data.concat(response.data)
+        }
+      }, () => {
+        if (this.data.currentIndex === 3) {
+          wx.hideLoading(); 
+          wx.stopPullDownRefresh();
         }
       });
     });
@@ -208,6 +234,12 @@ Page({
       chapter: chapter,
       title: title,
       chapterlist: new_chapters
-    }, this.fetchEvetns());
+    }, () => {this.initEvetns()});
+  },
+  // 关闭篇章选择
+  closechapter: function () {
+    this.setData({
+      visiblechapter: false
+    });
   }
 })

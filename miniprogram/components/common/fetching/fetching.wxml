@@ -1,0 +1,3 @@
+<view class="fetching-component">
+  <text class="text">加载中...</text>
+</view>

@@ -1,0 +1,12 @@
+.fetching-component {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40rpx;
+}
+
+.fetching-component .text {
+  color: rgb(61, 61, 61);
+  font-size: 12px;
+  text-shadow: 1px 1px 1px #FFFFFF;
+}

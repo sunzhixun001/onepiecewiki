@@ -1,5 +1,6 @@
 <view class="timeline-list">
   <scroll-view
+    class="scroll-view"
     scroll-y
     lower-threshold="100"
     bindscrolltolower="scrolltolower"
@@ -13,34 +14,48 @@
         wx:for="{{datasource}}"
         wx:key="_id"
       >
-        <view class="cover">
-          <image src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
-        </view>
-        <!-- <view class='head'>
-          <view class="source">{{item.source}}</view>
-        </view> -->
-        <view class='body'>
-          <view class="meta">
-            <view class="detail">
-              <view class='title'>
-                <text>{{item.showAge}}</text>
-                <text class="source" wx:if="{{item.source}}">{{item.source}}</text>
-                <text
-                  class="tag"
-                  wx:for="{{item.tags}}"
-                  wx:for-item="tag"
-                  wx:key="tag"
-                >{{tag}}篇</text>
+        <view class="inner">
+          <view class="cover">
+            <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
+          </view>
+          <view class='body'>
+            <view class="meta">
+              <view 
+                class="meta-avatar"
+                wx:if="{{item.characters && item.characters.length > 0}}"
+              >
+                <navigator
+                  url="/pages/characters/detail/characterDetail?id={{characher.id}}"
+                  class="character-avator"
+                  wx:for="{{item.characters}}"
+                  wx:for-item="characher"
+                  wx:key="id"
+                >
+                  <image class="image" src="{{characher.avator}}" />
+                </navigator>
               </view>
-              <view class='description'>{{item.title}}</view>
+              <view class="detail">
+                <view class='title'>
+                  <text>{{item.showAge}}</text>
+                  <text class="source" wx:if="{{item.source}}">{{item.source}}</text>
+                  <text
+                    class="tag"
+                    wx:for="{{item.tags}}"
+                    wx:for-item="tag"
+                    wx:key="tag"
+                  >{{tag}}篇</text>
+                </view>
+                <view class='description'>{{item.title}}</view>
+              </view>
             </view>
           </view>
         </view>
-        <!-- <view class="shine" wx:if="{{item.img}}"/> -->
+        <text class="fa fa-thumb-tack" />
       </view>
     </view>
     <end wx:if="{{idend}}" />
     <empty wx:if="{{isempty}}" />
+    <fetching wx:if="{{isloading}}" />
   </scroll-view>
 </view>
 

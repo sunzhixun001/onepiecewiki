@@ -7,9 +7,10 @@
   >
     <view slot="left"><text class="fa fa-bars" bindtap="switchchapters"/></view>
   </navbar>
+  
   <chapters 
     datasource="{{chapterlist}}" 
-    bind:tap="onChapterTap"
+    bind:itemtap="onChapterTap"
     wx:if="{{visiblechapter}}"
   />
   <view class='container'>
@@ -49,6 +50,7 @@
                     datasource="{{bcevents.data}}"
                     total="{{bcevents.total}}"
                     bind:scrolltolower="bceventsscrolltolower"
+                    id="bcevents"
                   />
                 </swiper-item>
                 <swiper-item>
@@ -56,6 +58,7 @@
                     datasource="{{standardevents.data}}"
                     total="{{standardevents.total}}"
                     bind:scrolltolower="standardeventsscrolltolower"
+                    id="standardevents"
                   />
                 </swiper-item>
                 <swiper-item>
@@ -63,6 +66,7 @@
                     datasource="{{newworldevents.data}}"
                     total="{{newworldevents.total}}"
                     bind:scrolltolower="newworldeventsscrolltolower"
+                    id="newworldevents"
                   />
                 </swiper-item>
               </swiper>
@@ -70,6 +74,6 @@
           </view>
         </view>
     </view>
+    <mask wx:if="{{visiblechapter}}" bind:close="closechapter"/>
   </view>
-  <view class="mask" wx:if="{{chooseActive}}"/>
 </view>
