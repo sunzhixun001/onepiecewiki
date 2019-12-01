@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/wiki/list/list",
     "pages/timeLine/timeLine",
+    "pages/wiki/list/list",
     "pages/characters/characters",
     "pages/user/user",
     "pages/wiki/detail/wikiDetailPage",
@@ -12,19 +12,13 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#D9312B",
-    "navigationBarTitleText": "海贼王大百科",
+    "navigationBarTitleText": "OP大百科",
     "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   },
   "tabBar": {
     "selectedColor": "#D9312B",
     "list": [
-      {
-        "pagePath": "pages/wiki/list/list",
-        "text": "首页",
-        "iconPath": "images/home.png",
-        "selectedIconPath": "images/home_selected.png"
-      },
       {
         "pagePath": "pages/timeLine/timeLine",
         "text": "时间线",

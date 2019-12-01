@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-		title: '海贼王时间线',
+		title: '时间线',
     immemorialevents: { data: [], total: 0},
     bcevents: { data: [], total: 0 },
     standardevents: { data: [], total: 0 },
@@ -17,7 +17,7 @@ Page({
     currentIndex: 0,
     tabs: ['太古时代','0-1521','1522','1523-1524'],
     chapterlist: [
-      { name: '海贼王罗杰', selected: false, hot: true },
+      { name: '罗杰', selected: false, hot: true },
       { name: '东海', selected: false},
       { name: '阿拉巴斯坦', selected: false},
       { name: '空岛', selected: false },
@@ -216,7 +216,7 @@ Page({
   onChapterTap: function(e) {
     const { name } = e.detail;
     let chapter = '';
-    let title = '海贼王时间线';
+    let title = '时间线';
     const new_chapters = this.data.chapterlist.map(c => {
       if (c.name === name) {
         c.selected = !c.selected;
