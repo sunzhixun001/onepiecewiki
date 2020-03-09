@@ -14,7 +14,17 @@ const getEventList = async ({ lt, gte, pagesize = 20, pageindex = 1, field, tags
   });
   const count_result = await getCount({ lt, gte, tags: tags ? [tags] : null });
   return {
-    data: list_result.data, 
+    data: list_result.data.map(current => {
+      return {
+        characters: [
+          {
+            avator: 'cloud://develop-6e54e7.6465-develop-6e54e7/characters/luffy.jpg',
+            id: '6cd397ca5ce40fcb030b0406069e00b8'
+          }
+        ],
+        ...current
+      }
+    }), 
     total: count_result.total
   };
 };

@@ -7,14 +7,52 @@
   >
     <view class="ul">
       <view
-        class='li'
+        class='timeline-item li'
         data-index="{{index}}"
         data-name="{{item.name}}"
         data-img="{{item.img}}"
         wx:for="{{datasource}}"
         wx:key="_id"
       >
-        <view class="inner">
+        <view class="timeline-item__tail">
+        </view>
+        <view class="timeline-item__node">
+          <block wx:if="{{item.characters && item.characters.length}}">
+            <navigator
+              url="/pages/characters/detail/characterDetail?id={{characher.id}}"
+              class="character-avator"
+              wx:for="{{item.characters}}"
+              wx:for-item="characher"
+              wx:key="id"
+            >
+              <image class="image" src="{{characher.avator}}" />
+            </navigator>
+          </block>
+        </view>
+        <view class="timeline-item__wrapper">
+          <view class="timeline-item__timestamp">
+            {{item.showAge}}
+            <text class="source">{{item.source}}</text>
+          </view>
+          <view class="card">
+            <view class="card__body">
+              <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
+              <view class="detail">
+                <view class="tags">
+                  <text class="tag-item" wx:if="{{item.source}}">{{item.source}}</text>
+                  <text
+                      class="tag-item"
+                      wx:for="{{item.tags}}"
+                      wx:for-item="tag"
+                      wx:key="tag"
+                    >{{tag}}篇</text>
+                </view>
+                <view>{{item.title}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- <view class="inner">
           <view class="cover">
             <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
           </view>
@@ -49,8 +87,8 @@
               </view>
             </view>
           </view>
-        </view>
-        <text class="fa fa-thumb-tack" />
+        </view> -->
+        <!-- <text class="fa fa-thumb-tack" /> -->
       </view>
     </view>
     <end wx:if="{{idend}}" />
