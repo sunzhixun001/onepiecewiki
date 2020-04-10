@@ -32,13 +32,14 @@
         <view class="timeline-item__wrapper">
           <view class="timeline-item__timestamp">
             {{item.showAge}}
+            <text class="tag">{{item.tags[0]}}篇</text>
             <text class="source">{{item.source}}</text>
           </view>
           <view class="card">
             <view class="card__body">
-              <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
+              
               <view class="detail">
-                <view class="tags">
+                <!-- <view class="tags">
                   <text class="tag-item" wx:if="{{item.source}}">{{item.source}}</text>
                   <text
                       class="tag-item"
@@ -46,8 +47,9 @@
                       wx:for-item="tag"
                       wx:key="tag"
                     >{{tag}}篇</text>
-                </view>
+                </view> -->
                 <view>{{item.title}}</view>
+                <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
               </view>
             </view>
           </view>

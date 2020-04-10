@@ -110,7 +110,7 @@ Page({
     this.selectComponent('#standardevents').__data__.pageindex = 1;
     this.selectComponent('#newworldevents').__data__.pageindex = 1;
     this.setData({
-      currentIndex: 0,
+      // currentIndex: 0,
       immemorialevents: { data: [], total: 0 },
       bcevents: { data: [], total: 0 },
       standardevents: { data: [], total: 0 },
