@@ -1,0 +1,17 @@
+<view class="component-ad">
+  <view class="body">
+    <image
+      src="{{items[0].img}}"
+      class="image"
+      mode="widthFix"
+    ></image>
+    <view
+      class="actions"
+    >
+      <view
+        class="close-btn"
+        catchtap="handleClose"
+      >×</view>
+    </view>
+  </view>
+</view>

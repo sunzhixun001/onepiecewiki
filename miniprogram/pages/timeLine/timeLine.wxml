@@ -13,6 +13,11 @@
     bind:itemtap="onChapterTap"
     wx:if="{{visiblechapter}}"
   />
+  <ad
+    wx:if="{{showAd}}"
+    bind:close="handleAdClose"
+    items="{{ads}}"
+  />
   <view class='container'>
     <view class='main timeline listPage'>
       <view class='bgGray borderBottom tabListArea'>
@@ -74,6 +79,6 @@
           </view>
         </view>
     </view>
-    <mask wx:if="{{visiblechapter}}" bind:close="closechapter"/>
+    <mask wx:if="{{visiblechapter || showMask}}" bind:close="closechapter"/>
   </view>
 </view>

@@ -32,7 +32,7 @@
         <view class="timeline-item__wrapper">
           <view class="timeline-item__timestamp">
             {{item.showAge}}
-            <text class="tag">{{item.tags[0]}}篇</text>
+            <text class="tag" wx-if="{{item.tags.length > 0}}">{{item.tags[0]}}篇</text>
             <text class="source">{{item.source}}</text>
           </view>
           <view class="card">

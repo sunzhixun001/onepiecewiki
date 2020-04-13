@@ -1,4 +1,5 @@
 import { getEventList} from '../../domain/eventsDomain';
+import { getList as getAdvertisements } from '../../database/advertisement.js';
 import { rpx2px} from '../../common/implement';
 const { statusBarHeight, windowHeight, screenHeight} = getApp().globalData;
 let currentIndex = 0;
@@ -35,7 +36,10 @@ Page({
       { name: '和之国', selected: false }
     ],
     chapter: '',
-    visiblechapter: false
+    visiblechapter: false,
+    showMask: false,
+    showAd: false,
+    ads: []
   },
 
   /**
@@ -43,6 +47,15 @@ Page({
    */
   onLoad: function (options) {
     this.initEvetns();
+    getAdvertisements().then(data => {
+      if (data.length > 0) {
+        this.setData({
+          showAd: true,
+          showMask: true,
+          ads: data
+        });
+      }
+    });
   },
 
   /**
@@ -240,6 +253,13 @@ Page({
   closechapter: function () {
     this.setData({
       visiblechapter: false
+    });
+  },
+  // 点击广告关闭按钮
+  handleAdClose: function() {
+    this.setData({
+      showMask: false,
+      showAd: false
     });
   }
 })

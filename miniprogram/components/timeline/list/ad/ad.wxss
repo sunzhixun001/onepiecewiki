@@ -1,0 +1,30 @@
+.component-ad {
+  position: relative;
+  z-index: 2000;
+  height: 100%;
+}
+
+.component-ad .body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.component-ad .body .actions {
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40rpx
+}
+
+.component-ad .body .actions .close-btn {
+  font-size: 44rpx;
+  width: 70rpx;
+  height: 70rpx;
+  border: solid 1px #FFF;
+  border-radius: 35rpx;
+  text-align: center;
+  line-height: 70rpx;
+}

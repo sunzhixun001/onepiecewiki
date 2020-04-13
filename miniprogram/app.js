@@ -62,6 +62,7 @@ App({
       }
     });
     this.globalData.share = (options.scene === 1007 || options.scene === 1008);
+    // getAdvertisements();
   },
   onShow: function (options){
     this.globalData.share = (options.scene === 1007 || options.scene === 1008);
