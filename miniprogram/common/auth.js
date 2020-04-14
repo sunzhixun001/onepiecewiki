@@ -16,27 +16,27 @@ const fetchOpenIdCloud = ({ successCallback}) => {
 };
 // 从缓存获取openid
 const getOpenIdStorage = ({ success, fail}) => {
-  getStorage({
-    key: 'openid',
-    successCallback: value => {
-      success && success(value);
-    },
-    failCallback: err => {
-      fail && fail();
-    }
-  });
+  // getStorage({
+  //   key: 'openid',
+  //   successCallback: value => {
+  //     success && success(value);
+  //   },
+  //   failCallback: err => {
+  //     fail && fail();
+  //   }
+  // });
 };
 // 从缓存获取userid
 const getUserIdStorage = ({ success, fail}) => {
-  getStorage({
-    key: 'userid',
-    successCallback: value => {
-      success && success(value);
-    },
-    failCallback: err => {
-      fail && fail();
-    }
-  });
+  // getStorage({
+  //   key: 'userid',
+  //   successCallback: value => {
+  //     success && success(value);
+  //   },
+  //   failCallback: err => {
+  //     fail && fail();
+  //   }
+  // });
 };
 export const getOpenId = ({gotCallback}) => {
   getOpenIdStorage({ 

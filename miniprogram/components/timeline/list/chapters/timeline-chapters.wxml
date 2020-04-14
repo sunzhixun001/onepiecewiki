@@ -13,7 +13,7 @@
         >
           <view class="dl">
             <!-- <text class="fa fa-check" wx:if="{{item.selected}}"/> -->
-            <view class="dt">{{item.name}}篇</view>
+            <view class="dt">{{item.name}}{{item.sub || '篇'}}</view>
           </view>
         </view>
       </view>

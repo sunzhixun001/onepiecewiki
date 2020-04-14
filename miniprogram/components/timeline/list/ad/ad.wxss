@@ -1,7 +1,12 @@
 .component-ad {
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2000;
-  height: 100%;
+  /* height: 100%; */
+  background-color: transparent;
 }
 
 .component-ad .body {
@@ -11,7 +16,7 @@
   transform: translate(-50%, -50%);
 }
 
-.component-ad .body .actions {
+.component-ad .actions {
   color: #FFF;
   display: flex;
   justify-content: center;
@@ -19,7 +24,7 @@
   margin-top: 40rpx
 }
 
-.component-ad .body .actions .close-btn {
+.component-ad .actions .close-btn {
   font-size: 44rpx;
   width: 70rpx;
   height: 70rpx;

@@ -1,6 +1,5 @@
 <view class="component-ad">
-  <view class="body">
-    <image
+  <image
       src="{{items[0].img}}"
       class="image"
       mode="widthFix"
@@ -13,5 +12,7 @@
         catchtap="handleClose"
       >×</view>
     </view>
-  </view>
+  <!-- <view class="body">
+    
+  </view> -->
 </view>

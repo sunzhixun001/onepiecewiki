@@ -37,60 +37,19 @@
           </view>
           <view class="card">
             <view class="card__body">
-              
               <view class="detail">
-                <!-- <view class="tags">
-                  <text class="tag-item" wx:if="{{item.source}}">{{item.source}}</text>
-                  <text
-                      class="tag-item"
-                      wx:for="{{item.tags}}"
-                      wx:for-item="tag"
-                      wx:key="tag"
-                    >{{tag}}篇</text>
-                </view> -->
                 <view>{{item.title}}</view>
-                <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
+                <image
+                  wx-if="{{item.photo}}"
+                  class="image"
+                  src='{{item.photo}}'
+                  mode="widthFix"
+                  lazy-load='{{true}}'
+                />
               </view>
             </view>
           </view>
         </view>
-        <!-- <view class="inner">
-          <view class="cover">
-            <image class="image" src='{{item.photo}}' mode="widthFix" lazy-load='{{true}}' />
-          </view>
-          <view class='body'>
-            <view class="meta">
-              <view 
-                class="meta-avatar"
-                wx:if="{{item.characters && item.characters.length > 0}}"
-              >
-                <navigator
-                  url="/pages/characters/detail/characterDetail?id={{characher.id}}"
-                  class="character-avator"
-                  wx:for="{{item.characters}}"
-                  wx:for-item="characher"
-                  wx:key="id"
-                >
-                  <image class="image" src="{{characher.avator}}" />
-                </navigator>
-              </view>
-              <view class="detail">
-                <view class='title'>
-                  <text>{{item.showAge}}</text>
-                  <text class="source" wx:if="{{item.source}}">{{item.source}}</text>
-                  <text
-                    class="tag"
-                    wx:for="{{item.tags}}"
-                    wx:for-item="tag"
-                    wx:key="tag"
-                  >{{tag}}篇</text>
-                </view>
-                <view class='description'>{{item.title}}</view>
-              </view>
-            </view>
-          </view>
-        </view> -->
-        <!-- <text class="fa fa-thumb-tack" /> -->
       </view>
     </view>
     <end wx:if="{{idend}}" />

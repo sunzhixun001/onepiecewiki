@@ -1,6 +1,10 @@
 import { phonePx, px2rpx} from './common/implement';
 import { getOpenId, getUserId } from './common/auth';
 import regeneratorRuntime from './common/regeneratorRuntime';
+import {
+  setStorage,
+  getStorage
+} from './common/storage.js';
 App({
   _favorites: {},
   globalData: {},
@@ -70,5 +74,7 @@ App({
   $watch({ method}) {
 
   },
-  watchBallBack: {}
+  watchBallBack: {},
+  setStorage: setStorage,
+  getStorage: getStorage
 })

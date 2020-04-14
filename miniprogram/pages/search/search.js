@@ -168,14 +168,14 @@ Page({
   },
   // 获取搜索历史
   getSearchHistorys() {
-    getStorage({
-      key: "search-timeline-keyword",
-      successCallback: data => {
-        this.setData({
-          historyKeyword: this.sortHistoryDesc({ array: data || [] })
-        });
-      }
-    });
+    // getStorage({
+    //   key: "search-timeline-keyword",
+    //   successCallback: data => {
+    //     this.setData({
+    //       historyKeyword: this.sortHistoryDesc({ array: data || [] })
+    //     });
+    //   }
+    // });
   },
   // 设置搜索历史
   setSearchHistorys({ newword }) {

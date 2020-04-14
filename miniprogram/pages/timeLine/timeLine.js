@@ -1,8 +1,9 @@
 import { getEventList} from '../../domain/eventsDomain';
 import { getList as getAdvertisements } from '../../database/advertisement.js';
-import { rpx2px} from '../../common/implement';
-const { statusBarHeight, windowHeight, screenHeight} = getApp().globalData;
+import { getDoc as getChapters } from '../../database/dictionaryRepository.js';
+import regeneratorRuntime from '../../common/regeneratorRuntime';
 let currentIndex = 0;
+const app = getApp();
 Page({
 
   /**
@@ -17,24 +18,7 @@ Page({
     keyword: '',
     currentIndex: 0,
     tabs: ['太古时代','0-1521','1522','1523-1524'],
-    chapterlist: [
-      { name: '罗杰', selected: false, hot: true },
-      { name: '东海', selected: false},
-      { name: '阿拉巴斯坦', selected: false},
-      { name: '空岛', selected: false },
-      { name: '七水之都', selected: false },
-      { name: '恐怖三桅帆', selected: false },
-      { name: '香波地群岛', selected: false },
-      { name: '女儿国', selected: false },
-      { name: '推进城监狱', selected: false },
-      { name: '马林梵多', selected: false },
-      { name: '鱼人岛', selected: false },
-      { name: '班克禁区', selected: false },
-      { name: '德雷斯罗萨', selected: false },
-      { name: '佐乌', selected: false },
-      { name: '蛋糕岛', selected: false },
-      { name: '和之国', selected: false }
-    ],
+    chapterlist: [],
     chapter: '',
     visiblechapter: false,
     showMask: false,
@@ -47,15 +31,17 @@ Page({
    */
   onLoad: function (options) {
     this.initEvetns();
-    getAdvertisements().then(data => {
-      if (data.length > 0) {
-        this.setData({
-          showAd: true,
-          showMask: true,
-          ads: data
-        });
-      }
-    });
+    this.fetchAdvertisements();
+    this.fetchChapter();
+    // getAdvertisements().then(data => {
+    //   if (data.length > 0) {
+    //     this.setData({
+    //       showAd: true,
+    //       showMask: true,
+    //       ads: data
+    //     });
+    //   }
+    // });
   },
 
   /**
@@ -260,6 +246,42 @@ Page({
     this.setData({
       showMask: false,
       showAd: false
+    });
+    app.setStorage(
+      'adexpiry', (new Date()).getTime() + this.data.ads[0].expiry * 60 * 60 * 24 * 1000
+    );
+  },
+  // 广告是否过期
+  adExpired: function(time) {
+    return (new Date()).getTime() >= parseInt(time);
+  },
+  // 获取广告
+  fetchAdvertisements: async function() {
+    const data = await app.getStorage('adexpiry');
+    if (!data || this.adExpired(data)) {
+      const adresult = await getAdvertisements();
+      console.log('adresult', adresult);
+      if (adresult.length > 0) {
+        this.setData({
+          showAd: true,
+          showMask: true,
+          ads: adresult
+        });
+      }
+    }
+  },
+  // 获取篇章
+  fetchChapter: function() {
+    getChapters('chapter').then(data => {
+      this.setData({
+        chapterlist: data[0].value.sort((a,b) => a.hot ? -1 : 1).map(element => {
+          return {
+            ...element,
+            selected: false
+          };
+        })
+      });
+      // console.log('获取篇章', data);
     });
   }
 })

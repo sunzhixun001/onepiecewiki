@@ -5,6 +5,7 @@
   box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
   transition: all 2.2s;
   transform-origin: 0 0 0;
+  width: 100%;
 }
 
 .timeline-chapters .chapterArea {
