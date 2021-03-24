@@ -7,7 +7,9 @@ import {
 } from './common/storage.js';
 App({
   _favorites: {},
-  globalData: {},
+  globalData: {
+    showImage: false
+  },
   onLaunch: function (options) {
     let globalDataObj = this.globalData;
     Object.defineProperty(globalDataObj, 'favorites', {
@@ -55,6 +57,13 @@ App({
         this.globalData.windowHeight = windowHeight;
       }
     });
+    wx.getNetworkType({
+      success: (result) => {
+        wx.showToast({
+          title: result.networkType,
+        })
+      },
+    })
     getOpenId({
       gotCallback: value => {
         this.globalData.openid = value;
@@ -65,6 +74,7 @@ App({
         this.globalData.userid = value;
       }
     });
+    
     this.globalData.share = (options.scene === 1007 || options.scene === 1008);
     // getAdvertisements();
   },

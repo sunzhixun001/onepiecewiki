@@ -40,7 +40,7 @@
               <view class="detail">
                 <view>{{item.title}}</view>
                 <image
-                  wx-if="{{item.photo}}"
+                  wx-if="{{showImage && item.photo}}"
                   class="image"
                   src='{{item.photo}}'
                   mode="widthFix"

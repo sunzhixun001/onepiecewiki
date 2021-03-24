@@ -5,7 +5,10 @@
     background="#D9312B"
     color="#FFFFFF"
   >
-    <view slot="left"><text class="fa fa-bars" bindtap="switchchapters"/></view>
+    <view slot="left">
+      <text class="fa fa-bars" bindtap="switchchapters"/>
+      <text class="fa fa-bars" bindtap="switchchapters"/>
+    </view>
   </navbar>
   
   <chapters 

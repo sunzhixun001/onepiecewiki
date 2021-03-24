@@ -1,5 +1,6 @@
 // components/timeline/list/timeline-list/timeline-list.js
 let loading = false;
+const app = getApp();
 
 Component({
   /**
@@ -18,7 +19,8 @@ Component({
     isempty: false,
     isloading: false,
     pageindex: 1,
-    pagesize: 20
+    pagesize: 20,
+    showImage: app.globalData.showImage
   },
 
   observers: {

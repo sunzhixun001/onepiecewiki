@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "navbar": "/components/common/navigation-bar/navigation-bar",
-    "list": "/components/wiki/list/item-list/wiki-item-list"
-  },
-  "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
-}
