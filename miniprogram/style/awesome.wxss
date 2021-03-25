@@ -79,4 +79,4 @@
   content: "\f10c";
 }.fa-thumb-tack:before {
   content: "\f08d";
-}
+}.fa-cog:before{content:"\f013"}

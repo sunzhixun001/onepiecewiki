@@ -8,7 +8,5 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "weui-miniprogram": "^0.1.12"
-  }
+  "dependencies": {}
 }

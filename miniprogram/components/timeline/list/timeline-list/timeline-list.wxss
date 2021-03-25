@@ -42,7 +42,8 @@
 
 /* wrapper */
 .timeline-item__wrapper {
-  padding-left: 46rpx;
+  padding-top: 12rpx;
+  /* padding-left: 46rpx; */
 }
 
 .timeline-item__timestamp {
@@ -93,4 +94,8 @@
 
 .tags .tag-item:first-child {
   margin-left: 0;
+}
+
+.fa {
+  margin-right: 10rpx;
 }

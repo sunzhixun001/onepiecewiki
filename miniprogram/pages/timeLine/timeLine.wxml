@@ -6,7 +6,7 @@
     color="#FFFFFF"
   >
     <view slot="left">
-      <text class="fa fa-bars" bindtap="switchchapters"/>
+      <text class="fa fa-cog" style="margin-right: 10px" bindtap="visibleMenu"/>
       <text class="fa fa-bars" bindtap="switchchapters"/>
     </view>
   </navbar>

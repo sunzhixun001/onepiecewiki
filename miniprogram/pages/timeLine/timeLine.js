@@ -211,6 +211,9 @@ Page({
       visiblechapter: !this.data.visiblechapter
     });
   },
+  visibleMenu: function() {
+    app.globalData.showImage = true;
+  },
   // 点击篇章名称
   onChapterTap: function(e) {
     const { name } = e.detail;

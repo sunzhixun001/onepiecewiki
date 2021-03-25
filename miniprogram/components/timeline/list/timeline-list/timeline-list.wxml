@@ -14,9 +14,9 @@
         wx:for="{{datasource}}"
         wx:key="_id"
       >
-        <view class="timeline-item__tail">
-        </view>
-        <view class="timeline-item__node">
+        <!-- <view class="timeline-item__tail">
+        </view> -->
+        <!-- <view class="timeline-item__node">
           <block wx:if="{{item.characters && item.characters.length}}">
             <navigator
               url="/pages/characters/detail/characterDetail?id={{characher.id}}"
@@ -28,7 +28,7 @@
               <image class="image" src="{{characher.avator}}" />
             </navigator>
           </block>
-        </view>
+        </view> -->
         <view class="timeline-item__wrapper">
           <view class="timeline-item__timestamp">
             {{item.showAge}}

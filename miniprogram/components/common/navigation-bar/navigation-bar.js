@@ -145,18 +145,20 @@ Component({
 
         var isSupport = !!wx.getMenuButtonBoundingClientRect;
         var rect = wx.getMenuButtonBoundingClientRect ? wx.getMenuButtonBoundingClientRect() : null;
-        wx.getSystemInfo({
-            success: function success(res) {
-                var ios = !!(res.system.toLowerCase().search('ios') + 1);
-                _this.setData({
-                    ios: ios,
-                    statusBarHeight: res.statusBarHeight,
-                    innerWidth: isSupport ? 'width:' + rect.left + 'px' : '',
-                    innerPaddingRight: isSupport ? 'padding-right:' + (res.windowWidth - rect.left) + 'px' : '',
-                    leftWidth: isSupport ? 'width:' + (res.windowWidth - rect.left) + 'px' : ''
-                });
-            }
-        });
+        if (rect) {
+            wx.getSystemInfo({
+                success: function success(res) {
+                    var ios = !!(res.system.toLowerCase().search('ios') + 1);
+                    _this.setData({
+                        ios: ios,
+                        statusBarHeight: res.statusBarHeight,
+                        innerWidth: isSupport ? 'width:' + rect.left + 'px' : '',
+                        innerPaddingRight: isSupport ? 'padding-right:' + (res.windowWidth - rect.left) + 'px' : '',
+                        leftWidth: isSupport ? 'width:' + (res.windowWidth - rect.left) + 'px' : ''
+                    });
+                }
+            });
+        }
     },
 
     methods: {

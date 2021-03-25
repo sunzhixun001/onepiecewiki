@@ -8,7 +8,7 @@ import {
 App({
   _favorites: {},
   globalData: {
-    showImage: false
+    showImage: true
   },
   onLaunch: function (options) {
     let globalDataObj = this.globalData;
@@ -59,9 +59,14 @@ App({
     });
     wx.getNetworkType({
       success: (result) => {
-        wx.showToast({
-          title: result.networkType,
-        })
+        if (result.networkType !== 'wifi') {
+          this.globalData.showImage = false;
+          wx.showToast({
+            title: '非wifi环境，已进入无图模式'
+          })
+        } else {
+          this.globalData.showImage = true;
+        }
       },
     })
     getOpenId({
