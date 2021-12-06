@@ -2,10 +2,8 @@
   "cloud": true,
   "pages": [
     "pages/timeLine/timeLine",
-    "pages/wiki/list/list",
     "pages/characters/characters",
     "pages/user/user",
-    "pages/wiki/detail/wikiDetailPage",
     "pages/search/search"
   ],
   "window": {

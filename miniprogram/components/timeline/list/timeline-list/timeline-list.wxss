@@ -1,5 +1,5 @@
 .timeline-list {
-  padding: 24rpx;
+  padding: 0 24rpx 24rpx 24rpx;
   height: 100%;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .detail {
-  padding: 0 12rpx 6rpx 0;
+  padding: 0 0 6rpx 0;
 }
 
 .tags {

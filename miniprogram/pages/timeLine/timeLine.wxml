@@ -23,7 +23,18 @@
   />
   <view class='container'>
     <view class='main timeline listPage'>
-      <view class='bgGray borderBottom tabListArea'>
+      <view class="rule">
+        <view class='axis'></view>
+        <view>太古</view>
+        <view></view>
+        <view>1524</view>
+      </view>
+      <view class='content'>
+        <timeline-list 
+          datasource="{{timelineList}}"
+        />
+      </view>
+      <view class='bgGray borderBottom tabListArea' wx:if="{{false}}">
         <view class='swiper-container headerTabList'>
           <view class='swiper-wrapper'>
             <view 
@@ -38,49 +49,49 @@
           </view>
         </view>
       </view>
-      <view class='wrap'>
-          <view class="area">
-            <view class='listArea'>
-              <swiper 
-                class="swiper"
-                current="{{currentIndex}}"
-                circular
-                bindchange="swiperChange"
-              >
-                <swiper-item>
-                  <timeline-list 
-                    datasource="{{immemorialevents.data}}"
-                    total="{{immemorialevents.total}}"
-                  />
-                </swiper-item>
-                <swiper-item>
-                  <timeline-list 
-                    datasource="{{bcevents.data}}"
-                    total="{{bcevents.total}}"
-                    bind:scrolltolower="bceventsscrolltolower"
-                    id="bcevents"
-                  />
-                </swiper-item>
-                <swiper-item>
-                  <timeline-list 
-                    datasource="{{standardevents.data}}"
-                    total="{{standardevents.total}}"
-                    bind:scrolltolower="standardeventsscrolltolower"
-                    id="standardevents"
-                  />
-                </swiper-item>
-                <swiper-item>
-                  <timeline-list 
-                    datasource="{{newworldevents.data}}"
-                    total="{{newworldevents.total}}"
-                    bind:scrolltolower="newworldeventsscrolltolower"
-                    id="newworldevents"
-                  />
-                </swiper-item>
-              </swiper>
-            </view>
+      <view class='wrap' wx:if="{{false}}">
+        <view class="area">
+          <view class='listArea'>
+            <swiper 
+              class="swiper"
+              current="{{currentIndex}}"
+              circular
+              bindchange="swiperChange"
+            >
+              <swiper-item>
+                <timeline-list 
+                  datasource="{{immemorialevents.data}}"
+                  total="{{immemorialevents.total}}"
+                />
+              </swiper-item>
+              <swiper-item>
+                <timeline-list 
+                  datasource="{{bcevents.data}}"
+                  total="{{bcevents.total}}"
+                  bind:scrolltolower="bceventsscrolltolower"
+                  id="bcevents"
+                />
+              </swiper-item>
+              <swiper-item>
+                <timeline-list 
+                  datasource="{{standardevents.data}}"
+                  total="{{standardevents.total}}"
+                  bind:scrolltolower="standardeventsscrolltolower"
+                  id="standardevents"
+                />
+              </swiper-item>
+              <swiper-item>
+                <timeline-list 
+                  datasource="{{newworldevents.data}}"
+                  total="{{newworldevents.total}}"
+                  bind:scrolltolower="newworldeventsscrolltolower"
+                  id="newworldevents"
+                />
+              </swiper-item>
+            </swiper>
           </view>
         </view>
+      </view>
     </view>
     <mask wx:if="{{visiblechapter || showMask}}" bind:close="closechapter"/>
   </view>

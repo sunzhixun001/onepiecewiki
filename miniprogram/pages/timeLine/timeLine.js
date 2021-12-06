@@ -23,25 +23,18 @@ Page({
     visiblechapter: false,
     showMask: false,
     showAd: false,
-    ads: []
+    ads: [],
+    timelineList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initEvetns();
-    this.fetchAdvertisements();
-    this.fetchChapter();
-    // getAdvertisements().then(data => {
-    //   if (data.length > 0) {
-    //     this.setData({
-    //       showAd: true,
-    //       showMask: true,
-    //       ads: data
-    //     });
-    //   }
-    // });
+    // this.initEvetns()
+    this.getTimeLines()
+    // this.fetchAdvertisements()
+    this.fetchChapter()
   },
 
   /**
@@ -212,7 +205,7 @@ Page({
     });
   },
   visibleMenu: function() {
-    app.globalData.showImage = true;
+    app.globalData.showImage = !app.globalData.showImage;
   },
   // 点击篇章名称
   onChapterTap: function(e) {
@@ -286,5 +279,13 @@ Page({
       });
       // console.log('获取篇章', data);
     });
+  },
+  getTimeLines: async function () {
+    const res = await getEventList({
+      lt: 9999, gte: -9999, pagesize: 30, pageindex:1, tags: ''
+    })
+    this.setData({
+      timelineList: res.data
+    })
   }
 })
