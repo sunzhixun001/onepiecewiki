@@ -177,6 +177,9 @@ Page({
   bceventsscrolltolower: function (e) {
     this.fetchBCevents({ ...e.detail, tags: this.data.chapter});
   },
+  agechange: function (e) {
+    console.log(e)
+  },
   standardeventsscrolltolower: function (e) {
     this.fetchStandardEvents({ ...e.detail, tags: this.data.chapter });
   },

@@ -4,6 +4,8 @@
     scroll-y
     lower-threshold="100"
     bindscrolltolower="scrolltolower"
+    enhanced="{{true}}"
+    binddragend="binddragend"
   >
     <view class="ul">
       <view

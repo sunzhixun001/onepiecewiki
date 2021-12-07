@@ -26,11 +26,48 @@ ad {
   position: fixed;
   right: 0;
   left: 0;
-  border-bottom: 1px solid rgb(239, 243, 244);
-  background-color: #ffffff;
+  /* border-bottom: 1px solid rgb(239, 243, 244); */
+  background-color: #D9312B;
+  color: #ffffff;
   z-index: 99;
+}
+.rule .axis {
+  padding: 15px 20px 20px 20px;
+}
+.rule .axis .box {
+  position: relative;
+}
+.rule .axis .box .straw .image{
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: -10px;
+  left: 20px;
+}
+.axis .ages {
   display: flex;
   flex-direction: row;
+}
+.axis .age {
+  width: 30%;
+  position: relative;
+  padding-top: 5px;
+}
+.axis .age:last-child {
+  flex: 1;
+}
+.axis .age::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  background-color: #ffffff;
+  top: 0;
+  left: 1rem;
+  width: 100%;
+  height: 1px;
+}
+.axis .age:last-child::before {
+  content: none;
 }
 .scroll-wrap{
   position: relative;

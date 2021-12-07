@@ -6,11 +6,15 @@
 .timeline-list .scroll-view {
   height: 100%;
 }
+.timeline-list .scroll-view .ul {
+  padding-top: 50px;
+}
 
 /* item */
 .timeline-list .timeline-item {
   position: relative;
-  padding-bottom: 20rpx;
+  padding-bottom: 10px;
+  height: 160px;
 }
 
 /* node */

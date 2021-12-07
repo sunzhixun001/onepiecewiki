@@ -42,7 +42,7 @@ App({
     });
     wx.getSystemInfo({
       success: res => {
-        console.log('systemInfo: ', res);
+        // console.log('systemInfo: ', res);
         const {
           screenHeight,
           screenWidth,

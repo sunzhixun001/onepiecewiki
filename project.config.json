@@ -15,6 +15,7 @@
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
     "useApiHostProcess": true,
@@ -23,7 +24,7 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "useIsolateContext": false,
+    "useIsolateContext": true,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
@@ -34,7 +35,7 @@
   },
   "appid": "wxe59009a99d2c00a0",
   "projectname": "onepiece-wiki",
-  "libVersion": "2.10.4",
+  "libVersion": "2.21.0",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {

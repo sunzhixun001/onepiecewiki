@@ -34,18 +34,13 @@ Component({
       });
     }
   },
-
+ 
   /**
    * 组件的方法列表
    */
   methods: {
     tap: function (e) {
-      const { img } = e.currentTarget.dataset;
-      if (img) {
-        wx.previewImage({
-          urls: [img]
-        })
-      }
+      this.triggerEvent('agechange', {}, {})
     },
     scrolltolower: function (e) {
       if (!this.data.idend && !loading) {
@@ -55,6 +50,15 @@ Component({
         this.setData({ pageindex: next});
         this.triggerEvent('scrolltolower', { pageindex: next, pagesize: this.data.pagesize}, {})
       }
+    },
+    binddragend: function (e) {
+      const {detail} = e
+      const index = Math.ceil(detail.scrollTop / 170)
+      const timeline = this.data.datasource[index]
+      wx.nextTick(() => {
+        this.triggerEvent('agechange', {age: timeline.age}, {})
+      })
+      
     }
   }
 })

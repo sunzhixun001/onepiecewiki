@@ -24,14 +24,24 @@
   <view class='container'>
     <view class='main timeline listPage'>
       <view class="rule">
-        <view class='axis'></view>
-        <view>太古</view>
-        <view></view>
-        <view>1524</view>
+        <view class='axis'>
+          <view class='box'>
+            <view class='ages'>
+              <view class='age'>太古</view>
+              <view class='age'>0</view>
+              <view class='age'>1522</view>
+              <view class='age'>1524</view>
+            </view>
+            <view class='straw'>
+              <image class='image' src='../../images/wiki.png' />
+            </view>
+          </view>
+        </view>
       </view>
       <view class='content'>
         <timeline-list 
           datasource="{{timelineList}}"
+          bind:agechange="agechange"
         />
       </view>
       <view class='bgGray borderBottom tabListArea' wx:if="{{false}}">
