@@ -33,7 +33,7 @@
               <view class='age'>1524</view>
             </view>
             <view class='straw'>
-              <image class='image' src='../../images/wiki.png' />
+              <image class='image' src='../../images/wiki.png' style="left: {{strawLeft}}" />
             </view>
           </view>
         </view>

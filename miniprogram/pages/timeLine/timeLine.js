@@ -24,7 +24,8 @@ Page({
     showMask: false,
     showAd: false,
     ads: [],
-    timelineList: []
+    timelineList: [],
+    strawLeft: 0
   },
 
   /**
@@ -35,6 +36,7 @@ Page({
     this.getTimeLines()
     // this.fetchAdvertisements()
     this.fetchChapter()
+    console.log(this.getTabBar())
   },
 
   /**
@@ -59,20 +61,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
@@ -86,12 +74,6 @@ Page({
     
   },
   scrolltolower: function() {
-
-  },
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   },
   initEvetns: function() {
@@ -178,7 +160,19 @@ Page({
     this.fetchBCevents({ ...e.detail, tags: this.data.chapter});
   },
   agechange: function (e) {
-    console.log(e)
+    const {detail} = e
+    const {age} = detail
+    if (age < -9000) {
+      this.setData({strawLeft: 0})
+    } else if (age < 0) {
+      this.setData({strawLeft: '7.5%'})
+    } else if (age < 1522) {
+      this.setData({strawLeft: '33.5%'})
+    } else if (age === 1522) {
+      this.setData({strawLeft: '52%'})
+    } else {
+      this.setData({strawLeft: '89%'})
+    }
   },
   standardeventsscrolltolower: function (e) {
     this.fetchStandardEvents({ ...e.detail, tags: this.data.chapter });

@@ -49,7 +49,12 @@ ad {
   flex-direction: row;
 }
 .axis .age {
-  width: 30%;
+  width: 37%;
+  position: relative;
+  padding-top: 5px;
+}
+.axis .age:first-child {
+  width: 15%;
   position: relative;
   padding-top: 5px;
 }

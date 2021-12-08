@@ -4,6 +4,8 @@ page, input, view, text {
 }
 
 page {
+  --height:44px;
+  --right:190rpx;
   height: 100%;
   /* background: hsla(0,0%,97%,.98); */
   display: flex;
@@ -29,8 +31,8 @@ page {
 } */
 
 .cw {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
+  /* padding-left: 20rpx; */
+  /* padding-right: 20rpx; */
   flex: 1;
   overflow: hidden;
   display: flex;

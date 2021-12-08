@@ -3,6 +3,7 @@
 .main {
   flex: 1;
   display: flex;
+  height: 100%;
 }
 .cw{
   padding: 0;

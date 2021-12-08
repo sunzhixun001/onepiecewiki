@@ -15,8 +15,18 @@
     "navigationStyle": "custom"
   },
   "tabBar": {
+    "custom": true,
+    "color": "#7A7E83",
     "selectedColor": "#D9312B",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
     "list": [
+      {
+        "pagePath": "pages/user/user",
+        "text": "篇章",
+        "iconPath": "images/timeline.png",
+        "selectedIconPath": "images/timeline_selected.png"
+      },
       {
         "pagePath": "pages/timeLine/timeLine",
         "text": "时间线",
