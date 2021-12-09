@@ -3,7 +3,7 @@
   "pages": [
     "pages/timeLine/timeLine",
     "pages/characters/characters",
-    "pages/user/user",
+    "pages/story/index",
     "pages/search/search"
   ],
   "window": {
@@ -22,7 +22,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/user/user",
+        "pagePath": "pages/story/index",
         "text": "篇章",
         "iconPath": "images/timeline.png",
         "selectedIconPath": "images/timeline_selected.png"

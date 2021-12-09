@@ -11,9 +11,12 @@ Component({
    * 组件的初始数据
    */
   data: {
+    selected: 1,
+    color: "#7A7E83",
+    selectedColor: "#D9312B",
     list: [
       {
-        "pagePath": "pages/user/user",
+        "pagePath": "/pages/story/index",
         "text": "篇章",
         "iconPath": "/images/timeline.png",
         "selectedIconPath": "/images/timeline_selected.png"
@@ -21,8 +24,8 @@ Component({
       {
         "pagePath": "/pages/timeLine/timeLine",
         "text": "时间线",
-        "iconPath": "/images/timeline.png",
-        "selectedIconPath": "/images/timeline_selected.png"
+        "iconPath": "/images/logo.png",
+        "selectedIconPath": "/images/logo.png"
       },
       {
         "pagePath": "/pages/characters/characters",

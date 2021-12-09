@@ -35,8 +35,7 @@ Page({
     // this.initEvetns()
     this.getTimeLines()
     // this.fetchAdvertisements()
-    this.fetchChapter()
-    console.log(this.getTabBar())
+    // this.fetchChapter()
   },
 
   /**
