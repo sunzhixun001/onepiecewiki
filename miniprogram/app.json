@@ -1,9 +1,9 @@
 {
   "cloud": true,
   "pages": [
+    "pages/story/index",
     "pages/timeLine/timeLine",
     "pages/characters/characters",
-    "pages/story/index",
     "pages/search/search"
   ],
   "window": {

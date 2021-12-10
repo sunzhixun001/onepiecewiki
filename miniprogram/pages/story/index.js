@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    title: '篇章',
+    storyList: []
   },
 
   /**
@@ -30,6 +31,9 @@ Page({
   },
   getStorys: async function () {
     const res = await storyApi.getStorys()
-    console.log(res)
+    const {value} = res[0]
+    this.setData({
+      storyList: value
+    })
   }
 })

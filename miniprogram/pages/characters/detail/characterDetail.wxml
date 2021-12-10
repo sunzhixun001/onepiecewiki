@@ -17,9 +17,9 @@
               <view class='mainArea'>
                 <view class='content'>
                   <view class='contDetail'>
-                    <view class='contImg'>
+                    <!-- <view class='contImg'>
                       <image src='{{img}}' style='width:100%;' mode='widthFix'/>
-                    </view>
+                    </view> -->
                     <view class='charaTxtBox'>
                       <view class='charaNameBox underline'>
                         <view class='charaNameArea'>

@@ -9,4 +9,13 @@ class SingletonDataBase {
     return this.instance
   }
 }
-export const request = SingletonDataBase.getInstance()
+export const database = SingletonDataBase.getInstance()
+
+export const request = async (query) => {
+  const result = await query.get()
+  const {data, errMsg} = result
+  if (errMsg === 'collection.get:ok')
+    return data
+  else 
+    throw new Error(errMsg)
+}

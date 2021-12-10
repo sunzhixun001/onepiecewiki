@@ -1,2 +1,15 @@
-<!--pages/story/index.wxml-->
-<text>pages/story/index.wxml</text>
+<view class='story'>
+  <navbar 
+    title="{{title}}"
+    back="{{false}}"
+    background="#D9312B"
+    color="#FFFFFF"
+  />
+  <view class='story-list'>
+    <view wx:for="{{storyList}}" wx:key="unique" class='story-item'>
+      <image class='story-image' src="{{item.image}}" />
+      <view>{{item.name}}{{item.sub}}</view>
+    </view>
+  </view>
+</view>
+

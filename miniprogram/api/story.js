@@ -1,13 +1,13 @@
 // 字典
-import { request } from '../utils/request';
-import '../common/regeneratorRuntime';
+import { database, request } from '../utils/request'
+import '../common/regeneratorRuntime'
 
-const collection = request.collection('dictionary');
+const collection = database.collection('dictionary')
 
 const getStorys = () => {
-  return collection.where({
+  return request(collection.where({
     key: 'chapter'
-  }).get()
+  }))
 }
 
 export default {
